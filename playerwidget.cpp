@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QFileInfo>
 #include <QTime>
+#include <QIcon> 
 
 PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     : QWidget(parent)
@@ -50,6 +51,16 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_audioManager, &AudioManager::positionChanged, this, &PlayerWidget::onPositionChanged);
     connect(m_audioManager, &AudioManager::durationChanged, this, &PlayerWidget::onDurationChanged);
     connect(m_audioManager, &AudioManager::stateChanged, this, &PlayerWidget::onStateChanged);
+    m_playBtn->setIcon(QIcon(":/icons/play.svg"));
+    m_playBtn->setIconSize(QSize(24,24));
+    m_pauseBtn->setIcon(QIcon(":/icons/pause.svg"));
+    m_pauseBtn->setIconSize(QSize(24,24));
+    m_stopBtn->setIcon(QIcon(":/icons/stop.svg"));
+    m_stopBtn->setIconSize(QSize(24,24));
+    m_nextBtn->setIcon(QIcon(":/icons/next.svg"));
+    m_nextBtn->setIconSize(QSize(24,24));
+    m_prevBtn->setIcon(QIcon(":/icons/prev.svg"));
+    m_prevBtn->setIconSize(QSize(24,24));
 }
 
 void PlayerWidget::setPlaylist(const QStringList &files)

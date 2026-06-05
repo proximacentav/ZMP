@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QApplication>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,37 +11,56 @@ MainWindow::MainWindow(QWidget *parent)
     resize(1200, 800);
     setMinimumSize(800, 600);
 
+    // Центральный виджет и горизонтальный layout
     QWidget *central = new QWidget(this);
     QHBoxLayout *mainLayout = new QHBoxLayout(central);
     setCentralWidget(central);
 
-    m_menu = new QListWidget;
+    // === Боковое меню (QListWidget) ===
+    m_menu = new QListWidget(this);
     m_menu->setFixedWidth(200);
-    m_menu->addItems({"Устройства", "Плеер", "Файлы", "Параметры"});
+    m_menu->setStyleSheet("QListWidget::item { padding: 8px; }");
+
+    // Добавляем пункты меню (пока без иконок, чтобы гарантировать отображение)
+    m_menu->addItem("Устройства");
+    m_menu->addItem("Плеер");
+    m_menu->addItem("Файлы");
+    m_menu->addItem("Эквалайзер");
+    m_menu->addItem("Параметры");
     m_menu->setCurrentRow(0);
+
     mainLayout->addWidget(m_menu);
 
-    m_stack = new QStackedWidget;
+    // === Стек страниц ===
+    m_stack = new QStackedWidget(this);
     mainLayout->addWidget(m_stack, 1);
 
+    // === Создание менеджеров и виджетов ===
     m_audioManager = new AudioManager(this);
-    m_devicesWidget = new DevicesWidget;
-    m_playerWidget = new PlayerWidget(m_audioManager);
-    m_filesWidget = new FilesWidget;
-    m_settingsWidget = new SettingsWidget;
+    m_devicesWidget = new DevicesWidget(this);
+    m_playerWidget = new PlayerWidget(m_audioManager, this);
+    m_filesWidget = new FilesWidget(this);
+    m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
+    m_settingsWidget = new SettingsWidget(this);
 
+    // Добавляем страницы в стек
     m_stack->addWidget(m_devicesWidget);
     m_stack->addWidget(m_playerWidget);
     m_stack->addWidget(m_filesWidget);
+    m_stack->addWidget(m_equalizerWidget);
     m_stack->addWidget(m_settingsWidget);
 
+    // === Связи ===
     connect(m_menu, &QListWidget::currentRowChanged, this, &MainWindow::onMenuChanged);
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
     connect(m_filesWidget, &FilesWidget::fileSelected, this, &MainWindow::onFileSelected);
     connect(m_settingsWidget, &SettingsWidget::exitRequested, this, &MainWindow::onExit);
 
+    // Устанавливаем устройство вывода по умолчанию (если есть)
     if (!m_devicesWidget->selectedDevice().isNull())
         m_audioManager->setActiveOutputDevice(m_devicesWidget->selectedDevice());
+
+    qDebug() << "MainWindow initialized, menu visible";
 }
 
 MainWindow::~MainWindow() {}
@@ -60,12 +80,11 @@ void MainWindow::onFileSelected(const QString &path)
     QStringList playlist;
     playlist.append(path);
     m_playerWidget->setPlaylist(playlist);
-    m_playerWidget->onPlay();
-    m_menu->setCurrentRow(1);
+    m_playerWidget->onPlay();     // автоматически начать воспроизведение
+    m_menu->setCurrentRow(1);     // переключиться на вкладку "Плеер"
 }
 
 void MainWindow::onExit()
 {
     QApplication::quit();
 }
-

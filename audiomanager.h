@@ -2,9 +2,11 @@
 #define AUDIOMANAGER_H
 
 #include <QObject>
-#include <QMediaPlayer>
-#include <QAudioOutput>
 #include <QAudioDevice>
+#include <QVector>
+#include <QTimer>
+#include <bass.h>
+#include <bass_fx.h>
 
 class AudioManager : public QObject
 {
@@ -27,6 +29,9 @@ public:
     QList<QAudioDevice> availableOutputDevices() const;
     QString currentDeviceName() const;
 
+    void setEqualizerGain(int bandIndex, float gainDb);
+    void setPreampGain(float gainDb);
+
 signals:
     void positionChanged(qint64 pos);
     void durationChanged(qint64 dur);
@@ -34,15 +39,16 @@ signals:
     void errorOccurred(const QString &error);
 
 private slots:
-    void onMediaStatusChanged(QMediaPlayer::MediaStatus status);
-    void onPositionChanged(qint64 pos);
-    void onDurationChanged(qint64 dur);
-    void onErrorOccurred(QMediaPlayer::Error error, const QString &errorString);
+    void updatePosition();
 
 private:
-    QMediaPlayer *m_player;
-    QAudioOutput *m_audioOutput;
+    HSTREAM m_currentStream;
+    DWORD m_eqFX;
     bool m_playing;
+    qint64 m_duration;
+    QTimer *m_positionTimer;
+    QAudioDevice m_currentDevice;
+    bool m_seeking;
 };
 
 #endif // AUDIOMANAGER_H

@@ -9,6 +9,7 @@
 #include "playerwidget.h"
 #include "fileswidget.h"
 #include "settingswidget.h"
+#include "equalizerwidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -32,6 +33,7 @@ private:
     DevicesWidget *m_devicesWidget;
     PlayerWidget *m_playerWidget;
     FilesWidget *m_filesWidget;
+    EqualizerWidget *m_equalizerWidget;
     SettingsWidget *m_settingsWidget;
 };
 
