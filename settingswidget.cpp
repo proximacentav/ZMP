@@ -6,6 +6,7 @@
 #include <QStyle>
 #include <QPalette>
 #include <QPushButton>
+#include <QIcon>
 
 SettingsWidget::SettingsWidget(QWidget *parent)
     : QWidget(parent)
@@ -33,6 +34,11 @@ SettingsWidget::SettingsWidget(QWidget *parent)
 
     m_exitButton = new QPushButton("Выйти из программы");
     layout->addWidget(m_exitButton);
+
+    m_themeButton->setIcon(QIcon(":/icons/theme_dark.svg"));
+    m_themeButton->setIconSize(QSize(20,20));
+    m_exitButton->setIcon(QIcon(":/icons/exit.svg"));
+    m_exitButton->setIconSize(QSize(20,20));
 
     connect(m_bitrateSlider, &QSlider::valueChanged, this, &SettingsWidget::onSliderChanged);
     connect(m_bitrateEdit, &QLineEdit::editingFinished, this, &SettingsWidget::onLineEditChanged);
