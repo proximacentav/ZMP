@@ -16,6 +16,17 @@ using QT6.
 
 consume about 127M ram.
 
+## colored themes:
+
+### blue:
+![blue theme](blue_theme.png)
+
+### red:
+![red theme](red_theme.png)
+
+### green:
+![green theme](green_theme.png)
+
 # Installing:
 download depencieses: 
 
@@ -24,6 +35,7 @@ debian: sudo apt install qt6-base-dev qt6-multimedia-dev cmake build-essential g
 fedora: sudo dnf install qt6-qtbase-devel qt6-qtmultimedia-devel cmake gcc-c++ git
 
 arch: sudo pacman -S qt6-base qt6-multimedia cmake base-devel git
+also install bass audio library (libbass, libbas_fx)
 
 ```bash
 git clone https://github.com/proximacentav/ZMP.git
