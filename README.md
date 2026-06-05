@@ -45,4 +45,4 @@ cmake ..
 make
 ```
 or just download binary file in releases page
-# VERSION: BETA v 0.2.0
+# VERSION: BETA v 0.2.5(позвоночник позвонил)
