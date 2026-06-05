@@ -4,6 +4,7 @@
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
 [![Debian](https://img.shields.io/badge/Debian-D70A53.svg)](https://www.debian.org/)
 [![Fedora](https://img.shields.io/badge/Fedora-294172.svg)](https://getfedora.org/)
+![позвоночник позвонил](хттпс://пазваночник.пазванил.кпп/че/个/onion/дцп/дцп)
 
 Z Media Player by proximacentav
 
