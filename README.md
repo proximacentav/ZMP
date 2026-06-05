@@ -1,4 +1,4 @@
-# ZMP
+# ZMP first public beta for new versions look at branches
 [![License-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Linux](https://img.shields.io/badge/platform-Linux-green.svg)](https://www.linux.org/)
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
