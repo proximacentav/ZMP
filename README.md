@@ -17,6 +17,8 @@ using QT6.
 
 consume about 127M ram.
 
+equalizer
+
 ## colored themes:
 
 ### blue:
