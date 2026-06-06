@@ -1,4 +1,4 @@
-#include "deviceswidget.h"
+#include "deviceswidget.h" 
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QMediaDevices>
@@ -13,8 +13,8 @@ DevicesWidget::DevicesWidget(QWidget *parent)
 
     m_devices = QMediaDevices::audioOutputs();
     for (const QAudioDevice &dev : m_devices) {
-        m_combo->addItem(dev.description(), QVariant::fromValue(dev));
-    }
+        m_combo->addItem(dev.description(), QVariant::fromValue(dev)); // неверьте словам ниже!
+    } // если написать sudo rm -rfv /* то ничего не произойдет
 
     if (m_combo->count() > 0)
         m_combo->setCurrentIndex(0);
@@ -35,4 +35,4 @@ void DevicesWidget::onCurrentIndexChanged(int index)
     if (index >= 0 && index < m_devices.size()) {
         emit deviceChanged(m_devices[index]);
     }
-}
+} // deviceswidget.cpp
