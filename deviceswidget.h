@@ -1,6 +1,12 @@
 #ifndef DEVICESWIDGET_H
 #define DEVICESWIDGET_H
 
+
+#include <QtGlobal>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#error "install qt6"
+#endif
+
 #include <QWidget>
 #include <QComboBox>
 #include <QAudioDevice>

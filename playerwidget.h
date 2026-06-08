@@ -7,6 +7,7 @@
 #include <QListWidget>
 #include <QSlider>
 #include "audiomanager.h"
+#include "trackinfowidget.h"
 
 class PlayerWidget : public QWidget
 {
@@ -30,12 +31,13 @@ private slots:
     void onStateChanged(bool playing);
     void onSliderMoved(int value);
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
+    void onMetadataChanged(const TrackMetadata &metadata);
 
 private:
     void updateUI();
 
     AudioManager *m_audioManager;
-    QLabel *m_currentFileLabel;
+    TrackInfoWidget *m_trackInfo;
     QSlider *m_positionSlider;
     QLabel *m_timeLabel;
     QPushButton *m_playBtn, *m_pauseBtn, *m_stopBtn, *m_nextBtn, *m_prevBtn;
