@@ -22,6 +22,14 @@ metadata view
 
 consume about 127M ram.
 
+## colored themes:
+### blue:
+![blue theme](blue_theme.png)
+### red:
+![red theme](red_theme.png)
+### green:
+![green theme](green_theme.png)
+
 # Installing:
 download depencieses: 
 
