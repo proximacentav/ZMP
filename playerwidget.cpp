@@ -3,7 +3,8 @@
 #include <QHBoxLayout>
 #include <QFileInfo>
 #include <QTime>
-#include <QIcon> 
+#include <QIcon>
+#include <QDebug>
 
 PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     : QWidget(parent)
@@ -13,8 +14,8 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    m_currentFileLabel = new QLabel("Нет файла");
-    mainLayout->addWidget(m_currentFileLabel);
+    m_trackInfo = new TrackInfoWidget(this);
+    mainLayout->addWidget(m_trackInfo);
 
     m_positionSlider = new QSlider(Qt::Horizontal);
     m_positionSlider->setRange(0, 1000);
@@ -40,17 +41,6 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     mainLayout->addWidget(new QLabel("Очередь воспроизведения:"));
     mainLayout->addWidget(m_playlistWidget);
 
-    connect(m_playBtn, &QPushButton::clicked, this, &PlayerWidget::onPlay);
-    connect(m_pauseBtn, &QPushButton::clicked, this, &PlayerWidget::onPause);
-    connect(m_stopBtn, &QPushButton::clicked, this, &PlayerWidget::onStop);
-    connect(m_nextBtn, &QPushButton::clicked, this, &PlayerWidget::onNext);
-    connect(m_prevBtn, &QPushButton::clicked, this, &PlayerWidget::onPrevious);
-    connect(m_positionSlider, &QSlider::sliderMoved, this, &PlayerWidget::onSliderMoved);
-    connect(m_playlistWidget, &QListWidget::itemDoubleClicked, this, &PlayerWidget::onPlaylistItemDoubleClicked);
-
-    connect(m_audioManager, &AudioManager::positionChanged, this, &PlayerWidget::onPositionChanged);
-    connect(m_audioManager, &AudioManager::durationChanged, this, &PlayerWidget::onDurationChanged);
-    connect(m_audioManager, &AudioManager::stateChanged, this, &PlayerWidget::onStateChanged);
     m_playBtn->setIcon(QIcon(":/icons/play.svg"));
     m_playBtn->setIconSize(QSize(24,24));
     m_pauseBtn->setIcon(QIcon(":/icons/pause.svg"));
@@ -61,6 +51,20 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     m_nextBtn->setIconSize(QSize(24,24));
     m_prevBtn->setIcon(QIcon(":/icons/prev.svg"));
     m_prevBtn->setIconSize(QSize(24,24));
+\
+    connect(m_playBtn, &QPushButton::clicked, this, &PlayerWidget::onPlay);
+    connect(m_pauseBtn, &QPushButton::clicked, this, &PlayerWidget::onPause);
+    connect(m_stopBtn, &QPushButton::clicked, this, &PlayerWidget::onStop);
+    connect(m_nextBtn, &QPushButton::clicked, this, &PlayerWidget::onNext);
+    connect(m_prevBtn, &QPushButton::clicked, this, &PlayerWidget::onPrevious);
+    connect(m_positionSlider, &QSlider::sliderMoved, this, &PlayerWidget::onSliderMoved);
+    connect(m_playlistWidget, &QListWidget::itemDoubleClicked, this, &PlayerWidget::onPlaylistItemDoubleClicked);
+    connect(m_audioManager, &AudioManager::positionChanged, this, &PlayerWidget::onPositionChanged);
+    connect(m_audioManager, &AudioManager::durationChanged, this, &PlayerWidget::onDurationChanged);
+    connect(m_audioManager, &AudioManager::stateChanged, this, &PlayerWidget::onStateChanged);
+    connect(m_audioManager, &AudioManager::metadataChanged, this, &PlayerWidget::onMetadataChanged);
+
+    qDebug() << "PlayerWidget created";
 }
 
 void PlayerWidget::setPlaylist(const QStringList &files)
@@ -73,43 +77,40 @@ void PlayerWidget::setPlaylist(const QStringList &files)
     }
     if (!files.isEmpty())
         m_currentIndex = 0;
+    qDebug() << "Playlist set with" << files.size() << "files";
 }
 
 void PlayerWidget::onPlay()
 {
     if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
+        qDebug() << "Playing:" << m_playlist[m_currentIndex];
         m_audioManager->setSourceFile(m_playlist[m_currentIndex]);
         m_audioManager->play();
         updateUI();
+    } else {
+        qDebug() << "No file selected or invalid index";
     }
 }
 
-void PlayerWidget::onPause()
-{
-    m_audioManager->pause();
-}
-
+void PlayerWidget::onPause() { m_audioManager->pause(); }
 void PlayerWidget::onStop()
 {
     m_audioManager->stop();
     m_positionSlider->setValue(0);
     m_timeLabel->setText("00:00 / 00:00");
 }
-
 void PlayerWidget::onNext()
 {
     if (m_playlist.isEmpty()) return;
     m_currentIndex = (m_currentIndex + 1) % m_playlist.size();
     onPlay();
 }
-
 void PlayerWidget::onPrevious()
 {
     if (m_playlist.isEmpty()) return;
     m_currentIndex = (m_currentIndex - 1 + m_playlist.size()) % m_playlist.size();
     onPlay();
 }
-
 void PlayerWidget::onPositionChanged(qint64 pos)
 {
     if (!m_isSeeking) {
@@ -122,18 +123,8 @@ void PlayerWidget::onPositionChanged(qint64 pos)
         m_timeLabel->setText(current.toString("mm:ss") + " / " + total.toString("mm:ss"));
     }
 }
-
-void PlayerWidget::onDurationChanged(qint64 dur)
-{
-    Q_UNUSED(dur);
-    onPositionChanged(m_audioManager->position());
-}
-
-void PlayerWidget::onStateChanged(bool playing)
-{
-    Q_UNUSED(playing);
-}
-
+void PlayerWidget::onDurationChanged(qint64 dur) { Q_UNUSED(dur); onPositionChanged(m_audioManager->position()); }
+void PlayerWidget::onStateChanged(bool playing) { Q_UNUSED(playing); }
 void PlayerWidget::onSliderMoved(int value)
 {
     qint64 dur = m_audioManager->duration();
@@ -143,7 +134,6 @@ void PlayerWidget::onSliderMoved(int value)
         m_isSeeking = false;
     }
 }
-
 void PlayerWidget::onPlaylistItemDoubleClicked(QListWidgetItem *item)
 {
     int row = m_playlistWidget->row(item);
@@ -152,13 +142,14 @@ void PlayerWidget::onPlaylistItemDoubleClicked(QListWidgetItem *item)
         onPlay();
     }
 }
-
+void PlayerWidget::onMetadataChanged(const TrackMetadata &metadata)
+{
+    qDebug() << "Metadata received in PlayerWidget:" << metadata.title << metadata.artist;
+    m_trackInfo->updateInfo(metadata);
+}
 void PlayerWidget::updateUI()
 {
     if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
         QFileInfo fi(m_playlist[m_currentIndex]);
-        m_currentFileLabel->setText("Сейчас: " + fi.fileName());
-    } else {
-        m_currentFileLabel->setText("Нет файла");
     }
 }

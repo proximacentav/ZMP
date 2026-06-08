@@ -1,6 +1,11 @@
 #ifndef SETTINGSWIDGET_H
 #define SETTINGSWIDGET_H
 
+#include <QtGlobal>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#error "install qt6"
+#endif
+
 #include <QWidget>
 #include <QSlider>
 #include <QLineEdit>

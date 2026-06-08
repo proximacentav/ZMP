@@ -1,15 +1,21 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtGlobal>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#error "install qt6"
+#endif
+
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QListWidget>
+#include <QAudioDevice>
 #include "audiomanager.h"
 #include "deviceswidget.h"
 #include "playerwidget.h"
 #include "fileswidget.h"
-#include "settingswidget.h"
 #include "equalizerwidget.h"
+#include "settingswidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -21,7 +27,7 @@ public:
 
 private slots:
     void onMenuChanged(int row);
-    void onDeviceChanged(const QAudioDevice &device);   // ← исправлено
+    void onDeviceChanged(const QAudioDevice &device);
     void onFileSelected(const QString &path);
     void onExit();
 
