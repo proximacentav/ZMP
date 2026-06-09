@@ -153,3 +153,9 @@ void PlayerWidget::updateUI()
         QFileInfo fi(m_playlist[m_currentIndex]);
     }
 }
+void PlayerWidget::setMetadataHeight(int height)
+{
+    if (m_trackInfo) {
+        m_trackInfo->setFixedHeight(height);
+    }
+}

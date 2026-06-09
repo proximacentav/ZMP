@@ -24,6 +24,7 @@ public slots:
     void onStop();
     void onNext();
     void onPrevious();
+    void setMetadataHeight(int height);   // новый слот
 
 private slots:
     void onPositionChanged(qint64 pos);
@@ -37,7 +38,7 @@ private:
     void updateUI();
 
     AudioManager *m_audioManager;
-    TrackInfoWidget *m_trackInfo;
+    TrackInfoWidget *m_trackInfo;          // только одно объявление
     QSlider *m_positionSlider;
     QLabel *m_timeLabel;
     QPushButton *m_playBtn, *m_pauseBtn, *m_stopBtn, *m_nextBtn, *m_prevBtn;

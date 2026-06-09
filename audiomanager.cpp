@@ -9,7 +9,7 @@ AudioManager::AudioManager(QObject *parent)
 {
     if (!BASS_Init(-1, 44100, 0, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
-        return;
+
     }
     BASS_FX_GetVersion();
 
@@ -63,7 +63,9 @@ void AudioManager::play()
     }
     if (BASS_ChannelPlay(m_currentStream, FALSE)) {
         m_playing = true;
-        m_positionTimer->start();
+        if (m_positionTimer) {
+            m_positionTimer->start();
+        }
         emit stateChanged(true);
     } else {
         qCritical() << "BASS_ChannelPlay failed:" << BASS_ErrorGetCode();
@@ -75,7 +77,9 @@ void AudioManager::pause()
     if (m_playing && m_currentStream) {
         BASS_ChannelPause(m_currentStream);
         m_playing = false;
-        m_positionTimer->stop();
+        if (m_positionTimer) {
+            m_positionTimer->stop();
+        }
         emit stateChanged(false);
     }
 }
@@ -85,7 +89,9 @@ void AudioManager::stop()
     if (m_currentStream) {
         BASS_ChannelStop(m_currentStream);
         m_playing = false;
-        m_positionTimer->stop();
+        if (m_positionTimer) {
+            m_positionTimer->stop();
+        }
         emit stateChanged(false);
     }
 }
@@ -119,7 +125,6 @@ void AudioManager::updatePosition()
         emit positionChanged(position());
     }
 }
-
 qint64 AudioManager::position() const
 {
     if (!m_currentStream) return 0;
@@ -140,14 +145,27 @@ bool AudioManager::isPlaying() const
 
 void AudioManager::setEqualizerGain(int bandIndex, float gainDb)
 {
-    if (!m_currentStream || !m_eqFX) return;
+    if (!m_currentStream) {
+        qWarning() << "setEqualizerGain: no current stream";
+        return;
+    }
+    if (!m_eqFX) {
+        qWarning() << "setEqualizerGain: no EQ effect (m_eqFX=0)";
+        return;
+    }
     BASS_BFX_PEAKEQ eq;
     if (BASS_FXGetParameters(m_eqFX, &eq)) {
         eq.lBand = bandIndex;
-        eq.fGain = gainDb;   // от -500 до +500 dB
+        eq.fGain = gainDb;
         eq.fBandwidth = 1.0f;
         eq.lChannel = BASS_BFX_CHANALL;
-        BASS_FXSetParameters(m_eqFX, &eq);
+        if (BASS_FXSetParameters(m_eqFX, &eq)) {
+            qDebug() << "EQ band" << bandIndex << "set to" << gainDb << "dB - OK";
+        } else {
+            qCritical() << "Failed to set EQ parameters, BASS error:" << BASS_ErrorGetCode();
+        }
+    } else {
+        qCritical() << "Failed to get EQ parameters, BASS error:" << BASS_ErrorGetCode();
     }
 }
 
