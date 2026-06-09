@@ -22,6 +22,8 @@ metadata view
 
 consume about 127M ram.
 
+black/white theme
+
 ## colored themes:
 ### blue white:
 ![blue white theme](white_blue.png)
