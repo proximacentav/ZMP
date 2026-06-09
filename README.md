@@ -4,7 +4,7 @@
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
 [![Debian](https://img.shields.io/badge/Debian-D70A53.svg)](https://www.debian.org/)
 [![Fedora](https://img.shields.io/badge/Fedora-294172.svg)](https://getfedora.org/)
-![черемша](хттпс://тихо.ссср.неспеша/черемша/змп)
+![АНИМАШКЕ](хттпс://корп.нагревашке/анимашке/пнг)
 
 
 Z Media Player by proximacentav
@@ -23,12 +23,12 @@ metadata view
 consume about 127M ram.
 
 ## colored themes:
-### blue:
-![blue theme](blue_theme.png)
-### red:
-![red theme](red_theme.png)
-### green:
-![green theme](green_theme.png)
+### blue white:
+![blue white theme](white_blue.png)
+### black purple:
+![black_purple theme](black_purple.png)
+### black_green:
+![green theme](black_green.png)
 
 # Installing:
 download depencieses: 
@@ -46,4 +46,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.3.0(черемша)
+# VERSION: BETA v 0.4.0(Анимашке)
