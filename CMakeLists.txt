@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(MediaPlayer)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
@@ -9,13 +11,13 @@ set(CMAKE_PREFIX_PATH "/usr/lib/qt6" ${CMAKE_PREFIX_PATH})
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg)
 
-# bass
+# BASS
 set(BASS_ROOT_DIR "/usr")
 find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS ${BASS_ROOT_DIR}/include /usr/include)
 find_library(BASS_LIBRARY NAMES bass PATHS ${BASS_ROOT_DIR}/lib /usr/lib)
 find_library(BASS_FX_LIBRARY NAMES bass_fx PATHS ${BASS_ROOT_DIR}/lib /usr/lib)
 
-# tagLib
+# TagLib
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(TAGLIB REQUIRED taglib)
 

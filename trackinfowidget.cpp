@@ -6,11 +6,13 @@
 TrackInfoWidget::TrackInfoWidget(QWidget *parent)
     : QWidget(parent)
 {
+    setFixedHeight(220);  // начальная высота
+
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
     m_coverLabel = new QLabel(this);
-    m_coverLabel->setFixedSize(100, 100);
+    m_coverLabel->setFixedSize(180, 180);
     m_coverLabel->setScaledContents(true);
     mainLayout->addWidget(m_coverLabel);
 
@@ -30,7 +32,7 @@ void TrackInfoWidget::updateInfo(const TrackMetadata &metadata)
 {
     if (!metadata.cover.isNull()) {
         QPixmap pix = QPixmap::fromImage(metadata.cover);
-        m_coverLabel->setPixmap(pix.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        m_coverLabel->setPixmap(pix.scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     } else {
         m_coverLabel->clear();
     }

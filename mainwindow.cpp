@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     mainLayout->addWidget(m_menu);
 
+
     m_stack = new QStackedWidget(this);
     mainLayout->addWidget(m_stack, 1);
 
@@ -38,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
     m_settingsWidget = new SettingsWidget(this);
 
+ //П
     m_stack->addWidget(m_devicesWidget);
     m_stack->addWidget(m_playerWidget);
     m_stack->addWidget(m_filesWidget);
@@ -48,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
     connect(m_filesWidget, &FilesWidget::fileSelected, this, &MainWindow::onFileSelected);
     connect(m_settingsWidget, &SettingsWidget::exitRequested, this, &MainWindow::onExit);
-    
+
     if (!m_devicesWidget->selectedDevice().isNull())
         m_audioManager->setActiveOutputDevice(m_devicesWidget->selectedDevice());
 
@@ -62,7 +64,7 @@ void MainWindow::onMenuChanged(int row)
     m_stack->setCurrentIndex(row);
 }
 
-void MainWindow::onDeviceChanged(const QAudioDevice &device)
+void MainWindow::onDeviceChanged(const QAudioDevice &device) // 67 это не сметана
 {
     m_audioManager->setActiveOutputDevice(device);
 }
@@ -72,8 +74,8 @@ void MainWindow::onFileSelected(const QString &path)
     QStringList playlist;
     playlist.append(path);
     m_playerWidget->setPlaylist(playlist);
-    m_playerWidget->onPlay();     // автоматически начать воспроизведение
-    m_menu->setCurrentRow(1);
+    m_playerWidget->onPlay();
+    m_menu->setCurrentRow(1);     
 }
 
 void MainWindow::onExit()
