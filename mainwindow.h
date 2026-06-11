@@ -1,19 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGlobal>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#error "install qt6"
-#endif
-
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QListWidget>
-#include <QAudioDevice>
 #include "audiomanager.h"
 #include "deviceswidget.h"
 #include "playerwidget.h"
 #include "fileswidget.h"
+#include "playlistswidget.h"   
 #include "equalizerwidget.h"
 #include "settingswidget.h"
 
@@ -34,11 +29,11 @@ private slots:
 private:
     QListWidget *m_menu;
     QStackedWidget *m_stack;
-
     AudioManager *m_audioManager;
     DevicesWidget *m_devicesWidget;
     PlayerWidget *m_playerWidget;
     FilesWidget *m_filesWidget;
+    PlaylistsWidget *m_playlistsWidget;   
     EqualizerWidget *m_equalizerWidget;
     SettingsWidget *m_settingsWidget;
 };

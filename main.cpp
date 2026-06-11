@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    qRegisterMetaType<PlaylistInfo>();
 
     QFile styleFile(":/style.qss");
     if (styleFile.open(QFile::ReadOnly)) {

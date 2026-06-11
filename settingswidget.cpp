@@ -127,7 +127,7 @@ void SettingsWidget::showAboutDialog()
 
     QVBoxLayout *dialogLayout = new QVBoxLayout(&aboutDialog);
     QLabel *textLabel = new QLabel(
-        "version 0.3.0 (Анимашке)\n"
+        "version 0.5.0 (лоботомия)\n"
         "by proximacentav..\n"
         "https://github.com/proximacentav/ZMP\n"
         "MIT license\n"

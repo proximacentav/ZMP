@@ -6,7 +6,7 @@
 TrackInfoWidget::TrackInfoWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setFixedHeight(220);  // начальная высота
+    setFixedHeight(220);
 
     QHBoxLayout *mainLayout = new QHBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
