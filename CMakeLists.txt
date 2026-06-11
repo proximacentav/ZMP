@@ -32,6 +32,10 @@ add_executable(MediaPlayer
     mainwindow.h mainwindow.cpp
     metadataextractor.h metadataextractor.cpp
     trackinfowidget.h trackinfowidget.cpp
+    playlistmanager.h playlistmanager.cpp
+    playlistswidget.h playlistswidget.cpp
+    createdialog.h createdialog.cpp
+    deletedialog.h deletedialog.cpp
     res.qrc
 )
 

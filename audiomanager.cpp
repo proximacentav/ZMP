@@ -39,9 +39,9 @@ void AudioManager::setSourceFile(const QString &filePath)
     m_eqFX = 0;
 
     QByteArray pathBytes = QFile::encodeName(filePath);
-    m_currentStream = BASS_StreamCreateFile(FALSE, pathBytes.constData(), 0, 0, BASS_STREAM_AUTOFREE | BASS_SAMPLE_FLOAT);
+    m_currentStream = BASS_StreamCreateFile(FALSE, pathBytes.constData(), 0, 0, BASS_STREAM_AUTOFREE);
     if (!m_currentStream) {
-        qCritical() << "Failed to load file. BASS error:" << BASS_ErrorGetCode();
+        qCritical() << "ERROR when loading file BASS error:" << BASS_ErrorGetCode();
         emit errorOccurred("Не удалось загрузить файл");
         return;
     }
