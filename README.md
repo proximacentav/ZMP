@@ -1,4 +1,4 @@
-# ZMP version BETA 0.5.0
+# ZMP version BETA 0.5.9
 [![License-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Linux](https://img.shields.io/badge/platform-Linux-green.svg)](https://www.linux.org/)
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
@@ -16,7 +16,7 @@ just starting without errors.
 
 using QT6.
 
-working equalizer (+1000db, -1000db preamp max)
+equalizer (+1000db, -1000db preamp max)
 
 metadata view
 
@@ -26,7 +26,12 @@ black/white theme
 
 playlists system
 
+Speed of tracks
+
+tones of tracks
+
 ## colored themes:
+## screenshots of 0.4.0 version
 ### blue white:
 ![blue white theme](white_blue.png)
 ### black purple:
@@ -62,4 +67,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.5.0(Лоботомия)
+# VERSION: BETA v 0.5.9(Лоботомия)
