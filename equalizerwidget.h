@@ -1,21 +1,15 @@
 #ifndef EQUALIZERWIDGET_H
 #define EQUALIZERWIDGET_H
 
-
-#include <QtGlobal>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#error "install qt6"
-#endif
-
 #include <QWidget>
 #include <QVector>
 #include <QMap>
-#include "audiomanager.h"   // этость нужность для эквалайзерности
-
-class QSlider;
-class QSpinBox;
-class QScrollArea;
-class QGridLayout;
+#include <QSpinBox>          
+#include <QDoubleSpinBox>    
+#include <QSlider>
+#include <QScrollArea>
+#include <QGridLayout>
+#include "audiomanager.h"
 
 class EqualizerWidget : public QWidget
 {
@@ -29,23 +23,33 @@ public:
 signals:
     void bandGainChanged(double frequencyHz, int gainDb);
     void preampGainChanged(int gainDb);
+    void speedChanged(double speed);
+    void pitchChanged(double pitch);
 
 private slots:
     void onSliderMoved(int bandIndex, int value);
     void onSpinBoxChanged(int bandIndex, int value);
     void onPreampSliderMoved(int value);
     void onPreampSpinBoxChanged(int value);
+    void onSpeedSliderMoved(int value);
+    void onSpeedSpinBoxChanged(double value);
+    void onPitchSliderMoved(int value);
+    void onPitchSpinBoxChanged(double value);
 
 private:
     AudioManager *m_audioManager;
     struct Band {
         double freq;
         QSlider *slider;
-        QSpinBox *spinBox;
+        QSpinBox *spinBox;  
     };
     QVector<Band> m_bands;
     QSlider *m_preampSlider;
     QSpinBox *m_preampSpinBox;
+    QSlider *m_speedSlider;
+    QDoubleSpinBox *m_speedSpinBox;
+    QSlider *m_pitchSlider;
+    QDoubleSpinBox *m_pitchSpinBox;
     QScrollArea *m_scrollArea;
     QWidget *m_scrollContent;
     QGridLayout *m_layout;

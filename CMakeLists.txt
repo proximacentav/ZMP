@@ -1,27 +1,32 @@
 cmake_minimum_required(VERSION 3.16)
 project(MediaPlayer)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-set(CMAKE_PREFIX_PATH "/usr/lib/qt6" ${CMAKE_PREFIX_PATH})
-
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg)
 
-# BASS
-set(BASS_ROOT_DIR "/usr")
-find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS ${BASS_ROOT_DIR}/include /usr/include)
-find_library(BASS_LIBRARY NAMES bass PATHS ${BASS_ROOT_DIR}/lib /usr/lib)
-find_library(BASS_FX_LIBRARY NAMES bass_fx PATHS ${BASS_ROOT_DIR}/lib /usr/lib)
+find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS /usr/include /usr/local/include)
+find_library(BASS_LIBRARY NAMES bass PATHS /usr/lib /usr/local/lib)
+find_library(BASS_FX_LIBRARY NAMES bass_fx PATHS /usr/lib /usr/local/lib)
 
-# TagLib
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(TAGLIB REQUIRED taglib)
 
-add_executable(MediaPlayer
+find_path(TAGLIB_INCLUDE_DIR
+    NAMES taglib/taglib.h
+    PATHS /usr/include /usr/local/include
+)
+find_library(TAGLIB_LIBRARY
+    NAMES tag libtag 
+    PATHS /usr/lib /usr/local/lib
+)
+
+if(NOT TAGLIB_LIBRARY)
+    message(FATAL_ERROR "TagLib not found..install taglib")
+endif()
+
+# если нужно больше ошибок компиляции смело удаляйте что то отсюда (зачем кому то нужно больше ошибок)
+set(SOURCES
     main.cpp
     audiomanager.h audiomanager.cpp
     deviceswidget.h deviceswidget.cpp
@@ -39,13 +44,19 @@ add_executable(MediaPlayer
     res.qrc
 )
 
+add_executable(MediaPlayer ${SOURCES})
+
 target_include_directories(MediaPlayer PRIVATE
     ${BASS_INCLUDE_DIR}
-    ${TAGLIB_INCLUDE_DIRS}
+    ${TAGLIB_INCLUDE_DIR}
 )
 
 target_link_libraries(MediaPlayer
-    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg
-    ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
-    ${TAGLIB_LIBRARIES}
+    Qt6::Core
+    Qt6::Widgets
+    Qt6::Multimedia
+    Qt6::Svg
+    ${BASS_LIBRARY}
+    ${BASS_FX_LIBRARY}
+    ${TAGLIB_LIBRARY}
 )

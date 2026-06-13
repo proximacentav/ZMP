@@ -3,16 +3,16 @@
         <file>style.qss</file>
     </qresource>
     <qresource prefix="/icons">
-        <file>icons/play.svg</file>
-        <file>icons/pause.svg</file>
-        <file>icons/stop.svg</file>
-        <file>icons/next.svg</file>
-        <file>icons/prev.svg</file>
-        <file>icons/folder.svg</file>
-        <file>icons/audio_card.svg</file>
-        <file>icons/equalizer.svg</file>
-        <file>icons/settings.svg</file>
-        <file>icons/exit.svg</file>
-        <file>icons/theme_dark.svg</file>
+        <file>play.svg</file>
+        <file>pause.svg</file>
+        <file>stop.svg</file>
+        <file>next.svg</file>
+        <file>prev.svg</file>
+        <file>folder.svg</file>
+        <file>audio_card.svg</file>
+        <file>equalizer.svg</file>
+        <file>settings.svg</file>
+        <file>exit.svg</file>
+        <file>theme_dark.svg</file>
     </qresource>
 </RCC>

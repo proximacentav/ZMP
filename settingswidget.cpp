@@ -29,11 +29,11 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     m_bitrateEdit->setText("320");
     layout->addWidget(m_bitrateEdit);
 
-    QLabel *note = new QLabel("любое значение обозначает 'не ограничено'");
+    QLabel *note = new QLabel("эта функция работает через раз");
     note->setStyleSheet("color: gray; font-size: 10px;");
     layout->addWidget(note);
 
-    layout->addWidget(new QLabel("этот выбор ничего не значит :"));
+    layout->addWidget(new QLabel("высота области для метаданных:"));
     m_heightSlider = new QSlider(Qt::Horizontal);
     m_heightSlider->setRange(150, 400);
     m_heightSlider->setValue(220);
@@ -127,7 +127,7 @@ void SettingsWidget::showAboutDialog()
 
     QVBoxLayout *dialogLayout = new QVBoxLayout(&aboutDialog);
     QLabel *textLabel = new QLabel(
-        "version 0.5.0 (лоботомия)\n"
+        "version 0.5.9 (Лоботомия)\n"
         "by proximacentav..\n"
         "https://github.com/proximacentav/ZMP\n"
         "MIT license\n"
