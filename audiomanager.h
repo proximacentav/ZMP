@@ -15,6 +15,8 @@ class AudioManager : public QObject
 public:
     explicit AudioManager(QObject *parent = nullptr);
     ~AudioManager();
+    void setPlaybackSpeed(double speed);
+    void setPitchShift(double semitones);
 
     void setSourceFile(const QString &filePath);
     void play();
@@ -48,9 +50,9 @@ private slots:
 
 private:
     void updateMetadata(const TrackMetadata &metadata);
-
     HSTREAM m_currentStream;
     DWORD m_eqFX;
+    DWORD m_pitchFX;  
     bool m_playing;
     bool m_seeking;
     qint64 m_duration;
@@ -58,6 +60,9 @@ private:
     QString m_currentFilePath;
     TrackMetadata m_currentMetadata;
     QAudioDevice m_currentDevice;
+    double m_originalFreq;   
+    double m_currentSpeed;    
+    double m_currentPitch; 
 };
 
 #endif // AUDIOMANAGER_H

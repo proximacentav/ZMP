@@ -5,7 +5,8 @@
 #include <QMediaDevices>
 
 AudioManager::AudioManager(QObject *parent)
-    : QObject(parent), m_currentStream(0), m_eqFX(0), m_playing(false), m_seeking(false), m_duration(0)
+    : QObject(parent), m_currentStream(0), m_eqFX(0), m_pitchFX(0), m_playing(false), m_seeking(false), m_duration(0),
+      m_originalFreq(44100.0), m_currentSpeed(1.0), m_currentPitch(0.0)
 {
     if (!BASS_Init(-1, 44100, 0, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
@@ -52,7 +53,16 @@ void AudioManager::setSourceFile(const QString &filePath)
     emit durationChanged(m_duration);
 
     m_eqFX = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_PEAKEQ, 1);
-    if (!m_eqFX) qWarning() << "Failed to create EQ effect!";
+    if (!m_eqFX) qWarning() << "Failed to create EQ effect";
+    BASS_CHANNELINFO info;
+    if (BASS_ChannelGetInfo(m_currentStream, &info)) {
+        m_originalFreq = info.freq;
+        qDebug() << "Original frequency:" << m_originalFreq;
+    } else {
+        m_originalFreq = 44100.0;
+    }
+    setPlaybackSpeed(m_currentSpeed);
+    setPitchShift(m_currentPitch);
 }
 
 void AudioManager::play()
@@ -98,13 +108,13 @@ void AudioManager::stop()
 
 void AudioManager::next()
 {
-    qDebug() << "Next track (requires playlist implementation)";
+    qDebug() << "Next track";
     emit nextRequested();
 }
 
 void AudioManager::previous()
 {
-    qDebug() << "Previous track (requires playlist implementation)";
+    qDebug() << "Previous track";
     emit previousRequested();
 }
 
@@ -169,10 +179,28 @@ void AudioManager::setEqualizerGain(int bandIndex, float gainDb)
     }
 }
 
+void AudioManager::setPlaybackSpeed(double speed)
+{
+    if (!m_currentStream) return;
+    m_currentSpeed = speed;
+    double newFreq = m_originalFreq * speed;
+    BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_FREQ, newFreq);
+    qDebug() << "Playback speed:" << speed << "new freq:" << newFreq;
+}
+
+void AudioManager::setPitchShift(double semitones) {
+    if (!m_currentStream) return;
+    m_currentPitch = semitones;
+    double pitchFactor = pow(2.0, semitones / 12.0);
+    double newFreq = m_originalFreq * m_currentSpeed * pitchFactor;
+    BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_FREQ, newFreq);
+    qDebug() << "Pitch shift set to" << semitones << "semitones, new freq:" << newFreq;
+}
+
 void AudioManager::setPreampGain(float gainDb)
 {
     if (m_currentStream) {
-        float volume = qPow(10.0f, gainDb / 20.0f); // ±1000 dB
+        float volume = qPow(10.0f, gainDb / 20.0f);
         BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_VOL, volume);
     }
 }
