@@ -7,7 +7,6 @@
 #include <QTimer>
 #include <bass.h>
 #include <bass_fx.h>
-#include "metadataextractor.h"
 
 class AudioManager : public QObject
 {
@@ -15,8 +14,6 @@ class AudioManager : public QObject
 public:
     explicit AudioManager(QObject *parent = nullptr);
     ~AudioManager();
-    void setPlaybackSpeed(double speed);
-    void setPitchShift(double semitones);
 
     void setSourceFile(const QString &filePath);
     void play();
@@ -30,39 +27,37 @@ public:
     bool isPlaying() const;
     void setEqualizerGain(int bandIndex, float gainDb);
     void setPreampGain(float gainDb);
+    void setPlaybackSpeed(double speed);
+    void setPitchShift(double semitones);
     void setActiveOutputDevice(const QAudioDevice &device);
     QList<QAudioDevice> availableOutputDevices() const;
     QString currentDeviceName() const;
-    QString currentFilePath() const { return m_currentFilePath; }
-    TrackMetadata currentMetadata() const { return m_currentMetadata; }
+    void setSpectrumGain(float gain);
 
 signals:
     void positionChanged(qint64 pos);
     void durationChanged(qint64 dur);
     void stateChanged(bool playing);
-    void metadataChanged(const TrackMetadata &metadata);
     void errorOccurred(const QString &error);
-    void nextRequested();
-    void previousRequested();
+    void spectrumDataChanged(const QVector<float> &amplitudes);
 
 private slots:
     void updatePosition();
+    void updateSpectrum();
 
 private:
-    void updateMetadata(const TrackMetadata &metadata);
     HSTREAM m_currentStream;
     DWORD m_eqFX;
-    DWORD m_pitchFX;  
     bool m_playing;
     bool m_seeking;
     qint64 m_duration;
     QTimer *m_positionTimer;
-    QString m_currentFilePath;
-    TrackMetadata m_currentMetadata;
+    QTimer *m_spectrumTimer;
+    double m_originalFreq;
+    double m_currentSpeed;
+    double m_currentPitch;
     QAudioDevice m_currentDevice;
-    double m_originalFreq;   
-    double m_currentSpeed;    
-    double m_currentPitch; 
+    float m_spectrumGain;
 };
 
-#endif // AUDIOMANAGER_H
+#endif

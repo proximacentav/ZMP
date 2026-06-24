@@ -4,17 +4,16 @@
 #include <QWidget>
 #include <QVector>
 #include <QMap>
-#include <QSpinBox>          
-#include <QDoubleSpinBox>    
+#include <QSpinBox>          // добавлено
+#include <QDoubleSpinBox>    // добавлено
 #include <QSlider>
-#include <QScrollArea>
-#include <QGridLayout>
+#include <QScrollArea>       // добавлено
+#include <QGridLayout>       // добавлено
 #include "audiomanager.h"
 
 class EqualizerWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit EqualizerWidget(AudioManager *audioManager, QWidget *parent = nullptr);
     QMap<double, int> getBandGains() const;
@@ -38,11 +37,7 @@ private slots:
 
 private:
     AudioManager *m_audioManager;
-    struct Band {
-        double freq;
-        QSlider *slider;
-        QSpinBox *spinBox;  
-    };
+    struct Band { double freq; QSlider *slider; QSpinBox *spinBox; };
     QVector<Band> m_bands;
     QSlider *m_preampSlider;
     QSpinBox *m_preampSpinBox;
@@ -53,8 +48,7 @@ private:
     QScrollArea *m_scrollArea;
     QWidget *m_scrollContent;
     QGridLayout *m_layout;
-
     void createBands();
 };
 
-#endif // EQUALIZERWIDGET_H
+#endif

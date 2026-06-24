@@ -1,19 +1,12 @@
-#include <QApplication> // ыыыыыыыы ы ыыы ыы ы  ы ыыы ы ы ы ы
-#include <QIcon>
-#include <QFile>
+#include <QApplication>  // вэлике рефакторинг
+#include <QMetaType>
 #include "mainwindow.h"
+#include "playlistswidget.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     qRegisterMetaType<PlaylistInfo>();
-
-    QFile styleFile(":/style.qss");
-    if (styleFile.open(QFile::ReadOnly)) {
-        QString styleSheet = QLatin1String(styleFile.readAll());
-        app.setStyleSheet(styleSheet);
-    }
-
     MainWindow w;
     w.show();
     return app.exec();
