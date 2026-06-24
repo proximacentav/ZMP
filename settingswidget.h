@@ -2,13 +2,13 @@
 #define SETTINGSWIDGET_H
 
 #include <QWidget>
-#include <QSlider>
-#include <QLineEdit>    // версия 0.3.0 ! ! ! 
-#include <QPushButton>
-#include <QComboBox>
-#include <QMap>
 
-class SettingsWidget : public QWidget
+class QSlider;
+class QComboBox;
+class QLineEdit;
+class QPushButton;
+
+class SettingsWidget : public QWidget // новая версия!!
 {
     Q_OBJECT
 
@@ -17,31 +17,35 @@ public:
     int maxBitrate() const;
 
 signals:
-    void exitRequested();
+    void accentColorChanged(const QColor &color);
     void metadataHeightChanged(int height);
+    void exitRequested();
+    void spectrumGainChanged(float gain);
 
 private slots:
-    void onSliderChanged(int value);
+    void onSliderChanged(int v);
     void onLineEditChanged();
     void toggleTheme();
     void onColorChanged(int index);
-    void onHeightSliderChanged(int value);   
+    void onHeightSliderChanged(int v);
     void showAboutDialog();
+    void onSpectrumGainChanged(int value);
 
 private:
-    void applyTheme(bool dark);
-    void applyAccentColor();
-
     QSlider *m_bitrateSlider;
     QLineEdit *m_bitrateEdit;
-    QPushButton *m_exitButton;
+    QSlider *m_heightSlider;
+    QPushButton *m_aboutButton;
     QPushButton *m_themeButton;
     QComboBox *m_colorCombo;
-    QSlider *m_heightSlider;        
-    QPushButton *m_aboutButton;     
+    QPushButton *m_exitButton;
+    QSlider *m_spectrumGainSlider;
+    
     bool m_darkTheme;
     QColor m_accentColor;
     QMap<QString, QColor> m_colorMap;
+    void applyTheme(bool dark);
+    void applyAccentColor();
 };
 
 #endif // SETTINGSWIDGET_H

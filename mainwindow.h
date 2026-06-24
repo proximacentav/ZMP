@@ -4,18 +4,17 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QListWidget>
+#include <QAudioDevice>
 #include "audiomanager.h"
 #include "deviceswidget.h"
 #include "playerwidget.h"
-#include "fileswidget.h"
-#include "playlistswidget.h"   
+#include "playlistswidget.h"
 #include "equalizerwidget.h"
 #include "settingswidget.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -32,10 +31,9 @@ private:
     AudioManager *m_audioManager;
     DevicesWidget *m_devicesWidget;
     PlayerWidget *m_playerWidget;
-    FilesWidget *m_filesWidget;
-    PlaylistsWidget *m_playlistsWidget;   
+    PlaylistsWidget *m_playlistsWidget;
     EqualizerWidget *m_equalizerWidget;
     SettingsWidget *m_settingsWidget;
 };
 
-#endif // MAINWINDOW_H
+#endif

@@ -6,25 +6,36 @@
 #include <QPushButton>
 #include <QListWidget>
 #include <QSlider>
+#include <QImage>
+#include <QVector>
 #include "audiomanager.h"
-#include "trackinfowidget.h"
+
+struct TrackMetadata {
+    QString title;
+    QString artist;
+    QString album;
+    int year = 0;
+    QImage cover;
+};
+
+class SpectrumWidget;  // forward
 
 class PlayerWidget : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit PlayerWidget(AudioManager *audioManager, QWidget *parent = nullptr);
     void setPlaylist(const QStringList &files);
-    const QStringList& getPlaylist() const { return m_playlist; }
-
-public slots:
     void onPlay();
     void onPause();
     void onStop();
     void onNext();
     void onPrevious();
-    void setMetadataHeight(int height);  
+
+public slots:
+    void setMetadataHeight(int height);
+    void updateSpectrum(const QVector<float> &levels);
+    void setAccentColor(const QColor &color);
 
 private slots:
     void onPositionChanged(qint64 pos);
@@ -32,13 +43,20 @@ private slots:
     void onStateChanged(bool playing);
     void onSliderMoved(int value);
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
-    void onMetadataChanged(const TrackMetadata &metadata);
 
 private:
     void updateUI();
+    TrackMetadata extractMetadata(const QString &filePath);
+    void updateTrackInfo(const TrackMetadata &metadata);
 
     AudioManager *m_audioManager;
-    TrackInfoWidget *m_trackInfo;       
+    QLabel *m_coverLabel;
+    QLabel *m_titleLabel;
+    QLabel *m_artistLabel;
+    QLabel *m_albumYearLabel;
+    QWidget *m_spectrumContainer;
+    SpectrumWidget *m_spectrumWidget;
+    QColor m_accentColor;
     QSlider *m_positionSlider;
     QLabel *m_timeLabel;
     QPushButton *m_playBtn, *m_pauseBtn, *m_stopBtn, *m_nextBtn, *m_prevBtn;
@@ -46,6 +64,7 @@ private:
     QStringList m_playlist;
     int m_currentIndex;
     bool m_isSeeking;
+    int m_metadataHeight;
 };
 
-#endif // PLAYERWIDGET_H
+#endif

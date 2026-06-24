@@ -1,18 +1,9 @@
 <RCC>
-    <qresource prefix="/">
-        <file>style.qss</file>
-    </qresource>
     <qresource prefix="/icons">
         <file>play.svg</file>
         <file>pause.svg</file>
         <file>stop.svg</file>
         <file>next.svg</file>
         <file>prev.svg</file>
-        <file>folder.svg</file>
-        <file>audio_card.svg</file>
-        <file>equalizer.svg</file>
-        <file>settings.svg</file>
-        <file>exit.svg</file>
-        <file>theme_dark.svg</file>
     </qresource>
 </RCC>
