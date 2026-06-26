@@ -42,6 +42,16 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     m_spectrumGainSlider->setTickInterval(50);
     layout->addWidget(m_spectrumGainSlider);
 
+    layout->addWidget(new QLabel("частота обновления спектраграммы (FPS):"));
+    m_spectrumFpsCombo = new QComboBox;
+    m_spectrumFpsCombo->addItems({"5", "10", "20", "40", "60", "90", "120", "144", "240", "360", "480", "720", "900", "1600", "1000000"});
+    m_spectrumFpsCombo->setCurrentIndex(2);
+    layout->addWidget(m_spectrumFpsCombo);
+    
+    connect(m_spectrumFpsCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index){
+        emit spectrumFpsChanged(m_spectrumFpsCombo->itemText(index).toInt());
+    });
+
     m_aboutButton = new QPushButton("О программе");
     layout->addWidget(m_aboutButton);
 
@@ -104,7 +114,7 @@ void SettingsWidget::showAboutDialog() {
     dlg.setWindowTitle("О программе");
     dlg.resize(400,300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("version 0.6.0 (ВотчДэмо)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nBETA VERSION"));
+    l->addWidget(new QLabel("version 0.7.0 (n?и?.m)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nBETA VERSION"));
     QPushButton *closeBtn = new QPushButton("Закрыть");
     l->addWidget(closeBtn);
     connect(closeBtn, &QPushButton::clicked, &dlg, &QDialog::accept);

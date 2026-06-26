@@ -85,7 +85,7 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
 }
 
 void EqualizerWidget::createBands() {
-    QVector<double> freqs = {0.5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
+    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
     m_bands.resize(freqs.size());
     for (int i=0; i<freqs.size(); ++i) {
         double f = freqs[i];

@@ -7,40 +7,16 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QDebug>
-#include <QPainter>
-#include <QStyledItemDelegate>
 #include <QDialog>
 #include <QLabel>
 #include <QLineEdit>
+#include <taglib/fileref.h>
+#include <taglib/tag.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/attachedpictureframe.h>
-
-class PlaylistItemDelegate : public QStyledItemDelegate {
-public:
-    explicit PlaylistItemDelegate(QObject *parent=nullptr) : QStyledItemDelegate(parent) {}
-    void paint(QPainter *p, const QStyleOptionViewItem &opt, const QModelIndex &idx) const override {
-        QVariant data = idx.data(Qt::UserRole);
-        if (data.canConvert<PlaylistInfo>()) {
-            PlaylistInfo info = data.value<PlaylistInfo>();
-            QRect r = opt.rect;
-            QRect coverR(r.x(), r.y(), 150, 150);
-            if (!info.cover.isNull()) {
-                p->drawImage(coverR, info.cover.scaled(150,150,Qt::KeepAspectRatio,Qt::SmoothTransformation));
-            } else {
-                p->fillRect(coverR, Qt::lightGray);
-                p->drawText(coverR, Qt::AlignCenter, "No cover");
-            }
-            QRect nameR(r.x(), r.y()+150, r.width(), 30);
-            p->drawText(nameR, Qt::AlignCenter, info.name);
-        } else {
-            QStyledItemDelegate::paint(p, opt, idx);
-        }
-    }
-    QSize sizeHint(const QStyleOptionViewItem&, const QModelIndex&) const override {
-        return QSize(160, 190);
-    }
-};
+#include <taglib/flacfile.h>
+#include <QRandomGenerator>
 
 PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -56,15 +32,14 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
 
     m_listWidget = new QListWidget;
     m_listWidget->setViewMode(QListView::IconMode);
-    m_listWidget->setIconSize(QSize(150,150));
-    m_listWidget->setGridSize(QSize(160,190));
+    m_listWidget->setGridSize(QSize(190, 240));
     m_listWidget->setResizeMode(QListView::Adjust);
-    m_listWidget->setItemDelegate(new PlaylistItemDelegate(this));
+    m_listWidget->setStyleSheet("QListWidget::item { background: transparent; border: none; } QListWidget::item:selected { background: transparent; }");
+    m_listWidget->setSelectionMode(QAbstractItemView::NoSelection);
     layout->addWidget(m_listWidget);
 
     connect(addBtn, &QPushButton::clicked, this, &PlaylistsWidget::onAddClicked);
     connect(delBtn, &QPushButton::clicked, this, &PlaylistsWidget::onDeleteClicked);
-    connect(m_listWidget, &QListWidget::itemDoubleClicked, this, &PlaylistsWidget::onItemDoubleClicked);
 
     loadPlaylists();
 }
@@ -81,17 +56,46 @@ QStringList PlaylistsWidget::supportedExts() const {
 
 QImage PlaylistsWidget::extractCover(const QString &filePath) {
     QImage img;
-    if (!filePath.endsWith(".mp3", Qt::CaseInsensitive)) return img;
-    TagLib::MPEG::File file(filePath.toUtf8().data());
-    if (file.ID3v2Tag()) {
-        auto list = file.ID3v2Tag()->frameList("APIC");
-        if (!list.isEmpty()) {
-            auto *pic = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(list.front());
-            if (pic && pic->picture().size()>0)
-                img.loadFromData((const uchar*)pic->picture().data(), pic->picture().size());
+    QFileInfo fi(filePath);
+    
+    TagLib::FileRef f(filePath.toUtf8().data());
+    if (!f.isNull() && f.tag()) {
+
+    }
+
+    if (filePath.endsWith(".mp3", Qt::CaseInsensitive)) {
+        TagLib::MPEG::File file(filePath.toUtf8().data());
+        if (file.ID3v2Tag()) {
+            auto list = file.ID3v2Tag()->frameList("APIC");
+            if (!list.isEmpty()) {
+                auto *pic = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(list.front());
+                if (pic && pic->picture().size() > 0) {
+                    img.loadFromData((const uchar*)pic->picture().data(), pic->picture().size());
+                }
+            }
+        }
+    } 
+    else if (filePath.endsWith(".flac", Qt::CaseInsensitive)) {
+        TagLib::FLAC::File file(filePath.toUtf8().data());
+        if (file.pictureList().size() > 0) {
+            TagLib::FLAC::Picture *pic = file.pictureList().front();
+            if (pic && pic->data().size() > 0) {
+                img.loadFromData((const uchar*)pic->data().data(), pic->data().size());
+            }
         }
     }
     return img;
+}
+
+QString PlaylistsWidget::extractTitle(const QString &filePath) {
+    QString title = QFileInfo(filePath).baseName();
+    TagLib::FileRef f(filePath.toUtf8().data());
+    if (!f.isNull() && f.tag()) {
+        if (!f.tag()->title().isEmpty()) {
+            title = f.tag()->title().toCString(true);
+        }
+    }
+    return title;
 }
 
 void PlaylistsWidget::loadPlaylists() {
@@ -103,18 +107,27 @@ void PlaylistsWidget::loadPlaylists() {
         info.name = folder;
         QDir pd(basePath()+"/"+folder);
         for (const QString &f : pd.entryList(QDir::Files)) {
-            if (supportedExts().contains(QFileInfo(f).suffix().toLower().prepend('.')))
-                info.tracks.append(pd.absolutePath()+"/"+f);
+            if (supportedExts().contains(QFileInfo(f).suffix().toLower().prepend('.'))) {
+                QString absPath = pd.absolutePath()+"/"+f;
+                info.tracks.append(absPath);
+                
+                info.trackTitles.append(extractTitle(absPath));
+            }
         }
+        
         if (!info.tracks.isEmpty()) info.cover = extractCover(info.tracks.first());
+        
         m_playlists.append(info);
-        QListWidgetItem *item = new QListWidgetItem;
-        item->setData(Qt::UserRole, QVariant::fromValue(info));
-        item->setSizeHint(QSize(160,190));
-        m_listWidget->addItem(item);
+        
+        QListWidgetItem *item = new QListWidgetItem(m_listWidget);
+        item->setSizeHint(QSize(190, 240));
+        
+        PlaylistTileWidget *tile = new PlaylistTileWidget(info, m_listWidget);
+        m_listWidget->setItemWidget(item, tile);
+        
+        connect(tile, &PlaylistTileWidget::doubleClicked, this, &PlaylistsWidget::playlistSelected);
     }
 }
-
 void PlaylistsWidget::onAddClicked() {
     QDialog dlg(this);
     dlg.setWindowTitle("Создать плейлист");
@@ -198,9 +211,4 @@ void PlaylistsWidget::onDeleteClicked() {
         if (dir.removeRecursively()) loadPlaylists();
         else QMessageBox::warning(this, "Ошибка", "Не удалось удалить");
     }
-}
-
-void PlaylistsWidget::onItemDoubleClicked(QListWidgetItem *item) {
-    PlaylistInfo info = item->data(Qt::UserRole).value<PlaylistInfo>();
-    if (!info.tracks.isEmpty()) emit playlistSelected(info.tracks);
 }

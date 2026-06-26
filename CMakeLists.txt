@@ -28,6 +28,7 @@ add_executable(MediaPlayer
     playerwidget.h playerwidget.cpp
     equalizerwidget.h equalizerwidget.cpp
     settingswidget.h settingswidget.cpp
+    fileswidget.h fileswidget.cpp
     playlistswidget.h playlistswidget.cpp
     res.qrc
 )

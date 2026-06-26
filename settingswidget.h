@@ -2,13 +2,15 @@
 #define SETTINGSWIDGET_H
 
 #include <QWidget>
+#include <QMap>
+#include <QColor>
 
 class QSlider;
 class QComboBox;
 class QLineEdit;
 class QPushButton;
 
-class SettingsWidget : public QWidget // новая версия!!
+class SettingsWidget : public QWidget
 {
     Q_OBJECT
 
@@ -21,6 +23,7 @@ signals:
     void metadataHeightChanged(int height);
     void exitRequested();
     void spectrumGainChanged(float gain);
+    void spectrumFpsChanged(int fps);
 
 private slots:
     void onSliderChanged(int v);
@@ -28,8 +31,8 @@ private slots:
     void toggleTheme();
     void onColorChanged(int index);
     void onHeightSliderChanged(int v);
-    void showAboutDialog();
     void onSpectrumGainChanged(int value);
+    void showAboutDialog();
 
 private:
     QSlider *m_bitrateSlider;
@@ -40,10 +43,12 @@ private:
     QComboBox *m_colorCombo;
     QPushButton *m_exitButton;
     QSlider *m_spectrumGainSlider;
+    QComboBox *m_spectrumFpsCombo;
     
     bool m_darkTheme;
     QColor m_accentColor;
     QMap<QString, QColor> m_colorMap;
+
     void applyTheme(bool dark);
     void applyAccentColor();
 };
