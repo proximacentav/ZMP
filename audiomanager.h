@@ -26,6 +26,7 @@ public:
     void setPosition(qint64 ms);
     bool isPlaying() const;
     void setEqualizerGain(int bandIndex, float gainDb);
+    void setEqualizerBandFreq(int bandIndex, double freqHz);
     void setPreampGain(float gainDb);
     void setPlaybackSpeed(double speed);
     void setPitchShift(double semitones);
@@ -45,6 +46,9 @@ private slots:
     void updatePosition();
     void updateSpectrum();
 
+public slots:
+    void setSpectrumFps(int fps);
+
 private:
     HSTREAM m_currentStream;
     DWORD m_eqFX;
@@ -58,6 +62,7 @@ private:
     double m_currentPitch;
     QAudioDevice m_currentDevice;
     float m_spectrumGain;
+ // Вотч Дэма
 };
 
 #endif

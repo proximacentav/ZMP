@@ -192,3 +192,8 @@ void AudioManager::updateSpectrum() {
 void AudioManager::setSpectrumGain(float gain) {
     m_spectrumGain = gain;
 }
+void AudioManager::setSpectrumFps(int fps) {
+    if (fps <= 0) fps = 1;
+    int interval = qMax(1, (int)(1000.0 / fps)); 
+    m_spectrumTimer->setInterval(interval);
+}

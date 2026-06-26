@@ -19,7 +19,7 @@ struct TrackMetadata {
 };
 
 class SpectrumWidget;  // forward
-
+class RightMetaContainer;
 class PlayerWidget : public QWidget
 {
     Q_OBJECT
@@ -44,6 +44,9 @@ private slots:
     void onSliderMoved(int value);
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
 
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
 private:
     void updateUI();
     TrackMetadata extractMetadata(const QString &filePath);
@@ -65,6 +68,10 @@ private:
     int m_currentIndex;
     bool m_isSeeking;
     int m_metadataHeight;
+    RightMetaContainer* m_metaContainer;
+    QTimer *m_pulseTimer;
+    int m_pulseElapsed;
+    bool m_isPulsing;
 };
 
 #endif
