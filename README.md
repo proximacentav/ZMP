@@ -1,10 +1,10 @@
-# ZMP version BETA 0.6.0
+# ZMP version BETA 0.7.0
 [![License-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Linux](https://img.shields.io/badge/platform-Linux-green.svg)](https://www.linux.org/)
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
 [![Debian](https://img.shields.io/badge/Debian-D70A53.svg)](https://www.debian.org/)
 [![Fedora](https://img.shields.io/badge/Fedora-294172.svg)](https://getfedora.org/)
-![ВотчДэма](хттпс://пж.зарегай.дiко/вотчдэмо/вотчдэмо/watchdemo?q=клатч+1+в+1)
+![???](хттпс://?Nии?????/XXX/?XXX?=Q=1029321m20,4/s[nm]//i///)
 
 
 Z Media Player by proximacentav
@@ -27,6 +27,8 @@ black/white theme
 playlists system
 
 Speed of tracks
+
+updated design
 
 tones of tracks
 
@@ -69,4 +71,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.6.0(ВотчДэмо)
+# VERSION: BETA v 0.7.0(???)
