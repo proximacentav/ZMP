@@ -1,10 +1,10 @@
-# ZMP version BETA 0.7.0
+# ZMP version BETA 0.8.0
 [![License-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Linux](https://img.shields.io/badge/platform-Linux-green.svg)](https://www.linux.org/)
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
 [![Debian](https://img.shields.io/badge/Debian-D70A53.svg)](https://www.debian.org/)
 [![Fedora](https://img.shields.io/badge/Fedora-294172.svg)](https://getfedora.org/)
-![???](хттпс://?Nии?????/XXX/?XXX?=Q=1029321m20,4/s[nm]//i///)
+![deltarun tomorowww](хттпс://alpha.beta.gamma.deltarunnnnnnnn/info/info/info.date/?/#/infodate52Z)
 
 
 Z Media Player by proximacentav
@@ -19,6 +19,8 @@ using QT6.
 equalizer (+1000db, -1000db preamp max)
 
 metadata view
+
+update of fileswidget (now you can access to any path of your system)
 
 consume about 127M ram.
 
@@ -71,4 +73,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.7.0(???)
+# VERSION: BETA v 0.8.0(deltarun tomorowww)
