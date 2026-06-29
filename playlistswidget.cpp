@@ -40,6 +40,7 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
 
     connect(addBtn, &QPushButton::clicked, this, &PlaylistsWidget::onAddClicked);
     connect(delBtn, &QPushButton::clicked, this, &PlaylistsWidget::onDeleteClicked);
+    connect(this, &PlaylistsWidget::playlistSelected, this, &PlaylistsWidget::onPlaylistPlaying);
 
     loadPlaylists();
 }
@@ -210,5 +211,45 @@ void PlaylistsWidget::onDeleteClicked() {
         if (!dir.exists()) { QMessageBox::warning(this, "Ошибка", "Плейлист не найден"); return; }
         if (dir.removeRecursively()) loadPlaylists();
         else QMessageBox::warning(this, "Ошибка", "Не удалось удалить");
+    }
+}
+
+void PlaylistsWidget::onPlaylistPlaying(const QStringList &tracks) {
+    for (int i = 0; i < m_listWidget->count(); ++i) {
+        QListWidgetItem *item = m_listWidget->item(i);
+        QWidget *widget = m_listWidget->itemWidget(item);
+        if (PlaylistTileWidget *tile = qobject_cast<PlaylistTileWidget*>(widget)) {
+            tile->setPlaying(false);
+        }
+    }
+    for (int i = 0; i < m_playlists.size(); ++i) {
+        if (m_playlists[i].tracks == tracks) {
+            QListWidgetItem *item = m_listWidget->item(i);
+            QWidget *widget = m_listWidget->itemWidget(item);
+            if (PlaylistTileWidget *tile = qobject_cast<PlaylistTileWidget*>(widget)) {
+                tile->setPlaying(true);
+            }
+            break;
+        }
+    }
+}
+
+void PlaylistsWidget::onPlaylistStopped() {
+    for (int i = 0; i < m_listWidget->count(); ++i) {
+        QListWidgetItem *item = m_listWidget->item(i);
+        QWidget *widget = m_listWidget->itemWidget(item);
+        if (PlaylistTileWidget *tile = qobject_cast<PlaylistTileWidget*>(widget)) {
+            tile->setPlaying(false);
+        }
+    }
+}
+
+void PlaylistsWidget::onPlaylistClear() {
+    for (int i = 0; i < m_listWidget->count(); ++i) {
+        QListWidgetItem *item = m_listWidget->item(i);
+        QWidget *widget = m_listWidget->itemWidget(item);
+        if (PlaylistTileWidget *tile = qobject_cast<PlaylistTileWidget*>(widget)) {
+            tile->setPlaying(false);
+        }
     }
 }

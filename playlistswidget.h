@@ -58,9 +58,15 @@ protected:
         QPen pen;
         pen.setWidth(3);
         QConicalGradient grad(QPointF(90, 90), m_angle);
-        grad.setColorAt(0.0, QColor(0, 255, 100, flickerAlpha));
-        grad.setColorAt(0.15, QColor(0, 255, 100, 0));
-        grad.setColorAt(1.0, QColor(0, 255, 100, 0));
+        if (m_isPlaying) {
+            grad.setColorAt(0.0, QColor(0, 100, 255, flickerAlpha));
+            grad.setColorAt(0.15, QColor(0, 100, 255, 0));
+            grad.setColorAt(1.0, QColor(0, 100, 255, 0));
+        } else {
+            grad.setColorAt(0.0, QColor(0, 255, 100, flickerAlpha));
+            grad.setColorAt(0.15, QColor(0, 255, 100, 0));
+            grad.setColorAt(1.0, QColor(0, 255, 100, 0));
+        }
         pen.setBrush(QBrush(grad));
         p.setPen(pen);
         p.setBrush(Qt::NoBrush);
@@ -118,6 +124,9 @@ protected:
         if (!m_info.tracks.isEmpty()) emit doubleClicked(m_info.tracks);
     }
 
+public:
+    void setPlaying(bool playing) { m_isPlaying = playing; update(); }
+
 signals:
     void doubleClicked(const QStringList &tracks);
 
@@ -126,7 +135,8 @@ private:
     qreal m_rotX = 0, m_rotY = 0;
     int m_angle;
     QTimer *m_animTimer;
-    
+    bool m_isPlaying = false;
+
     QString m_scrollText;
     int m_scrollX;
 };
@@ -139,6 +149,11 @@ public:
 
 signals:
     void playlistSelected(const QStringList &tracks);
+
+public slots:
+    void onPlaylistPlaying(const QStringList &tracks);
+    void onPlaylistStopped();
+    void onPlaylistClear();
 
 private slots:
     void onAddClicked();

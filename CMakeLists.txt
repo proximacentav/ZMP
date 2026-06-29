@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network)
 
 # BASS
 find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS /usr/include /usr/local/include)
@@ -39,7 +39,7 @@ target_include_directories(MediaPlayer PRIVATE
 )
 
 target_link_libraries(MediaPlayer
-    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg
+    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network
     ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
     ${TAGLIB_LIBRARY}
 )
