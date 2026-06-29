@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_menu = new QListWidget;
     m_menu->addItems({"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Параметры"});
     m_menu->setCurrentRow(0);
-    
+
     m_menu->setSpacing(10);
     m_menu->setStyleSheet(
         "QListWidget { background: transparent; border: none; outline: none; }"
@@ -38,12 +38,15 @@ MainWindow::MainWindow(QWidget *parent)
     m_menuIndicator = new QWidget(menuContainer);
     m_menuIndicator->setFixedHeight(40);
     m_menuIndicator->setGeometry(5, 0, 190, 40);
-    m_menuIndicator->setStyleSheet("background-color: #3d3d3d; border-radius: 8px;");
+    m_menuIndicator->setStyleSheet(
+        "background-color: rgba(183, 183, 183, 200);"
+        "border-radius: 8px;"
+    );
     m_menuIndicator->raise();
 
     m_menuAnimTimer = new QTimer(this);
     connect(m_menuAnimTimer, &QTimer::timeout, this, &MainWindow::animateMenu);
-    
+
     if (m_menu->item(0)) {
         m_menuIndicatorY = m_menu->visualItemRect(m_menu->item(0)).y();
         m_menuIndicatorTargetY = m_menuIndicatorY;
@@ -82,9 +85,26 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
     connect(m_playlistsWidget, &PlaylistsWidget::playlistSelected, this, [this](const QStringList &tracks) {
         m_playerWidget->setPlaylist(tracks);
+        m_playerWidget->setCurrentPlaylist(tracks);
         m_playerWidget->onPlay();
         m_menu->setCurrentRow(1);
     });
+    connect(m_playerWidget, &PlayerWidget::currentPlaylistChanged, this, [this](const QStringList &tracks) {
+        m_playlistsWidget->onPlaylistPlaying(tracks);
+    });
+
+    connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
+        if (playing) {
+            // Воспроизведение началось (включая авто-переход) -> синяя плитка
+            const QStringList &pl = m_playerWidget->getCurrentPlaylist();
+            if (!pl.isEmpty()) {
+                m_playlistsWidget->onPlaylistPlaying(pl);
+            }
+        } else {
+            m_playlistsWidget->onPlaylistStopped();
+        }
+    });
+
     connect(m_filesWidget, &FilesWidget::fileSelected, this, [this](const QString &path) {
         m_playerWidget->setPlaylist({path});
         m_playerWidget->onPlay();
@@ -104,7 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::animateMenu() {
     m_menuIndicatorY += (m_menuIndicatorTargetY - m_menuIndicatorY) * 0.2;
-    
+
     if (qAbs(m_menuIndicatorTargetY - m_menuIndicatorY) < 1.0) {
         m_menuIndicatorY = m_menuIndicatorTargetY;
         m_menuAnimTimer->stop();

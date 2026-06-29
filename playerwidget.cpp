@@ -52,7 +52,7 @@ public:
         });
     }
     void setSpectrum(SpectrumWidget *s) { m_spectrum = s; }
-    
+
     void startGlow() {
         m_glowAngle = 0;
         m_glowTimer->start();
@@ -67,26 +67,26 @@ protected:
         }
         QWidget::resizeEvent(event);
     }
-    
+
     void paintEvent(QPaintEvent*) override {
-        if (!m_glowTimer->isActive()) return; 
+        if (!m_glowTimer->isActive()) return;
 
         QPainter p(this);
         p.setRenderHint(QPainter::Antialiasing);
-        
+
         qreal angle = m_glowAngle / 10.0;
         QColor accent = QColor(42,130,218);
 
         QPen glowPen;
-        glowPen.setWidth(6); 
+        glowPen.setWidth(6);
         glowPen.setColor(QColor(accent.red(), accent.green(), accent.blue(), 80));
-        
+
         QConicalGradient glowGrad(rect().center(), angle);
         glowGrad.setColorAt(0.0, QColor(accent.red(), accent.green(), accent.blue(), 100));
         glowGrad.setColorAt(0.1, QColor(accent.red(), accent.green(), accent.blue(), 0));
         glowGrad.setColorAt(1.0, QColor(accent.red(), accent.green(), accent.blue(), 0));
         glowPen.setBrush(QBrush(glowGrad));
-        
+
         p.setPen(glowPen);
         p.drawRoundedRect(1, 1, width()-2, height()-2, 5, 5);
 
@@ -98,7 +98,7 @@ protected:
         mainGrad.setColorAt(0.15, QColor(accent.red(), accent.green(), accent.blue(), 0));
         mainGrad.setColorAt(1.0, QColor(accent.red(), accent.green(), accent.blue(), 0));
         mainPen.setBrush(QBrush(mainGrad));
-        
+
         p.setPen(mainPen);
         p.drawRoundedRect(1, 1, width()-2, height()-2, 5, 5);
     }
@@ -144,11 +144,11 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
 
     m_spectrumWidget = new SpectrumWidget(rightContainer);
     m_spectrumWidget->setColor(m_accentColor);
-    m_spectrumWidget->lower(); 
+    m_spectrumWidget->lower();
 
     rightContainer->setSpectrum(m_spectrumWidget);
 
-    rightContainer->setLayout(rightLayout); 
+    rightContainer->setLayout(rightLayout);
     metaLayout->addWidget(rightContainer, 1);
     mainLayout->addWidget(metaContainer);
 
@@ -194,21 +194,34 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
 }
 
 void PlayerWidget::setPlaylist(const QStringList &files) {
-    m_playlist = files;
     m_playlistWidget->clear();
     for (const QString &f : files) m_playlistWidget->addItem(QFileInfo(f).fileName());
     if (!files.isEmpty()) m_currentIndex = 0;
+    setCurrentPlaylist(files);
 }
 
 void PlayerWidget::onPlay() {
     if (m_currentIndex < 0 || m_currentIndex >= m_playlist.size()) return;
     QString path = m_playlist[m_currentIndex];
+
+    // ИСПРАВЛЕНИЕ Bug 2:
+    // Флаг m_isSwitchingTracks защищает от реентерабельного вызова onStateChanged(false)
+    // при setSourceFile(). Без него AudioManager синхронно присылает stateChanged(false)
+    // прямо во время смены источника, onStateChanged наращивает m_currentIndex и снова
+    // вызывает onPlay() — так каскадно проигрывается метаданные/аудио ПОСЛЕДНЕГО трека.
+    m_isUserStop = false;
+    m_isUserPause = false;
+    m_isSwitchingTracks = true;
+
     m_audioManager->setSourceFile(path);
     TrackMetadata meta = extractMetadata(path);
     updateTrackInfo(meta);
     m_audioManager->play();
+
+    m_isSwitchingTracks = false;
+
     updateUI();
-    
+
     if (m_metaContainer) m_metaContainer->startGlow();
     m_pulseElapsed = 0;
     m_isPulsing = true;
@@ -220,16 +233,34 @@ void PlayerWidget::onPlay() {
     });
 }
 
-void PlayerWidget::onPause() { m_audioManager->pause(); }
-void PlayerWidget::onStop() { m_audioManager->stop(); m_positionSlider->setValue(0); m_timeLabel->setText("00:00 / 00:00"); }
+void PlayerWidget::onPause() {
+    // ИСПРАВЛЕНИЕ: подавляем авто-переход при пользовательской паузе.
+    // AudioManager::pause() может синхронно присылать stateChanged(false),
+    // что без флага привело бы к перескакиванию на следующий трек.
+    m_isUserPause = true;
+    m_audioManager->pause();
+    m_isUserPause = false;
+    emit stateChanged(false);  // вручную уведомляем MainWindow -> плитка -> зелёная
+}
+void PlayerWidget::onStop() {
+    // ИСПРАВЛЕНИЕ: подавляем авто-переход при пользовательской остановке.
+    m_isUserStop = true;
+    m_audioManager->stop();
+    m_isUserStop = false;
+    m_positionSlider->setValue(0);
+    m_timeLabel->setText("00:00 / 00:00");
+    emit stateChanged(false);  // вручную уведомляем MainWindow -> плитка -> зелёная
+}
 void PlayerWidget::onNext() {
     if (m_playlist.isEmpty()) return;
     m_currentIndex = (m_currentIndex + 1) % m_playlist.size();
+    setCurrentPlaylist(m_playlist);
     onPlay();
 }
 void PlayerWidget::onPrevious() {
     if (m_playlist.isEmpty()) return;
     m_currentIndex = (m_currentIndex - 1 + m_playlist.size()) % m_playlist.size();
+    setCurrentPlaylist(m_playlist);
     onPlay();
 }
 
@@ -252,7 +283,51 @@ void PlayerWidget::onPositionChanged(qint64 pos) {
     }
 }
 void PlayerWidget::onDurationChanged(qint64 dur) { onPositionChanged(m_audioManager->position()); }
-void PlayerWidget::onStateChanged(bool playing) { Q_UNUSED(playing); }
+
+void PlayerWidget::onStateChanged(bool playing) {
+    // ИСПРАВЛЕНИЕ Bug 1 + Bug 2:
+    //
+    // 1) Если playing == true — воспроизведение началось. Сообщаем MainWindow,
+    //    чтобы оно покрасило плитку текущего плейлиста в синий.
+    //    Это срабатывает КАЖДЫЙ раз при старте трека (включая авто-переход),
+    //    а не только при первом запуске.
+    //
+    // 2) Если playing == false И мы в процессе смены источника (m_isSwitchingTracks)
+    //    или пользователь нажал Stop/Pause (m_isUserStop / m_isUserPause) —
+    //    ПОДАВЛЯЕМ сигнал. Иначе:
+    //      - при смене источника: каскадный авто-переход до последнего трека (Bug 2);
+    //      - при Stop/Pause: ложный авто-переход на следующий трек.
+    //
+    // 3) Если playing == false и это естественное окончание трека:
+    //      - если трек не последний — авто-переход БЕЗ сигнала stateChanged(false),
+    //        чтобы плитка НЕ мигала зелёным (Bug 1);
+    //      - если трек последний — шлём stateChanged(false), плитка -> зелёная.
+    if (playing) {
+        emit stateChanged(true);
+        return;
+    }
+
+    // playing == false
+    if (m_isSwitchingTracks || m_isUserStop || m_isUserPause) {
+        return;  // подавляем ложный "останов"
+    }
+
+    // Естественное окончание трека
+    if (!m_playlist.isEmpty() && m_currentIndex < m_playlist.size() - 1) {
+        // Авто-переход: НЕ шлём stateChanged(false), плитка остаётся синей
+        m_currentIndex++;
+        onPlay();
+    } else {
+        // Последний трек закончился (или плейлист пуст) — плитка -> зелёная
+        emit stateChanged(false);
+    }
+}
+
+void PlayerWidget::setCurrentPlaylist(const QStringList &tracks) {
+    m_currentPlaylistTracks = tracks;
+    m_playlist = tracks;
+    emit currentPlaylistChanged(tracks);
+}
 void PlayerWidget::onSliderMoved(int value) {
     qint64 dur = m_audioManager->duration();
     if (dur > 0) {
@@ -265,6 +340,7 @@ void PlayerWidget::onPlaylistItemDoubleClicked(QListWidgetItem *item) {
     int row = m_playlistWidget->row(item);
     if (row >= 0 && row < m_playlist.size()) {
         m_currentIndex = row;
+        setCurrentPlaylist(m_playlist);
         onPlay();
     }
 }

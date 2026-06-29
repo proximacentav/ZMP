@@ -26,21 +26,28 @@ class PlayerWidget : public QWidget
 public:
     explicit PlayerWidget(AudioManager *audioManager, QWidget *parent = nullptr);
     void setPlaylist(const QStringList &files);
+    QStringList getCurrentPlaylist() const { return m_playlist; }
     void onPlay();
     void onPause();
     void onStop();
     void onNext();
     void onPrevious();
+    void onStateChanged(bool playing);
+    void onTrackStarted();
+
+signals:
+    void stateChanged(bool playing);
+    void currentPlaylistChanged(const QStringList &tracks);
 
 public slots:
     void setMetadataHeight(int height);
     void updateSpectrum(const QVector<float> &levels);
     void setAccentColor(const QColor &color);
+    void setCurrentPlaylist(const QStringList &tracks);
 
 private slots:
     void onPositionChanged(qint64 pos);
     void onDurationChanged(qint64 dur);
-    void onStateChanged(bool playing);
     void onSliderMoved(int value);
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
 
@@ -65,6 +72,7 @@ private:
     QPushButton *m_playBtn, *m_pauseBtn, *m_stopBtn, *m_nextBtn, *m_prevBtn;
     QListWidget *m_playlistWidget;
     QStringList m_playlist;
+    QStringList m_currentPlaylistTracks;
     int m_currentIndex;
     bool m_isSeeking;
     int m_metadataHeight;
@@ -72,6 +80,15 @@ private:
     QTimer *m_pulseTimer;
     int m_pulseElapsed;
     bool m_isPulsing;
+
+    // === НОВЫЕ ФЛАГИ для защиты от реентерабельности и ложных авто-переходов ===
+    // true во время setSourceFile()+play() — подавляет синхронный stateChanged(false)
+    // от AudioManager, который иначе вызывает каскадный авто-переход до последнего трека.
+    bool m_isSwitchingTracks = false;
+    // true во время пользовательского stop()/pause() — подавляет авто-переход,
+    // чтобы нажатие "Stop"/"Pause" не перескакивало на следующий трек.
+    bool m_isUserStop = false;
+    bool m_isUserPause = false;
 };
 
 #endif
