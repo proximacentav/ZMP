@@ -105,6 +105,8 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
+    connect(m_playerWidget, &PlayerWidget::featuredUpdated, this, &MainWindow::onFeaturedUpdated);
+
     connect(m_filesWidget, &FilesWidget::fileSelected, this, [this](const QString &path) {
         m_playerWidget->setPlaylist({path});
         m_playerWidget->onPlay();
@@ -113,6 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_settingsWidget, &SettingsWidget::exitRequested, this, &MainWindow::onExit);
     connect(m_settingsWidget, &SettingsWidget::metadataHeightChanged, m_playerWidget, &PlayerWidget::setMetadataHeight);
+    connect(m_settingsWidget, &SettingsWidget::iconSizeChanged, m_playerWidget, &PlayerWidget::setIconSize);
     connect(m_settingsWidget, &SettingsWidget::accentColorChanged, m_playerWidget, &PlayerWidget::setAccentColor);
     connect(m_settingsWidget, &SettingsWidget::spectrumGainChanged, m_audioManager, &AudioManager::setSpectrumGain);
     connect(m_settingsWidget, &SettingsWidget::spectrumFpsChanged, m_audioManager, &AudioManager::setSpectrumFps);
@@ -141,3 +144,7 @@ void MainWindow::onFileSelected(const QString &path) {
     m_menu->setCurrentRow(1);
 }
 void MainWindow::onExit() { QApplication::quit(); }
+
+void MainWindow::onFeaturedUpdated() {
+    m_playlistsWidget->loadPlaylists();
+}

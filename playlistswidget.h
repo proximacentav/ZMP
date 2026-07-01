@@ -14,6 +14,8 @@
 #include <QRandomGenerator>
 #include <QConicalGradient>
 #include <QTransform>
+#include <QPair>
+#include <QDialog>
 
 struct PlaylistInfo {
     QString name;
@@ -23,15 +25,18 @@ struct PlaylistInfo {
 };
 Q_DECLARE_METATYPE(PlaylistInfo)
 
+// Forward declaration of PlaylistEditDialog
+class PlaylistEditDialog;
+
 class PlaylistTileWidget : public QWidget {
     Q_OBJECT
 public:
-    PlaylistTileWidget(const PlaylistInfo &info, QWidget *parent = nullptr) : QWidget(parent), m_info(info), m_angle(0), m_scrollX(0) {
+    PlaylistTileWidget(const PlaylistInfo &info, QWidget *parent = nullptr, bool isFeatured = false) : QWidget(parent), m_info(info), m_angle(0), m_scrollX(0), m_isFeatured(isFeatured) {
         setFixedSize(180, 230);
         setMouseTracking(true);
-        
+
         m_scrollText = m_info.trackTitles.join(" • ");
-        
+
         m_animTimer = new QTimer(this);
         connect(m_animTimer, &QTimer::timeout, this, QOverload<>::of(&PlaylistTileWidget::update));
         m_animTimer->start(33);
@@ -53,20 +58,29 @@ protected:
         p.setBrush(QColor(40, 40, 40));
         p.drawRoundedRect(0, 0, width(), height(), 10, 10);
 
-        m_angle = (m_angle + 4) % 360;
+        m_angle = (m_angle + 1) % 360;
         int flickerAlpha = 150 + (QRandomGenerator::global()->bounded(105));
         QPen pen;
         pen.setWidth(3);
         QConicalGradient grad(QPointF(90, 90), m_angle);
+        
+        QColor borderColor;
+        QColor bottomColor;
+        
         if (m_isPlaying) {
-            grad.setColorAt(0.0, QColor(0, 100, 255, flickerAlpha));
-            grad.setColorAt(0.15, QColor(0, 100, 255, 0));
-            grad.setColorAt(1.0, QColor(0, 100, 255, 0));
+            borderColor = QColor(0, 100, 255, flickerAlpha);
+            bottomColor = QColor(0, 100, 255, 255);
+        } else if (m_isFeatured) {
+            borderColor = QColor(255, 200, 0, flickerAlpha);
+            bottomColor = QColor(255, 200, 0, 255);
         } else {
-            grad.setColorAt(0.0, QColor(0, 255, 100, flickerAlpha));
-            grad.setColorAt(0.15, QColor(0, 255, 100, 0));
-            grad.setColorAt(1.0, QColor(0, 255, 100, 0));
+            borderColor = QColor(0, 255, 100, flickerAlpha);
+            bottomColor = QColor(0, 255, 100, 255);
         }
+        
+        grad.setColorAt(0.0, borderColor);
+        grad.setColorAt(0.15, borderColor);
+        grad.setColorAt(1.0, borderColor);
         pen.setBrush(QBrush(grad));
         p.setPen(pen);
         p.setBrush(Qt::NoBrush);
@@ -105,6 +119,17 @@ protected:
             p.drawText(scrollRect, Qt::AlignVCenter | Qt::TextSingleLine, m_scrollText);
         }
         p.setClipping(false);
+        
+        if (!m_info.cover.isNull()) {
+            QColor coverColor = m_info.cover.pixel(0, 0);
+            QColor bottomLine = bottomColor;
+            bottomLine.setAlpha(200);
+            
+            QPen bottomPen(bottomLine);
+            bottomPen.setWidth(4);
+            p.setPen(bottomPen);
+            p.drawLine(10, 230, 170, 230);
+        }
     }
 
     void mouseMoveEvent(QMouseEvent *e) override {
@@ -126,6 +151,7 @@ protected:
 
 public:
     void setPlaying(bool playing) { m_isPlaying = playing; update(); }
+    void setBorderColor(const QColor &color) { m_borderColor = color; update(); }
 
 signals:
     void doubleClicked(const QStringList &tracks);
@@ -136,6 +162,8 @@ private:
     int m_angle;
     QTimer *m_animTimer;
     bool m_isPlaying = false;
+    bool m_isFeatured = false;
+    QColor m_borderColor;
 
     QString m_scrollText;
     int m_scrollX;
@@ -154,20 +182,51 @@ public slots:
     void onPlaylistPlaying(const QStringList &tracks);
     void onPlaylistStopped();
     void onPlaylistClear();
+    void loadPlaylists();
 
 private slots:
     void onAddClicked();
     void onDeleteClicked();
+    void onEditClicked();
+    void savePlaylistColors();
+    void loadPlaylistColors();
 
-private:
-    void loadPlaylists();
-    QImage extractCover(const QString &filePath);
-    QString extractTitle(const QString &filePath);
-    QString basePath() const;
-    QStringList supportedExts() const;
+public:
+    static QString basePath();
+    static QStringList supportedExts();
 
     QListWidget *m_listWidget;
     QList<PlaylistInfo> m_playlists;
+    QMap<QString, QColor> m_playlistColors;
+    
+    friend class PlaylistEditDialog;
 };
 
+class PlaylistEditDialog : public QDialog {
+    Q_OBJECT
+public:
+    explicit PlaylistEditDialog(const QString &playlistName, QWidget *parent = nullptr);
+    void loadTracks();
+    void setupColorButtons();
+    void saveChanges();
+
+signals:
+    void savePlaylistColors();
+
+private slots:
+    void onColorSelected(const QColor &color);
+    void onAddFiles();
+    void onRemoveTrack();
+    void onApply();
+    void onCancel();
+
+private:
+    QString m_playlistName;
+    QString m_borderColorName; // not used directly
+    QColor m_borderColor;
+    QListWidget *m_trackList;
+    QPushButton *m_applyBtn;
+    QPushButton *m_cancelBtn;
+    QStringList m_tracks;
+};
 #endif // PLAYLISTSWIDGET_H

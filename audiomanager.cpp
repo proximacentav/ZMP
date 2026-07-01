@@ -3,6 +3,8 @@
 #include <QFile>
 #include <QMediaDevices>
 #include <QVector>
+#include <QFileInfo>
+#include <QDir>
 
 AudioManager::AudioManager(QObject *parent)
     : QObject(parent), m_currentStream(0), m_eqFX(0), m_playing(false), m_seeking(false), m_duration(0),
@@ -34,6 +36,7 @@ void AudioManager::setSourceFile(const QString &filePath) {
     if (m_currentStream) BASS_StreamFree(m_currentStream);
     m_currentStream = 0;
     m_eqFX = 0;
+    m_currentFilePath = filePath;
 
     QByteArray pathBytes = QFile::encodeName(filePath);
     m_currentStream = BASS_StreamCreateFile(FALSE, pathBytes.constData(), 0, 0, BASS_STREAM_AUTOFREE);
@@ -84,6 +87,7 @@ void AudioManager::pause() {
 
 void AudioManager::stop() {
     if (m_currentStream) {
+        m_savedPosition = position();
         BASS_ChannelStop(m_currentStream);
         m_playing = false;
         m_positionTimer->stop();
@@ -92,8 +96,55 @@ void AudioManager::stop() {
     }
 }
 
-void AudioManager::next() { qDebug() << "Next"; }
-void AudioManager::previous() { qDebug() << "Previous"; }
+void AudioManager::next() {
+    if (m_currentFilePath.isEmpty()) {
+        emit errorOccurred("Файл не выбран");
+        return;
+    }
+    
+    QStringList files;
+    files << m_currentFilePath;
+    QFileInfo fi(m_currentFilePath);
+    QDir dir = fi.dir();
+    QStringList filters;
+    filters << "*.mp3" << "*.flac" << "*.wav" << "*.ogg" << "*.aac" << "*.m4a";
+    
+    QStringList allFiles = dir.entryList(filters, QDir::Files | QDir::Readable, QDir::Name);
+    int currentIndex = allFiles.indexOf(fi.fileName());
+    
+    if (currentIndex >= 0 && currentIndex < allFiles.size() - 1) {
+        QString nextFile = dir.filePath(allFiles[currentIndex + 1]);
+        setSourceFile(nextFile);
+        play();
+    } else {
+        emit errorOccurred("Больше файлов в очереди");
+    }
+}
+
+void AudioManager::previous() {
+    if (m_currentFilePath.isEmpty()) {
+        emit errorOccurred("Файл не выбран");
+        return;
+    }
+    
+    QStringList files;
+    files << m_currentFilePath;
+    QFileInfo fi(m_currentFilePath);
+    QDir dir = fi.dir();
+    QStringList filters;
+    filters << "*.mp3" << "*.flac" << "*.wav" << "*.ogg" << "*.aac" << "*.m4a";
+    
+    QStringList allFiles = dir.entryList(filters, QDir::Files | QDir::Readable, QDir::Name);
+    int currentIndex = allFiles.indexOf(fi.fileName());
+    
+    if (currentIndex > 0) {
+        QString prevFile = dir.filePath(allFiles[currentIndex - 1]);
+        setSourceFile(prevFile);
+        play();
+    } else {
+        emit errorOccurred("Это первый файл в очереди");
+    }
+}
 
 qint64 AudioManager::duration() const { return m_duration; }
 qint64 AudioManager::position() const {

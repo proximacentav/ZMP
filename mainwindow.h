@@ -42,6 +42,8 @@ private:
     QTimer *m_menuAnimTimer;
     qreal m_menuIndicatorY;
     qreal m_menuIndicatorTargetY;
+    
+    void onFeaturedUpdated();
 };
 
 #endif

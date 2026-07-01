@@ -20,6 +20,7 @@ public:
 
 signals:
     void accentColorChanged(const QColor &color);
+    void iconSizeChanged(int size);
     void metadataHeightChanged(int height);
     void exitRequested();
     void spectrumGainChanged(float gain);
@@ -31,13 +32,16 @@ private slots:
     void toggleTheme();
     void onColorChanged(int index);
     void onHeightSliderChanged(int v);
+    void onIconSizeSliderChanged(int v);
     void onSpectrumGainChanged(int value);
     void showAboutDialog();
+    void onIconSizeChanged(int v);
 
 private:
     QSlider *m_bitrateSlider;
     QLineEdit *m_bitrateEdit;
     QSlider *m_heightSlider;
+    QSlider *m_iconSizeSlider;
     QPushButton *m_aboutButton;
     QPushButton *m_themeButton;
     QComboBox *m_colorCombo;
