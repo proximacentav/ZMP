@@ -1,10 +1,10 @@
-# ZMP version BETA 0.8.0
+# ZMP version BETA 0.9.0
 [![License-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Linux](https://img.shields.io/badge/platform-Linux-green.svg)](https://www.linux.org/)
 [![Arch](https://img.shields.io/badge/Arch-Linux-1793D1.svg)](https://archlinux.org/)
 [![Debian](https://img.shields.io/badge/Debian-D70A53.svg)](https://www.debian.org/)
 [![Fedora](https://img.shields.io/badge/Fedora-294172.svg)](https://getfedora.org/)
-![deltarun tomorowww](хттпс://alpha.beta.gamma.deltarunnnnnnnn/info/info/info.date/?/#/infodate52Z)
+![Завтра](хттпс://time.time.date/time/zavtra/vremya/0/#)
 
 
 Z Media Player by proximacentav
@@ -73,4 +73,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.8.0(deltarun tomorowww)
+# VERSION: BETA v 0.8.0(Завтра)
