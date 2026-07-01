@@ -25,6 +25,8 @@ public:
     qint64 position() const;
     void setPosition(qint64 ms);
     bool isPlaying() const;
+    qint64 getSavedPosition() const { return m_savedPosition; }
+    void setSavedPosition(qint64 pos) { m_savedPosition = pos; }
     void setEqualizerGain(int bandIndex, float gainDb);
     void setEqualizerBandFreq(int bandIndex, double freqHz);
     void setPreampGain(float gainDb);
@@ -62,6 +64,8 @@ private:
     double m_currentPitch;
     QAudioDevice m_currentDevice;
     float m_spectrumGain;
+    QString m_currentFilePath;
+    qint64 m_savedPosition = 0;
  // Вотч Дэма
 };
 

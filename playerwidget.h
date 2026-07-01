@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QVector>
 #include "audiomanager.h"
+#include "iconbutton.h"
 
 struct TrackMetadata {
     QString title;
@@ -28,16 +29,17 @@ public:
     void setPlaylist(const QStringList &files);
     QStringList getCurrentPlaylist() const { return m_playlist; }
     void onPlay();
-    void onPause();
-    void onStop();
-    void onNext();
-    void onPrevious();
     void onStateChanged(bool playing);
     void onTrackStarted();
+    void setIconSize(int size);
+    void loadIcons();
 
 signals:
     void stateChanged(bool playing);
     void currentPlaylistChanged(const QStringList &tracks);
+
+signals:
+    void featuredUpdated();
 
 public slots:
     void setMetadataHeight(int height);
@@ -50,6 +52,10 @@ private slots:
     void onDurationChanged(qint64 dur);
     void onSliderMoved(int value);
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
+    void onPlayClicked();
+    void onNextClicked();
+    void onPrevClicked();
+    void onFeaturedClicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -58,6 +64,10 @@ private:
     void updateUI();
     TrackMetadata extractMetadata(const QString &filePath);
     void updateTrackInfo(const TrackMetadata &metadata);
+    void updatePlayButtonIcon(bool playing);
+    void updateNextPrevButtonIcons();
+    void updateFeaturedButtonIcon();
+    bool isTrackInFeatured();
 
     AudioManager *m_audioManager;
     QLabel *m_coverLabel;
@@ -69,26 +79,26 @@ private:
     QColor m_accentColor;
     QSlider *m_positionSlider;
     QLabel *m_timeLabel;
-    QPushButton *m_playBtn, *m_pauseBtn, *m_stopBtn, *m_nextBtn, *m_prevBtn;
     QListWidget *m_playlistWidget;
+    IconButton *m_playIcon;
+    IconButton *m_prevIcon;
+    IconButton *m_nextIcon;
+    IconButton *m_featuredIcon;
     QStringList m_playlist;
     QStringList m_currentPlaylistTracks;
     int m_currentIndex;
     bool m_isSeeking;
     int m_metadataHeight;
+    int m_iconSize;
     RightMetaContainer* m_metaContainer;
     QTimer *m_pulseTimer;
     int m_pulseElapsed;
     bool m_isPulsing;
-
-    // === НОВЫЕ ФЛАГИ для защиты от реентерабельности и ложных авто-переходов ===
-    // true во время setSourceFile()+play() — подавляет синхронный stateChanged(false)
-    // от AudioManager, который иначе вызывает каскадный авто-переход до последнего трека.
     bool m_isSwitchingTracks = false;
-    // true во время пользовательского stop()/pause() — подавляет авто-переход,
-    // чтобы нажатие "Stop"/"Pause" не перескакивало на следующий трек.
     bool m_isUserStop = false;
     bool m_isUserPause = false;
+    bool m_isUserManuallyStopped = false;
+    qint64 m_savedPosition = 0;
 };
 
 #endif

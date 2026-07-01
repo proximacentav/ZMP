@@ -30,6 +30,7 @@ add_executable(MediaPlayer
     settingswidget.h settingswidget.cpp
     fileswidget.h fileswidget.cpp
     playlistswidget.h playlistswidget.cpp
+    iconbutton.h
     res.qrc
 )
 

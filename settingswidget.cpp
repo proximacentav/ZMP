@@ -34,6 +34,13 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     m_heightSlider->setTickPosition(QSlider::TicksBelow);
     layout->addWidget(m_heightSlider);
 
+    layout->addWidget(new QLabel("Размер иконок (px):"));
+    m_iconSizeSlider = new QSlider(Qt::Horizontal);
+    m_iconSizeSlider->setRange(10,120); m_iconSizeSlider->setValue(40);
+    m_iconSizeSlider->setTickInterval(5);
+    m_iconSizeSlider->setTickPosition(QSlider::TicksBelow);
+    layout->addWidget(m_iconSizeSlider);
+
     layout->addWidget(new QLabel("чувствительность спектрограммы:"));
     m_spectrumGainSlider = new QSlider(Qt::Horizontal);
     m_spectrumGainSlider->setRange(10, 1600); 
@@ -77,6 +84,7 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     connect(m_themeButton, &QPushButton::clicked, this, &SettingsWidget::toggleTheme);
     connect(m_colorCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &SettingsWidget::onColorChanged);
     connect(m_heightSlider, &QSlider::valueChanged, this, &SettingsWidget::onHeightSliderChanged);
+    connect(m_iconSizeSlider, &QSlider::valueChanged, this, &SettingsWidget::onIconSizeSliderChanged);
     connect(m_aboutButton, &QPushButton::clicked, this, &SettingsWidget::showAboutDialog);
     connect(m_exitButton, &QPushButton::clicked, this, &SettingsWidget::exitRequested);
     connect(m_spectrumGainSlider, &QSlider::valueChanged, this, &SettingsWidget::onSpectrumGainChanged);
@@ -109,6 +117,8 @@ void SettingsWidget::onColorChanged(int index) {
     }
 }
 void SettingsWidget::onHeightSliderChanged(int v) { emit metadataHeightChanged(v); }
+void SettingsWidget::onIconSizeSliderChanged(int v) { emit iconSizeChanged(v); }
+void SettingsWidget::onIconSizeChanged(int v) { m_iconSizeSlider->blockSignals(true); m_iconSizeSlider->setValue(v); m_iconSizeSlider->blockSignals(false); }
 void SettingsWidget::showAboutDialog() {
     QDialog dlg(this);
     dlg.setWindowTitle("О программе");
