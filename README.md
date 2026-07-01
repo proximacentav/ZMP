@@ -73,4 +73,4 @@ cmake ..
 make
 ```
 ## or just download binary file in releases page (recomended)
-# VERSION: BETA v 0.8.0(Завтра)
+# VERSION: BETA v 0.9.0(Завтра)
