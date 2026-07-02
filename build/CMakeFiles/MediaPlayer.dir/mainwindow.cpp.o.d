@@ -469,7 +469,11 @@ CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o: \
  /usr/include/c++/16.1.1/bits/fs_ops.h \
  /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
  /usr/include/qt6/QtCore/qfile.h /usr/include/qt6/QtCore/qfileinfo.h \
- /usr/include/qt6/QtCore/qtimezone.h /usr/include/qt6/QtWidgets/QLineEdit \
+ /usr/include/qt6/QtCore/qtimezone.h \
+ /usr/include/qt6/QtCore/QSortFilterProxyModel \
+ /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
+ /usr/include/qt6/QtCore/qabstractproxymodel.h \
+ /usr/include/qt6/QtWidgets/QLineEdit \
  /usr/include/qt6/QtWidgets/qlineedit.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
  /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtWidgets/QMenu \

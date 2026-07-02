@@ -314,6 +314,7 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
+  /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTimer \
@@ -333,6 +334,7 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/q26numeric.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
+  /usr/include/qt6/QtCore/qabstractproxymodel.h \
   /usr/include/qt6/QtCore/qalgorithms.h \
   /usr/include/qt6/QtCore/qalloc.h \
   /usr/include/qt6/QtCore/qanystringview.h \
@@ -430,6 +432,7 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/qsharedpointer.h \
   /usr/include/qt6/QtCore/qsharedpointer_impl.h \
   /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
   /usr/include/qt6/QtCore/qspan.h \
   /usr/include/qt6/QtCore/qstdlibdetection.h \
   /usr/include/qt6/QtCore/qstring.h \
@@ -7536,6 +7539,10 @@ CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.o:
 
 /usr/include/bits/fp-logb.h:
 
+/usr/include/bits/fp-fast.h:
+
+/usr/include/bits/flt-eval-method.h:
+
 /usr/include/qt6/QtMultimedia/QAudioDevice:
 
 /usr/include/bits/waitstatus.h:
@@ -7904,6 +7911,12 @@ CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o:
 
 /usr/include/c++/16.1.1/tr1/beta_function.tcc:
 
+/usr/include/qt6/QtCore/QSortFilterProxyModel:
+
+/usr/include/c++/16.1.1/bits/new_throw.h:
+
+/usr/include/bits/types/clockid_t.h:
+
 /usr/include/qt6/QtCore/QSizeF:
 
 /usr/include/qt6/QtCore/qtformat_impl.h:
@@ -7939,6 +7952,8 @@ CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o:
 /usr/include/linux/sched/types.h:
 
 /usr/include/c++/16.1.1/optional:
+
+/usr/include/qt6/QtCore/qsortfilterproxymodel.h:
 
 /usr/include/qt6/QtCore/qatomic.h:
 
@@ -8074,9 +8089,9 @@ CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
 
-/usr/include/c++/16.1.1/bits/new_throw.h:
+/usr/include/qt6/QtCore/QIODevice:
 
-/usr/include/bits/types/clockid_t.h:
+/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
 
 /usr/include/bits/xopen_lim.h:
 
@@ -8177,10 +8192,6 @@ MediaPlayer_autogen/moc_predefs.h:
 /usr/include/qt6/QtCore/qtaggedpointer.h:
 
 /usr/include/qt6/QtCore/qiodevice.h:
-
-/usr/include/qt6/QtMultimedia/qtmultimediaglobal.h:
-
-/usr/include/bits/types.h:
 
 /usr/include/qt6/QtCore/QMetaType:
 
@@ -8374,8 +8385,6 @@ MediaPlayer_autogen/mocs_compilation.cpp:
 
 /usr/include/c++/16.1.1/bits/functional_hash.h:
 
-/usr/include/qt6/QtMultimedia/qtmultimediaexports.h:
-
 /usr/include/taglib/taglib_export.h:
 
 /usr/include/qt6/QtCore/q23utility.h:
@@ -8533,8 +8542,6 @@ CMakeFiles/4.3.3/CMakeCCompiler.cmake:
 /usr/include/qt6/QtWidgets/qrubberband.h:
 
 /usr/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake:
-
-/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:
 
 /usr/include/qt6/QtCore/qbytearray.h:
 
@@ -8750,6 +8757,10 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsConfig.cmake:
 
+/usr/include/c++/16.1.1/bits/stl_tempbuf.h:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake:
+
 /usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake:
 
 /usr/include/alloca.h:
@@ -8816,10 +8827,6 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake:
 
-/usr/include/qt6/QtCore/QIODevice:
-
-/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
-
 /usr/include/c++/16.1.1/bits/functexcept.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargetsPrecheck.cmake:
@@ -8835,10 +8842,6 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 /usr/include/qt6/QtGui/qtextoption.h:
 
 /usr/include/c++/16.1.1/bits/stl_relops.h:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake:
-
-/usr/include/c++/16.1.1/bits/stl_tempbuf.h:
 
 /usr/include/qt6/QtCore/qdebug.h:
 
@@ -8877,6 +8880,10 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 /usr/include/c++/16.1.1/bits/uses_allocator_args.h:
 
 /usr/include/qt6/QtGui/QColor:
+
+MediaPlayer_autogen/EWIEGA46WW/moc_settingswidget.cpp:
+
+/usr/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargetsPrecheck.cmake:
 
 /usr/include/qt6/QtCore/qutf8stringview.h:
 
@@ -8961,6 +8968,14 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 /usr/include/c++/16.1.1/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/16.1.1/tr1/bessel_function.tcc:
+
+/usr/include/qt6/QtMultimedia/qtmultimediaexports.h:
+
+/usr/include/bits/types.h:
+
+/usr/include/qt6/QtMultimedia/qtmultimediaglobal.h:
+
+/usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:
 
 /usr/include/qt6/QtNetwork/QSslError:
 
@@ -9608,6 +9623,8 @@ MediaPlayer_autogen/EWIEGA46WW/moc_iconbutton.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginAdditionalTargetInfo.cmake:
 
+/usr/include/qt6/QtCore/qabstractproxymodel.h:
+
 /usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginAdditionalTargetInfo.cmake:
@@ -9941,11 +9958,3 @@ MediaPlayer_autogen/EWIEGA46WW/moc_deviceswidget.cpp:
 /usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargetsPrecheck.cmake:
 
 MediaPlayer_autogen/EWIEGA46WW/moc_fileswidget.cpp:
-
-/usr/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargetsPrecheck.cmake:
-
-MediaPlayer_autogen/EWIEGA46WW/moc_settingswidget.cpp:
-
-/usr/include/bits/flt-eval-method.h:
-
-/usr/include/bits/fp-fast.h:
