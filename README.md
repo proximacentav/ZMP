@@ -34,6 +34,8 @@ updated design
 
 tones of tracks
 
+playlists edit_
+
 spectrogramm
 
 ## colored themes:
