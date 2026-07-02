@@ -50,6 +50,8 @@ template <> constexpr inline auto FilesWidget::qt_create_metaobjectdata<qt_meta_
         "index",
         "onMenuButtonClicked",
         "onPathChanged",
+        "onSearchTextChanged",
+        "text",
         "onBrowseHome",
         "onBrowseRoot",
         "onDownloadFile",
@@ -97,48 +99,52 @@ template <> constexpr inline auto FilesWidget::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SlotData<void(const QString &)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
+        // Slot 'onSearchTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 10 },
+        }}),
         // Slot 'onBrowseHome'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onBrowseRoot'
-        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onDownloadFile'
-        QtMocHelpers::SlotData<void(const QString &, const QString &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 12 }, { QMetaType::QString, 13 },
+        QtMocHelpers::SlotData<void(const QString &, const QString &)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 14 }, { QMetaType::QString, 15 },
         }}),
         // Slot 'onDownloadProgress'
-        QtMocHelpers::SlotData<void(qint64, qint64)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::LongLong, 15 }, { QMetaType::LongLong, 16 },
+        QtMocHelpers::SlotData<void(qint64, qint64)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::LongLong, 17 }, { QMetaType::LongLong, 18 },
         }}),
         // Slot 'onDownloadFinished'
-        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onDownloadError'
-        QtMocHelpers::SlotData<void(QNetworkReply::NetworkError)>(18, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 19, 20 },
+        QtMocHelpers::SlotData<void(QNetworkReply::NetworkError)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 21, 22 },
         }}),
         // Slot 'onSslErrors'
-        QtMocHelpers::SlotData<void(const QList<QSslError> &, QNetworkReply *)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 22, 23 }, { 0x80000000 | 24, 25 },
+        QtMocHelpers::SlotData<void(const QList<QSslError> &, QNetworkReply *)>(23, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 24, 25 }, { 0x80000000 | 26, 27 },
         }}),
         // Slot 'onCertificateDialogFinished'
-        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onConnectSMBFinished'
-        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIPValidationError'
-        QtMocHelpers::SlotData<void(bool &)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 29, 30 },
+        QtMocHelpers::SlotData<void(bool &)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 31, 32 },
         }}),
         // Slot 'startPing'
-        QtMocHelpers::SlotData<void(const QString &, int)>(31, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 32 }, { QMetaType::Int, 33 },
+        QtMocHelpers::SlotData<void(const QString &, int)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 34 }, { QMetaType::Int, 35 },
         }}),
         // Slot 'onPingSocketConnected'
-        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPingSocketError'
-        QtMocHelpers::SlotData<void(QAbstractSocket::SocketError)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 36, 37 },
+        QtMocHelpers::SlotData<void(QAbstractSocket::SocketError)>(37, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 38, 39 },
         }}),
         // Slot 'onPingSocketTimeout'
-        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -166,34 +172,35 @@ void FilesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->onDoubleClicked((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
         case 2: _t->onMenuButtonClicked(); break;
         case 3: _t->onPathChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->onBrowseHome(); break;
-        case 5: _t->onBrowseRoot(); break;
-        case 6: _t->onDownloadFile((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 7: _t->onDownloadProgress((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<qint64>>(_a[2]))); break;
-        case 8: _t->onDownloadFinished(); break;
-        case 9: _t->onDownloadError((*reinterpret_cast<std::add_pointer_t<QNetworkReply::NetworkError>>(_a[1]))); break;
-        case 10: _t->onSslErrors((*reinterpret_cast<std::add_pointer_t<QList<QSslError>>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QNetworkReply*>>(_a[2]))); break;
-        case 11: _t->onCertificateDialogFinished(); break;
-        case 12: _t->onConnectSMBFinished(); break;
-        case 13: _t->onIPValidationError((*reinterpret_cast<std::add_pointer_t<bool&>>(_a[1]))); break;
-        case 14: _t->startPing((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
-        case 15: _t->onPingSocketConnected(); break;
-        case 16: _t->onPingSocketError((*reinterpret_cast<std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
-        case 17: _t->onPingSocketTimeout(); break;
+        case 4: _t->onSearchTextChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: _t->onBrowseHome(); break;
+        case 6: _t->onBrowseRoot(); break;
+        case 7: _t->onDownloadFile((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 8: _t->onDownloadProgress((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<qint64>>(_a[2]))); break;
+        case 9: _t->onDownloadFinished(); break;
+        case 10: _t->onDownloadError((*reinterpret_cast<std::add_pointer_t<QNetworkReply::NetworkError>>(_a[1]))); break;
+        case 11: _t->onSslErrors((*reinterpret_cast<std::add_pointer_t<QList<QSslError>>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QNetworkReply*>>(_a[2]))); break;
+        case 12: _t->onCertificateDialogFinished(); break;
+        case 13: _t->onConnectSMBFinished(); break;
+        case 14: _t->onIPValidationError((*reinterpret_cast<std::add_pointer_t<bool&>>(_a[1]))); break;
+        case 15: _t->startPing((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 16: _t->onPingSocketConnected(); break;
+        case 17: _t->onPingSocketError((*reinterpret_cast<std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
+        case 18: _t->onPingSocketTimeout(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 9:
+        case 10:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QNetworkReply::NetworkError >(); break;
             }
             break;
-        case 10:
+        case 11:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -202,7 +209,7 @@ void FilesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QNetworkReply* >(); break;
             }
             break;
-        case 16:
+        case 17:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -236,14 +243,14 @@ int FilesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
     return _id;
 }

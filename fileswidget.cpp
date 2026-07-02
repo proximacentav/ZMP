@@ -28,6 +28,7 @@
 #include <QRegularExpression>
 #include <QFile>
 #include <QUrlQuery>
+#include <QSortFilterProxyModel>
 
 class MusicHighlightDelegate : public QStyledItemDelegate
 {
@@ -53,6 +54,8 @@ FilesWidget::FilesWidget(QWidget *parent)
     : QWidget(parent)
     , m_menuButton(nullptr)
     , m_pathEdit(nullptr)
+    , m_searchEdit(nullptr)
+    , m_proxyModel(nullptr)
     , m_menu(nullptr)
     , m_progressBar(nullptr)
     , m_isMenuOpen(false)
@@ -90,6 +93,11 @@ void FilesWidget::setupUI()
     connect(m_menuButton, &QPushButton::clicked, this, &FilesWidget::onMenuButtonClicked);
     topLayout->addWidget(m_menuButton);
 
+    m_searchEdit = new QLineEdit(this);
+    m_searchEdit->setPlaceholderText("Поиск по названию и расширению...");
+    connect(m_searchEdit, &QLineEdit::textChanged, this, &FilesWidget::onSearchTextChanged);
+    topLayout->addWidget(m_searchEdit, 1);
+
     m_pathEdit = new QLineEdit(this);
     m_pathEdit->setText(m_currentPath);
     connect(m_pathEdit, &QLineEdit::textChanged, this, &FilesWidget::onPathChanged);
@@ -103,9 +111,12 @@ void FilesWidget::setupUI()
 
     m_treeView = new QTreeView(this);
     m_model = new QFileSystemModel(this);
+    m_proxyModel = new QSortFilterProxyModel(this);
+    m_proxyModel->setSourceModel(m_model);
+    m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     m_model->setRootPath(QDir::rootPath());
-    m_treeView->setModel(m_model);
-    m_treeView->setRootIndex(m_model->index(m_currentPath));
+    m_treeView->setModel(m_proxyModel);
+    m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(m_currentPath)));
     m_treeView->setHeaderHidden(false);
     m_treeView->setAnimated(true);
     m_treeView->setIndentation(20);
@@ -145,7 +156,18 @@ void FilesWidget::onPathChanged(const QString &path) // внимание FTP ф�
     QFileInfo info(path);
     if (info.exists() && info.isDir()) {
         m_currentPath = path;
-        m_treeView->setRootIndex(m_model->index(m_currentPath));
+        m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(m_currentPath)));
+    }
+}
+
+void FilesWidget::onSearchTextChanged(const QString &text)
+{
+    QString searchText = text.trimmed();
+    
+    if (searchText.isEmpty()) {
+        m_proxyModel->setFilterFixedString("");
+    } else {
+        m_proxyModel->setFilterFixedString(searchText);
     }
 }
 
@@ -153,20 +175,21 @@ void FilesWidget::onBrowseHome()
 {
     m_currentPath = QDir::homePath();
     m_pathEdit->setText(m_currentPath);
-    m_treeView->setRootIndex(m_model->index(m_currentPath));
+    m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(m_currentPath)));
 }
 
 void FilesWidget::onBrowseRoot()
 {
     m_currentPath = "/";
     m_pathEdit->setText(m_currentPath);
-    m_treeView->setRootIndex(m_model->index(m_currentPath));
+    m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(m_currentPath)));
 }
 
 void FilesWidget::onDoubleClicked(const QModelIndex &index)
 {
-    if (!m_model->isDir(index)) {
-        QString path = m_model->filePath(index);
+    QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
+    if (!m_model->isDir(sourceIndex)) {
+        QString path = m_model->filePath(sourceIndex);
         emit fileSelected(path);
     }
 }
@@ -174,8 +197,11 @@ void FilesWidget::onDoubleClicked(const QModelIndex &index)
 QString FilesWidget::currentSelectedFile() const
 {
     QModelIndex idx = m_treeView->currentIndex();
-    if (idx.isValid() && m_model->isDir(idx) == false)
-        return m_model->filePath(idx);
+    if (idx.isValid()) {
+        QModelIndex sourceIndex = m_proxyModel->mapToSource(idx);
+        if (!m_model->isDir(sourceIndex))
+            return m_model->filePath(sourceIndex);
+    }
     return QString();
 }
 

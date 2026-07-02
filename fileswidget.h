@@ -10,6 +10,7 @@
 #include <QWidget>
 #include <QTreeView>
 #include <QFileSystemModel>
+#include <QSortFilterProxyModel>
 #include <QPushButton>
 #include <QLineEdit>
 #include <QMenu>
@@ -41,6 +42,7 @@ private slots:
     void onDoubleClicked(const QModelIndex &index);
     void onMenuButtonClicked();
     void onPathChanged(const QString &path);
+    void onSearchTextChanged(const QString &text);
     void onBrowseHome();
     void onBrowseRoot();
     void onDownloadFile(const QString &url, const QString &localPath);
@@ -59,6 +61,7 @@ private slots:
 private:
     QPushButton *m_menuButton;
     QLineEdit  *m_pathEdit;
+    QLineEdit  *m_searchEdit;
     QMenu      *m_menu;
     QProgressBar *m_progressBar;
     bool        m_isMenuOpen;
@@ -70,6 +73,7 @@ private:
 
     QTreeView       *m_treeView;
     QFileSystemModel *m_model;
+    QSortFilterProxyModel *m_proxyModel;
 
     QListWidget *m_ftpListWidget;
     QLabel      *m_ftpStatusLabel;
