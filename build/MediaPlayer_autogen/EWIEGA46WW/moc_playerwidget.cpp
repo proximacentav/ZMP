@@ -68,7 +68,8 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         "onPlayClicked",
         "onNextClicked",
         "onPrevClicked",
-        "onFeaturedClicked"
+        "onFeaturedClicked",
+        "onAddToPlaylistClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -122,6 +123,8 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onFeaturedClicked'
         QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onAddToPlaylistClicked'
+        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -160,6 +163,7 @@ void PlayerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 12: _t->onNextClicked(); break;
         case 13: _t->onPrevClicked(); break;
         case 14: _t->onFeaturedClicked(); break;
+        case 15: _t->onAddToPlaylistClicked(); break;
         default: ;
         }
     }
@@ -204,14 +208,14 @@ int PlayerWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }

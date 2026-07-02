@@ -433,14 +433,15 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialog.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/taglib/fileref.h /usr/include/taglib/tfile.h \
- /usr/include/taglib/tbytevector.h /usr/include/taglib/taglib_export.h \
- /usr/include/taglib/tiostream.h /usr/include/taglib/taglib.h \
- /usr/include/taglib/tag.h /usr/include/taglib/tstring.h \
- /usr/include/taglib/tlist.h /usr/include/taglib/tlist.tcc \
- /usr/include/taglib/tvariant.h /usr/include/taglib/tmap.h \
- /usr/include/taglib/tmap.tcc /usr/include/taglib/tstringlist.h \
- /usr/include/taglib/tbytevectorlist.h \
+ /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/taglib/fileref.h \
+ /usr/include/taglib/tfile.h /usr/include/taglib/tbytevector.h \
+ /usr/include/taglib/taglib_export.h /usr/include/taglib/tiostream.h \
+ /usr/include/taglib/taglib.h /usr/include/taglib/tag.h \
+ /usr/include/taglib/tstring.h /usr/include/taglib/tlist.h \
+ /usr/include/taglib/tlist.tcc /usr/include/taglib/tvariant.h \
+ /usr/include/taglib/tmap.h /usr/include/taglib/tmap.tcc \
+ /usr/include/taglib/tstringlist.h /usr/include/taglib/tbytevectorlist.h \
  /usr/include/taglib/audioproperties.h /usr/include/taglib/tag.h \
  /usr/include/taglib/mpegfile.h /usr/include/taglib/mpegproperties.h \
  /usr/include/taglib/mpegheader.h /usr/include/taglib/id3v2.h \

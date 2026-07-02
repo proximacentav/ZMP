@@ -9,6 +9,9 @@
 #include <QDebug>
 #include <QDir>
 #include <QMessageBox>
+#include <QListWidget>
+#include <QAbstractItemView>
+#include <QDialog>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 #include <taglib/mpegfile.h>
@@ -177,6 +180,13 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     m_nextIcon->setScaledContents(true);
     btnLayout->addWidget(m_nextIcon);
 
+    m_addToPlaylistIcon = new IconButton;
+    m_addToPlaylistIcon->setAlignment(Qt::AlignCenter);
+    m_addToPlaylistIcon->setScaledContents(true);
+    m_addToPlaylistIcon->setText("+");
+    m_addToPlaylistIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
+    btnLayout->addWidget(m_addToPlaylistIcon);
+
     m_featuredIcon = new IconButton;
     m_featuredIcon->setAlignment(Qt::AlignCenter);
     m_featuredIcon->setScaledContents(true);
@@ -200,6 +210,7 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_playIcon, &IconButton::clicked, this, &PlayerWidget::onPlayClicked);
     connect(m_nextIcon, &IconButton::clicked, this, &PlayerWidget::onNextClicked);
     connect(m_prevIcon, &IconButton::clicked, this, &PlayerWidget::onPrevClicked);
+    connect(m_addToPlaylistIcon, &IconButton::clicked, this, &PlayerWidget::onAddToPlaylistClicked);
     connect(m_featuredIcon, &IconButton::clicked, this, &PlayerWidget::onFeaturedClicked);
 
     m_iconSize = 40;
@@ -310,6 +321,10 @@ void PlayerWidget::setIconSize(int size) {
     m_nextIcon->setFixedSize(iconSize, iconSize);
     m_nextIcon->setAlignment(Qt::AlignCenter);
     m_nextIcon->setScaledContents(true);
+
+    m_addToPlaylistIcon->setFixedSize(iconSize, iconSize);
+    m_addToPlaylistIcon->setAlignment(Qt::AlignCenter);
+    m_addToPlaylistIcon->setScaledContents(true);
 
     m_featuredIcon->setFixedSize(iconSize, iconSize);
     m_featuredIcon->setAlignment(Qt::AlignCenter);
@@ -579,6 +594,102 @@ void PlayerWidget::onPrevClicked() {
         emit stateChanged(false);
         updatePlayButtonIcon(false);
         updateTrackInfo(TrackMetadata());
+    }
+}
+
+void PlayerWidget::onAddToPlaylistClicked() {
+    showAddToPlaylistDialog();
+}
+
+void PlayerWidget::showAddToPlaylistDialog() {
+    if (m_playlist.isEmpty() || m_currentIndex < 0) {
+        QMessageBox::warning(this, "Внимание", "Нет активного трека");
+        return;
+    }
+
+    QString currentTrack = m_playlist[m_currentIndex];
+    QFileInfo currentFi(currentTrack);
+    QString currentFileName = currentFi.fileName();
+
+    QDialog dialog(this);
+    dialog.setWindowTitle("Добавить в плейлист");
+    dialog.resize(300, 200);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(&dialog);
+
+    QLabel *label = new QLabel("Выберите плейлист:");
+    mainLayout->addWidget(label);
+
+    QListWidget *playlistList = new QListWidget(&dialog);
+    playlistList->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    QString playlistsPath = QDir::homePath() + "/zmp_playlists";
+    QDir playlistsDir(playlistsPath);
+
+    if (!playlistsDir.exists()) {
+        QMessageBox::warning(&dialog, "Ошибка", "Папка плейлистов не найдена");
+        return;
+    }
+
+    QStringList playlistDirs = playlistsDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    bool hasPlaylists = false;
+
+    for (const QString &dir : playlistDirs) {
+        if (dir == "featured_music") continue;
+        
+        playlistList->addItem(dir);
+        hasPlaylists = true;
+    }
+
+    if (!hasPlaylists) {
+        playlistList->addItem("Нет плейлистов");
+    }
+
+    mainLayout->addWidget(playlistList);
+
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    QPushButton *okBtn = new QPushButton("ОК");
+    QPushButton *cancelBtn = new QPushButton("Отмена");
+    
+    buttonLayout->addWidget(okBtn);
+    buttonLayout->addWidget(cancelBtn);
+    mainLayout->addLayout(buttonLayout);
+
+    connect(okBtn, &QPushButton::clicked, &dialog, &QDialog::accept);
+    connect(cancelBtn, &QPushButton::clicked, &dialog, &QDialog::reject);
+
+    if (dialog.exec() == QDialog::Accepted) {
+        QListWidgetItem *selectedItem = playlistList->currentItem();
+        if (!selectedItem) return;
+
+        QString playlistName = selectedItem->text();
+        if (playlistName == "Нет плейлистов") return;
+
+        QString playlistPath = playlistsPath + "/" + playlistName;
+        QString destPath = playlistPath + "/" + currentFileName;
+
+        if (QFile::exists(destPath)) {
+            if (QFile::remove(destPath)) {
+                if (QFile::copy(currentTrack, destPath)) {
+                    QMessageBox::information(&dialog, "Успех", 
+                        QString("Файл перезаписан в плейлист \"%1\"").arg(playlistName));
+                } else {
+                    QMessageBox::critical(&dialog, "Ошибка", 
+                        QString("Не удалось скопировать файл в плейлист \"%1\"").arg(playlistName));
+                }
+            } else {
+                QMessageBox::critical(&dialog, "Ошибка", 
+                    QString("Не удалось удалить старый файл из плейлиста \"%1\"").arg(playlistName));
+            }
+        } else {
+            if (QFile::copy(currentTrack, destPath)) {
+                QMessageBox::information(&dialog, "Успех", 
+                    QString("Файл добавлен в плейлист \"%1\"").arg(playlistName));
+            } else {
+                QMessageBox::critical(&dialog, "Ошибка", 
+                    QString("Не удалось скопировать файл в плейлист \"%1\"").arg(playlistName));
+            }
+        }
     }
 }
 

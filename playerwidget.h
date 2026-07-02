@@ -56,6 +56,7 @@ private slots:
     void onNextClicked();
     void onPrevClicked();
     void onFeaturedClicked();
+    void onAddToPlaylistClicked();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -68,6 +69,7 @@ private:
     void updateNextPrevButtonIcons();
     void updateFeaturedButtonIcon();
     bool isTrackInFeatured();
+    void showAddToPlaylistDialog();
 
     AudioManager *m_audioManager;
     QLabel *m_coverLabel;
@@ -84,6 +86,7 @@ private:
     IconButton *m_prevIcon;
     IconButton *m_nextIcon;
     IconButton *m_featuredIcon;
+    IconButton *m_addToPlaylistIcon;
     QStringList m_playlist;
     QStringList m_currentPlaylistTracks;
     int m_currentIndex;
