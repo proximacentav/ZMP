@@ -1,0 +1,5 @@
+/home/user/cp/zmp/build/CMakeFiles/MediaPlayer.dir
+/home/user/cp/zmp/build/CMakeFiles/edit_cache.dir
+/home/user/cp/zmp/build/CMakeFiles/rebuild_cache.dir
+/home/user/cp/zmp/build/CMakeFiles/MediaPlayer_autogen_timestamp_deps.dir
+/home/user/cp/zmp/build/CMakeFiles/MediaPlayer_autogen.dir

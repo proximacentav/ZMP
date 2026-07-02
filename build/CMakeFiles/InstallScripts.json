@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/user/cp/zmp/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
