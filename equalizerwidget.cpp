@@ -86,8 +86,8 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
 
 void EqualizerWidget::createBands() {
     QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
-    m_bands.resize(freqs.size());
-    for (int i=0; i<freqs.size(); ++i) {
+    m_bands.resize(NUM_BANDS);
+    for (int i=0; i<NUM_BANDS; ++i) {
         double f = freqs[i];
         QWidget *cell = new QWidget;
         QVBoxLayout *vbox = new QVBoxLayout(cell);
@@ -97,14 +97,14 @@ void EqualizerWidget::createBands() {
         fl->setAlignment(Qt::AlignCenter);
         vbox->addWidget(fl);
         QSlider *sl = new QSlider(Qt::Vertical);
-        sl->setRange(-500, 500);
+        sl->setRange(-15, 15);
         sl->setValue(0);
-        sl->setTickInterval(50);
+        sl->setTickInterval(3);
         sl->setTickPosition(QSlider::TicksBothSides);
         sl->setFixedHeight(200);
         vbox->addWidget(sl, 0, Qt::AlignHCenter);
         QSpinBox *sb = new QSpinBox;
-        sb->setRange(-500, 500);
+        sb->setRange(-15, 15);
         sb->setValue(0);
         sb->setSuffix(" dB");
         vbox->addWidget(sb);
@@ -177,7 +177,9 @@ void EqualizerWidget::onPitchSpinBoxChanged(double pitch) {
 }
 QMap<double,int> EqualizerWidget::getBandGains() const {
     QMap<double,int> g;
-    for (const Band &b : m_bands) g[b.freq] = b.slider->value();
+    for (int i = 0; i < NUM_BANDS; ++i) {
+        g[m_bands[i].freq] = m_bands[i].slider->value();
+    }
     return g;
 }
 int EqualizerWidget::getPreampGain() const { return m_preampSlider->value(); }

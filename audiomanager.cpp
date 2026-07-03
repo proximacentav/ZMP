@@ -7,9 +7,16 @@
 #include <QDir>
 
 AudioManager::AudioManager(QObject *parent)
-    : QObject(parent), m_currentStream(0), m_eqFX(0), m_playing(false), m_seeking(false), m_duration(0),
+    : QObject(parent), m_currentStream(0), m_playing(false), m_seeking(false), m_duration(0),
       m_originalFreq(44100.0), m_currentSpeed(1.0), m_currentPitch(0.0), m_spectrumGain(8.0f)
 {
+    for (int i = 0; i < 15; ++i) {
+        m_eqFX[i] = 0;
+    }
+
+    // Инициализировать частоты полос
+    m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
+    
     if (!BASS_Init(-1, 44100, 0, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
         return;
@@ -27,6 +34,9 @@ AudioManager::AudioManager(QObject *parent)
 
 AudioManager::~AudioManager() {
     stop();
+    for (int i = 0; i < 15; ++i) {
+        if (m_eqFX[i]) BASS_FXFree(m_eqFX[i]);
+    }
     if (m_currentStream) BASS_StreamFree(m_currentStream);
     BASS_Free();
 }
@@ -35,7 +45,9 @@ void AudioManager::setSourceFile(const QString &filePath) {
     stop();
     if (m_currentStream) BASS_StreamFree(m_currentStream);
     m_currentStream = 0;
-    m_eqFX = 0;
+    for (int i = 0; i < 15; ++i) {
+        m_eqFX[i] = 0;
+    }
     m_currentFilePath = filePath;
 
     QByteArray pathBytes = QFile::encodeName(filePath);
@@ -58,8 +70,14 @@ void AudioManager::setSourceFile(const QString &filePath) {
     m_duration = static_cast<qint64>(seconds * 1000);
     emit durationChanged(m_duration);
 
-    m_eqFX = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_PEAKEQ, 1);
-    if (!m_eqFX) qCritical() << "Failed to create EQ effect, error:" << BASS_ErrorGetCode();
+    // Создать 15 эффектов PEAK EQ
+    for (int i = 0; i < 15; ++i) {
+        m_eqFX[i] = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_PEAKEQ, 1);
+        if (!m_eqFX[i]) {
+            qCritical() << "Failed to create EQ effect " << i << ", error:" << BASS_ErrorGetCode();
+        }
+    }
+    qDebug() << "Created 15 EQ effects";
 
     setPlaybackSpeed(m_currentSpeed);
     setPitchShift(m_currentPitch);
@@ -167,14 +185,27 @@ void AudioManager::setPosition(qint64 ms) {
 bool AudioManager::isPlaying() const { return m_playing; }
 
 void AudioManager::setEqualizerGain(int bandIndex, float gainDb) {
-    if (!m_currentStream || !m_eqFX) return;
-    BASS_BFX_PEAKEQ eq;
-    if (BASS_FXGetParameters(m_eqFX, &eq)) {
-        eq.lBand = bandIndex;
-        eq.fGain = gainDb;
-        eq.fBandwidth = 1.0f;
-        eq.lChannel = BASS_BFX_CHANALL;
-        BASS_FXSetParameters(m_eqFX, &eq);
+    if (bandIndex < 0 || bandIndex >= 15) return;
+    if (!m_currentStream) {
+        qWarning() << "EQ: Invalid stream";
+        return;
+    }
+
+    BASS_BFX_PEAKEQ eq = {0};
+    eq.lBand = bandIndex;
+    eq.fGain = gainDb;
+    eq.fBandwidth = 1.0f;
+    eq.lChannel = BASS_BFX_CHANALL;
+
+    if (!m_eqFX[bandIndex]) {
+        qWarning() << "EQ: Effect not created for band" << bandIndex;
+        return;
+    }
+
+    if (BASS_FXSetParameters(m_eqFX[bandIndex], &eq)) {
+        qDebug() << "EQ: Band" << bandIndex << "freq:" << m_bands[bandIndex] << "gain:" << gainDb << "dB";
+    } else {
+        qCritical() << "EQ: Failed to set parameters for band" << bandIndex << ", error:" << BASS_ErrorGetCode();
     }
 }
 

@@ -53,7 +53,8 @@ public slots:
 
 private:
     HSTREAM m_currentStream;
-    DWORD m_eqFX;
+    HSTREAM m_eqFX[15];
+    QVector<double> m_bands;
     bool m_playing;
     bool m_seeking;
     qint64 m_duration;

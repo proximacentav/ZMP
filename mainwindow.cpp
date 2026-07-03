@@ -66,6 +66,26 @@ MainWindow::MainWindow(QWidget *parent)
     m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
     m_settingsWidget = new SettingsWidget(this);
 
+    connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
+        if (playing) {
+            const QStringList &pl = m_playerWidget->getCurrentPlaylist();
+            if (!pl.isEmpty()) {
+                m_playlistsWidget->onPlaylistPlaying(pl);
+            }
+        } else {
+            m_playlistsWidget->onPlaylistStopped();
+        }
+    });
+
+    connect(m_playerWidget, &PlayerWidget::featuredUpdated, this, &MainWindow::onFeaturedUpdated);
+
+    connect(m_filesWidget, &FilesWidget::fileSelected, this, [this](const QString &path) {
+        m_playerWidget->setPlaylist({path});
+        m_playerWidget->setCurrentPlaylist({path});
+        m_playerWidget->onPlay();
+        m_menu->setCurrentRow(1);
+    });
+
     m_stack->addWidget(m_devicesWidget);
     m_stack->addWidget(m_playerWidget);
     m_stack->addWidget(m_playlistsWidget);

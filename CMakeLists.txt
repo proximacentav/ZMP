@@ -26,6 +26,7 @@ add_executable(MediaPlayer
     audiomanager.h audiomanager.cpp
     deviceswidget.h deviceswidget.cpp
     playerwidget.h playerwidget.cpp
+    playbackcontrolwidget.h playbackcontrolwidget.cpp
     equalizerwidget.h equalizerwidget.cpp
     settingswidget.h settingswidget.cpp
     fileswidget.h fileswidget.cpp

@@ -39,6 +39,7 @@ private:
     AudioManager *m_audioManager;
     struct Band { double freq; QSlider *slider; QSpinBox *spinBox; };
     QVector<Band> m_bands;
+    static const int NUM_BANDS = 15;
     QSlider *m_preampSlider;
     QSpinBox *m_preampSpinBox;
     QSlider *m_speedSlider;
