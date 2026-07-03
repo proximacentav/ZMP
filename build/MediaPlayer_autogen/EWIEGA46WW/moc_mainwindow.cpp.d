@@ -5,6 +5,7 @@
   /home/user/cp/zmp/equalizerwidget.h \
   /home/user/cp/zmp/fileswidget.h \
   /home/user/cp/zmp/iconbutton.h \
+  /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \
   /home/user/cp/zmp/settingswidget.h \
@@ -550,6 +551,7 @@
   /usr/include/qt6/QtNetwork/qtnetwork-config.h \
   /usr/include/qt6/QtNetwork/qtnetworkexports.h \
   /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
+  /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QDoubleSpinBox \

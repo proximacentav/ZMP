@@ -162,10 +162,24 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MediaPlayer.dir/playerwidget.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/playerwidget.cpp -o CMakeFiles/MediaPlayer.dir/playerwidget.cpp.s
 
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o: CMakeFiles/MediaPlayer.dir/flags.make
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/playbackcontrolwidget.cpp
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o: CMakeFiles/MediaPlayer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o -MF CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o.d -o CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o -c /home/user/cp/zmp/playbackcontrolwidget.cpp
+
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/playbackcontrolwidget.cpp > CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.i
+
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/playbackcontrolwidget.cpp -o CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.s
+
 CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o: CMakeFiles/MediaPlayer.dir/flags.make
 CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerwidget.cpp
 CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o: CMakeFiles/MediaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o -MF CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o.d -o CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o -c /home/user/cp/zmp/equalizerwidget.cpp
 
 CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.i: cmake_force
@@ -179,7 +193,7 @@ CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.s: cmake_force
 CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o: CMakeFiles/MediaPlayer.dir/flags.make
 CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswidget.cpp
 CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o: CMakeFiles/MediaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o -MF CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o.d -o CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o -c /home/user/cp/zmp/settingswidget.cpp
 
 CMakeFiles/MediaPlayer.dir/settingswidget.cpp.i: cmake_force
@@ -193,7 +207,7 @@ CMakeFiles/MediaPlayer.dir/settingswidget.cpp.s: cmake_force
 CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o: CMakeFiles/MediaPlayer.dir/flags.make
 CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cpp
 CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o: CMakeFiles/MediaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o -MF CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o.d -o CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o -c /home/user/cp/zmp/fileswidget.cpp
 
 CMakeFiles/MediaPlayer.dir/fileswidget.cpp.i: cmake_force
@@ -207,7 +221,7 @@ CMakeFiles/MediaPlayer.dir/fileswidget.cpp.s: cmake_force
 CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o: CMakeFiles/MediaPlayer.dir/flags.make
 CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistswidget.cpp
 CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o: CMakeFiles/MediaPlayer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o -MF CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o.d -o CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o -c /home/user/cp/zmp/playlistswidget.cpp
 
 CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.i: cmake_force
@@ -226,6 +240,7 @@ MediaPlayer_OBJECTS = \
 "CMakeFiles/MediaPlayer.dir/audiomanager.cpp.o" \
 "CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o" \
 "CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o" \
+"CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o" \
 "CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o" \
 "CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o" \
 "CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o" \
@@ -240,6 +255,7 @@ MediaPlayer: CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/audiomanager.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o
+MediaPlayer: CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o
 MediaPlayer: CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o
@@ -258,7 +274,7 @@ MediaPlayer: /usr/lib/libGLX.so
 MediaPlayer: /usr/lib/libOpenGL.so
 MediaPlayer: /usr/lib/libQt6Core.so.6.11.1
 MediaPlayer: CMakeFiles/MediaPlayer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable MediaPlayer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable MediaPlayer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MediaPlayer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

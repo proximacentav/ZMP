@@ -630,6 +630,12 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/playbackcontrolwidget.h",
+			"Mu",
+			"EWIEGA46WW/moc_playbackcontrolwidget.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/playerwidget.h",
 			"Mu",
 			"EWIEGA46WW/moc_playerwidget.cpp",
@@ -724,6 +730,7 @@
 		[ "/home/user/cp/zmp/fileswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/main.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/mainwindow.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/playbackcontrolwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playlistswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/settingswidget.cpp", "Mu", null ]

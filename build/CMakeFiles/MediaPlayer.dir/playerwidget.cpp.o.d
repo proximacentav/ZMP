@@ -346,6 +346,7 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
  /usr/include/qt6/QtGui/qcursor.h /usr/include/qt6/QtGui/qbitmap.h \
+ /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
  /usr/include/qt6/QtWidgets/qframe.h /usr/include/qt6/QtGui/qpicture.h \
  /usr/include/qt6/QtCore/qiodevice.h \
@@ -353,7 +354,9 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QPushButton \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
  /usr/include/qt6/QtWidgets/qabstractbutton.h \
- /usr/include/qt6/QtWidgets/QListWidget \
+ /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtWidgets/qslider.h \
+ /usr/include/qt6/QtWidgets/qabstractslider.h \
+ /usr/include/qt6/QtGui/QImage /usr/include/qt6/QtWidgets/QListWidget \
  /usr/include/qt6/QtWidgets/qlistwidget.h \
  /usr/include/qt6/QtWidgets/qlistview.h \
  /usr/include/qt6/QtWidgets/qabstractitemview.h \
@@ -366,13 +369,11 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qabstractspinbox.h \
  /usr/include/qt6/QtGui/qvalidator.h \
  /usr/include/qt6/QtCore/qregularexpression.h \
- /usr/include/qt6/QtWidgets/qslider.h \
- /usr/include/qt6/QtWidgets/qabstractslider.h \
  /usr/include/qt6/QtWidgets/qstyle.h /usr/include/qt6/QtWidgets/qtabbar.h \
  /usr/include/qt6/QtWidgets/qtabwidget.h \
  /usr/include/qt6/QtWidgets/qrubberband.h \
- /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtGui/QImage \
- /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
+ /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtMultimedia/QAudioDevice \
  /usr/include/qt6/QtMultimedia/qaudiodevice.h \
@@ -382,6 +383,7 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtMultimedia/qtaudio.h \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
  /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
@@ -392,60 +394,4 @@ CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
- /usr/include/qt6/QtWidgets/qgridlayout.h \
- /usr/include/qt6/QtWidgets/QHBoxLayout /usr/include/qt6/QtCore/QFileInfo \
- /usr/include/qt6/QtCore/qfileinfo.h /usr/include/qt6/QtCore/qfile.h \
- /usr/include/qt6/QtCore/qfiledevice.h /usr/include/c++/16.1.1/filesystem \
- /usr/include/c++/16.1.1/bits/fs_fwd.h \
- /usr/include/c++/16.1.1/bits/fs_path.h /usr/include/c++/16.1.1/locale \
- /usr/include/c++/16.1.1/bits/locale_facets.h \
- /usr/include/c++/16.1.1/cwctype /usr/include/wctype.h \
- /usr/include/bits/wctype-wchar.h \
- /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/ctype_base.h \
- /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
- /usr/include/c++/16.1.1/bits/locale_facets.tcc \
- /usr/include/c++/16.1.1/bits/locale_facets_nonio.h \
- /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/time_members.h \
- /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/16.1.1/bits/codecvt.h \
- /usr/include/c++/16.1.1/bits/locale_facets_nonio.tcc \
- /usr/include/c++/16.1.1/bits/locale_conv.h \
- /usr/include/c++/16.1.1/iomanip \
- /usr/include/c++/16.1.1/bits/quoted_string.h \
- /usr/include/c++/16.1.1/sstream /usr/include/c++/16.1.1/istream \
- /usr/include/c++/16.1.1/ios /usr/include/c++/16.1.1/bits/basic_ios.h \
- /usr/include/c++/16.1.1/bits/basic_ios.tcc \
- /usr/include/c++/16.1.1/ostream /usr/include/c++/16.1.1/bits/ostream.h \
- /usr/include/c++/16.1.1/bits/ostream_print.h \
- /usr/include/c++/16.1.1/bits/ostream.tcc \
- /usr/include/c++/16.1.1/bits/istream.tcc \
- /usr/include/c++/16.1.1/bits/sstream.tcc /usr/include/c++/16.1.1/codecvt \
- /usr/include/c++/16.1.1/bits/fs_dir.h \
- /usr/include/c++/16.1.1/bits/fs_ops.h \
- /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
- /usr/include/qt6/QtCore/qtimezone.h /usr/include/qt6/QtCore/QTime \
- /usr/include/qt6/QtGui/QPainter /usr/include/qt6/QtGui/qpainter.h \
- /usr/include/qt6/QtGui/qtextoption.h /usr/include/qt6/QtGui/qpen.h \
- /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtCore/QFile \
- /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtCore/QDir \
- /usr/include/qt6/QtCore/qdir.h /usr/include/qt6/QtCore/qdirlisting.h \
- /usr/include/qt6/QtWidgets/QMessageBox \
- /usr/include/qt6/QtWidgets/qmessagebox.h \
- /usr/include/qt6/QtWidgets/qdialog.h \
- /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/qt6/QtWidgets/QAbstractItemView \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/taglib/fileref.h \
- /usr/include/taglib/tfile.h /usr/include/taglib/tbytevector.h \
- /usr/include/taglib/taglib_export.h /usr/include/taglib/tiostream.h \
- /usr/include/taglib/taglib.h /usr/include/taglib/tag.h \
- /usr/include/taglib/tstring.h /usr/include/taglib/tlist.h \
- /usr/include/taglib/tlist.tcc /usr/include/taglib/tvariant.h \
- /usr/include/taglib/tmap.h /usr/include/taglib/tmap.tcc \
- /usr/include/taglib/tstringlist.h /usr/include/taglib/tbytevectorlist.h \
- /usr/include/taglib/audioproperties.h /usr/include/taglib/tag.h \
- /usr/include/taglib/mpegfile.h /usr/include/taglib/mpegproperties.h \
- /usr/include/taglib/mpegheader.h /usr/include/taglib/id3v2.h \
- /usr/include/taglib/id3v2tag.h /usr/include/taglib/id3v2framefactory.h \
- /usr/include/taglib/id3v2frame.h /usr/include/taglib/id3v2header.h \
- /usr/include/taglib/attachedpictureframe.h \
- /usr/include/taglib/tpicturetype.h
+ /usr/include/qt6/QtWidgets/qgridlayout.h

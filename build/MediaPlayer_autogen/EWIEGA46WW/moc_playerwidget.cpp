@@ -9,7 +9,6 @@
 #include "../../../playerwidget.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
-#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -46,30 +45,7 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         "playing",
         "currentPlaylistChanged",
         "tracks",
-        "featuredUpdated",
-        "setMetadataHeight",
-        "height",
-        "updateSpectrum",
-        "QList<float>",
-        "levels",
-        "setAccentColor",
-        "QColor",
-        "color",
-        "setCurrentPlaylist",
-        "onPositionChanged",
-        "pos",
-        "onDurationChanged",
-        "dur",
-        "onSliderMoved",
-        "value",
-        "onPlaylistItemDoubleClicked",
-        "QListWidgetItem*",
-        "item",
-        "onPlayClicked",
-        "onNextClicked",
-        "onPrevClicked",
-        "onFeaturedClicked",
-        "onAddToPlaylistClicked"
+        "featuredUpdated"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -83,48 +59,6 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         }}),
         // Signal 'featuredUpdated'
         QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'setMetadataHeight'
-        QtMocHelpers::SlotData<void(int)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 8 },
-        }}),
-        // Slot 'updateSpectrum'
-        QtMocHelpers::SlotData<void(const QVector<float> &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
-        }}),
-        // Slot 'setAccentColor'
-        QtMocHelpers::SlotData<void(const QColor &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 13, 14 },
-        }}),
-        // Slot 'setCurrentPlaylist'
-        QtMocHelpers::SlotData<void(const QStringList &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QStringList, 5 },
-        }}),
-        // Slot 'onPositionChanged'
-        QtMocHelpers::SlotData<void(qint64)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::LongLong, 17 },
-        }}),
-        // Slot 'onDurationChanged'
-        QtMocHelpers::SlotData<void(qint64)>(18, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::LongLong, 19 },
-        }}),
-        // Slot 'onSliderMoved'
-        QtMocHelpers::SlotData<void(int)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 21 },
-        }}),
-        // Slot 'onPlaylistItemDoubleClicked'
-        QtMocHelpers::SlotData<void(QListWidgetItem *)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 23, 24 },
-        }}),
-        // Slot 'onPlayClicked'
-        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onNextClicked'
-        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onPrevClicked'
-        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onFeaturedClicked'
-        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onAddToPlaylistClicked'
-        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -151,32 +85,7 @@ void PlayerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 0: _t->stateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->currentPlaylistChanged((*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[1]))); break;
         case 2: _t->featuredUpdated(); break;
-        case 3: _t->setMetadataHeight((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 4: _t->updateSpectrum((*reinterpret_cast<std::add_pointer_t<QList<float>>>(_a[1]))); break;
-        case 5: _t->setAccentColor((*reinterpret_cast<std::add_pointer_t<QColor>>(_a[1]))); break;
-        case 6: _t->setCurrentPlaylist((*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[1]))); break;
-        case 7: _t->onPositionChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 8: _t->onDurationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 9: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->onPlaylistItemDoubleClicked((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
-        case 11: _t->onPlayClicked(); break;
-        case 12: _t->onNextClicked(); break;
-        case 13: _t->onPrevClicked(); break;
-        case 14: _t->onFeaturedClicked(); break;
-        case 15: _t->onAddToPlaylistClicked(); break;
         default: ;
-        }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        switch (_id) {
-        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 4:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-            case 0:
-                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<float> >(); break;
-            }
-            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
@@ -208,14 +117,14 @@ int PlayerWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        if (_id < 3)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 3;
     }
     return _id;
 }

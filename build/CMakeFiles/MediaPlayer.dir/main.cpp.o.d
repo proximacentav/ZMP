@@ -395,6 +395,7 @@ CMakeFiles/MediaPlayer.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /home/user/cp/zmp/deviceswidget.h /usr/include/qt6/QtWidgets/QWidget \
  /usr/include/qt6/QtWidgets/QComboBox \
  /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/playerwidget.h \
+ /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
  /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtCore/qiodevice.h \
  /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
@@ -402,6 +403,8 @@ CMakeFiles/MediaPlayer.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
  /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtGui/QImage \
+ /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
  /usr/include/qt6/QtCore/QStringList /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
@@ -423,7 +426,6 @@ CMakeFiles/MediaPlayer.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/c++/16.1.1/bits/random.tcc \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/equalizerwidget.h /usr/include/qt6/QtCore/QMap \
  /usr/include/qt6/QtWidgets/QSpinBox \
  /usr/include/qt6/QtWidgets/qspinbox.h \

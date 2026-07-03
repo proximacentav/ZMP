@@ -8,6 +8,7 @@ MediaPlayer: \
   CMakeFiles/MediaPlayer.dir/audiomanager.cpp.o \
   CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o \
+  CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o \
@@ -178,6 +179,8 @@ CMakeFiles/MediaPlayer.dir/audiomanager.cpp.o:
 CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o:
 
 CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o:
+
+CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o:
 
 CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o:
 

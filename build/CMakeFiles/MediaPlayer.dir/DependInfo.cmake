@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/cp/zmp/fileswidget.cpp" "CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o.d"
   "/home/user/cp/zmp/main.cpp" "CMakeFiles/MediaPlayer.dir/main.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/main.cpp.o.d"
   "/home/user/cp/zmp/mainwindow.cpp" "CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o.d"
+  "/home/user/cp/zmp/playbackcontrolwidget.cpp" "CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o.d"
   "/home/user/cp/zmp/playerwidget.cpp" "CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o.d"
   "/home/user/cp/zmp/playlistswidget.cpp" "CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o.d"
   "/home/user/cp/zmp/settingswidget.cpp" "CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o" "gcc" "CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o.d"
