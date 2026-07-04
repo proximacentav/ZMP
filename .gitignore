@@ -1,4 +1,5 @@
 .qwen/
 .qt/
 QWEN.md
-memory/
+memory/MEMORY.md
+memory/equalizer-fix.md
