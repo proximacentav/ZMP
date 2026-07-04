@@ -13,6 +13,7 @@ MediaPlayer: \
   CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o \
   CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o \
+  CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.o \
   /usr/lib/libQt6Widgets.so.6.11.1 \
   /usr/lib/libQt6Multimedia.so.6.11.1 \
   /usr/lib/libQt6Svg.so.6.11.1 \
@@ -189,6 +190,8 @@ CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o:
 CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o:
 
 CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o:
+
+CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.o:
 
 /usr/lib/libQt6Widgets.so.6.11.1:
 

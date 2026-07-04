@@ -46,7 +46,11 @@ template <> constexpr inline auto PlaybackControlWidget::qt_create_metaobjectdat
         "currentPlaylistChanged",
         "tracks",
         "featuredUpdated",
+        "trackInfoChanged",
+        "TrackMetadata",
+        "meta",
         "onPlay",
+        "onPlayClicked",
         "onAddToPlaylistClicked",
         "onFeaturedClicked",
         "onDurationChanged",
@@ -58,7 +62,6 @@ template <> constexpr inline auto PlaybackControlWidget::qt_create_metaobjectdat
         "onPrev",
         "updatePosition",
         "pos",
-        "onPlayClicked",
         "onNextClicked",
         "onPrevClicked",
         "onPlaylistItemDoubleClicked",
@@ -78,45 +81,49 @@ template <> constexpr inline auto PlaybackControlWidget::qt_create_metaobjectdat
         }}),
         // Signal 'featuredUpdated'
         QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'trackInfoChanged'
+        QtMocHelpers::SignalData<void(const TrackMetadata &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 8, 9 },
+        }}),
         // Slot 'onPlay'
-        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'onPlayClicked'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onAddToPlaylistClicked'
-        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onFeaturedClicked'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onDurationChanged'
-        QtMocHelpers::SlotData<void(qint64)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 11 },
+        QtMocHelpers::SlotData<void(qint64)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 15 },
         }}),
         // Slot 'onStateChanged'
-        QtMocHelpers::SlotData<void(bool)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(bool)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Bool, 3 },
         }}),
         // Slot 'onSliderMoved'
-        QtMocHelpers::SlotData<void(int)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 14 },
+        QtMocHelpers::SlotData<void(int)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 18 },
         }}),
         // Slot 'onNext'
-        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onPrev'
-        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'updatePosition'
-        QtMocHelpers::SlotData<void(qint64)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 18 },
+        QtMocHelpers::SlotData<void(qint64)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 22 },
         }}),
-        // Slot 'onPlayClicked'
-        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onNextClicked'
-        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPrevClicked'
-        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPlaylistItemDoubleClicked'
-        QtMocHelpers::SlotData<void(QListWidgetItem *)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 23, 24 },
+        QtMocHelpers::SlotData<void(QListWidgetItem *)>(25, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 26, 27 },
         }}),
         // Slot 'onPositionChanged'
-        QtMocHelpers::SlotData<void(qint64)>(25, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::LongLong, 18 },
+        QtMocHelpers::SlotData<void(qint64)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::LongLong, 22 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -144,20 +151,21 @@ void PlaybackControlWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c
         case 0: _t->stateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->currentPlaylistChanged((*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[1]))); break;
         case 2: _t->featuredUpdated(); break;
-        case 3: _t->onPlay(); break;
-        case 4: _t->onAddToPlaylistClicked(); break;
-        case 5: _t->onFeaturedClicked(); break;
-        case 6: _t->onDurationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 7: _t->onStateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 8: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 9: _t->onNext(); break;
-        case 10: _t->onPrev(); break;
-        case 11: _t->updatePosition((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 12: _t->onPlayClicked(); break;
-        case 13: _t->onNextClicked(); break;
-        case 14: _t->onPrevClicked(); break;
-        case 15: _t->onPlaylistItemDoubleClicked((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
-        case 16: _t->onPositionChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 3: _t->trackInfoChanged((*reinterpret_cast<std::add_pointer_t<TrackMetadata>>(_a[1]))); break;
+        case 4: _t->onPlay(); break;
+        case 5: _t->onPlayClicked(); break;
+        case 6: _t->onAddToPlaylistClicked(); break;
+        case 7: _t->onFeaturedClicked(); break;
+        case 8: _t->onDurationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 9: _t->onStateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 10: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 11: _t->onNext(); break;
+        case 12: _t->onPrev(); break;
+        case 13: _t->updatePosition((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 14: _t->onNextClicked(); break;
+        case 15: _t->onPrevClicked(); break;
+        case 16: _t->onPlaylistItemDoubleClicked((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 17: _t->onPositionChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
         default: ;
         }
     }
@@ -167,6 +175,8 @@ void PlaybackControlWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c
         if (QtMocHelpers::indexOfMethod<void (PlaybackControlWidget::*)(const QStringList & )>(_a, &PlaybackControlWidget::currentPlaylistChanged, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (PlaybackControlWidget::*)()>(_a, &PlaybackControlWidget::featuredUpdated, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlaybackControlWidget::*)(const TrackMetadata & )>(_a, &PlaybackControlWidget::trackInfoChanged, 3))
             return;
     }
 }
@@ -190,14 +200,14 @@ int PlaybackControlWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 18;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 18)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 17;
+        _id -= 18;
     }
     return _id;
 }
@@ -218,5 +228,11 @@ void PlaybackControlWidget::currentPlaylistChanged(const QStringList & _t1)
 void PlaybackControlWidget::featuredUpdated()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void PlaybackControlWidget::trackInfoChanged(const TrackMetadata & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

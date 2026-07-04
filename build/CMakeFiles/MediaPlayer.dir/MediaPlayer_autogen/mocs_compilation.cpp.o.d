@@ -539,6 +539,9 @@ CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/../../../settingswidget.h \
  /usr/include/qt6/QtGui/QColor \
  /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/../../../fileswidget.h \
+ /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/../../../miniplayerbar.h \
+ /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/moc_miniplayerbar.cpp \
+ /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/../../../miniplayerbar.h \
  /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp \
  /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/../../../playbackcontrolwidget.h \
  /home/user/cp/zmp/build/MediaPlayer_autogen/EWIEGA46WW/moc_playerwidget.cpp \

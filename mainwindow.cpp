@@ -55,8 +55,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     mainLayout->addWidget(menuContainer);
 
-    m_stack = new QStackedWidget;
-    mainLayout->addWidget(m_stack, 1);
+    QWidget *rightContainer = new QWidget(this);
+    QVBoxLayout *rightLayout = new QVBoxLayout(rightContainer);
+    rightLayout->setContentsMargins(0, 0, 0, 0);
+    rightLayout->setSpacing(0);
 
     m_audioManager = new AudioManager(this);
     m_devicesWidget = new DevicesWidget(this);
@@ -65,6 +67,13 @@ MainWindow::MainWindow(QWidget *parent)
     m_filesWidget = new FilesWidget(this);
     m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
     m_settingsWidget = new SettingsWidget(this);
+
+    m_miniPlayerBar = new MiniPlayerBar(m_audioManager, this);
+    rightLayout->addWidget(m_miniPlayerBar);
+
+    m_stack = new QStackedWidget;
+    rightLayout->addWidget(m_stack, 1);
+    mainLayout->addWidget(rightContainer, 1);
 
     connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
         if (playing) {
@@ -100,6 +109,7 @@ MainWindow::MainWindow(QWidget *parent)
             if (!m_menuAnimTimer->isActive()) m_menuAnimTimer->start(16);
         }
         m_stack->setCurrentIndex(row);
+        m_miniPlayerBar->setVisible(row != 1);
     });
 
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
@@ -117,9 +127,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_settingsWidget, &SettingsWidget::metadataHeightChanged, m_playerWidget, &PlayerWidget::setMetadataHeight);
     connect(m_settingsWidget, &SettingsWidget::iconSizeChanged, m_playerWidget, &PlayerWidget::setIconSize);
     connect(m_settingsWidget, &SettingsWidget::accentColorChanged, m_playerWidget, &PlayerWidget::setAccentColor);
+    connect(m_settingsWidget, &SettingsWidget::accentColorChanged, m_miniPlayerBar, &MiniPlayerBar::setAccentColor);
     connect(m_settingsWidget, &SettingsWidget::spectrumGainChanged, m_audioManager, &AudioManager::setSpectrumGain);
     connect(m_settingsWidget, &SettingsWidget::spectrumFpsChanged, m_audioManager, &AudioManager::setSpectrumFps);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_playerWidget, &PlayerWidget::updateSpectrum);
+
+    connect(m_audioManager, &AudioManager::positionChanged, m_miniPlayerBar, &MiniPlayerBar::onPositionChanged);
+    connect(m_audioManager, &AudioManager::durationChanged, m_miniPlayerBar, &MiniPlayerBar::onDurationChanged);
+    connect(m_audioManager, &AudioManager::stateChanged, m_miniPlayerBar, &MiniPlayerBar::onStateChanged);
+    connect(m_miniPlayerBar, &MiniPlayerBar::playClicked, m_playerWidget, &PlayerWidget::onPlayClicked);
+    connect(m_miniPlayerBar, &MiniPlayerBar::prevClicked, m_playerWidget, &PlayerWidget::onPrev);
+    connect(m_miniPlayerBar, &MiniPlayerBar::nextClicked, m_playerWidget, &PlayerWidget::onNext);
+    connect(m_playerWidget, &PlayerWidget::trackInfoChanged, m_miniPlayerBar, &MiniPlayerBar::setTrackInfo);
 
     if (!m_devicesWidget->selectedDevice().isNull())
         m_audioManager->setActiveOutputDevice(m_devicesWidget->selectedDevice());

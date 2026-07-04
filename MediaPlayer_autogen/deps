@@ -16,6 +16,8 @@ MediaPlayer_autogen/timestamp: \
 	/home/user/cp/zmp/main.cpp \
 	/home/user/cp/zmp/mainwindow.cpp \
 	/home/user/cp/zmp/mainwindow.h \
+	/home/user/cp/zmp/miniplayerbar.cpp \
+	/home/user/cp/zmp/miniplayerbar.h \
 	/home/user/cp/zmp/playbackcontrolwidget.cpp \
 	/home/user/cp/zmp/playbackcontrolwidget.h \
 	/home/user/cp/zmp/playerwidget.cpp \

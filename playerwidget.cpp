@@ -14,6 +14,7 @@ PlayerWidget::PlayerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_playbackControl, &PlaybackControlWidget::stateChanged, this, &PlayerWidget::stateChanged);
     connect(m_playbackControl, &PlaybackControlWidget::currentPlaylistChanged, this, &PlayerWidget::currentPlaylistChanged);
     connect(m_playbackControl, &PlaybackControlWidget::featuredUpdated, this, &PlayerWidget::featuredUpdated);
+    connect(m_playbackControl, &PlaybackControlWidget::trackInfoChanged, this, &PlayerWidget::trackInfoChanged);
     connect(audioManager, &AudioManager::durationChanged, m_playbackControl, &PlaybackControlWidget::onDurationChanged);
     connect(audioManager, &AudioManager::positionChanged, m_playbackControl, &PlaybackControlWidget::updatePosition);
 }
@@ -60,4 +61,16 @@ void PlayerWidget::onTrackStarted() {
 
 void PlayerWidget::setTrackInfo(const TrackMetadata &meta) {
     m_playbackControl->setTrackInfo(meta);
+}
+
+void PlayerWidget::onPlayClicked() {
+    m_playbackControl->onPlayClicked();
+}
+
+void PlayerWidget::onNext() {
+    m_playbackControl->onNext();
+}
+
+void PlayerWidget::onPrev() {
+    m_playbackControl->onPrev();
 }

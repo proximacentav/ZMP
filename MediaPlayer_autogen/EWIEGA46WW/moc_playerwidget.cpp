@@ -45,7 +45,10 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         "playing",
         "currentPlaylistChanged",
         "tracks",
-        "featuredUpdated"
+        "featuredUpdated",
+        "trackInfoChanged",
+        "TrackMetadata",
+        "meta"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -59,6 +62,10 @@ template <> constexpr inline auto PlayerWidget::qt_create_metaobjectdata<qt_meta
         }}),
         // Signal 'featuredUpdated'
         QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'trackInfoChanged'
+        QtMocHelpers::SignalData<void(const TrackMetadata &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 8, 9 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -85,6 +92,7 @@ void PlayerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 0: _t->stateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->currentPlaylistChanged((*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[1]))); break;
         case 2: _t->featuredUpdated(); break;
+        case 3: _t->trackInfoChanged((*reinterpret_cast<std::add_pointer_t<TrackMetadata>>(_a[1]))); break;
         default: ;
         }
     }
@@ -94,6 +102,8 @@ void PlayerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         if (QtMocHelpers::indexOfMethod<void (PlayerWidget::*)(const QStringList & )>(_a, &PlayerWidget::currentPlaylistChanged, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (PlayerWidget::*)()>(_a, &PlayerWidget::featuredUpdated, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlayerWidget::*)(const TrackMetadata & )>(_a, &PlayerWidget::trackInfoChanged, 3))
             return;
     }
 }
@@ -117,14 +127,14 @@ int PlayerWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
@@ -145,5 +155,11 @@ void PlayerWidget::currentPlaylistChanged(const QStringList & _t1)
 void PlayerWidget::featuredUpdated()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void PlayerWidget::trackInfoChanged(const TrackMetadata & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

@@ -5,6 +5,7 @@
   /home/user/cp/zmp/equalizerwidget.h \
   /home/user/cp/zmp/fileswidget.h \
   /home/user/cp/zmp/iconbutton.h \
+  /home/user/cp/zmp/miniplayerbar.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \

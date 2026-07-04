@@ -497,6 +497,7 @@ void PlaybackControlWidget::updateTrackInfo(const TrackMetadata &meta) {
     QString album = meta.album;
     QString year = meta.year > 0 ? QString::number(meta.year) : "";
     m_albumYearLabel->setText(album + (album.isEmpty() ? "" : " • ") + year);
+    emit trackInfoChanged(meta);
 }
 
 void PlaybackControlWidget::setTrackInfo(const TrackMetadata &meta) {

@@ -517,4 +517,4 @@ CMakeFiles/MediaPlayer.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
- /usr/include/qt6/QtNetwork/QTcpSocket
+ /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/miniplayerbar.h

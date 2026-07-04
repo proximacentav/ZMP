@@ -20,6 +20,9 @@ public:
     void onStateChanged(bool playing);
     void onTrackStarted();
     void setTrackInfo(const TrackMetadata &meta);
+    void onPlayClicked();
+    void onNext();
+    void onPrev();
 
 public:
     QStringList getCurrentPlaylist() const { return m_playbackControl->getCurrentPlaylist(); }
@@ -28,6 +31,7 @@ signals:
     void stateChanged(bool playing);
     void currentPlaylistChanged(const QStringList &tracks);
     void featuredUpdated();
+    void trackInfoChanged(const TrackMetadata &meta);
 
 private:
     PlaybackControlWidget *m_playbackControl;

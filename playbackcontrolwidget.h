@@ -42,9 +42,11 @@ signals:
     void stateChanged(bool playing);
     void currentPlaylistChanged(const QStringList &tracks);
     void featuredUpdated();
+    void trackInfoChanged(const TrackMetadata &meta);
 
 public slots:
     void onPlay();
+    void onPlayClicked();
     void onAddToPlaylistClicked();
     void onFeaturedClicked();
     void onDurationChanged(qint64 dur);
@@ -55,7 +57,6 @@ public slots:
     void updatePosition(qint64 pos);
 
 private slots:
-    void onPlayClicked();
     void onNextClicked();
     void onPrevClicked();
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);

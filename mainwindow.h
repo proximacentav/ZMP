@@ -13,6 +13,7 @@
 #include "equalizerwidget.h"
 #include "settingswidget.h"
 #include "fileswidget.h"
+#include "miniplayerbar.h"
 
 class MainWindow : public QMainWindow
 {
@@ -31,6 +32,7 @@ private slots:
 private:
     QListWidget *m_menu;
     QStackedWidget *m_stack;
+    MiniPlayerBar *m_miniPlayerBar;
     AudioManager *m_audioManager;
     DevicesWidget *m_devicesWidget;
     PlayerWidget *m_playerWidget;

@@ -323,6 +323,30 @@ mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/mainwindow.cpp.s
 .PHONY : mainwindow.cpp.s
 
+miniplayerbar.o: miniplayerbar.cpp.o
+.PHONY : miniplayerbar.o
+
+# target to build an object file
+miniplayerbar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.o
+.PHONY : miniplayerbar.cpp.o
+
+miniplayerbar.i: miniplayerbar.cpp.i
+.PHONY : miniplayerbar.i
+
+# target to preprocess a source file
+miniplayerbar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.i
+.PHONY : miniplayerbar.cpp.i
+
+miniplayerbar.s: miniplayerbar.cpp.s
+.PHONY : miniplayerbar.s
+
+# target to generate assembly for a file
+miniplayerbar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.s
+.PHONY : miniplayerbar.cpp.s
+
 playbackcontrolwidget.o: playbackcontrolwidget.cpp.o
 .PHONY : playbackcontrolwidget.o
 
@@ -451,6 +475,9 @@ help:
 	@echo "... mainwindow.o"
 	@echo "... mainwindow.i"
 	@echo "... mainwindow.s"
+	@echo "... miniplayerbar.o"
+	@echo "... miniplayerbar.i"
+	@echo "... miniplayerbar.s"
 	@echo "... playbackcontrolwidget.o"
 	@echo "... playbackcontrolwidget.i"
 	@echo "... playbackcontrolwidget.s"

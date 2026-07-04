@@ -630,6 +630,12 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/miniplayerbar.h",
+			"Mu",
+			"EWIEGA46WW/moc_miniplayerbar.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/playbackcontrolwidget.h",
 			"Mu",
 			"EWIEGA46WW/moc_playbackcontrolwidget.cpp",
@@ -730,6 +736,7 @@
 		[ "/home/user/cp/zmp/fileswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/main.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/mainwindow.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/miniplayerbar.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playbackcontrolwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playlistswidget.cpp", "Mu", null ],

@@ -5,6 +5,7 @@
 #include "EWIEGA46WW/moc_fileswidget.cpp"
 #include "EWIEGA46WW/moc_iconbutton.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
+#include "EWIEGA46WW/moc_miniplayerbar.cpp"
 #include "EWIEGA46WW/moc_playbackcontrolwidget.cpp"
 #include "EWIEGA46WW/moc_playerwidget.cpp"
 #include "EWIEGA46WW/moc_playlistswidget.cpp"

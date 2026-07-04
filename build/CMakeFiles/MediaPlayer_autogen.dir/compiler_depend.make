@@ -18,6 +18,8 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /home/user/cp/zmp/main.cpp \
   /home/user/cp/zmp/mainwindow.cpp \
   /home/user/cp/zmp/mainwindow.h \
+  /home/user/cp/zmp/miniplayerbar.cpp \
+  /home/user/cp/zmp/miniplayerbar.h \
   /home/user/cp/zmp/playbackcontrolwidget.cpp \
   /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/playerwidget.cpp \
@@ -1562,8 +1564,6 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
 
 /usr/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
-
 /usr/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake:
 
 /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake:
@@ -1790,11 +1790,15 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
 
 /usr/include/qt6/QtMultimedia/qtmultimediaexports.h:
 
-/usr/include/c++/16.1.1/tr1/bessel_function.tcc:
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginConfig.cmake:
 
-/usr/include/c++/16.1.1/tr1/riemann_zeta.tcc:
+/usr/include/qt6/QtNetwork/QNetworkRequest:
 
-/usr/include/c++/16.1.1/system_error:
+/usr/include/qt6/QtMultimedia/qaudioformat.h:
+
+/usr/include/qt6/QtWidgets/qstyle.h:
+
+/usr/include/qt6/QtMultimedia/qaudiodevice.h:
 
 /usr/include/c++/16.1.1/string_view:
 
@@ -2068,16 +2072,6 @@ MediaPlayer_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
 
 /usr/include/c++/16.1.1/bits/cxxabi_init_exception.h:
 
-/usr/include/qt6/QtWidgets/QLabel:
-
-/usr/include/bits/types/__FILE.h:
-
-/usr/include/bits/types/cookie_io_functions_t.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
-
-/usr/include/c++/16.1.1/bits/atomic_base.h:
-
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargets.cmake:
 
 /usr/include/c++/16.1.1/new:
@@ -2256,6 +2250,12 @@ CMakeFiles/4.3.3/CMakeCCompiler.cmake:
 
 /usr/include/qt6/QtCore/qscopeguard.h:
 
+/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
+
+/usr/include/c++/16.1.1/bits/atomic_base.h:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
+
 /home/user/cp/zmp/playlistswidget.cpp:
 
 /usr/include/c++/16.1.1/ext/type_traits.h:
@@ -2334,17 +2334,31 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 
 /home/user/cp/zmp/mainwindow.cpp:
 
-/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
+/home/user/cp/zmp/miniplayerbar.cpp:
 
-/usr/include/bits/cpu-set.h:
+/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
 
-/usr/include/bass.h:
+/home/user/cp/zmp/miniplayerbar.h:
 
-/usr/include/bits/pthreadtypes.h:
+/usr/include/c++/16.1.1/filesystem:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginConfig.cmake:
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake:
 
-/usr/include/qt6/QtCore/QUrl:
+/usr/include/qt6/QtWidgets/qabstractbutton.h:
+
+/usr/include/bits/types/wint_t.h:
+
+/usr/include/c++/16.1.1/cwchar:
+
+/home/user/cp/zmp/equalizerwidget.cpp:
+
+/usr/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/qt6/QtCore/qsharedpointer.h:
 
 /usr/include/c++/16.1.1/initializer_list:
 
@@ -2422,13 +2436,21 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 
 /usr/include/bits/types/sigset_t.h:
 
-/usr/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake:
+/usr/include/bits/cpu-set.h:
 
-/usr/include/bits/types/locale_t.h:
+/usr/include/bass.h:
 
-/usr/include/qt6/QtCore/qsharedpointer.h:
+/usr/include/bits/pthreadtypes.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginConfig.cmake:
+
+/usr/include/qt6/QtCore/QUrl:
+
+/usr/include/qt6/QtWidgets/QLabel:
+
+/usr/include/bits/types/__FILE.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets-relwithdebinfo.cmake:
 
@@ -2497,16 +2519,6 @@ CMakeFiles/4.3.3/CMakeSystem.cmake:
 /usr/include/bits/types/struct_timeval.h:
 
 /usr/include/c++/16.1.1/bits/range_access.h:
-
-/usr/include/c++/16.1.1/cwchar:
-
-/home/user/cp/zmp/equalizerwidget.cpp:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/qt6/QtWidgets/qabstractbutton.h:
-
-/usr/include/bits/types/wint_t.h:
 
 /usr/include/bits/types/time_t.h:
 
@@ -2604,9 +2616,9 @@ CMakeFiles/4.3.3/CMakeCXXCompiler.cmake:
 
 /usr/include/qt6/QtCore/qconfig.h:
 
-/usr/include/bits/sched.h:
-
 /usr/include/qt6/QtCore/qshareddata_impl.h:
+
+/usr/include/bits/sched.h:
 
 /usr/include/bits/struct_rwlock.h:
 
@@ -2656,8 +2668,6 @@ CMakeFiles/4.3.3/CMakeCXXCompiler.cmake:
 
 /usr/include/qt6/QtCore/qvariant.h:
 
-/usr/include/c++/16.1.1/filesystem:
-
 /usr/include/bits/xopen_lim.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
@@ -2703,6 +2713,12 @@ CMakeFiles/4.3.3/CMakeCXXCompiler.cmake:
 /usr/include/qt6/QtCore/qrandom.h:
 
 /usr/include/c++/16.1.1/bits/algorithmfwd.h:
+
+/usr/include/c++/16.1.1/system_error:
+
+/usr/include/c++/16.1.1/tr1/bessel_function.tcc:
+
+/usr/include/c++/16.1.1/tr1/riemann_zeta.tcc:
 
 /usr/include/qt6/QtCore/qset.h:
 
@@ -3112,10 +3128,6 @@ CMakeFiles/4.3.3/CMakeCXXCompiler.cmake:
 
 /usr/include/qt6/QtCore/qstringconverter.h:
 
-/usr/include/qt6/QtWidgets/qstyle.h:
-
-/usr/include/qt6/QtMultimedia/qaudiodevice.h:
-
 /usr/include/qt6/QtGui/qpixmap.h:
 
 /usr/include/qt6/QtCore/qstringconverter_base.h:
@@ -3305,9 +3317,3 @@ CMakeFiles/4.3.3/CMakeCXXCompiler.cmake:
 /usr/include/bits/waitstatus.h:
 
 /usr/include/qt6/QtMultimedia/QAudioDevice:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginConfig.cmake:
-
-/usr/include/qt6/QtNetwork/QNetworkRequest:
-
-/usr/include/qt6/QtMultimedia/qaudioformat.h:
