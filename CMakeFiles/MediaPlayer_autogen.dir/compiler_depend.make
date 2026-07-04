@@ -18,6 +18,8 @@ MediaPlayer_autogen/timestamp: CMakeFiles/4.3.3/CMakeCCompiler.cmake \
   main.cpp \
   mainwindow.cpp \
   mainwindow.h \
+  playbackcontrolwidget.cpp \
+  playbackcontrolwidget.h \
   playerwidget.cpp \
   playerwidget.h \
   playlistswidget.cpp \
@@ -567,6 +569,7 @@ MediaPlayer_autogen/timestamp: CMakeFiles/4.3.3/CMakeCCompiler.cmake \
   /usr/include/qt6/QtNetwork/qtnetwork-config.h \
   /usr/include/qt6/QtNetwork/qtnetworkexports.h \
   /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
+  /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QDoubleSpinBox \
@@ -1503,10 +1506,6 @@ MediaPlayer_autogen/timestamp: CMakeFiles/4.3.3/CMakeCCompiler.cmake \
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QXcbGlxIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6DBus/Qt6DBusTargets-relwithdebinfo.cmake:
-
 /usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersionImpl.cmake:
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusAdditionalTargetInfo.cmake:
@@ -1737,6 +1736,8 @@ MediaPlayer_autogen/timestamp: CMakeFiles/4.3.3/CMakeCCompiler.cmake \
 
 /usr/include/qt6/QtWidgets/QComboBox:
 
+/usr/include/qt6/QtWidgets/QAbstractItemView:
+
 /usr/include/qt6/QtNetwork/qtnetworkglobal.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginTargets-relwithdebinfo.cmake:
@@ -1792,8 +1793,6 @@ MediaPlayer_autogen/timestamp: CMakeFiles/4.3.3/CMakeCCompiler.cmake \
 /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h:
 
 /usr/include/qt6/QtMultimedia/qtmultimediaexports.h:
-
-/usr/include/qt6/QtCore/qset.h:
 
 /usr/include/c++/16.1.1/tr1/bessel_function.tcc:
 
@@ -2055,6 +2054,10 @@ playerwidget.cpp:
 
 /usr/include/c++/16.1.1/bits/hashtable_policy.h:
 
+/usr/include/qt6/QtMultimedia/qtmultimedia-config.h:
+
+/usr/include/bits/types/__mbstate_t.h:
+
 /usr/include/c++/16.1.1/memory:
 
 /usr/include/qt6/QtCore/qbasicatomic.h:
@@ -2075,6 +2078,14 @@ playerwidget.cpp:
 
 /usr/include/c++/16.1.1/backward/auto_ptr.h:
 
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/include/qt6/QtWidgets/qprogressbar.h:
+
+/usr/include/c++/16.1.1/bits/enable_special_members.h:
+
+/usr/include/c++/16.1.1/bits/cxxabi_init_exception.h:
+
 /usr/include/c++/16.1.1/bits/stl_multimap.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargets-relwithdebinfo.cmake:
@@ -2093,6 +2104,12 @@ playerwidget.cpp:
 
 /usr/include/qt6/QtGui/QBrush:
 
+/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
+
+/usr/include/c++/16.1.1/concepts:
+
+/usr/include/bits/byteswap.h:
+
 /usr/include/c++/16.1.1/bits/string_view.tcc:
 
 /usr/include/qt6/QtGui/qcolor.h:
@@ -2100,16 +2117,6 @@ playerwidget.cpp:
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/include/qt6/QtCore/qtcoreexports.h:
-
-/usr/include/c++/16.1.1/bits/allocated_ptr.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginAdditionalTargetInfo.cmake:
-
-/usr/include/qt6/QtWidgets/qframe.h:
-
-/usr/include/qt6/QtCore/qbytearrayalgorithms.h:
-
-/usr/include/bits/atomic_wide_counter.h:
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusConfig.cmake:
 
@@ -2161,13 +2168,13 @@ main.cpp:
 
 /usr/include/c++/16.1.1/version:
 
+/usr/include/asm/posix_types_64.h:
+
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargets.cmake:
 
 /usr/include/c++/16.1.1/new:
 
 equalizerwidget.h:
-
-/usr/include/asm/posix_types_64.h:
 
 /usr/include/c++/16.1.1/bits/stdexcept_throwfwd.h:
 
@@ -2191,17 +2198,35 @@ deviceswidget.h:
 
 /usr/include/qt6/QtCore/qtimer.h:
 
-/usr/include/asm-generic/posix_types.h:
+/usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets.cmake:
 
-/usr/include/c++/16.1.1/tr1/modified_bessel_func.tcc:
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfig.cmake:
+
+/usr/include/qt6/QtCore/qdatetime.h:
+
+/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
+
+/usr/include/qt6/QtCore/qxptype_traits.h:
+
+/usr/include/c++/16.1.1/algorithm:
+
+/usr/include/c++/16.1.1/bits/ios_base.h:
+
+/usr/include/qt6/QtCore/qcheckedint_impl.h:
+
+/usr/include/sys/single_threaded.h:
+
+/usr/include/asm-generic/errno.h:
 
 /usr/include/c++/16.1.1/bits/stl_iterator_base_funcs.h:
 
 /usr/include/c++/16.1.1/bits/basic_string.tcc:
 
-/usr/include/sys/single_threaded.h:
+/usr/include/asm-generic/posix_types.h:
 
-/usr/include/asm-generic/errno.h:
+/usr/include/c++/16.1.1/tr1/modified_bessel_func.tcc:
 
 /usr/include/asm/bitsperlong.h:
 
@@ -2228,14 +2253,6 @@ deviceswidget.h:
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/include/c++/16.1.1/bit:
-
-/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
-
-/usr/include/bits/byteswap.h:
-
-/usr/include/c++/16.1.1/concepts:
-
-/usr/include/c++/16.1.1/bits/cxxabi_init_exception.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbGlxIntegrationPluginAdditionalTargetInfo.cmake:
 
@@ -2266,12 +2283,6 @@ deviceswidget.h:
 /usr/include/c++/16.1.1/bits/atomic_lockfree_defines.h:
 
 /usr/include/qt6/QtCore/qpair.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargetsPrecheck.cmake:
-
-/usr/include/qt6/QtWidgets/qprogressbar.h:
-
-/usr/include/c++/16.1.1/bits/enable_special_members.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
 
@@ -2324,6 +2335,12 @@ CMakeLists.txt:
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake:
 
 /usr/include/qt6/QtGui/qguiapplication_platform.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets-relwithdebinfo.cmake:
+
+/usr/include/qt6/QtMultimedia/qtaudio.h:
+
+/usr/include/bits/select.h:
 
 /usr/include/qt6/QtWidgets/QLabel:
 
@@ -2387,6 +2404,12 @@ iconbutton.h:
 
 /usr/include/bits/stdio_lim.h:
 
+playbackcontrolwidget.cpp:
+
+/usr/include/c++/16.1.1/bits/nested_exception.h:
+
+/usr/include/qt6/QtCore/q26numeric.h:
+
 /usr/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake:
 
 /usr/include/bits/types/struct_timeval.h:
@@ -2425,6 +2448,16 @@ iconbutton.h:
 
 /usr/include/bits/types/struct___jmp_buf_tag.h:
 
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/c++/16.1.1/bits/allocated_ptr.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginAdditionalTargetInfo.cmake:
+
+/usr/include/qt6/QtWidgets/qframe.h:
+
+/usr/include/qt6/QtCore/qbytearrayalgorithms.h:
+
 /usr/include/c++/16.1.1/ext/type_traits.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
@@ -2434,24 +2467,6 @@ iconbutton.h:
 /usr/share/cmake/Modules/Compiler/GNU.cmake:
 
 /usr/include/c++/16.1.1/bits/localefwd.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets.cmake:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfig.cmake:
-
-/usr/include/qt6/QtCore/qdatetime.h:
-
-/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
-
-/usr/include/qt6/QtCore/qxptype_traits.h:
-
-/usr/include/c++/16.1.1/algorithm:
-
-/usr/include/c++/16.1.1/bits/ios_base.h:
-
-/usr/include/qt6/QtCore/qcheckedint_impl.h:
 
 /usr/include/c++/16.1.1/bits/range_access.h:
 
@@ -2566,6 +2581,16 @@ audiomanager.cpp:
 mainwindow.cpp:
 
 /usr/include/qt6/QtCore/qshareddata.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QXcbGlxIntegrationPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6DBus/Qt6DBusTargets-relwithdebinfo.cmake:
+
+playbackcontrolwidget.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginConfig.cmake:
+
+/usr/include/qt6/QtCore/q20functional.h:
 
 /usr/include/qt6/QtGui/qvectornd.h:
 
@@ -2695,6 +2720,8 @@ equalizerwidget.cpp:
 
 /usr/include/c++/16.1.1/bits/algorithmfwd.h:
 
+/usr/include/qt6/QtCore/qset.h:
+
 /usr/include/c++/16.1.1/tr1/special_function_util.h:
 
 /usr/include/c++/16.1.1/tr1/exp_integral.tcc:
@@ -2720,10 +2747,6 @@ equalizerwidget.cpp:
 /usr/include/c++/16.1.1/tr1/poly_laguerre.tcc:
 
 /usr/include/qt6/QtGui/qicon.h:
-
-/usr/include/bits/types/__mbstate_t.h:
-
-/usr/include/qt6/QtMultimedia/qtmultimedia-config.h:
 
 /usr/include/c++/16.1.1/unordered_map:
 
@@ -2875,10 +2898,6 @@ playlistswidget.cpp:
 
 /usr/include/qt6/QtCore/qurl.h:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginConfig.cmake:
-
-/usr/include/qt6/QtCore/q20functional.h:
-
 /usr/include/features.h:
 
 /usr/include/qt6/QtCore/q20iterator.h:
@@ -2894,10 +2913,6 @@ playlistswidget.cpp:
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginTargets.cmake:
 
 /usr/include/qt6/QtCore/q23type_traits.h:
-
-/usr/include/c++/16.1.1/bits/nested_exception.h:
-
-/usr/include/qt6/QtCore/q26numeric.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPluginConfig.cmake:
 
@@ -3194,12 +3209,6 @@ fileswidget.cpp:
 /usr/include/qt6/QtCore/qcoreevent.h:
 
 /usr/include/qt6/QtGui/qbitmap.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/bits/select.h:
-
-/usr/include/qt6/QtMultimedia/qtaudio.h:
 
 mainwindow.h:
 

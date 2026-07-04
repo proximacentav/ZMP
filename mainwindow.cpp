@@ -113,26 +113,6 @@ MainWindow::MainWindow(QWidget *parent)
         m_playlistsWidget->onPlaylistPlaying(tracks);
     });
 
-    connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
-        if (playing) {
-            // Воспроизведение началось (включая авто-переход) -> синяя плитка
-            const QStringList &pl = m_playerWidget->getCurrentPlaylist();
-            if (!pl.isEmpty()) {
-                m_playlistsWidget->onPlaylistPlaying(pl);
-            }
-        } else {
-            m_playlistsWidget->onPlaylistStopped();
-        }
-    });
-
-    connect(m_playerWidget, &PlayerWidget::featuredUpdated, this, &MainWindow::onFeaturedUpdated);
-
-    connect(m_filesWidget, &FilesWidget::fileSelected, this, [this](const QString &path) {
-        m_playerWidget->setPlaylist({path});
-        m_playerWidget->onPlay();
-        m_menu->setCurrentRow(1);
-    });
-
     connect(m_settingsWidget, &SettingsWidget::exitRequested, this, &MainWindow::onExit);
     connect(m_settingsWidget, &SettingsWidget::metadataHeightChanged, m_playerWidget, &PlayerWidget::setMetadataHeight);
     connect(m_settingsWidget, &SettingsWidget::iconSizeChanged, m_playerWidget, &PlayerWidget::setIconSize);

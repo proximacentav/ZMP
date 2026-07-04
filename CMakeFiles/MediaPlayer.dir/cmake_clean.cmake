@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MediaPlayer.dir/main.cpp.o.d"
   "CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o"
   "CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o.d"
+  "CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o"
+  "CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o.d"
   "CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o"
   "CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o.d"
   "CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o"

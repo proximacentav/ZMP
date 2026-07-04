@@ -53,7 +53,7 @@ public slots:
 
 private:
     HSTREAM m_currentStream;
-    HSTREAM m_eqFX[15];
+    HSTREAM m_eqFX[17];
     QVector<double> m_bands;
     bool m_playing;
     bool m_seeking;
@@ -67,7 +67,7 @@ private:
     float m_spectrumGain;
     QString m_currentFilePath;
     qint64 m_savedPosition = 0;
- // Вотч Дэма
+    QWORD m_lastPosition = 0;
 };
 
 #endif

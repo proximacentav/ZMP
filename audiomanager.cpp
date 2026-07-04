@@ -10,17 +10,22 @@ AudioManager::AudioManager(QObject *parent)
     : QObject(parent), m_currentStream(0), m_playing(false), m_seeking(false), m_duration(0),
       m_originalFreq(44100.0), m_currentSpeed(1.0), m_currentPitch(0.0), m_spectrumGain(8.0f)
 {
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 17; ++i) {
         m_eqFX[i] = 0;
     }
 
     // Инициализировать частоты полос
     m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
     
-    if (!BASS_Init(-1, 44100, 0, 0, NULL)) {
+    if (!BASS_Init(-1, 44100, BASS_DEVICE_LATENCY, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
         return;
     }
+
+    // Увеличить буфер воспроизведения для предотвращения заиканий
+    BASS_SetConfig(BASS_CONFIG_BUFFER, 500);
+    BASS_SetConfig(BASS_CONFIG_UPDATEPERIOD, 100);
+
     BASS_FX_GetVersion();
 
     m_positionTimer = new QTimer(this);
@@ -34,7 +39,7 @@ AudioManager::AudioManager(QObject *parent)
 
 AudioManager::~AudioManager() {
     stop();
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 17; ++i) {
         if (m_eqFX[i]) BASS_FXFree(m_eqFX[i]);
     }
     if (m_currentStream) BASS_StreamFree(m_currentStream);
@@ -70,14 +75,14 @@ void AudioManager::setSourceFile(const QString &filePath) {
     m_duration = static_cast<qint64>(seconds * 1000);
     emit durationChanged(m_duration);
 
-    // Создать 15 эффектов PEAK EQ
-    for (int i = 0; i < 15; ++i) {
+    // Создать 17 эффектов PEAK EQ
+    for (int i = 0; i < 17; ++i) {
         m_eqFX[i] = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_PEAKEQ, 1);
         if (!m_eqFX[i]) {
             qCritical() << "Failed to create EQ effect " << i << ", error:" << BASS_ErrorGetCode();
         }
     }
-    qDebug() << "Created 15 EQ effects";
+    qDebug() << "Created 17 EQ effects";
 
     setPlaybackSpeed(m_currentSpeed);
     setPitchShift(m_currentPitch);
@@ -178,6 +183,7 @@ void AudioManager::setPosition(qint64 ms) {
     double seconds = ms / 1000.0;
     QWORD bytes = BASS_ChannelSeconds2Bytes(m_currentStream, seconds);
     BASS_ChannelSetPosition(m_currentStream, bytes, BASS_POS_BYTE);
+    m_lastPosition = bytes;
     emit positionChanged(ms);
     m_seeking = false;
 }
@@ -185,7 +191,7 @@ void AudioManager::setPosition(qint64 ms) {
 bool AudioManager::isPlaying() const { return m_playing; }
 
 void AudioManager::setEqualizerGain(int bandIndex, float gainDb) {
-    if (bandIndex < 0 || bandIndex >= 15) return;
+    if (bandIndex < 0 || bandIndex >= 17) return;
     if (!m_currentStream) {
         qWarning() << "EQ: Invalid stream";
         return;
@@ -246,7 +252,12 @@ QString AudioManager::currentDeviceName() const {
 
 void AudioManager::updatePosition() {
     if (m_playing && m_currentStream && !m_seeking) {
-        emit positionChanged(position());
+        QWORD currentPos = BASS_ChannelGetPosition(m_currentStream, BASS_POS_BYTE);
+        if (currentPos != m_lastPosition) {
+            m_lastPosition = currentPos;
+            double seconds = BASS_ChannelBytes2Seconds(m_currentStream, currentPos);
+            emit positionChanged(static_cast<qint64>(seconds * 1000));
+        }
     }
 }
 
@@ -254,7 +265,7 @@ void AudioManager::updateSpectrum() {
     if (!m_currentStream || !m_playing) return;
 
     float fft[2048];
-    int ret = BASS_ChannelGetData(m_currentStream, fft, BASS_DATA_FFT2048);
+    int ret = BASS_ChannelGetData(m_currentStream, fft, BASS_DATA_FFT2048 | BASS_DATA_FFT_NOWINDOW);
     if (ret <= 0) return;
 
     QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
@@ -266,7 +277,7 @@ void AudioManager::updateSpectrum() {
         index = qBound(0, index, 1023);
         float level = fft[index];
         level = (level / 10.0f) * m_spectrumGain;
-        level = qBound(0.0f, level, 1.0f); 
+        level = qBound(0.0f, level, 1.0f);
         levels.append(level);
     }
     emit spectrumDataChanged(levels);

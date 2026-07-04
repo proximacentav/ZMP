@@ -209,7 +209,7 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     connect(m_featuredIcon, &IconButton::clicked, this, &PlaybackControlWidget::onFeaturedClicked);
     connect(m_positionSlider, &QSlider::sliderPressed, this, [this]() { m_isSeeking = true; });
     connect(m_positionSlider, &QSlider::sliderReleased, this, [this]() { m_isSeeking = false; });
-    connect(m_positionSlider, &QSlider::valueChanged, this, &PlaybackControlWidget::onSliderMoved);
+    connect(m_positionSlider, &QSlider::sliderMoved, this, &PlaybackControlWidget::onSliderMoved);
     connect(m_playlistWidget, &QListWidget::itemDoubleClicked, this, &PlaybackControlWidget::onPlaylistItemDoubleClicked);
 }
 
@@ -385,7 +385,11 @@ void PlaybackControlWidget::updateSpectrum(const QVector<float> &levels) {
 void PlaybackControlWidget::onPositionChanged(qint64 pos) {
     if (!m_isSeeking) {
         qint64 dur = m_audioManager->duration();
-        if (dur > 0) m_positionSlider->setValue(static_cast<int>(pos * 1000 / dur));
+        if (dur > 0) {
+            m_positionSlider->blockSignals(true);
+            m_positionSlider->setValue(static_cast<int>(pos * 1000 / dur));
+            m_positionSlider->blockSignals(false);
+        }
         QTime t(0,0), cur = t.addMSecs(pos), tot = t.addMSecs(dur);
         m_timeLabel->setText(cur.toString("mm:ss") + " / " + tot.toString("mm:ss"));
     }

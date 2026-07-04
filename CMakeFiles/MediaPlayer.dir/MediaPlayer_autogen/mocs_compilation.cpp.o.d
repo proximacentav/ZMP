@@ -504,7 +504,10 @@ CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/qmainwindow.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../deviceswidget.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../playerwidget.h \
+ /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../playbackcontrolwidget.h \
  /usr/include/qt6/QtGui/QImage \
+ /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../iconbutton.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../playlistswidget.h \
  /usr/include/qt6/QtCore/QStringList /usr/include/qt6/QtGui/QPainterPath \
@@ -532,11 +535,12 @@ CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/16.1.1/bits/random.tcc \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../equalizerwidget.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../settingswidget.h \
  /usr/include/qt6/QtGui/QColor \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../fileswidget.h \
+ /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp \
+ /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../playbackcontrolwidget.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/moc_playerwidget.cpp \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/../../playerwidget.h \
  /home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/moc_playlistswidget.cpp \

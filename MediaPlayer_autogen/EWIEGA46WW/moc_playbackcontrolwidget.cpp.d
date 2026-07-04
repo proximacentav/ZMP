@@ -1,8 +1,7 @@
-/home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/moc_playerwidget.cpp: /home/user/cp/zmp/playerwidget.h \
+/home/user/cp/zmp/MediaPlayer_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp: /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/MediaPlayer_autogen/moc_predefs.h \
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/iconbutton.h \
-  /home/user/cp/zmp/playbackcontrolwidget.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
