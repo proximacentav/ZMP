@@ -61,7 +61,6 @@ make
 - CMAKE
 - Make
 - git
-- github.com
 
 ## скриншоты:
 
@@ -71,3 +70,4 @@ make
 ![screenshot2](screenshot2.png)
 ![screenshot3](screenshot3.png)
 ![screenshot4](screenshot4.png)
+![screenshot5](screenshot5.png)
