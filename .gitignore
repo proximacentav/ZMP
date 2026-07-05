@@ -1,5 +1,8 @@
 .qwen/
 .qt/
 QWEN.md
-memory/MEMORY.md
-memory/equalizer-fix.md
+memory/
+memory/*
+.git-credentials
+push-mirror.sh
+MIRROR_SETUP.md
