@@ -22,7 +22,6 @@ AudioManager::AudioManager(QObject *parent)
         return;
     }
 
-    // Увеличить буфер воспроизведения для предотвращения заиканий
     BASS_SetConfig(BASS_CONFIG_BUFFER, 500);
     BASS_SetConfig(BASS_CONFIG_UPDATEPERIOD, 100);
 
@@ -75,7 +74,6 @@ void AudioManager::setSourceFile(const QString &filePath) {
     m_duration = static_cast<qint64>(seconds * 1000);
     emit durationChanged(m_duration);
 
-    // Создать 17 эффектов PEAK EQ
     for (int i = 0; i < 17; ++i) {
         m_eqFX[i] = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_PEAKEQ, 1);
         if (!m_eqFX[i]) {
