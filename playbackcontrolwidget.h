@@ -9,6 +9,7 @@
 #include <QListWidget>
 #include <QAbstractItemView>
 #include <QDialog>
+#include <QTimer>
 #include "audiomanager.h"
 #include "iconbutton.h"
 
@@ -61,6 +62,7 @@ private slots:
     void onPrevClicked();
     void onPlaylistItemDoubleClicked(QListWidgetItem *item);
     void onPositionChanged(qint64 pos);
+    void onTrackSwitchTimeout();
 
 private:
     void updatePlayButtonIcon(bool playing);
@@ -102,6 +104,9 @@ private:
     bool m_isUserPause = false;
     bool m_isUserManuallyStopped = false;
     qint64 m_savedPosition = 0;
+    
+    int m_timeChangeTrack = 100; // миллисекунды
+    QTimer *m_trackSwitchTimer;
 };
 
 #endif // PLAYBACKCONTROLWIDGET_H

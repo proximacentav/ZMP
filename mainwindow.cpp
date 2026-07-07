@@ -128,6 +128,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_settingsWidget, &SettingsWidget::iconSizeChanged, m_playerWidget, &PlayerWidget::setIconSize);
     connect(m_settingsWidget, &SettingsWidget::accentColorChanged, m_playerWidget, &PlayerWidget::setAccentColor);
     connect(m_settingsWidget, &SettingsWidget::accentColorChanged, m_miniPlayerBar, &MiniPlayerBar::setAccentColor);
+    connect(m_settingsWidget, &SettingsWidget::powerModeChanged, m_equalizerWidget, &EqualizerWidget::setPowerMode);
     connect(m_settingsWidget, &SettingsWidget::spectrumGainChanged, m_audioManager, &AudioManager::setSpectrumGain);
     connect(m_settingsWidget, &SettingsWidget::spectrumFpsChanged, m_audioManager, &AudioManager::setSpectrumFps);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_playerWidget, &PlayerWidget::updateSpectrum);

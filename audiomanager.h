@@ -43,6 +43,7 @@ signals:
     void stateChanged(bool playing);
     void errorOccurred(const QString &error);
     void spectrumDataChanged(const QVector<float> &amplitudes);
+    void trackEnded();
 
 private slots:
     void updatePosition();
@@ -68,6 +69,8 @@ private:
     QString m_currentFilePath;
     qint64 m_savedPosition = 0;
     QWORD m_lastPosition = 0;
+    float m_eqGains[17];
+    float m_preampGain = 0.0f;
 };
 
 #endif

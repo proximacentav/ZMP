@@ -9,6 +9,7 @@ class QSlider;
 class QComboBox;
 class QLineEdit;
 class QPushButton;
+class QCheckBox;
 
 class SettingsWidget : public QWidget
 {
@@ -25,6 +26,7 @@ signals:
     void exitRequested();
     void spectrumGainChanged(float gain);
     void spectrumFpsChanged(int fps);
+    void powerModeChanged(bool enabled);
 
 private slots:
     void onSliderChanged(int v);
@@ -48,6 +50,7 @@ private:
     QPushButton *m_exitButton;
     QSlider *m_spectrumGainSlider;
     QComboBox *m_spectrumFpsCombo;
+    QCheckBox *m_powerModeCheck;
     
     bool m_darkTheme;
     QColor m_accentColor;

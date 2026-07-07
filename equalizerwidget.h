@@ -4,11 +4,14 @@
 #include <QWidget>
 #include <QVector>
 #include <QMap>
-#include <QSpinBox>          // добавлено
-#include <QDoubleSpinBox>    // добавлено
+#include <QSpinBox>
+#include <QDoubleSpinBox>
 #include <QSlider>
-#include <QScrollArea>       // добавлено
-#include <QGridLayout>       // добавлено
+#include <QScrollArea>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QComboBox>
+#include <QLabel>
 #include "audiomanager.h"
 
 class EqualizerWidget : public QWidget
@@ -16,6 +19,7 @@ class EqualizerWidget : public QWidget
     Q_OBJECT
 public:
     explicit EqualizerWidget(AudioManager *audioManager, QWidget *parent = nullptr);
+    void setPowerMode(bool enabled);
     QMap<double, int> getBandGains() const;
     int getPreampGain() const;
 
@@ -34,12 +38,14 @@ private slots:
     void onSpeedSpinBoxChanged(double value);
     void onPitchSliderMoved(int value);
     void onPitchSpinBoxChanged(double value);
+    void onResetClicked();
+    void onModeChanged(int index);
 
 private:
     AudioManager *m_audioManager;
     struct Band { double freq; QSlider *slider; QSpinBox *spinBox; };
     QVector<Band> m_bands;
-    static const int NUM_BANDS = 15;
+    static const int NUM_BANDS = 16;
     QSlider *m_preampSlider;
     QSpinBox *m_preampSpinBox;
     QSlider *m_speedSlider;
@@ -49,7 +55,18 @@ private:
     QScrollArea *m_scrollArea;
     QWidget *m_scrollContent;
     QGridLayout *m_layout;
+    QPushButton *m_resetButton;
+    QComboBox *m_modeCombo;
+    QLabel *m_powerModeLabel;
+    bool m_isApplyingPreset = false;
+    bool m_powerMode = false;
     void createBands();
+    void updateRanges();
+    void setBandValue(int index, int value);
+    void setPreampValue(int value);
+    void setSpeedValue(double value);
+    void setPitchValue(double value);
+    void applyPreset(const QString &name);
 };
 
 #endif

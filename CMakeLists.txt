@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(MediaPlayer)
+project(ZMP_Linux_bin)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -20,7 +20,7 @@ if(NOT TAGLIB_LIBRARY)
     message(FATAL_ERROR "TagLib not found. Install it: sudo pacman -S taglib (Arch) or apt-get install libtag1-dev (Debian)")
 endif()
 
-add_executable(MediaPlayer
+add_executable(ZMP_Linux_bin
     main.cpp
     mainwindow.h mainwindow.cpp
     audiomanager.h audiomanager.cpp
@@ -36,12 +36,12 @@ add_executable(MediaPlayer
     res.qrc
 )
 
-target_include_directories(MediaPlayer PRIVATE
+target_include_directories(ZMP_Linux_bin PRIVATE
     ${BASS_INCLUDE_DIR}
     ${TAGLIB_INCLUDE_DIR}
 )
 
-target_link_libraries(MediaPlayer
+target_link_libraries(ZMP_Linux_bin
     Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network
     ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
     ${TAGLIB_LIBRARY}

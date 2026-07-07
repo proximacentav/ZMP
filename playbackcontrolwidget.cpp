@@ -118,6 +118,12 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     : QWidget(parent), m_audioManager(audioManager), m_currentIndex(-1), m_isSeeking(false),
       m_metadataHeight(220), m_accentColor(42,130,218), m_spectrumWidget(nullptr)
 {
+    // Инициализация таймера для переключения треков
+    m_trackSwitchTimer = new QTimer(this);
+    m_trackSwitchTimer->setInterval(m_timeChangeTrack);
+    m_trackSwitchTimer->setSingleShot(true);
+    connect(m_trackSwitchTimer, &QTimer::timeout, this, &PlaybackControlWidget::onTrackSwitchTimeout);
+    
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
@@ -211,6 +217,9 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     connect(m_positionSlider, &QSlider::sliderReleased, this, [this]() { m_isSeeking = false; });
     connect(m_positionSlider, &QSlider::sliderMoved, this, &PlaybackControlWidget::onSliderMoved);
     connect(m_playlistWidget, &QListWidget::itemDoubleClicked, this, &PlaybackControlWidget::onPlaylistItemDoubleClicked);
+    connect(m_audioManager, &AudioManager::trackEnded, this, [this]() {
+        onStateChanged(false);
+    });
 }
 
 void PlaybackControlWidget::loadIcons() {
@@ -410,8 +419,8 @@ void PlaybackControlWidget::onStateChanged(bool playing) {
     }
 
     if (!m_playlist.isEmpty() && m_currentIndex < m_playlist.size() - 1) {
-        m_currentIndex++;
-        onPlay();
+        // Используем таймер для переключения треков через time_change_track
+        m_trackSwitchTimer->start();
     } else {
         emit stateChanged(false);
         updatePlayButtonIcon(false);
@@ -446,6 +455,21 @@ void PlaybackControlWidget::onPlaylistItemDoubleClicked(QListWidgetItem *item) {
         m_audioManager->setSavedPosition(0);
         setCurrentPlaylist(m_playlist);
         onPlay();
+    }
+}
+
+void PlaybackControlWidget::onTrackSwitchTimeout() {
+    if (!m_playlist.isEmpty() && m_currentIndex < m_playlist.size() - 1) {
+        m_currentIndex++;
+        onPlay();
+    } else {
+        emit stateChanged(false);
+        updatePlayButtonIcon(false);
+        m_isPlaying = false;
+        if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
+            m_audioManager->setSavedPosition(m_audioManager->position());
+        }
+        emit featuredUpdated();
     }
 }
 
@@ -516,6 +540,9 @@ void PlaybackControlWidget::setAccentColor(const QColor &color) {
 }
 
 void PlaybackControlWidget::onPlayClicked() {
+    // Останавливаем таймер при ручном переключении
+    m_trackSwitchTimer->stop();
+    
     if (m_audioManager->isPlaying()) {
         m_savedPosition = m_audioManager->position();
         m_isUserManuallyStopped = true;
@@ -553,6 +580,9 @@ void PlaybackControlWidget::onPlayClicked() {
 }
 
 void PlaybackControlWidget::onNextClicked() {
+    // Останавливаем таймер при ручном переключении
+    m_trackSwitchTimer->stop();
+    
     if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size() - 1) {
         m_currentIndex++;
         onPlay();
@@ -560,6 +590,9 @@ void PlaybackControlWidget::onNextClicked() {
 }
 
 void PlaybackControlWidget::onPrevClicked() {
+    // Останавливаем таймер при ручном переключении
+    m_trackSwitchTimer->stop();
+    
     if (m_currentIndex > 0) {
         m_currentIndex--;
         m_audioManager->setSavedPosition(0);

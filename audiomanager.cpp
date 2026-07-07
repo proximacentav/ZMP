@@ -1,4 +1,6 @@
 #include "audiomanager.h"
+#include <cmath>
+#include <cfloat>
 #include <QDebug>
 #include <QFile>
 #include <QMediaDevices>
@@ -12,10 +14,11 @@ AudioManager::AudioManager(QObject *parent)
 {
     for (int i = 0; i < 17; ++i) {
         m_eqFX[i] = 0;
+        m_eqGains[i] = 0.0f;
     }
 
     // Инициализировать частоты полос
-    m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
+    m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
     
     if (!BASS_Init(-1, 44100, BASS_DEVICE_LATENCY, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
@@ -84,6 +87,10 @@ void AudioManager::setSourceFile(const QString &filePath) {
 
     setPlaybackSpeed(m_currentSpeed);
     setPitchShift(m_currentPitch);
+    setPreampGain(m_preampGain);
+    for (int i = 0; i < 17; ++i) {
+        setEqualizerGain(i, m_eqGains[i]);
+    }
 }
 
 void AudioManager::play() {
@@ -190,32 +197,26 @@ bool AudioManager::isPlaying() const { return m_playing; }
 
 void AudioManager::setEqualizerGain(int bandIndex, float gainDb) {
     if (bandIndex < 0 || bandIndex >= 17) return;
-    if (!m_currentStream) {
-        qWarning() << "EQ: Invalid stream";
-        return;
-    }
+    m_eqGains[bandIndex] = gainDb;
+    if (!m_currentStream) return;
 
     BASS_BFX_PEAKEQ eq = {0};
-    eq.lBand = bandIndex;
+    eq.lBand = 0;
     eq.fGain = gainDb;
     eq.fBandwidth = 1.0f;
+    eq.fCenter = m_bands[bandIndex];
     eq.lChannel = BASS_BFX_CHANALL;
 
-    if (!m_eqFX[bandIndex]) {
-        qWarning() << "EQ: Effect not created for band" << bandIndex;
-        return;
-    }
+    if (!m_eqFX[bandIndex]) return;
 
-    if (BASS_FXSetParameters(m_eqFX[bandIndex], &eq)) {
-        qDebug() << "EQ: Band" << bandIndex << "freq:" << m_bands[bandIndex] << "gain:" << gainDb << "dB";
-    } else {
-        qCritical() << "EQ: Failed to set parameters for band" << bandIndex << ", error:" << BASS_ErrorGetCode();
-    }
+    BASS_FXSetParameters(m_eqFX[bandIndex], &eq);
 }
 
 void AudioManager::setPreampGain(float gainDb) {
+    m_preampGain = gainDb;
     if (m_currentStream) {
         float volume = qPow(10.0f, gainDb / 20.0f);
+        if (!std::isfinite(volume)) volume = FLT_MAX;
         BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_VOL, volume);
     }
 }
@@ -250,6 +251,13 @@ QString AudioManager::currentDeviceName() const {
 
 void AudioManager::updatePosition() {
     if (m_playing && m_currentStream && !m_seeking) {
+        if (BASS_ChannelIsActive(m_currentStream) == BASS_ACTIVE_STOPPED) {
+            m_playing = false;
+            m_positionTimer->stop();
+            m_spectrumTimer->stop();
+            emit trackEnded();
+            return;
+        }
         QWORD currentPos = BASS_ChannelGetPosition(m_currentStream, BASS_POS_BYTE);
         if (currentPos != m_lastPosition) {
             m_lastPosition = currentPos;
@@ -266,7 +274,7 @@ void AudioManager::updateSpectrum() {
     int ret = BASS_ChannelGetData(m_currentStream, fft, BASS_DATA_FFT2048 | BASS_DATA_FFT_NOWINDOW);
     if (ret <= 0) return;
 
-    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
+    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
     QVector<float> levels;
     levels.reserve(freqs.size());
 

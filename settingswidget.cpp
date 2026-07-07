@@ -7,6 +7,7 @@
 #include <QPalette>
 #include <QPushButton>
 #include <QComboBox>
+#include <QCheckBox>
 #include <QDialog>
 #include <QDebug>
 #include <QLineEdit>
@@ -58,6 +59,10 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     connect(m_spectrumFpsCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index){
         emit spectrumFpsChanged(m_spectrumFpsCombo->itemText(index).toInt());
     });
+
+    m_powerModeCheck = new QCheckBox("Powermode");
+    layout->addWidget(m_powerModeCheck);
+    connect(m_powerModeCheck, &QCheckBox::toggled, this, &SettingsWidget::powerModeChanged);
 
     m_aboutButton = new QPushButton("О программе");
     layout->addWidget(m_aboutButton);

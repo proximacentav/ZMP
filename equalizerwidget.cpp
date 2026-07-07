@@ -14,6 +14,18 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
+    m_powerModeLabel = new QLabel("POWERMODE");
+    m_powerModeLabel->setStyleSheet("color: red; font-size: 18px; font-weight: bold;");
+    m_powerModeLabel->setAlignment(Qt::AlignCenter);
+    m_powerModeLabel->setVisible(false);
+    mainLayout->addWidget(m_powerModeLabel);
+
+    QHBoxLayout *resetLayout = new QHBoxLayout;
+    m_resetButton = new QPushButton("Сбросить EQ");
+    resetLayout->addWidget(m_resetButton);
+    resetLayout->addStretch();
+    mainLayout->addLayout(resetLayout);
+
     QHBoxLayout *preampLayout = new QHBoxLayout;
     preampLayout->addWidget(new QLabel("Preamp (dB):"));
     m_preampSlider = new QSlider(Qt::Horizontal);
@@ -29,7 +41,6 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     preampLayout->addWidget(m_preampSpinBox);
     mainLayout->addLayout(preampLayout);
 
-    // СПИД
     QHBoxLayout *speedLayout = new QHBoxLayout;
     speedLayout->addWidget(new QLabel("Speed (x):"));
     m_speedSlider = new QSlider(Qt::Horizontal);
@@ -76,6 +87,14 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     m_scrollArea->setWidget(m_scrollContent);
     createBands();
 
+    m_modeCombo = new QComboBox;
+    m_modeCombo->addItem("Custom");
+    m_modeCombo->addItem("Default");
+    m_modeCombo->addItem("Bass");
+    mainLayout->addWidget(m_modeCombo);
+
+    connect(m_resetButton, &QPushButton::clicked, this, &EqualizerWidget::onResetClicked);
+    connect(m_modeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EqualizerWidget::onModeChanged);
     connect(m_preampSlider, &QSlider::valueChanged, this, &EqualizerWidget::onPreampSliderMoved);
     connect(m_preampSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &EqualizerWidget::onPreampSpinBoxChanged);
     connect(m_speedSlider, &QSlider::valueChanged, this, &EqualizerWidget::onSpeedSliderMoved);
@@ -85,7 +104,7 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
 }
 
 void EqualizerWidget::createBands() {
-    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,22000,25000};
+    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
     m_bands.resize(NUM_BANDS);
     for (int i=0; i<NUM_BANDS; ++i) {
         double f = freqs[i];
@@ -97,14 +116,14 @@ void EqualizerWidget::createBands() {
         fl->setAlignment(Qt::AlignCenter);
         vbox->addWidget(fl);
         QSlider *sl = new QSlider(Qt::Vertical);
-        sl->setRange(-15, 15);
+        sl->setRange(-500, 500);
         sl->setValue(0);
-        sl->setTickInterval(3);
+        sl->setTickInterval(100);
         sl->setTickPosition(QSlider::TicksBothSides);
         sl->setFixedHeight(200);
         vbox->addWidget(sl, 0, Qt::AlignHCenter);
         QSpinBox *sb = new QSpinBox;
-        sb->setRange(-15, 15);
+        sb->setRange(-500, 500);
         sb->setValue(0);
         sb->setSuffix(" dB");
         vbox->addWidget(sb);
@@ -115,12 +134,84 @@ void EqualizerWidget::createBands() {
     }
 }
 
+void EqualizerWidget::setBandValue(int index, int value) {
+    if (index < 0 || index >= m_bands.size()) return;
+    m_bands[index].slider->blockSignals(true);
+    m_bands[index].spinBox->blockSignals(true);
+    m_bands[index].slider->setValue(value);
+    m_bands[index].spinBox->setValue(value);
+    m_bands[index].slider->blockSignals(false);
+    m_bands[index].spinBox->blockSignals(false);
+    if (m_audioManager) m_audioManager->setEqualizerGain(index, (float)value);
+}
+
+void EqualizerWidget::setPreampValue(int value) {
+    m_preampSlider->blockSignals(true);
+    m_preampSpinBox->blockSignals(true);
+    m_preampSlider->setValue(value);
+    m_preampSpinBox->setValue(value);
+    m_preampSlider->blockSignals(false);
+    m_preampSpinBox->blockSignals(false);
+    if (m_audioManager) m_audioManager->setPreampGain((float)value);
+}
+
+void EqualizerWidget::setSpeedValue(double value) {
+    m_speedSlider->blockSignals(true);
+    m_speedSpinBox->blockSignals(true);
+    m_speedSlider->setValue((int)(value * 100));
+    m_speedSpinBox->setValue(value);
+    m_speedSlider->blockSignals(false);
+    m_speedSpinBox->blockSignals(false);
+    if (m_audioManager) m_audioManager->setPlaybackSpeed(value);
+}
+
+void EqualizerWidget::setPitchValue(double value) {
+    m_pitchSlider->blockSignals(true);
+    m_pitchSpinBox->blockSignals(true);
+    m_pitchSlider->setValue((int)(value * 10));
+    m_pitchSpinBox->setValue(value);
+    m_pitchSlider->blockSignals(false);
+    m_pitchSpinBox->blockSignals(false);
+    if (m_audioManager) m_audioManager->setPitchShift(value);
+}
+
+void EqualizerWidget::applyPreset(const QString &name) {
+    m_isApplyingPreset = true;
+    if (name == "Default") {
+        for (int i = 0; i < NUM_BANDS; ++i)
+            setBandValue(i, 0);
+        setPreampValue(0);
+        setSpeedValue(1.0);
+        setPitchValue(0);
+    } else if (name == "Bass") {
+        QVector<int> bassGains = {0, 8, 10, 10, 8, 4, 0, -2, -4, -4, -2, 0, 0, 2, 2, 2};
+        for (int i = 0; i < NUM_BANDS; ++i)
+            setBandValue(i, bassGains[i]);
+        setPreampValue(0);
+        setSpeedValue(1.0);
+        setPitchValue(0);
+    }
+    m_isApplyingPreset = false;
+}
+
+void EqualizerWidget::onResetClicked() {
+    m_modeCombo->setCurrentIndex(1);
+}
+
+void EqualizerWidget::onModeChanged(int index) {
+    QString name = m_modeCombo->currentText();
+    if (name != "Custom") {
+        applyPreset(name);
+    }
+}
+
 void EqualizerWidget::onSliderMoved(int idx, int val) {
     m_bands[idx].spinBox->blockSignals(true);
     m_bands[idx].spinBox->setValue(val);
     m_bands[idx].spinBox->blockSignals(false);
     emit bandGainChanged(m_bands[idx].freq, val);
     if (m_audioManager) m_audioManager->setEqualizerGain(idx, (float)val);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onSpinBoxChanged(int idx, int val) {
     m_bands[idx].slider->blockSignals(true);
@@ -128,6 +219,7 @@ void EqualizerWidget::onSpinBoxChanged(int idx, int val) {
     m_bands[idx].slider->blockSignals(false);
     emit bandGainChanged(m_bands[idx].freq, val);
     if (m_audioManager) m_audioManager->setEqualizerGain(idx, (float)val);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onPreampSliderMoved(int v) {
     m_preampSpinBox->blockSignals(true);
@@ -135,6 +227,7 @@ void EqualizerWidget::onPreampSliderMoved(int v) {
     m_preampSpinBox->blockSignals(false);
     emit preampGainChanged(v);
     if (m_audioManager) m_audioManager->setPreampGain((float)v);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onPreampSpinBoxChanged(int v) {
     m_preampSlider->blockSignals(true);
@@ -142,6 +235,7 @@ void EqualizerWidget::onPreampSpinBoxChanged(int v) {
     m_preampSlider->blockSignals(false);
     emit preampGainChanged(v);
     if (m_audioManager) m_audioManager->setPreampGain((float)v);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onSpeedSliderMoved(int v) {
     double speed = v / 100.0;
@@ -150,6 +244,7 @@ void EqualizerWidget::onSpeedSliderMoved(int v) {
     m_speedSpinBox->blockSignals(false);
     emit speedChanged(speed);
     if (m_audioManager) m_audioManager->setPlaybackSpeed(speed);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onSpeedSpinBoxChanged(double speed) {
     int sliderVal = (int)(speed * 100);
@@ -158,6 +253,7 @@ void EqualizerWidget::onSpeedSpinBoxChanged(double speed) {
     m_speedSlider->blockSignals(false);
     emit speedChanged(speed);
     if (m_audioManager) m_audioManager->setPlaybackSpeed(speed);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onPitchSliderMoved(int v) {
     double pitch = v / 10.0;
@@ -166,6 +262,7 @@ void EqualizerWidget::onPitchSliderMoved(int v) {
     m_pitchSpinBox->blockSignals(false);
     emit pitchChanged(pitch);
     if (m_audioManager) m_audioManager->setPitchShift(pitch);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
 void EqualizerWidget::onPitchSpinBoxChanged(double pitch) {
     int sliderVal = (int)(pitch * 10);
@@ -174,7 +271,53 @@ void EqualizerWidget::onPitchSpinBoxChanged(double pitch) {
     m_pitchSlider->blockSignals(false);
     emit pitchChanged(pitch);
     if (m_audioManager) m_audioManager->setPitchShift(pitch);
+    if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
+void EqualizerWidget::setPowerMode(bool enabled) {
+    m_powerMode = enabled;
+    m_powerModeLabel->setVisible(enabled);
+    updateRanges();
+}
+
+void EqualizerWidget::updateRanges() {
+    int bandRange = m_powerMode ? 1000000000 : 500;
+    int preampRange = m_powerMode ? 1000000000 : 1000;
+    double speedMin = m_powerMode ? 0.000000000001 : 0.01;
+    double speedMax = m_powerMode ? 1000000000.0 : 50.0;
+    int pitchRange = m_powerMode ? 1000000000 : 150;
+
+    for (int i = 0; i < m_bands.size(); ++i) {
+        int val = m_bands[i].slider->value();
+        m_bands[i].slider->setRange(-bandRange, bandRange);
+        m_bands[i].slider->setTickInterval(m_powerMode ? 100000000 : 100);
+        m_bands[i].spinBox->setRange(-bandRange, bandRange);
+        m_bands[i].slider->setValue(qBound(-bandRange, val, bandRange));
+        m_bands[i].spinBox->setValue(qBound(-bandRange, val, bandRange));
+    }
+
+    int preampVal = m_preampSlider->value();
+    m_preampSlider->setRange(-preampRange, preampRange);
+    m_preampSlider->setTickInterval(m_powerMode ? 100000000 : 100);
+    m_preampSpinBox->setRange(-preampRange, preampRange);
+    m_preampSlider->setValue(qBound(-preampRange, preampVal, preampRange));
+    m_preampSpinBox->setValue(qBound(-preampRange, preampVal, preampRange));
+
+    double speedVal = m_speedSpinBox->value();
+    int speedSliderVal = m_speedSlider->value();
+    m_speedSlider->setRange((int)(speedMin * 100), (int)(speedMax * 100));
+    m_speedSlider->setTickInterval(m_powerMode ? 10000000 : 100);
+    m_speedSpinBox->setRange(speedMin, speedMax);
+    m_speedSlider->setValue(qBound((int)(speedMin * 100), speedSliderVal, (int)(speedMax * 100)));
+    m_speedSpinBox->setValue(qBound(speedMin, speedVal, speedMax));
+
+    int pitchVal = m_pitchSlider->value();
+    m_pitchSlider->setRange(-pitchRange, pitchRange);
+    m_pitchSlider->setTickInterval(m_powerMode ? 100000000 : 30);
+    m_pitchSpinBox->setRange(-(double)pitchRange / 10.0, (double)pitchRange / 10.0);
+    m_pitchSlider->setValue(qBound(-pitchRange, pitchVal, pitchRange));
+    m_pitchSpinBox->setValue(qBound(-(double)pitchRange / 10.0, (double)pitchVal / 10.0, (double)pitchRange / 10.0));
+}
+
 QMap<double,int> EqualizerWidget::getBandGains() const {
     QMap<double,int> g;
     for (int i = 0; i < NUM_BANDS; ++i) {

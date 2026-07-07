@@ -117,74 +117,74 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named MediaPlayer
+# Target rules for targets named ZMP_Linux_bin
 
 # Build rule for target.
-MediaPlayer: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MediaPlayer
-.PHONY : MediaPlayer
+ZMP_Linux_bin: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ZMP_Linux_bin
+.PHONY : ZMP_Linux_bin
 
 # fast build rule for target.
-MediaPlayer/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/build
-.PHONY : MediaPlayer/fast
+ZMP_Linux_bin/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/build
+.PHONY : ZMP_Linux_bin/fast
 
 #=============================================================================
-# Target rules for targets named MediaPlayer_autogen_timestamp_deps
+# Target rules for targets named ZMP_Linux_bin_autogen_timestamp_deps
 
 # Build rule for target.
-MediaPlayer_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MediaPlayer_autogen_timestamp_deps
-.PHONY : MediaPlayer_autogen_timestamp_deps
+ZMP_Linux_bin_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ZMP_Linux_bin_autogen_timestamp_deps
+.PHONY : ZMP_Linux_bin_autogen_timestamp_deps
 
 # fast build rule for target.
-MediaPlayer_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer_autogen_timestamp_deps.dir/build.make CMakeFiles/MediaPlayer_autogen_timestamp_deps.dir/build
-.PHONY : MediaPlayer_autogen_timestamp_deps/fast
+ZMP_Linux_bin_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin_autogen_timestamp_deps.dir/build.make CMakeFiles/ZMP_Linux_bin_autogen_timestamp_deps.dir/build
+.PHONY : ZMP_Linux_bin_autogen_timestamp_deps/fast
 
 #=============================================================================
-# Target rules for targets named MediaPlayer_autogen
+# Target rules for targets named ZMP_Linux_bin_autogen
 
 # Build rule for target.
-MediaPlayer_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MediaPlayer_autogen
-.PHONY : MediaPlayer_autogen
+ZMP_Linux_bin_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ZMP_Linux_bin_autogen
+.PHONY : ZMP_Linux_bin_autogen
 
 # fast build rule for target.
-MediaPlayer_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer_autogen.dir/build.make CMakeFiles/MediaPlayer_autogen.dir/build
-.PHONY : MediaPlayer_autogen/fast
+ZMP_Linux_bin_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin_autogen.dir/build.make CMakeFiles/ZMP_Linux_bin_autogen.dir/build
+.PHONY : ZMP_Linux_bin_autogen/fast
 
-MediaPlayer_autogen/mocs_compilation.o: MediaPlayer_autogen/mocs_compilation.cpp.o
-.PHONY : MediaPlayer_autogen/mocs_compilation.o
+ZMP_Linux_bin_autogen/mocs_compilation.o: ZMP_Linux_bin_autogen/mocs_compilation.cpp.o
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.o
 
 # target to build an object file
-MediaPlayer_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.o
-.PHONY : MediaPlayer_autogen/mocs_compilation.cpp.o
+ZMP_Linux_bin_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.cpp.o
 
-MediaPlayer_autogen/mocs_compilation.i: MediaPlayer_autogen/mocs_compilation.cpp.i
-.PHONY : MediaPlayer_autogen/mocs_compilation.i
+ZMP_Linux_bin_autogen/mocs_compilation.i: ZMP_Linux_bin_autogen/mocs_compilation.cpp.i
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-MediaPlayer_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.i
-.PHONY : MediaPlayer_autogen/mocs_compilation.cpp.i
+ZMP_Linux_bin_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.i
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.cpp.i
 
-MediaPlayer_autogen/mocs_compilation.s: MediaPlayer_autogen/mocs_compilation.cpp.s
-.PHONY : MediaPlayer_autogen/mocs_compilation.s
+ZMP_Linux_bin_autogen/mocs_compilation.s: ZMP_Linux_bin_autogen/mocs_compilation.cpp.s
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-MediaPlayer_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/MediaPlayer_autogen/mocs_compilation.cpp.s
-.PHONY : MediaPlayer_autogen/mocs_compilation.cpp.s
+ZMP_Linux_bin_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.s
+.PHONY : ZMP_Linux_bin_autogen/mocs_compilation.cpp.s
 
 audiomanager.o: audiomanager.cpp.o
 .PHONY : audiomanager.o
 
 # target to build an object file
 audiomanager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/audiomanager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o
 .PHONY : audiomanager.cpp.o
 
 audiomanager.i: audiomanager.cpp.i
@@ -192,7 +192,7 @@ audiomanager.i: audiomanager.cpp.i
 
 # target to preprocess a source file
 audiomanager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/audiomanager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.i
 .PHONY : audiomanager.cpp.i
 
 audiomanager.s: audiomanager.cpp.s
@@ -200,7 +200,7 @@ audiomanager.s: audiomanager.cpp.s
 
 # target to generate assembly for a file
 audiomanager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/audiomanager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.s
 .PHONY : audiomanager.cpp.s
 
 deviceswidget.o: deviceswidget.cpp.o
@@ -208,7 +208,7 @@ deviceswidget.o: deviceswidget.cpp.o
 
 # target to build an object file
 deviceswidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o
 .PHONY : deviceswidget.cpp.o
 
 deviceswidget.i: deviceswidget.cpp.i
@@ -216,7 +216,7 @@ deviceswidget.i: deviceswidget.cpp.i
 
 # target to preprocess a source file
 deviceswidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.i
 .PHONY : deviceswidget.cpp.i
 
 deviceswidget.s: deviceswidget.cpp.s
@@ -224,7 +224,7 @@ deviceswidget.s: deviceswidget.cpp.s
 
 # target to generate assembly for a file
 deviceswidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/deviceswidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.s
 .PHONY : deviceswidget.cpp.s
 
 equalizerwidget.o: equalizerwidget.cpp.o
@@ -232,7 +232,7 @@ equalizerwidget.o: equalizerwidget.cpp.o
 
 # target to build an object file
 equalizerwidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o
 .PHONY : equalizerwidget.cpp.o
 
 equalizerwidget.i: equalizerwidget.cpp.i
@@ -240,7 +240,7 @@ equalizerwidget.i: equalizerwidget.cpp.i
 
 # target to preprocess a source file
 equalizerwidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.i
 .PHONY : equalizerwidget.cpp.i
 
 equalizerwidget.s: equalizerwidget.cpp.s
@@ -248,7 +248,7 @@ equalizerwidget.s: equalizerwidget.cpp.s
 
 # target to generate assembly for a file
 equalizerwidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/equalizerwidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.s
 .PHONY : equalizerwidget.cpp.s
 
 fileswidget.o: fileswidget.cpp.o
@@ -256,7 +256,7 @@ fileswidget.o: fileswidget.cpp.o
 
 # target to build an object file
 fileswidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/fileswidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o
 .PHONY : fileswidget.cpp.o
 
 fileswidget.i: fileswidget.cpp.i
@@ -264,7 +264,7 @@ fileswidget.i: fileswidget.cpp.i
 
 # target to preprocess a source file
 fileswidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/fileswidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.i
 .PHONY : fileswidget.cpp.i
 
 fileswidget.s: fileswidget.cpp.s
@@ -272,7 +272,7 @@ fileswidget.s: fileswidget.cpp.s
 
 # target to generate assembly for a file
 fileswidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/fileswidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.s
 .PHONY : fileswidget.cpp.s
 
 main.o: main.cpp.o
@@ -280,7 +280,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -288,7 +288,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -296,7 +296,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 mainwindow.o: mainwindow.cpp.o
@@ -304,7 +304,7 @@ mainwindow.o: mainwindow.cpp.o
 
 # target to build an object file
 mainwindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/mainwindow.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o
 .PHONY : mainwindow.cpp.o
 
 mainwindow.i: mainwindow.cpp.i
@@ -312,7 +312,7 @@ mainwindow.i: mainwindow.cpp.i
 
 # target to preprocess a source file
 mainwindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/mainwindow.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.i
 .PHONY : mainwindow.cpp.i
 
 mainwindow.s: mainwindow.cpp.s
@@ -320,7 +320,7 @@ mainwindow.s: mainwindow.cpp.s
 
 # target to generate assembly for a file
 mainwindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/mainwindow.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.s
 .PHONY : mainwindow.cpp.s
 
 miniplayerbar.o: miniplayerbar.cpp.o
@@ -328,7 +328,7 @@ miniplayerbar.o: miniplayerbar.cpp.o
 
 # target to build an object file
 miniplayerbar.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o
 .PHONY : miniplayerbar.cpp.o
 
 miniplayerbar.i: miniplayerbar.cpp.i
@@ -336,7 +336,7 @@ miniplayerbar.i: miniplayerbar.cpp.i
 
 # target to preprocess a source file
 miniplayerbar.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.i
 .PHONY : miniplayerbar.cpp.i
 
 miniplayerbar.s: miniplayerbar.cpp.s
@@ -344,7 +344,7 @@ miniplayerbar.s: miniplayerbar.cpp.s
 
 # target to generate assembly for a file
 miniplayerbar.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/miniplayerbar.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.s
 .PHONY : miniplayerbar.cpp.s
 
 playbackcontrolwidget.o: playbackcontrolwidget.cpp.o
@@ -352,7 +352,7 @@ playbackcontrolwidget.o: playbackcontrolwidget.cpp.o
 
 # target to build an object file
 playbackcontrolwidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o
 .PHONY : playbackcontrolwidget.cpp.o
 
 playbackcontrolwidget.i: playbackcontrolwidget.cpp.i
@@ -360,7 +360,7 @@ playbackcontrolwidget.i: playbackcontrolwidget.cpp.i
 
 # target to preprocess a source file
 playbackcontrolwidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.i
 .PHONY : playbackcontrolwidget.cpp.i
 
 playbackcontrolwidget.s: playbackcontrolwidget.cpp.s
@@ -368,7 +368,7 @@ playbackcontrolwidget.s: playbackcontrolwidget.cpp.s
 
 # target to generate assembly for a file
 playbackcontrolwidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playbackcontrolwidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.s
 .PHONY : playbackcontrolwidget.cpp.s
 
 playerwidget.o: playerwidget.cpp.o
@@ -376,7 +376,7 @@ playerwidget.o: playerwidget.cpp.o
 
 # target to build an object file
 playerwidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playerwidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o
 .PHONY : playerwidget.cpp.o
 
 playerwidget.i: playerwidget.cpp.i
@@ -384,7 +384,7 @@ playerwidget.i: playerwidget.cpp.i
 
 # target to preprocess a source file
 playerwidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playerwidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.i
 .PHONY : playerwidget.cpp.i
 
 playerwidget.s: playerwidget.cpp.s
@@ -392,7 +392,7 @@ playerwidget.s: playerwidget.cpp.s
 
 # target to generate assembly for a file
 playerwidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playerwidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.s
 .PHONY : playerwidget.cpp.s
 
 playlistswidget.o: playlistswidget.cpp.o
@@ -400,7 +400,7 @@ playlistswidget.o: playlistswidget.cpp.o
 
 # target to build an object file
 playlistswidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o
 .PHONY : playlistswidget.cpp.o
 
 playlistswidget.i: playlistswidget.cpp.i
@@ -408,7 +408,7 @@ playlistswidget.i: playlistswidget.cpp.i
 
 # target to preprocess a source file
 playlistswidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.i
 .PHONY : playlistswidget.cpp.i
 
 playlistswidget.s: playlistswidget.cpp.s
@@ -416,7 +416,7 @@ playlistswidget.s: playlistswidget.cpp.s
 
 # target to generate assembly for a file
 playlistswidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/playlistswidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.s
 .PHONY : playlistswidget.cpp.s
 
 settingswidget.o: settingswidget.cpp.o
@@ -424,7 +424,7 @@ settingswidget.o: settingswidget.cpp.o
 
 # target to build an object file
 settingswidget.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/settingswidget.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o
 .PHONY : settingswidget.cpp.o
 
 settingswidget.i: settingswidget.cpp.i
@@ -432,7 +432,7 @@ settingswidget.i: settingswidget.cpp.i
 
 # target to preprocess a source file
 settingswidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/settingswidget.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.i
 .PHONY : settingswidget.cpp.i
 
 settingswidget.s: settingswidget.cpp.s
@@ -440,7 +440,7 @@ settingswidget.s: settingswidget.cpp.s
 
 # target to generate assembly for a file
 settingswidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MediaPlayer.dir/build.make CMakeFiles/MediaPlayer.dir/settingswidget.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.s
 .PHONY : settingswidget.cpp.s
 
 # Help Target
@@ -451,12 +451,12 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... MediaPlayer_autogen"
-	@echo "... MediaPlayer_autogen_timestamp_deps"
-	@echo "... MediaPlayer"
-	@echo "... MediaPlayer_autogen/mocs_compilation.o"
-	@echo "... MediaPlayer_autogen/mocs_compilation.i"
-	@echo "... MediaPlayer_autogen/mocs_compilation.s"
+	@echo "... ZMP_Linux_bin_autogen"
+	@echo "... ZMP_Linux_bin_autogen_timestamp_deps"
+	@echo "... ZMP_Linux_bin"
+	@echo "... ZMP_Linux_bin_autogen/mocs_compilation.o"
+	@echo "... ZMP_Linux_bin_autogen/mocs_compilation.i"
+	@echo "... ZMP_Linux_bin_autogen/mocs_compilation.s"
 	@echo "... audiomanager.o"
 	@echo "... audiomanager.i"
 	@echo "... audiomanager.s"
