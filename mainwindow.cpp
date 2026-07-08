@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "mpriscontroller.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QApplication>
@@ -143,6 +144,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     if (!m_devicesWidget->selectedDevice().isNull())
         m_audioManager->setActiveOutputDevice(m_devicesWidget->selectedDevice());
+
+    new MprisController(m_audioManager, m_playerWidget, this, this);
 }
 
 void MainWindow::animateMenu() {

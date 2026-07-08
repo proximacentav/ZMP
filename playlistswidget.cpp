@@ -10,7 +10,9 @@
 #include <QDialog>
 #include <QLabel>
 #include <QLineEdit>
-#include <QSettings>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QFile>
 #include <QDateTime>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
@@ -215,7 +217,7 @@ void PlaylistEditDialog::onRemoveTrack() {
 
 void PlaylistEditDialog::onApply() {
     saveChanges();
-    emit savePlaylistColors();
+    emit playlistColorChanged(m_playlistName, m_borderColor);
     accept();
 }
 
@@ -295,17 +297,29 @@ void PlaylistsWidget::onPlaylistClear() {
 }
 
 void PlaylistsWidget::savePlaylistColors() {
-    QSettings settings("MyPlayer", "PlaylistColors");
+    QJsonObject root;
+    QJsonObject colors;
     for (auto it = m_playlistColors.begin(); it != m_playlistColors.end(); ++it) {
-        settings.setValue(it.key(), it.value());
+        colors[it.key()] = it.value().name();
+    }
+    root["playlist_colors"] = colors;
+
+    QFile file(basePath() + "/config.json");
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
     }
 }
 
 void PlaylistsWidget::loadPlaylistColors() {
-    QSettings settings("MyPlayer", "PlaylistColors");
     m_playlistColors.clear();
-    for (const QString &key : settings.childKeys()) {
-        m_playlistColors[key] = settings.value(key).value<QColor>();
+    QFile file(basePath() + "/config.json");
+    if (!file.open(QIODevice::ReadOnly)) return;
+
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    QJsonObject root = doc.object();
+    QJsonObject colors = root["playlist_colors"].toObject();
+    for (auto it = colors.begin(); it != colors.end(); ++it) {
+        m_playlistColors[it.key()] = QColor(it.value().toString());
     }
 }
 
@@ -374,7 +388,7 @@ void PlaylistsWidget::onAddClicked() {
     dlg.setModal(true);
     dlg.resize(450, 400);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Название (без пробелов, спецсимволов, кроме _ - ( )):"));
+    l->addWidget(new QLabel("Название:"));
     QLineEdit *nameEdit = new QLineEdit;
     l->addWidget(nameEdit);
     l->addWidget(new QLabel("Файлы:"));
@@ -383,8 +397,10 @@ void PlaylistsWidget::onAddClicked() {
     QHBoxLayout *btnL = new QHBoxLayout;
     QPushButton *addFileBtn = new QPushButton("Добавить файлы");
     QPushButton *removeFileBtn = new QPushButton("Удалить выбранный");
+    QPushButton *importBtn = new QPushButton("Импорт");
     btnL->addWidget(addFileBtn);
     btnL->addWidget(removeFileBtn);
+    btnL->addWidget(importBtn);
     l->addLayout(btnL);
     QHBoxLayout *dialogBtns = new QHBoxLayout;
     QPushButton *okBtn = new QPushButton("Создать");
@@ -401,12 +417,22 @@ void PlaylistsWidget::onAddClicked() {
     connect(removeFileBtn, &QPushButton::clicked, [&](){
         delete fileList->currentItem();
     });
+    connect(importBtn, &QPushButton::clicked, [&](){
+        QString dir = QFileDialog::getExistingDirectory(&dlg, "Выберите папку с аудиофайлами");
+        if (dir.isEmpty()) return;
+        QDir d(dir);
+        QStringList files = d.entryList(QStringList() << "*.mp3" << "*.wav" << "*.flac" << "*.aac" << "*.aiff", QDir::Files, QDir::Name);
+        for (const QString &f : files) fileList->addItem(d.absoluteFilePath(f));
+        QString folderName = QFileInfo(dir).fileName();
+        if (nameEdit->text().trimmed().isEmpty()) nameEdit->setText(folderName);
+    });
     connect(okBtn, &QPushButton::clicked, &dlg, &QDialog::accept);
     connect(cancelBtn, &QPushButton::clicked, &dlg, &QDialog::reject);
 
     if (dlg.exec() == QDialog::Accepted) {
         QString name = nameEdit->text().trimmed();
         if (name.isEmpty()) { QMessageBox::warning(this, "Ошибка", "Введите название"); return; }
+        name.replace('/', '_');
         QStringList files;
         for (int i=0; i<fileList->count(); ++i) files << fileList->item(i)->text();
         if (files.isEmpty()) { QMessageBox::warning(this, "Ошибка", "Добавьте файлы"); return; }
@@ -514,6 +540,11 @@ void PlaylistsWidget::onEditClicked() {
         QString selectedName = playlistList->currentItem()->text();
         if (!selectedName.isEmpty()) {
             PlaylistEditDialog editDlg(selectedName, this);
+            connect(&editDlg, &PlaylistEditDialog::playlistColorChanged, this, [this](const QString &name, const QColor &color) {
+                m_playlistColors[name] = color;
+                savePlaylistColors();
+                loadPlaylists();
+            });
             connect(&editDlg, &PlaylistEditDialog::destroyed, this, &PlaylistsWidget::loadPlaylists);
             editDlg.exec();
         }

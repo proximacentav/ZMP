@@ -35,6 +35,8 @@ public:
     void setActiveOutputDevice(const QAudioDevice &device);
     QList<QAudioDevice> availableOutputDevices() const;
     QString currentDeviceName() const;
+    void setVolume(double vol);
+    double volume() const { return m_volume; }
     void setSpectrumGain(float gain);
 
 signals:
@@ -44,6 +46,7 @@ signals:
     void errorOccurred(const QString &error);
     void spectrumDataChanged(const QVector<float> &amplitudes);
     void trackEnded();
+    void volumeChanged(double vol);
 
 private slots:
     void updatePosition();
@@ -71,6 +74,8 @@ private:
     QWORD m_lastPosition = 0;
     float m_eqGains[17];
     float m_preampGain = 0.0f;
+    double m_volume = 1.0;
+    void applyVolume();
 };
 
 #endif

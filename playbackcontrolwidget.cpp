@@ -508,6 +508,7 @@ TrackMetadata PlaybackControlWidget::extractMetadata(const QString &filePath) {
 }
 
 void PlaybackControlWidget::updateTrackInfo(const TrackMetadata &meta) {
+    m_currentMetadata = meta;
     if (!meta.cover.isNull()) {
         QPixmap pix = QPixmap::fromImage(meta.cover);
         m_coverLabel->setPixmap(pix.scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -526,6 +527,12 @@ void PlaybackControlWidget::updateTrackInfo(const TrackMetadata &meta) {
 
 void PlaybackControlWidget::setTrackInfo(const TrackMetadata &meta) {
     updateTrackInfo(meta);
+}
+
+QString PlaybackControlWidget::currentFilePath() const {
+    if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size())
+        return m_playlist[m_currentIndex];
+    return {};
 }
 
 void PlaybackControlWidget::setAccentColor(const QColor &color) {

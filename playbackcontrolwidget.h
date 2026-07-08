@@ -30,6 +30,8 @@ public:
     explicit PlaybackControlWidget(AudioManager *audioManager, QWidget *parent = nullptr);
 
     void setTrackInfo(const TrackMetadata &meta);
+    TrackMetadata currentTrackMetadata() const { return m_currentMetadata; }
+    QString currentFilePath() const;
     void setAccentColor(const QColor &color);
     void setIconSize(int size);
     void loadIcons();
@@ -92,6 +94,7 @@ private:
     QStringList m_playlist;
     QStringList m_currentPlaylistTracks;
     int m_currentIndex;
+    TrackMetadata m_currentMetadata;
     bool m_isSeeking;
     QColor m_accentColor;
     int m_iconSize;

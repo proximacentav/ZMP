@@ -214,11 +214,22 @@ void AudioManager::setEqualizerGain(int bandIndex, float gainDb) {
 
 void AudioManager::setPreampGain(float gainDb) {
     m_preampGain = gainDb;
-    if (m_currentStream) {
-        float volume = qPow(10.0f, gainDb / 20.0f);
-        if (!std::isfinite(volume)) volume = FLT_MAX;
-        BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_VOL, volume);
-    }
+    applyVolume();
+}
+
+void AudioManager::setVolume(double vol) {
+    vol = qBound(0.0, vol, 1.0);
+    m_volume = vol;
+    applyVolume();
+    emit volumeChanged(m_volume);
+}
+
+void AudioManager::applyVolume() {
+    if (!m_currentStream) return;
+    float linear = qPow(10.0f, m_preampGain / 20.0f);
+    if (!std::isfinite(linear)) linear = FLT_MAX;
+    linear *= static_cast<float>(m_volume);
+    BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_VOL, linear);
 }
 
 void AudioManager::setPlaybackSpeed(double speed) {

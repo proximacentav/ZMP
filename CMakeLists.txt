@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network DBus)
 
 # BASS
 find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS /usr/include /usr/local/include)
@@ -33,6 +33,7 @@ add_executable(ZMP_Linux_bin
     playlistswidget.h playlistswidget.cpp
     iconbutton.h
     miniplayerbar.h miniplayerbar.cpp
+    mpriscontroller.h mpriscontroller.cpp
     res.qrc
 )
 
@@ -42,7 +43,7 @@ target_include_directories(ZMP_Linux_bin PRIVATE
 )
 
 target_link_libraries(ZMP_Linux_bin
-    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network
+    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network Qt6::DBus
     ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
     ${TAGLIB_LIBRARY}
 )

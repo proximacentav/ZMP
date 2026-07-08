@@ -280,11 +280,11 @@ void EqualizerWidget::setPowerMode(bool enabled) {
 }
 
 void EqualizerWidget::updateRanges() {
-    int bandRange = m_powerMode ? 1000000000 : 500;
-    int preampRange = m_powerMode ? 1000000000 : 1000;
-    double speedMin = m_powerMode ? 0.000000000001 : 0.01;
-    double speedMax = m_powerMode ? 1000000000.0 : 50.0;
-    int pitchRange = m_powerMode ? 1000000000 : 150;
+    int bandRange = m_powerMode ? 1000000 : 500;
+    int preampRange = m_powerMode ? 1000000 : 1000;
+    double speedMin = m_powerMode ? 0.000001 : 0.01;
+    double speedMax = m_powerMode ? 10000000.0 : 50.0;
+    int pitchRange = m_powerMode ? 1000000 : 150;
 
     for (int i = 0; i < m_bands.size(); ++i) {
         int val = m_bands[i].slider->value();

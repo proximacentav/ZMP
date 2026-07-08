@@ -70,6 +70,10 @@ protected:
         if (m_isPlaying) {
             borderColor = QColor(0, 100, 255, flickerAlpha);
             bottomColor = QColor(0, 100, 255, 255);
+        } else if (m_borderColor.isValid()) {
+            borderColor = QColor(m_borderColor.red(), m_borderColor.green(), m_borderColor.blue(), flickerAlpha);
+            bottomColor = m_borderColor;
+            bottomColor.setAlpha(255);
         } else if (m_isFeatured) {
             borderColor = QColor(255, 200, 0, flickerAlpha);
             bottomColor = QColor(255, 200, 0, 255);
@@ -211,7 +215,7 @@ public:
     void saveChanges();
 
 signals:
-    void savePlaylistColors();
+    void playlistColorChanged(const QString &name, const QColor &color);
 
 private slots:
     void onColorSelected(const QColor &color);
@@ -222,7 +226,6 @@ private slots:
 
 private:
     QString m_playlistName;
-    QString m_borderColorName; // not used directly
     QColor m_borderColor;
     QListWidget *m_trackList;
     QPushButton *m_applyBtn;
