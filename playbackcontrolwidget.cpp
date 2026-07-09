@@ -419,7 +419,6 @@ void PlaybackControlWidget::onStateChanged(bool playing) {
     }
 
     if (!m_playlist.isEmpty() && m_currentIndex < m_playlist.size() - 1) {
-        // Используем таймер для переключения треков через time_change_track
         m_trackSwitchTimer->start();
     } else {
         emit stateChanged(false);
@@ -547,7 +546,6 @@ void PlaybackControlWidget::setAccentColor(const QColor &color) {
 }
 
 void PlaybackControlWidget::onPlayClicked() {
-    // Останавливаем таймер при ручном переключении
     m_trackSwitchTimer->stop();
     
     if (m_audioManager->isPlaying()) {
@@ -587,7 +585,6 @@ void PlaybackControlWidget::onPlayClicked() {
 }
 
 void PlaybackControlWidget::onNextClicked() {
-    // Останавливаем таймер при ручном переключении
     m_trackSwitchTimer->stop();
     
     if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size() - 1) {
@@ -597,7 +594,6 @@ void PlaybackControlWidget::onNextClicked() {
 }
 
 void PlaybackControlWidget::onPrevClicked() {
-    // Останавливаем таймер при ручном переключении
     m_trackSwitchTimer->stop();
     
     if (m_currentIndex > 0) {
