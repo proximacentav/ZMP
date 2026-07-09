@@ -129,7 +129,7 @@ void SettingsWidget::showAboutDialog() {
     dlg.setWindowTitle("О программе");
     dlg.resize(400,300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("version 1.0.0 (RELEASE)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE"));
+    l->addWidget(new QLabel("version 1.1.0 (начало)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE"));
     QPushButton *closeBtn = new QPushButton("Закрыть");
     l->addWidget(closeBtn);
     connect(closeBtn, &QPushButton::clicked, &dlg, &QDialog::accept);

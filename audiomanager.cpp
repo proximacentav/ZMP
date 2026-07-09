@@ -285,7 +285,7 @@ void AudioManager::updateSpectrum() {
     int ret = BASS_ChannelGetData(m_currentStream, fft, BASS_DATA_FFT2048 | BASS_DATA_FFT_NOWINDOW);
     if (ret <= 0) return;
 
-    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
+    QVector<double> freqs = {5,7,20,40,75,150,300,350,500,800,1200,1400,2500,4000,5600,6000,10000,11200,13000,16000,19000,20000,22000,23000,25000};
     QVector<float> levels;
     levels.reserve(freqs.size());
 

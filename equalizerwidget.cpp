@@ -91,6 +91,9 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     m_modeCombo->addItem("Custom");
     m_modeCombo->addItem("Default");
     m_modeCombo->addItem("Bass");
+    m_modeCombo->addItem("Treble");
+    m_modeCombo->addItem("Pop");
+    m_modeCombo->addItem("Dance");
     mainLayout->addWidget(m_modeCombo);
 
     connect(m_resetButton, &QPushButton::clicked, this, &EqualizerWidget::onResetClicked);
@@ -104,7 +107,7 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
 }
 
 void EqualizerWidget::createBands() {
-    QVector<double> freqs = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
+    QVector<double> freqs = {5,7,20,40,75,150,300,350,500,800,1200,1400,2500,4000,5600,6000,10000,11200,13000,16000,19000,20000,22000,23000,25000};
     m_bands.resize(NUM_BANDS);
     for (int i=0; i<NUM_BANDS; ++i) {
         double f = freqs[i];
@@ -184,9 +187,30 @@ void EqualizerWidget::applyPreset(const QString &name) {
         setSpeedValue(1.0);
         setPitchValue(0);
     } else if (name == "Bass") {
-        QVector<int> bassGains = {0, 8, 10, 10, 8, 4, 0, -2, -4, -4, -2, 0, 0, 2, 2, 2};
+        QVector<int> gains = {15,15,12,10,8,6,0,-2,-4,-6,-5,-4,-2,0,2,2,4,4,3,2,1,0,-2,-3,-5};
         for (int i = 0; i < NUM_BANDS; ++i)
-            setBandValue(i, bassGains[i]);
+            setBandValue(i, gains[i]);
+        setPreampValue(0);
+        setSpeedValue(1.0);
+        setPitchValue(0);
+    } else if (name == "Treble") {
+        QVector<int> gains = {-10,-10,-8,-6,-4,-2,0,0,0,0,0,2,4,8,12,12,10,10,8,6,4,3,2,1,0};
+        for (int i = 0; i < NUM_BANDS; ++i)
+            setBandValue(i, gains[i]);
+        setPreampValue(0);
+        setSpeedValue(1.0);
+        setPitchValue(0);
+    } else if (name == "Pop") {
+        QVector<int> gains = {-2,-2,0,1,2,2,1,1,1,1,2,2,3,3,2,2,1,1,0,0,-1,-1,-2,-2,-3};
+        for (int i = 0; i < NUM_BANDS; ++i)
+            setBandValue(i, gains[i]);
+        setPreampValue(0);
+        setSpeedValue(1.0);
+        setPitchValue(0);
+    } else if (name == "Dance") {
+        QVector<int> gains = {10,10,8,8,6,4,0,-2,-4,-6,-6,-4,-2,0,4,6,8,8,6,4,2,1,0,-1,-2};
+        for (int i = 0; i < NUM_BANDS; ++i)
+            setBandValue(i, gains[i]);
         setPreampValue(0);
         setSpeedValue(1.0);
         setPitchValue(0);
