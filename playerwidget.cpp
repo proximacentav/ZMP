@@ -31,8 +31,8 @@ void PlayerWidget::setMetadataHeight(int height) {
     m_playbackControl->setMetadataHeight(height);
 }
 
-void PlayerWidget::updateSpectrum(const QVector<float> &levels) {
-    m_playbackControl->updateSpectrum(levels);
+void PlayerWidget::updateSpectrum(const QVector<float> &levels, const QVector<double> &frequencies) {
+    m_playbackControl->updateSpectrum(levels, frequencies);
 }
 
 void PlayerWidget::setAccentColor(const QColor &color) {

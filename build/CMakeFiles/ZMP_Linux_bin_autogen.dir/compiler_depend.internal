@@ -31,7 +31,10 @@
  /home/user/cp/zmp/playlistswidget.h
  /home/user/cp/zmp/settingswidget.cpp
  /home/user/cp/zmp/settingswidget.h
+ /home/user/cp/zmp/visualizationwidget.cpp
+ /home/user/cp/zmp/visualizationwidget.h
  /usr/bin/cmake
+ /usr/include/GL/gl.h
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h
  /usr/include/asm-generic/errno-base.h
@@ -300,6 +303,7 @@
  /usr/include/features.h
  /usr/include/gnu/stubs-64.h
  /usr/include/gnu/stubs.h
+ /usr/include/inttypes.h
  /usr/include/limits.h
  /usr/include/linux/errno.h
  /usr/include/linux/limits.h
@@ -506,6 +510,7 @@
  /usr/include/qt6/QtGui/QPainter
  /usr/include/qt6/QtGui/QPainterPath
  /usr/include/qt6/QtGui/QPen
+ /usr/include/qt6/QtGui/QSurfaceFormat
  /usr/include/qt6/QtGui/QTransform
  /usr/include/qt6/QtGui/qaction.h
  /usr/include/qt6/QtGui/qbitmap.h
@@ -526,6 +531,8 @@
  /usr/include/qt6/QtGui/qinputdevice.h
  /usr/include/qt6/QtGui/qinputmethod.h
  /usr/include/qt6/QtGui/qkeysequence.h
+ /usr/include/qt6/QtGui/qopengl.h
+ /usr/include/qt6/QtGui/qopenglext.h
  /usr/include/qt6/QtGui/qpaintdevice.h
  /usr/include/qt6/QtGui/qpainter.h
  /usr/include/qt6/QtGui/qpainterpath.h
@@ -541,6 +548,7 @@
  /usr/include/qt6/QtGui/qrgba64.h
  /usr/include/qt6/QtGui/qscreen.h
  /usr/include/qt6/QtGui/qscreen_platform.h
+ /usr/include/qt6/QtGui/qsurfaceformat.h
  /usr/include/qt6/QtGui/qtextcursor.h
  /usr/include/qt6/QtGui/qtextdocument.h
  /usr/include/qt6/QtGui/qtextformat.h
@@ -584,6 +592,10 @@
  /usr/include/qt6/QtNetwork/qtnetwork-config.h
  /usr/include/qt6/QtNetwork/qtnetworkexports.h
  /usr/include/qt6/QtNetwork/qtnetworkglobal.h
+ /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget
+ /usr/include/qt6/QtOpenGLWidgets/qopenglwidget.h
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h
  /usr/include/qt6/QtWidgets/QAbstractItemView
  /usr/include/qt6/QtWidgets/QComboBox
  /usr/include/qt6/QtWidgets/QDialog
@@ -1042,6 +1054,24 @@
  /usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake
  /usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake
  /usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargetsPrecheck.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfig.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersionImpl.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLDependencies.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargetsPrecheck.cmake
+ /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLVersionlessAliasTargets.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargetsPrecheck.cmake
+ /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessAliasTargets.cmake
  /usr/lib/cmake/Qt6Svg/Qt6SvgAdditionalTargetInfo.cmake
  /usr/lib/cmake/Qt6Svg/Qt6SvgConfig.cmake
  /usr/lib/cmake/Qt6Svg/Qt6SvgConfigVersion.cmake

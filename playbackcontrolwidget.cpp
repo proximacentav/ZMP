@@ -387,7 +387,7 @@ void PlaybackControlWidget::setMetadataHeight(int h) {
     if (meta) meta->setFixedHeight(h);
 }
 
-void PlaybackControlWidget::updateSpectrum(const QVector<float> &levels) {
+void PlaybackControlWidget::updateSpectrum(const QVector<float> &levels, const QVector<double> &) {
     if (m_spectrumWidget) m_spectrumWidget->setLevels(levels);
 }
 

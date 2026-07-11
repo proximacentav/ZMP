@@ -1,5 +1,6 @@
 #include "settingswidget.h"
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QIntValidator>
 #include <QApplication>
@@ -11,6 +12,7 @@
 #include <QDialog>
 #include <QDebug>
 #include <QLineEdit>
+#include <QFileDialog>
 
 SettingsWidget::SettingsWidget(QWidget *parent)
     : QWidget(parent), m_darkTheme(false), m_accentColor(42,130,218)
@@ -44,7 +46,7 @@ SettingsWidget::SettingsWidget(QWidget *parent)
 
     layout->addWidget(new QLabel("чувствительность спектрограммы:"));
     m_spectrumGainSlider = new QSlider(Qt::Horizontal);
-    m_spectrumGainSlider->setRange(10, 1600); 
+    m_spectrumGainSlider->setRange(10, 1600);
     m_spectrumGainSlider->setValue(800);
     m_spectrumGainSlider->setTickPosition(QSlider::TicksBelow);
     m_spectrumGainSlider->setTickInterval(50);
@@ -55,9 +57,35 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     m_spectrumFpsCombo->addItems({"5", "10", "20", "40", "60", "90", "120", "144", "240", "360", "480", "720", "900", "1600", "1000000"});
     m_spectrumFpsCombo->setCurrentIndex(2);
     layout->addWidget(m_spectrumFpsCombo);
-    
+
     connect(m_spectrumFpsCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index){
         emit spectrumFpsChanged(m_spectrumFpsCombo->itemText(index).toInt());
+    });
+
+    layout->addWidget(new QLabel("количество частот спектрограммы:"));
+    m_spectrumBandsCombo = new QComboBox;
+    m_spectrumBandsCombo->addItems({"6", "25", "64", "120", "128", "256", "512", "1024", "2048", "4096", "8192", "16000"});
+    m_spectrumBandsCombo->setCurrentIndex(2);
+    layout->addWidget(m_spectrumBandsCombo);
+    connect(m_spectrumBandsCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index){
+        emit spectrumBandsChanged(m_spectrumBandsCombo->itemText(index).toInt());
+    });
+
+    layout->addWidget(new QLabel("projectM пресет:"));
+    QHBoxLayout *projectMLayout = new QHBoxLayout;
+    m_projectMPresetButton = new QPushButton("Выбрать .milk файл");
+    projectMLayout->addWidget(m_projectMPresetButton);
+    m_projectMPresetPath = new QLabel("");
+    m_projectMPresetPath->setStyleSheet("color: #888; font-size: 10px;");
+    m_projectMPresetPath->setWordWrap(true);
+    projectMLayout->addWidget(m_projectMPresetPath, 1);
+    layout->addLayout(projectMLayout);
+    connect(m_projectMPresetButton, &QPushButton::clicked, this, [this]() {
+        QString path = QFileDialog::getOpenFileName(this, "Выберите .milk пресет", QString(), "Milk presets (*.milk);;All files (*)");
+        if (!path.isEmpty()) {
+            m_projectMPresetPath->setText(path);
+            emit projectMPresetSelected(path);
+        }
     });
 
     m_powerModeCheck = new QCheckBox("Powermode");
@@ -129,7 +157,7 @@ void SettingsWidget::showAboutDialog() {
     dlg.setWindowTitle("О программе");
     dlg.resize(400,300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("version 1.2.0 (equpdate)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE"));
+    l->addWidget(new QLabel("version 1.3.0 (vizualization)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE\nтакже был использован projectM"));
     QPushButton *closeBtn = new QPushButton("Закрыть");
     l->addWidget(closeBtn);
     connect(closeBtn, &QPushButton::clicked, &dlg, &QDialog::accept);

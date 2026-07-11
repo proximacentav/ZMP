@@ -29,6 +29,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o.d"
   "ZMP_Linux_bin"
   "ZMP_Linux_bin.pdb"
   "ZMP_Linux_bin_autogen/mocs_compilation.cpp"

@@ -285,7 +285,15 @@ void AudioManager::updateSpectrum() {
     int ret = BASS_ChannelGetData(m_currentStream, fft, BASS_DATA_FFT2048 | BASS_DATA_FFT_NOWINDOW);
     if (ret <= 0) return;
 
-    QVector<double> freqs = {5,7,20,40,75,150,300,350,500,800,1200,1400,2500,4000,5600,6000,10000,11200,13000,16000,19000,20000,22000,23000,25000};
+    int numBands = qBound(2, m_spectrumBands, 16000);
+    QVector<double> freqs;
+    freqs.reserve(numBands);
+    double minFreq = 1.0;
+    double maxFreq = 30000.0;
+    double step = (maxFreq - minFreq) / numBands;
+    for (int i = 0; i < numBands; ++i) {
+        freqs.append(minFreq + (i + 0.5) * step);
+    }
     QVector<float> levels;
     levels.reserve(freqs.size());
 
@@ -297,10 +305,17 @@ void AudioManager::updateSpectrum() {
         level = qBound(0.0f, level, 1.0f);
         levels.append(level);
     }
-    emit spectrumDataChanged(levels);
+    emit spectrumDataChanged(levels, freqs);
 }
 void AudioManager::setSpectrumGain(float gain) {
     m_spectrumGain = gain;
+}
+void AudioManager::setSpectrumBands(int bands) {
+    m_spectrumBands = qBound(2, bands, 16000);
+}
+int AudioManager::getPCMData(float *buffer, int maxSamples) const {
+    if (!m_currentStream || !m_playing) return 0;
+    return BASS_ChannelGetData(m_currentStream, buffer, static_cast<DWORD>(maxSamples * sizeof(float)) | BASS_DATA_FLOAT);
 }
 void AudioManager::setSpectrumFps(int fps) {
     if (fps <= 0) fps = 1;

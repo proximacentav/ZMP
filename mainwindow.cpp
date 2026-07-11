@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuContLayout->setContentsMargins(5, 10, 5, 10);
 
     m_menu = new QListWidget;
-    m_menu->addItems({"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Параметры"});
+    m_menu->addItems({"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Визуализация", "Параметры"});
     m_menu->setCurrentRow(0);
 
     m_menu->setSpacing(10);
@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_playlistsWidget = new PlaylistsWidget(this);
     m_filesWidget = new FilesWidget(this);
     m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
+    m_visualizationWidget = new VisualizationWidget(m_audioManager, this);
     m_settingsWidget = new SettingsWidget(this);
 
     m_miniPlayerBar = new MiniPlayerBar(m_audioManager, this);
@@ -101,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_stack->addWidget(m_playlistsWidget);
     m_stack->addWidget(m_filesWidget);
     m_stack->addWidget(m_equalizerWidget);
+    m_stack->addWidget(m_visualizationWidget);
     m_stack->addWidget(m_settingsWidget);
 
     connect(m_menu, &QListWidget::currentRowChanged, this, [this](int row) {
@@ -132,7 +134,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_settingsWidget, &SettingsWidget::powerModeChanged, m_equalizerWidget, &EqualizerWidget::setPowerMode);
     connect(m_settingsWidget, &SettingsWidget::spectrumGainChanged, m_audioManager, &AudioManager::setSpectrumGain);
     connect(m_settingsWidget, &SettingsWidget::spectrumFpsChanged, m_audioManager, &AudioManager::setSpectrumFps);
+    connect(m_settingsWidget, &SettingsWidget::spectrumBandsChanged, m_audioManager, &AudioManager::setSpectrumBands);
+    connect(m_settingsWidget, &SettingsWidget::projectMPresetSelected, m_visualizationWidget, &VisualizationWidget::loadProjectMPreset);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_playerWidget, &PlayerWidget::updateSpectrum);
+    connect(m_audioManager, &AudioManager::spectrumDataChanged, m_visualizationWidget, &VisualizationWidget::updateSpectrum);
 
     connect(m_audioManager, &AudioManager::positionChanged, m_miniPlayerBar, &MiniPlayerBar::onPositionChanged);
     connect(m_audioManager, &AudioManager::durationChanged, m_miniPlayerBar, &MiniPlayerBar::onDurationChanged);

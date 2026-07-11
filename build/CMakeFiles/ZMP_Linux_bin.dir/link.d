@@ -10,18 +10,22 @@ ZMP_Linux_bin: \
   CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o \
-  /usr/lib/libQt6Widgets.so.6.11.1 \
   /usr/lib/libQt6Multimedia.so.6.11.1 \
   /usr/lib/libQt6Svg.so.6.11.1 \
   /usr/lib/libQt6Network.so.6.11.1 \
+  /usr/lib/libQt6OpenGLWidgets.so.6.11.1 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libbass.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libbass_fx.so \
+  /usr/lib/libprojectM.so \
   /usr/lib/libtag.so \
+  /usr/lib/libQt6Widgets.so.6.11.1 \
+  /usr/lib/libQt6OpenGL.so.6.11.1 \
   /usr/lib/libQt6Gui.so.6.11.1 \
   /usr/lib/libQt6DBus.so.6.11.1 \
   /usr/lib/libQt6Core.so.6.11.1 \
@@ -73,6 +77,8 @@ ZMP_Linux_bin: \
   /usr/lib/libpthread.so.0 \
   /usr/lib32/librt.so.1 \
   /usr/lib/librt.so.1 \
+  /usr/lib32/libGL.so.1 \
+  /usr/lib/libGL.so.1 \
   /usr/lib/libEGL.so.1 \
   /usr/lib/libfontconfig.so.1 \
   /usr/lib/libX11.so.6 \
@@ -186,6 +192,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o:
 
+CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
+
 CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o:
@@ -196,19 +204,25 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
 
-/usr/lib/libQt6Widgets.so.6.11.1:
-
 /usr/lib/libQt6Multimedia.so.6.11.1:
 
 /usr/lib/libQt6Svg.so.6.11.1:
 
 /usr/lib/libQt6Network.so.6.11.1:
 
+/usr/lib/libQt6OpenGLWidgets.so.6.11.1:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libbass.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libbass_fx.so:
 
+/usr/lib/libprojectM.so:
+
 /usr/lib/libtag.so:
+
+/usr/lib/libQt6Widgets.so.6.11.1:
+
+/usr/lib/libQt6OpenGL.so.6.11.1:
 
 /usr/lib/libQt6Gui.so.6.11.1:
 
@@ -311,6 +325,10 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
 /usr/lib32/librt.so.1:
 
 /usr/lib/librt.so.1:
+
+/usr/lib32/libGL.so.1:
+
+/usr/lib/libGL.so.1:
 
 /usr/lib/libEGL.so.1:
 

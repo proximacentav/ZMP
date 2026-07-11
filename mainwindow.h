@@ -11,6 +11,7 @@
 #include "playerwidget.h"
 #include "playlistswidget.h"
 #include "equalizerwidget.h"
+#include "visualizationwidget.h"
 #include "settingswidget.h"
 #include "fileswidget.h"
 #include "miniplayerbar.h"
@@ -38,6 +39,7 @@ private:
     PlayerWidget *m_playerWidget;
     PlaylistsWidget *m_playlistsWidget;
     EqualizerWidget *m_equalizerWidget;
+    VisualizationWidget *m_visualizationWidget;
     SettingsWidget *m_settingsWidget;
     FilesWidget *m_filesWidget;
     QWidget *m_menuIndicator;

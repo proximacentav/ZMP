@@ -38,13 +38,15 @@ public:
     void setVolume(double vol);
     double volume() const { return m_volume; }
     void setSpectrumGain(float gain);
+    void setSpectrumBands(int bands);
+    int getPCMData(float *buffer, int maxSamples) const;
 
 signals:
     void positionChanged(qint64 pos);
     void durationChanged(qint64 dur);
     void stateChanged(bool playing);
     void errorOccurred(const QString &error);
-    void spectrumDataChanged(const QVector<float> &amplitudes);
+    void spectrumDataChanged(const QVector<float> &amplitudes, const QVector<double> &frequencies);
     void trackEnded();
     void volumeChanged(double vol);
 
@@ -75,6 +77,7 @@ private:
     float m_eqGains[17];
     float m_preampGain = 0.0f;
     double m_volume = 1.0;
+    int m_spectrumBands = 64;
     void applyVolume();
 };
 

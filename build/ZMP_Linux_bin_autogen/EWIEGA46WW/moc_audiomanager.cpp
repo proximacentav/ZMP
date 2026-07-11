@@ -52,6 +52,8 @@ template <> constexpr inline auto AudioManager::qt_create_metaobjectdata<qt_meta
         "spectrumDataChanged",
         "QList<float>",
         "amplitudes",
+        "QList<double>",
+        "frequencies",
         "trackEnded",
         "volumeChanged",
         "vol",
@@ -79,22 +81,22 @@ template <> constexpr inline auto AudioManager::qt_create_metaobjectdata<qt_meta
             { QMetaType::QString, 9 },
         }}),
         // Signal 'spectrumDataChanged'
-        QtMocHelpers::SignalData<void(const QVector<float> &)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 11, 12 },
+        QtMocHelpers::SignalData<void(const QVector<float> &, const QVector<double> &)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 11, 12 }, { 0x80000000 | 13, 14 },
         }}),
         // Signal 'trackEnded'
-        QtMocHelpers::SignalData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(15, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'volumeChanged'
-        QtMocHelpers::SignalData<void(double)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Double, 15 },
+        QtMocHelpers::SignalData<void(double)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Double, 17 },
         }}),
         // Slot 'updatePosition'
-        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'updateSpectrum'
-        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'setSpectrumFps'
-        QtMocHelpers::SlotData<void(int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 19 },
+        QtMocHelpers::SlotData<void(int)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 21 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -123,7 +125,7 @@ void AudioManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 1: _t->durationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
         case 2: _t->stateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 3: _t->errorOccurred((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 4: _t->spectrumDataChanged((*reinterpret_cast<std::add_pointer_t<QList<float>>>(_a[1]))); break;
+        case 4: _t->spectrumDataChanged((*reinterpret_cast<std::add_pointer_t<QList<float>>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QList<double>>>(_a[2]))); break;
         case 5: _t->trackEnded(); break;
         case 6: _t->volumeChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1]))); break;
         case 7: _t->updatePosition(); break;
@@ -138,6 +140,8 @@ void AudioManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 4:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<double> >(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<float> >(); break;
             }
@@ -153,7 +157,7 @@ void AudioManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             return;
         if (QtMocHelpers::indexOfMethod<void (AudioManager::*)(const QString & )>(_a, &AudioManager::errorOccurred, 3))
             return;
-        if (QtMocHelpers::indexOfMethod<void (AudioManager::*)(const QVector<float> & )>(_a, &AudioManager::spectrumDataChanged, 4))
+        if (QtMocHelpers::indexOfMethod<void (AudioManager::*)(const QVector<float> & , const QVector<double> & )>(_a, &AudioManager::spectrumDataChanged, 4))
             return;
         if (QtMocHelpers::indexOfMethod<void (AudioManager::*)()>(_a, &AudioManager::trackEnded, 5))
             return;
@@ -218,9 +222,9 @@ void AudioManager::errorOccurred(const QString & _t1)
 }
 
 // SIGNAL 4
-void AudioManager::spectrumDataChanged(const QVector<float> & _t1)
+void AudioManager::spectrumDataChanged(const QVector<float> & _t1, const QVector<double> & _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1, _t2);
 }
 
 // SIGNAL 5

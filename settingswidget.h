@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMap>
 #include <QColor>
+#include <QLabel>
 
 class QSlider;
 class QComboBox;
@@ -26,7 +27,9 @@ signals:
     void exitRequested();
     void spectrumGainChanged(float gain);
     void spectrumFpsChanged(int fps);
+    void spectrumBandsChanged(int bands);
     void powerModeChanged(bool enabled);
+    void projectMPresetSelected(const QString &filePath);
 
 private slots:
     void onSliderChanged(int v);
@@ -50,7 +53,10 @@ private:
     QPushButton *m_exitButton;
     QSlider *m_spectrumGainSlider;
     QComboBox *m_spectrumFpsCombo;
+    QComboBox *m_spectrumBandsCombo;
     QCheckBox *m_powerModeCheck;
+    QPushButton *m_projectMPresetButton;
+    QLabel *m_projectMPresetPath;
     
     bool m_darkTheme;
     QColor m_accentColor;

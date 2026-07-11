@@ -317,6 +317,12 @@ OPENGL_opengl_LIBRARY:FILEPATH=/usr/lib/libOpenGL.so
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
 
+//Path to a file.
+PROJECTM_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+PROJECTM_LIBRARY:FILEPATH=/usr/lib/libprojectM.so
+
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
 QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
@@ -350,6 +356,12 @@ Qt6Multimedia_DIR:PATH=/usr/lib/cmake/Qt6Multimedia
 
 //The directory containing a CMake configuration file for Qt6Network.
 Qt6Network_DIR:PATH=/usr/lib/cmake/Qt6Network
+
+//The directory containing a CMake configuration file for Qt6OpenGLWidgets.
+Qt6OpenGLWidgets_DIR:PATH=/usr/lib/cmake/Qt6OpenGLWidgets
+
+//The directory containing a CMake configuration file for Qt6OpenGL.
+Qt6OpenGL_DIR:PATH=/usr/lib/cmake/Qt6OpenGL
 
 //The directory containing a CMake configuration file for Qt6Svg.
 Qt6Svg_DIR:PATH=/usr/lib/cmake/Qt6Svg

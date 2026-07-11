@@ -467,6 +467,30 @@ settingswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.s
 .PHONY : settingswidget.cpp.s
 
+visualizationwidget.o: visualizationwidget.cpp.o
+.PHONY : visualizationwidget.o
+
+# target to build an object file
+visualizationwidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o
+.PHONY : visualizationwidget.cpp.o
+
+visualizationwidget.i: visualizationwidget.cpp.i
+.PHONY : visualizationwidget.i
+
+# target to preprocess a source file
+visualizationwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.i
+.PHONY : visualizationwidget.cpp.i
+
+visualizationwidget.s: visualizationwidget.cpp.s
+.PHONY : visualizationwidget.s
+
+# target to generate assembly for a file
+visualizationwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.s
+.PHONY : visualizationwidget.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -517,6 +541,9 @@ help:
 	@echo "... settingswidget.o"
 	@echo "... settingswidget.i"
 	@echo "... settingswidget.s"
+	@echo "... visualizationwidget.o"
+	@echo "... visualizationwidget.i"
+	@echo "... visualizationwidget.s"
 .PHONY : help
 
 

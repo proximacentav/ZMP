@@ -536,6 +536,15 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../equalizerwidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h \
+ /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \
+ /usr/include/qt6/QtOpenGLWidgets/qopenglwidget.h \
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h \
+ /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtGui/QSurfaceFormat \
+ /usr/include/qt6/QtGui/qsurfaceformat.h /usr/include/qt6/QtGui/qopengl.h \
+ /usr/include/GL/gl.h /usr/include/qt6/QtGui/qopenglext.h \
+ /usr/include/inttypes.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h \
  /usr/include/qt6/QtGui/QColor \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../fileswidget.h \
@@ -561,4 +570,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playlistswidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_settingswidget.cpp \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_visualizationwidget.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h

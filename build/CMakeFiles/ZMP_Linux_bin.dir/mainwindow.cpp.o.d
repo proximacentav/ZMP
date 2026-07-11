@@ -435,9 +435,18 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
- /home/user/cp/zmp/settingswidget.h /usr/include/qt6/QtGui/QColor \
- /home/user/cp/zmp/fileswidget.h /usr/include/qt6/QtCore/QtGlobal \
- /usr/include/qt6/QtWidgets/QTreeView \
+ /home/user/cp/zmp/visualizationwidget.h \
+ /usr/include/qt6/QtWidgets/QVBoxLayout \
+ /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \
+ /usr/include/qt6/QtOpenGLWidgets/qopenglwidget.h \
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
+ /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h \
+ /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtGui/QSurfaceFormat \
+ /usr/include/qt6/QtGui/qsurfaceformat.h /usr/include/qt6/QtGui/qopengl.h \
+ /usr/include/GL/gl.h /usr/include/qt6/QtGui/qopenglext.h \
+ /usr/include/inttypes.h /home/user/cp/zmp/settingswidget.h \
+ /usr/include/qt6/QtGui/QColor /home/user/cp/zmp/fileswidget.h \
+ /usr/include/qt6/QtCore/QtGlobal /usr/include/qt6/QtWidgets/QTreeView \
  /usr/include/qt6/QtWidgets/qtreeview.h \
  /usr/include/qt6/QtGui/QFileSystemModel \
  /usr/include/qt6/QtGui/qfilesystemmodel.h /usr/include/qt6/QtCore/qdir.h \
@@ -512,7 +521,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtNetwork/QSslError \
  /usr/include/qt6/QtWidgets/QProgressBar \
  /usr/include/qt6/QtWidgets/qprogressbar.h \
- /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
  /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/miniplayerbar.h \

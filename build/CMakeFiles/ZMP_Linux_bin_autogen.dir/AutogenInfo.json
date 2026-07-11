@@ -585,7 +585,28 @@
 		"/usr/lib/cmake/Qt6Svg/Qt6SvgTargets.cmake",
 		"/usr/lib/cmake/Qt6Svg/Qt6SvgTargets-relwithdebinfo.cmake",
 		"/usr/lib/cmake/Qt6Svg/Qt6SvgAdditionalTargetInfo.cmake",
-		"/usr/lib/cmake/Qt6Svg/Qt6SvgVersionlessAliasTargets.cmake"
+		"/usr/lib/cmake/Qt6Svg/Qt6SvgVersionlessAliasTargets.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersionImpl.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLDependencies.cmake",
+		"/usr/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargetsPrecheck.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake",
+		"/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLVersionlessAliasTargets.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargetsPrecheck.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake",
+		"/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessAliasTargets.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/user/cp/zmp",
 	"CROSS_CONFIG" : false,
@@ -664,6 +685,12 @@
 			"Mu",
 			"EWIEGA46WW/moc_settingswidget.cpp",
 			null
+		],
+		[
+			"/home/user/cp/zmp/visualizationwidget.h",
+			"Mu",
+			"EWIEGA46WW/moc_visualizationwidget.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -677,6 +704,8 @@
 		"QT_MULTIMEDIA_LIB",
 		"QT_NETWORK_LIB",
 		"QT_NO_DEBUG",
+		"QT_OPENGLWIDGETS_LIB",
+		"QT_OPENGL_LIB",
 		"QT_SVG_LIB",
 		"QT_WIDGETS_LIB"
 	],
@@ -698,6 +727,8 @@
 		"/usr/include/qt6/QtNetwork",
 		"/usr/include/qt6/QtSvg",
 		"/usr/include/qt6/QtDBus",
+		"/usr/include/qt6/QtOpenGLWidgets",
+		"/usr/include/qt6/QtOpenGL",
 		"/usr/include",
 		"/usr/include/c++/16.1.1",
 		"/usr/include/c++/16.1.1/x86_64-pc-linux-gnu",
@@ -749,7 +780,8 @@
 		[ "/home/user/cp/zmp/playbackcontrolwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playlistswidget.cpp", "Mu", null ],
-		[ "/home/user/cp/zmp/settingswidget.cpp", "Mu", null ]
+		[ "/home/user/cp/zmp/settingswidget.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/visualizationwidget.cpp", "Mu", null ]
 	],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0
