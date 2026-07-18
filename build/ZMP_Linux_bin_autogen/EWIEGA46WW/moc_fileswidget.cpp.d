@@ -1,5 +1,6 @@
 /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_fileswidget.cpp: /home/user/cp/zmp/fileswidget.h \
   /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/moc_predefs.h \
+  /home/user/cp/zmp/ftpclient.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -271,11 +272,14 @@
   /usr/include/linux/types.h \
   /usr/include/locale.h \
   /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFlags \
   /usr/include/qt6/QtCore/QIODevice \
   /usr/include/qt6/QtCore/QList \
   /usr/include/qt6/QtCore/QMetaType \
   /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QProcess \
+  /usr/include/qt6/QtCore/QQueue \
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
@@ -376,7 +380,9 @@
   /usr/include/qt6/QtCore/qoverload.h \
   /usr/include/qt6/QtCore/qpair.h \
   /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qprocess.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qqueue.h \
   /usr/include/qt6/QtCore/qrect.h \
   /usr/include/qt6/QtCore/qrefcount.h \
   /usr/include/qt6/QtCore/qregularexpression.h \
@@ -472,9 +478,11 @@
   /usr/include/qt6/QtNetwork/QNetworkAccessManager \
   /usr/include/qt6/QtNetwork/QNetworkReply \
   /usr/include/qt6/QtNetwork/QNetworkRequest \
+  /usr/include/qt6/QtNetwork/QSslCertificate \
   /usr/include/qt6/QtNetwork/QSslConfiguration \
   /usr/include/qt6/QtNetwork/QSslError \
   /usr/include/qt6/QtNetwork/QSslPreSharedKeyAuthenticator \
+  /usr/include/qt6/QtNetwork/QSslSocket \
   /usr/include/qt6/QtNetwork/QTcpSocket \
   /usr/include/qt6/QtNetwork/qabstractsocket.h \
   /usr/include/qt6/QtNetwork/qhostaddress.h \

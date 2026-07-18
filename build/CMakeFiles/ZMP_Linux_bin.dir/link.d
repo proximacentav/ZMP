@@ -12,6 +12,7 @@ ZMP_Linux_bin: \
   CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o \
@@ -195,6 +196,8 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o:
 CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o:
 

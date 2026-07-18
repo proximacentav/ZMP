@@ -317,7 +317,8 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: \
  /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/bass.h \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h \
+ /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
  /usr/include/bass_fx.h /usr/include/c++/16.1.1/cfloat \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/float.h \
  /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtCore/qdebug.h \
@@ -376,4 +377,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: \
  /usr/include/qt6/QtCore/q23utility.h \
  /usr/include/qt6/QtCore/q20utility.h /usr/include/qt6/QtCore/qtimezone.h \
  /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/qdir.h \
- /usr/include/qt6/QtCore/qdirlisting.h
+ /usr/include/qt6/QtCore/qdirlisting.h /usr/include/qt6/QtCore/QProcess \
+ /usr/include/qt6/QtCore/qprocess.h \
+ /usr/include/qt6/QtCore/QCryptographicHash \
+ /usr/include/qt6/QtCore/qcryptographichash.h

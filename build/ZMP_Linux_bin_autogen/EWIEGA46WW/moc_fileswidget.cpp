@@ -81,7 +81,26 @@ template <> constexpr inline auto FilesWidget::qt_create_metaobjectdata<qt_meta_
         "onPingSocketError",
         "QAbstractSocket::SocketError",
         "socketError",
-        "onPingSocketTimeout"
+        "onPingSocketTimeout",
+        "onFtpConnect",
+        "onFtpsConnect",
+        "onSmbConnect",
+        "onToggleSearch",
+        "onFtpListReceived",
+        "QList<FileEntry>",
+        "list",
+        "onFtpConnected",
+        "onFtpError",
+        "onFtpDisconnected",
+        "onFtpListDoubleClicked",
+        "QListWidgetItem*",
+        "item",
+        "onFtpDownloadFinished",
+        "onFtpBackClicked",
+        "showPlaylistSaveDialog",
+        "fileName",
+        "showDirectorySaveDialog",
+        "onSslErrorsUi"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -145,6 +164,46 @@ template <> constexpr inline auto FilesWidget::qt_create_metaobjectdata<qt_meta_
         }}),
         // Slot 'onPingSocketTimeout'
         QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpConnect'
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpsConnect'
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSmbConnect'
+        QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onToggleSearch'
+        QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpListReceived'
+        QtMocHelpers::SlotData<void(const QList<FileEntry> &)>(45, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 46, 47 },
+        }}),
+        // Slot 'onFtpConnected'
+        QtMocHelpers::SlotData<void()>(48, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpError'
+        QtMocHelpers::SlotData<void(const QString &)>(49, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 22 },
+        }}),
+        // Slot 'onFtpDisconnected'
+        QtMocHelpers::SlotData<void()>(50, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpListDoubleClicked'
+        QtMocHelpers::SlotData<void(QListWidgetItem *)>(51, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 52, 53 },
+        }}),
+        // Slot 'onFtpDownloadFinished'
+        QtMocHelpers::SlotData<void()>(54, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onFtpBackClicked'
+        QtMocHelpers::SlotData<void()>(55, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'showPlaylistSaveDialog'
+        QtMocHelpers::SlotData<void(const QString &)>(56, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 57 },
+        }}),
+        // Slot 'showDirectorySaveDialog'
+        QtMocHelpers::SlotData<void(const QString &)>(58, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 57 },
+        }}),
+        // Slot 'onSslErrorsUi'
+        QtMocHelpers::SlotData<void(const QList<QSslError> &)>(59, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 24, 25 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -187,6 +246,20 @@ void FilesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 16: _t->onPingSocketConnected(); break;
         case 17: _t->onPingSocketError((*reinterpret_cast<std::add_pointer_t<QAbstractSocket::SocketError>>(_a[1]))); break;
         case 18: _t->onPingSocketTimeout(); break;
+        case 19: _t->onFtpConnect(); break;
+        case 20: _t->onFtpsConnect(); break;
+        case 21: _t->onSmbConnect(); break;
+        case 22: _t->onToggleSearch(); break;
+        case 23: _t->onFtpListReceived((*reinterpret_cast<std::add_pointer_t<QList<FileEntry>>>(_a[1]))); break;
+        case 24: _t->onFtpConnected(); break;
+        case 25: _t->onFtpError((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 26: _t->onFtpDisconnected(); break;
+        case 27: _t->onFtpListDoubleClicked((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1]))); break;
+        case 28: _t->onFtpDownloadFinished(); break;
+        case 29: _t->onFtpBackClicked(); break;
+        case 30: _t->showPlaylistSaveDialog((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 31: _t->showDirectorySaveDialog((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 32: _t->onSslErrorsUi((*reinterpret_cast<std::add_pointer_t<QList<QSslError>>>(_a[1]))); break;
         default: ;
         }
     }
@@ -216,6 +289,13 @@ void FilesWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QAbstractSocket::SocketError >(); break;
             }
             break;
+        case 32:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<QSslError> >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
@@ -243,14 +323,14 @@ int FilesWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 33;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 33;
     }
     return _id;
 }

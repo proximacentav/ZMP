@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QListWidget>
+#include <QPushButton>
 #include <QAudioDevice>
 #include "audiomanager.h"
 #include "deviceswidget.h"
@@ -29,6 +30,8 @@ private slots:
     void onFileSelected(const QString &path);
     void onExit();
     void animateMenu();
+    void onHiddenButtonClicked();
+    void onSelectionTimeout();
 
 private:
     QListWidget *m_menu;
@@ -46,6 +49,15 @@ private:
     QTimer *m_menuAnimTimer;
     qreal m_menuIndicatorY;
     qreal m_menuIndicatorTargetY;
+    enum State { Idle, Deciding, SelectionMode, ActionMode };
+    State m_state;
+    int m_clickCount;
+    QTimer *m_selectionTimer;
+    QPushButton *m_hiddenButton;
+    
+    void performAction(int count);
+    void enterSelectionMode();
+    void resetButton();
     
     void onFeaturedUpdated();
 };

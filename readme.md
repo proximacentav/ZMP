@@ -1,4 +1,4 @@
-# Z MEDIA PLAYER BY PROXIMACENTAV beta v 1.2.0 (equpdate)
+# Z MEDIA PLAYER BY PROXIMACENTAV beta v 1.3.0 (equpdate)
 
 **ZMP** - Медиаплеер для LINUX с встроенным файловым менеджером, плейлистами, хорошим? дизайном, предусилением, эквалайзером, сменой тонов в st(semitones) и скорости
 поддержкой очереди воспроизведения и другими функциями

@@ -388,8 +388,9 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
- /usr/include/bass.h /usr/include/bass_fx.h \
- /home/user/cp/zmp/iconbutton.h /usr/include/qt6/QtWidgets/QVBoxLayout \
+ /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
+ /usr/include/bass_fx.h /home/user/cp/zmp/iconbutton.h \
+ /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \

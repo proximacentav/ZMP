@@ -74,3 +74,11 @@ void PlayerWidget::onNext() {
 void PlayerWidget::onPrev() {
     m_playbackControl->onPrev();
 }
+
+void PlayerWidget::onFeaturedClicked() {
+    m_playbackControl->onFeaturedClicked();
+}
+
+void PlayerWidget::onAddToPlaylistClicked() {
+    m_playbackControl->onAddToPlaylistClicked();
+}

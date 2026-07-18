@@ -34,6 +34,7 @@ add_executable(ZMP_Linux_bin
     equalizerwidget.h equalizerwidget.cpp
     visualizationwidget.h visualizationwidget.cpp
     settingswidget.h settingswidget.cpp
+    ftpclient.h ftpclient.cpp
     fileswidget.h fileswidget.cpp
     playlistswidget.h playlistswidget.cpp
     iconbutton.h

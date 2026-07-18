@@ -30,6 +30,7 @@ signals:
     void spectrumBandsChanged(int bands);
     void powerModeChanged(bool enabled);
     void projectMPresetSelected(const QString &filePath);
+    void maxBitrateChanged(int bitrate);
 
 private slots:
     void onSliderChanged(int v);

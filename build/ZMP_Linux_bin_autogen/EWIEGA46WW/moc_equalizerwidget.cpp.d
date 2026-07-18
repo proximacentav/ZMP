@@ -275,6 +275,7 @@
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/QMap \
   /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \

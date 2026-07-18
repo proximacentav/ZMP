@@ -442,6 +442,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtNetwork/QNetworkRequest \
  /usr/include/qt6/QtNetwork/QNetworkAccessManager \
  /usr/include/qt6/QtNetwork/QSslError \
+ /usr/include/qt6/QtNetwork/QSslCertificate \
  /usr/include/qt6/QtWidgets/QProgressBar \
  /usr/include/qt6/QtWidgets/qprogressbar.h \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
@@ -462,8 +463,12 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /usr/include/qt6/QtNetwork/QTcpSocket \
- /usr/include/qt6/QtWidgets/QHeaderView \
+ /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/ftpclient.h \
+ /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/QString \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
+ /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
+ /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
+ /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtWidgets/QHeaderView \
  /usr/include/qt6/QtWidgets/qheaderview.h \
  /usr/include/qt6/QtWidgets/QStyleFactory \
  /usr/include/qt6/QtWidgets/qstylefactory.h \
@@ -482,9 +487,15 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QMessageBox \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/qt6/QtCore/QUrl /usr/include/qt6/QtNetwork/QSslCertificate \
- /usr/include/qt6/QtNetwork/QSslSocket /usr/include/qt6/QtCore/QDateTime \
+ /usr/include/qt6/QtCore/QUrl /usr/include/qt6/QtCore/QDateTime \
  /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtCore/QStandardPaths \
  /usr/include/qt6/QtCore/qstandardpaths.h \
- /usr/include/qt6/QtCore/QRegularExpression /usr/include/qt6/QtCore/QFile \
- /usr/include/qt6/QtCore/QUrlQuery /usr/include/qt6/QtCore/qurlquery.h
+ /usr/include/qt6/QtCore/QRegularExpression \
+ /usr/include/qt6/QtCore/QUrlQuery /usr/include/qt6/QtCore/qurlquery.h \
+ /usr/include/qt6/QtWidgets/QDialogButtonBox \
+ /usr/include/qt6/QtWidgets/QSpinBox \
+ /usr/include/qt6/QtWidgets/qspinbox.h \
+ /usr/include/qt6/QtWidgets/QFileDialog \
+ /usr/include/qt6/QtWidgets/qfiledialog.h \
+ /usr/include/qt6/QtWidgets/QTextEdit \
+ /usr/include/qt6/QtWidgets/qtextedit.h

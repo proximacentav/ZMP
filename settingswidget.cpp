@@ -130,11 +130,15 @@ int SettingsWidget::maxBitrate() const {
     int val = m_bitrateEdit->text().toInt();
     return (val <= 0 || val > 1000) ? 0 : val;
 }
-void SettingsWidget::onSliderChanged(int v) { m_bitrateEdit->setText(QString::number(v)); }
+void SettingsWidget::onSliderChanged(int v) {
+    m_bitrateEdit->setText(QString::number(v));
+    emit maxBitrateChanged(maxBitrate());
+}
 void SettingsWidget::onLineEditChanged() {
     int v = m_bitrateEdit->text().toInt();
     if (v < 1) v = 1; if (v > 1000) v = 1000;
     m_bitrateSlider->setValue(v);
+    emit maxBitrateChanged(maxBitrate());
 }
 void SettingsWidget::toggleTheme() {
     m_darkTheme = !m_darkTheme;

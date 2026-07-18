@@ -639,6 +639,12 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/ftpclient.h",
+			"Mu",
+			"EWIEGA46WW/moc_ftpclient.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/iconbutton.h",
 			"Mu",
 			"EWIEGA46WW/moc_iconbutton.cpp",
@@ -773,6 +779,7 @@
 		[ "/home/user/cp/zmp/deviceswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/equalizerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/fileswidget.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/ftpclient.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/main.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/mainwindow.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/miniplayerbar.cpp", "Mu", null ],

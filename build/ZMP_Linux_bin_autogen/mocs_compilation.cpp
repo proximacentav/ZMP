@@ -3,6 +3,7 @@
 #include "EWIEGA46WW/moc_deviceswidget.cpp"
 #include "EWIEGA46WW/moc_equalizerwidget.cpp"
 #include "EWIEGA46WW/moc_fileswidget.cpp"
+#include "EWIEGA46WW/moc_ftpclient.cpp"
 #include "EWIEGA46WW/moc_iconbutton.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_miniplayerbar.cpp"

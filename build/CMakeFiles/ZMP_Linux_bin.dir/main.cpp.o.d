@@ -380,6 +380,9 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/qabstractslider.h \
  /usr/include/qt6/QtWidgets/qstyle.h /usr/include/qt6/QtWidgets/qtabbar.h \
  /usr/include/qt6/QtWidgets/qrubberband.h \
+ /usr/include/qt6/QtWidgets/QPushButton \
+ /usr/include/qt6/QtWidgets/qpushbutton.h \
+ /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /usr/include/qt6/QtMultimedia/QAudioDevice \
  /usr/include/qt6/QtMultimedia/qaudiodevice.h \
  /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
@@ -391,22 +394,19 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
- /usr/include/bass.h /usr/include/bass_fx.h \
- /home/user/cp/zmp/deviceswidget.h /usr/include/qt6/QtWidgets/QWidget \
- /usr/include/qt6/QtWidgets/QComboBox \
+ /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
+ /usr/include/bass_fx.h /home/user/cp/zmp/deviceswidget.h \
+ /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/QComboBox \
  /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/playerwidget.h \
  /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
  /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtCore/qiodevice.h \
  /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
- /usr/include/qt6/QtWidgets/QPushButton \
- /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtGui/QImage \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/qt6/QtGui/QPainterPath \
+ /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
  /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/qtextoption.h \
  /usr/include/qt6/QtGui/qpen.h /usr/include/qt6/QtGui/QPen \
@@ -521,8 +521,14 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtNetwork/QNetworkRequest \
  /usr/include/qt6/QtNetwork/QNetworkAccessManager \
  /usr/include/qt6/QtNetwork/QSslError \
+ /usr/include/qt6/QtNetwork/QSslCertificate \
  /usr/include/qt6/QtWidgets/QProgressBar \
  /usr/include/qt6/QtWidgets/qprogressbar.h \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
- /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/miniplayerbar.h
+ /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/ftpclient.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QList \
+ /usr/include/qt6/QtNetwork/QSslSocket /usr/include/qt6/QtCore/QProcess \
+ /usr/include/qt6/QtCore/qprocess.h /usr/include/qt6/QtCore/QQueue \
+ /usr/include/qt6/QtCore/qqueue.h /usr/include/qt6/QtCore/QFile \
+ /home/user/cp/zmp/miniplayerbar.h

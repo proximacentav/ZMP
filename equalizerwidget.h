@@ -22,6 +22,7 @@ public:
     void setPowerMode(bool enabled);
     QMap<double, int> getBandGains() const;
     int getPreampGain() const;
+    void applyPreset(const QString &name);
 
 signals:
     void bandGainChanged(double frequencyHz, int gainDb);
@@ -66,7 +67,6 @@ private:
     void setPreampValue(int value);
     void setSpeedValue(double value);
     void setPitchValue(double value);
-    void applyPreset(const QString &name);
 };
 
 #endif

@@ -7,6 +7,8 @@
 #include <QVector>
 #include <QFileInfo>
 #include <QDir>
+#include <QProcess>
+#include <QCryptographicHash>
 
 AudioManager::AudioManager(QObject *parent)
     : QObject(parent), m_currentStream(0), m_playing(false), m_seeking(false), m_duration(0),
@@ -20,6 +22,8 @@ AudioManager::AudioManager(QObject *parent)
     // Инициализировать частоты полос
     m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
     
+    cleanupTempDir();
+
     if (!BASS_Init(-1, 44100, BASS_DEVICE_LATENCY, 0, NULL)) {
         qCritical() << "BASS_Init failed!";
         return;
@@ -46,6 +50,7 @@ AudioManager::~AudioManager() {
     }
     if (m_currentStream) BASS_StreamFree(m_currentStream);
     BASS_Free();
+    cleanupTempDir();
 }
 
 void AudioManager::setSourceFile(const QString &filePath) {
@@ -57,7 +62,18 @@ void AudioManager::setSourceFile(const QString &filePath) {
     }
     m_currentFilePath = filePath;
 
-    QByteArray pathBytes = QFile::encodeName(filePath);
+    QString playPath = filePath;
+    if (m_maxBitrate > 0) {
+        int trackBitrate = detectBitrate(filePath);
+        if (trackBitrate > 0 && trackBitrate > m_maxBitrate) {
+            QString transcoded = transcodeFile(filePath, m_maxBitrate);
+            if (!transcoded.isEmpty()) {
+                playPath = transcoded;
+            }
+        }
+    }
+
+    QByteArray pathBytes = QFile::encodeName(playPath);
     m_currentStream = BASS_StreamCreateFile(FALSE, pathBytes.constData(), 0, 0, BASS_STREAM_AUTOFREE);
     if (!m_currentStream) {
         qCritical() << "Failed to load file. BASS error:" << BASS_ErrorGetCode();
@@ -321,4 +337,64 @@ void AudioManager::setSpectrumFps(int fps) {
     if (fps <= 0) fps = 1;
     int interval = qMax(1, (int)(1000.0 / fps)); 
     m_spectrumTimer->setInterval(interval);
+}
+
+void AudioManager::setMaxBitrate(int bitrate) {
+    m_maxBitrate = bitrate;
+}
+
+int AudioManager::detectBitrate(const QString &filePath) {
+    QProcess ffprobe;
+    ffprobe.start("ffprobe", {
+        "-v", "error",
+        "-select_streams", "a:0",
+        "-show_entries", "stream=bit_rate",
+        "-of", "default=noprint_wrappers=1:nokey=1",
+        filePath
+    });
+    ffprobe.waitForFinished(5000);
+    QString output = QString::fromUtf8(ffprobe.readAllStandardOutput()).trimmed();
+    bool ok = false;
+    int bitrate = output.toInt(&ok);
+    if (ok && bitrate > 0) {
+        return bitrate / 1000;
+    }
+    return 0;
+}
+
+QString AudioManager::transcodeFile(const QString &filePath, int targetBitrate) {
+    QString tmpDir = QDir::tempPath() + "/zmp";
+    QDir().mkpath(tmpDir);
+
+    QByteArray pathHash = QCryptographicHash::hash(filePath.toUtf8(), QCryptographicHash::Md5).toHex();
+    QString tmpFileName = pathHash + "_" + QString::number(targetBitrate) + "kbps.mp3";
+    QString tmpPath = tmpDir + "/" + tmpFileName;
+
+    if (QFile::exists(tmpPath)) {
+        m_tempFilePaths.append(tmpPath);
+        return tmpPath;
+    }
+
+    QProcess ffmpeg;
+    ffmpeg.start("ffmpeg", {
+        "-i", filePath,
+        "-b:a", QString::number(targetBitrate) + "k",
+        "-y", tmpPath
+    });
+    ffmpeg.waitForFinished(60000);
+
+    if (ffmpeg.exitCode() == 0 && QFile::exists(tmpPath)) {
+        m_tempFilePaths.append(tmpPath);
+        return tmpPath;
+    }
+    return {};
+}
+
+void AudioManager::cleanupTempDir() {
+    QString tmpDir = QDir::tempPath() + "/zmp";
+    QDir dir(tmpDir);
+    if (dir.exists()) {
+        dir.removeRecursively();
+    }
+    m_tempFilePaths.clear();
 }

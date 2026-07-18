@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QTimer>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_menuIndicator(nullptr), m_menuIndicatorY(0), m_menuIndicatorTargetY(0)
@@ -34,7 +35,23 @@ MainWindow::MainWindow(QWidget *parent)
         "QListWidget::item { background: transparent; color: white; padding: 12px; border-radius: 8px; }"
         "QListWidget::item:selected { background: transparent; color: white; }" // Прозрачный при выделении
     );
-    menuContLayout->addWidget(m_menu);
+    menuContLayout->addWidget(m_menu, 1);
+
+    m_hiddenButton = new QPushButton("ввести");
+    m_hiddenButton->setCursor(Qt::PointingHandCursor);
+    m_hiddenButton->setStyleSheet(
+        "QPushButton { background: transparent; color: #666; border: 1px solid #555; "
+        "border-radius: 8px; padding: 12px; font-size: 14px; }"
+        "QPushButton:hover { color: #aaa; border-color: #777; }"
+    );
+    menuContLayout->addWidget(m_hiddenButton);
+
+    m_state = Idle;
+    m_clickCount = 0;
+    m_selectionTimer = new QTimer(this);
+    m_selectionTimer->setSingleShot(true);
+    connect(m_selectionTimer, &QTimer::timeout, this, &MainWindow::onSelectionTimeout);
+    connect(m_hiddenButton, &QPushButton::clicked, this, &MainWindow::onHiddenButtonClicked);
 
     m_menuIndicator = new QWidget(menuContainer);
     m_menuIndicator->setFixedHeight(40);
@@ -136,6 +153,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_settingsWidget, &SettingsWidget::spectrumFpsChanged, m_audioManager, &AudioManager::setSpectrumFps);
     connect(m_settingsWidget, &SettingsWidget::spectrumBandsChanged, m_audioManager, &AudioManager::setSpectrumBands);
     connect(m_settingsWidget, &SettingsWidget::projectMPresetSelected, m_visualizationWidget, &VisualizationWidget::loadProjectMPreset);
+    connect(m_settingsWidget, &SettingsWidget::maxBitrateChanged, m_audioManager, &AudioManager::setMaxBitrate);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_playerWidget, &PlayerWidget::updateSpectrum);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_visualizationWidget, &VisualizationWidget::updateSpectrum);
 
@@ -172,6 +190,105 @@ void MainWindow::onFileSelected(const QString &path) {
     m_menu->setCurrentRow(1);
 }
 void MainWindow::onExit() { QApplication::quit(); }
+
+void MainWindow::onHiddenButtonClicked() {
+    switch (m_state) {
+    case Idle:
+        m_state = Deciding;
+        m_clickCount = 1;
+        m_selectionTimer->start(1000);
+        break;
+    case Deciding:
+        m_clickCount++;
+        if (m_clickCount >= 2) {
+            m_state = ActionMode;
+            m_selectionTimer->start(2000);
+        }
+        break;
+    case SelectionMode:
+        m_clickCount++;
+        m_selectionTimer->start(2000);
+        break;
+    case ActionMode:
+        m_clickCount++;
+        m_selectionTimer->start(2000);
+        break;
+    }
+}
+
+void MainWindow::onSelectionTimeout() {
+    switch (m_state) {
+    case Deciding:
+        enterSelectionMode();
+        break;
+    case SelectionMode:
+        if (m_clickCount >= 1 && m_clickCount <= 7)
+            m_menu->setCurrentRow(m_clickCount - 1);
+        resetButton();
+        break;
+    case ActionMode:
+        performAction(m_clickCount);
+        resetButton();
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::enterSelectionMode() {
+    m_state = SelectionMode;
+    m_clickCount = 0;
+    m_hiddenButton->setStyleSheet(
+        "QPushButton { background: transparent; color: #4CAF50; border: 1px solid #4CAF50; "
+        "border-radius: 8px; padding: 12px; font-size: 14px; }"
+    );
+    m_selectionTimer->start(2000);
+}
+
+void MainWindow::performAction(int count) {
+    int tab = m_stack->currentIndex();
+    switch (tab) {
+    case 1:
+        if (count == 2) m_playerWidget->onPlayClicked();
+        else if (count == 3) m_playerWidget->onNext();
+        else if (count == 4) m_playerWidget->onPrev();
+        else if (count == 5) m_playerWidget->onFeaturedClicked();
+        else if (count == 6) m_playerWidget->onAddToPlaylistClicked();
+        break;
+    case 2:
+        if (count == 3) {
+            bool ok;
+            QString name = QInputDialog::getText(this, "Новый плейлист",
+                "Введите название плейлиста:", QLineEdit::Normal, "", &ok);
+            if (ok && !name.isEmpty()) {
+                for (const PlaylistInfo &pl : m_playlistsWidget->m_playlists) {
+                    if (pl.name == name) {
+                        emit m_playlistsWidget->playlistSelected(pl.tracks);
+                        break;
+                    }
+                }
+            }
+        }
+        break;
+    case 4:
+        if (count == 2) m_equalizerWidget->applyPreset("Default");
+        else if (count == 3) m_equalizerWidget->applyPreset("Bass");
+        else if (count == 4) m_equalizerWidget->applyPreset("Treble");
+        else if (count == 5) m_equalizerWidget->applyPreset("Pop");
+        else if (count == 6) m_equalizerWidget->applyPreset("Dance");
+        break;
+    }
+}
+
+void MainWindow::resetButton() {
+    m_state = Idle;
+    m_clickCount = 0;
+    m_hiddenButton->setStyleSheet(
+        "QPushButton { background: transparent; color: #666; border: 1px solid #555; "
+        "border-radius: 8px; padding: 12px; font-size: 14px; }"
+        "QPushButton:hover { color: #aaa; border-color: #777; }"
+    );
+}
 
 void MainWindow::onFeaturedUpdated() {
     m_playlistsWidget->loadPlaylists();

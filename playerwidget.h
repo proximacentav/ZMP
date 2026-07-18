@@ -23,6 +23,8 @@ public:
     void onPlayClicked();
     void onNext();
     void onPrev();
+    void onFeaturedClicked();
+    void onAddToPlaylistClicked();
     QString currentFilePath() const { return m_playbackControl->currentFilePath(); }
     TrackMetadata currentTrackMetadata() const { return m_playbackControl->currentTrackMetadata(); }
 

@@ -1,7 +1,6 @@
 #ifndef FILESWIDGET_H
 #define FILESWIDGET_H
 
-
 #include <QtGlobal>
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #error "install qt6"
@@ -17,6 +16,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QSslError>
+#include <QSslCertificate>
 #include <QProgressBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -26,6 +26,8 @@
 #include <QLabel>
 #include <QTimer>
 #include <QTcpSocket>
+
+#include "ftpclient.h"
 
 class FilesWidget : public QWidget
 {
@@ -58,6 +60,21 @@ private slots:
     void onPingSocketError(QAbstractSocket::SocketError socketError);
     void onPingSocketTimeout();
 
+    void onFtpConnect();
+    void onFtpsConnect();
+    void onSmbConnect();
+    void onToggleSearch();
+    void onFtpListReceived(const QList<FileEntry> &list);
+    void onFtpConnected();
+    void onFtpError(const QString &error);
+    void onFtpDisconnected();
+    void onFtpListDoubleClicked(QListWidgetItem *item);
+    void onFtpDownloadFinished();
+    void onFtpBackClicked();
+    void showPlaylistSaveDialog(const QString &fileName);
+    void showDirectorySaveDialog(const QString &fileName);
+    void onSslErrorsUi(const QList<QSslError> &errors);
+
 private:
     QPushButton *m_menuButton;
     QLineEdit  *m_pathEdit;
@@ -65,6 +82,7 @@ private:
     QMenu      *m_menu;
     QProgressBar *m_progressBar;
     bool        m_isMenuOpen;
+    bool        m_searchVisible;
     QString     m_currentPath;
 
     QStackedWidget *m_stack;
@@ -87,6 +105,16 @@ private:
     QTcpSocket *m_pingSocket;
     QTimer     *m_pingTimeoutTimer;
 
+    FTPClient  *m_ftpClient;
+    bool        m_ftpConnected;
+    QString     m_ftpScheme;
+    QString     m_ftpHost;
+    int         m_ftpPort;
+    QString     m_ftpUser;
+    QString     m_ftpPass;
+    QString     m_pendingRemotePath;
+    QString     m_pendingLocalPath;
+
     void createMenu();
     void setupUI();
     void createCacheDir();
@@ -101,9 +129,10 @@ private:
     void parseFtpListing(const QString &listing);
     void switchToFtpView();
     void switchToLocalView();
+    void showConnectionDialog(FTPClient::Protocol proto);
 
     bool isValidIPv4(const QString &ip);
     bool isValidIPv6(const QString &ip);
 };
 
-#endif // FILESWIDGET_H
+#endif

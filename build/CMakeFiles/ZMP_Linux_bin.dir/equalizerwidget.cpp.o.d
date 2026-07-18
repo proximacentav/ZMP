@@ -392,6 +392,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: \
  /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/bass.h \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h \
+ /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
  /usr/include/bass_fx.h /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/QHBoxLayout /usr/include/qt6/QtCore/QDebug

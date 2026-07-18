@@ -59,6 +59,8 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         "enabled",
         "projectMPresetSelected",
         "filePath",
+        "maxBitrateChanged",
+        "bitrate",
         "onSliderChanged",
         "v",
         "onLineEditChanged",
@@ -108,35 +110,39 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(const QString &)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 19 },
         }}),
-        // Slot 'onSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        // Signal 'maxBitrateChanged'
+        QtMocHelpers::SignalData<void(int)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 21 },
+        }}),
+        // Slot 'onSliderChanged'
+        QtMocHelpers::SlotData<void(int)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 23 },
         }}),
         // Slot 'onLineEditChanged'
-        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'toggleTheme'
-        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onColorChanged'
-        QtMocHelpers::SlotData<void(int)>(24, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 25 },
+        QtMocHelpers::SlotData<void(int)>(26, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 27 },
         }}),
         // Slot 'onHeightSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(26, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 21 },
+        QtMocHelpers::SlotData<void(int)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 23 },
         }}),
         // Slot 'onIconSizeSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(27, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 21 },
+        QtMocHelpers::SlotData<void(int)>(29, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 23 },
         }}),
         // Slot 'onSpectrumGainChanged'
-        QtMocHelpers::SlotData<void(int)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 29 },
+        QtMocHelpers::SlotData<void(int)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 31 },
         }}),
         // Slot 'showAboutDialog'
-        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIconSizeChanged'
-        QtMocHelpers::SlotData<void(int)>(31, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 21 },
+        QtMocHelpers::SlotData<void(int)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 23 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -170,15 +176,16 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 6: _t->spectrumBandsChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 7: _t->powerModeChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 8: _t->projectMPresetSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->onLineEditChanged(); break;
-        case 11: _t->toggleTheme(); break;
-        case 12: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 13: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 14: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 15: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 16: _t->showAboutDialog(); break;
-        case 17: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 9: _t->maxBitrateChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 10: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 11: _t->onLineEditChanged(); break;
+        case 12: _t->toggleTheme(); break;
+        case 13: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 14: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 15: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 16: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 17: _t->showAboutDialog(); break;
+        case 18: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -200,6 +207,8 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(bool )>(_a, &SettingsWidget::powerModeChanged, 7))
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(const QString & )>(_a, &SettingsWidget::projectMPresetSelected, 8))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(int )>(_a, &SettingsWidget::maxBitrateChanged, 9))
             return;
     }
 }
@@ -223,14 +232,14 @@ int SettingsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 19;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 19)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 18;
+        _id -= 19;
     }
     return _id;
 }
@@ -287,5 +296,11 @@ void SettingsWidget::powerModeChanged(bool _t1)
 void SettingsWidget::projectMPresetSelected(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 8, nullptr, _t1);
+}
+
+// SIGNAL 9
+void SettingsWidget::maxBitrateChanged(int _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 9, nullptr, _t1);
 }
 QT_WARNING_POP

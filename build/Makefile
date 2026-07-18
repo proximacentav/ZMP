@@ -275,6 +275,30 @@ fileswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.s
 .PHONY : fileswidget.cpp.s
 
+ftpclient.o: ftpclient.cpp.o
+.PHONY : ftpclient.o
+
+# target to build an object file
+ftpclient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o
+.PHONY : ftpclient.cpp.o
+
+ftpclient.i: ftpclient.cpp.i
+.PHONY : ftpclient.i
+
+# target to preprocess a source file
+ftpclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.i
+.PHONY : ftpclient.cpp.i
+
+ftpclient.s: ftpclient.cpp.s
+.PHONY : ftpclient.s
+
+# target to generate assembly for a file
+ftpclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.s
+.PHONY : ftpclient.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -517,6 +541,9 @@ help:
 	@echo "... fileswidget.o"
 	@echo "... fileswidget.i"
 	@echo "... fileswidget.s"
+	@echo "... ftpclient.o"
+	@echo "... ftpclient.i"
+	@echo "... ftpclient.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

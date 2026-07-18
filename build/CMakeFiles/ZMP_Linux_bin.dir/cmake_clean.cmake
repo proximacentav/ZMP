@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o"

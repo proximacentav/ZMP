@@ -5,6 +5,7 @@
 #include <QAudioDevice>
 #include <QVector>
 #include <QTimer>
+#include <QStringList>
 #include <bass.h>
 #include <bass_fx.h>
 
@@ -40,6 +41,7 @@ public:
     void setSpectrumGain(float gain);
     void setSpectrumBands(int bands);
     int getPCMData(float *buffer, int maxSamples) const;
+    void setMaxBitrate(int bitrate);
 
 signals:
     void positionChanged(qint64 pos);
@@ -78,6 +80,11 @@ private:
     float m_preampGain = 0.0f;
     double m_volume = 1.0;
     int m_spectrumBands = 64;
+    int m_maxBitrate = 0;
+    QStringList m_tempFilePaths;
+    int detectBitrate(const QString &filePath);
+    QString transcodeFile(const QString &filePath, int targetBitrate);
+    void cleanupTempDir();
     void applyVolume();
 };
 
