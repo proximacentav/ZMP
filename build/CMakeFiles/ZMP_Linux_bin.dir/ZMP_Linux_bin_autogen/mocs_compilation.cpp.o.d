@@ -511,19 +511,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../mainwindow.h \
  /usr/include/qt6/QtWidgets/QMainWindow \
  /usr/include/qt6/QtWidgets/qmainwindow.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../deviceswidget.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playerwidget.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playbackcontrolwidget.h \
- /usr/include/qt6/QtGui/QImage \
- /usr/include/qt6/QtWidgets/QAbstractItemView \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../iconbutton.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
- /usr/include/qt6/QtGui/QPainterPath \
- /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
- /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/QPen \
- /usr/include/qt6/QtGui/QBrush /usr/include/qt6/QtGui/QMouseEvent \
- /usr/include/qt6/QtGui/qevent.h /usr/include/qt6/QtCore/qcoreevent.h \
+ /usr/include/qt6/QtGui/QKeyEvent /usr/include/qt6/QtGui/qevent.h \
+ /usr/include/qt6/QtCore/qcoreevent.h \
  /usr/include/qt6/QtGui/qeventpoint.h /usr/include/qt6/QtGui/qvector2d.h \
  /usr/include/qt6/QtGui/qvectornd.h \
  /usr/include/qt6/QtGui/qpointingdevice.h \
@@ -537,6 +526,18 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
  /usr/include/qt6/QtGui/qinputmethod.h \
  /usr/include/qt6/QtGui/qguiapplication_platform.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../deviceswidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playerwidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playbackcontrolwidget.h \
+ /usr/include/qt6/QtGui/QImage \
+ /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../iconbutton.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
+ /usr/include/qt6/QtGui/QPainterPath \
+ /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
+ /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/QPen \
+ /usr/include/qt6/QtGui/QBrush /usr/include/qt6/QtGui/QMouseEvent \
  /usr/include/qt6/QtCore/QRandomGenerator \
  /usr/include/qt6/QtCore/qrandom.h /usr/include/c++/16.1.1/random \
  /usr/include/c++/16.1.1/bits/random.h \
@@ -544,6 +545,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/16.1.1/bits/random.tcc \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
+ /usr/include/qt6/QtWidgets/QFrame \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../equalizerwidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h \
  /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \

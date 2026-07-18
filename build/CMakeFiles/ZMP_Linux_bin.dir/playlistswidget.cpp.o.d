@@ -399,15 +399,21 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QPushButton \
+ /usr/include/qt6/QtWidgets/qpushbutton.h \
+ /usr/include/qt6/QtWidgets/qabstractbutton.h \
+ /usr/include/qt6/QtWidgets/QStackedWidget \
+ /usr/include/qt6/QtWidgets/qstackedwidget.h \
+ /usr/include/qt6/QtWidgets/QComboBox \
+ /usr/include/qt6/QtWidgets/qcombobox.h /usr/include/qt6/QtWidgets/QLabel \
+ /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
+ /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtWidgets/QFrame \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
  /usr/include/qt6/QtWidgets/qgridlayout.h \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
- /usr/include/qt6/QtWidgets/QPushButton \
- /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /usr/include/qt6/QtWidgets/QFileDialog \
  /usr/include/qt6/QtWidgets/qfiledialog.h /usr/include/qt6/QtCore/qdir.h \
  /usr/include/qt6/QtCore/qdirlisting.h \
@@ -445,10 +451,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
  /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QFileInfo \
- /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtWidgets/QLabel \
- /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
- /usr/include/qt6/QtGui/qtextdocument.h \
- /usr/include/qt6/QtWidgets/QLineEdit \
+ /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtWidgets/QLineEdit \
  /usr/include/qt6/QtWidgets/qlineedit.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
  /usr/include/qt6/QtGui/qtextformat.h \
@@ -460,7 +463,13 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtCore/qjsonvalue.h \
  /usr/include/qt6/QtCore/qcborvalue.h \
  /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
+ /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
  /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/QDateTime \
+ /usr/include/qt6/QtWidgets/QScrollArea \
+ /usr/include/qt6/QtWidgets/qscrollarea.h \
+ /usr/include/qt6/QtWidgets/QApplication \
+ /usr/include/qt6/QtWidgets/qapplication.h \
+ /usr/include/qt6/QtWidgets/QStyle /usr/include/qt6/QtGui/QPalette \
  /usr/include/taglib/fileref.h /usr/include/taglib/tfile.h \
  /usr/include/taglib/tbytevector.h /usr/include/taglib/taglib_export.h \
  /usr/include/taglib/tiostream.h /usr/include/taglib/taglib.h \
@@ -478,4 +487,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/taglib/tpicturetype.h /usr/include/taglib/flacfile.h \
  /usr/include/taglib/flacpicture.h \
  /usr/include/taglib/flacmetadatablock.h \
- /usr/include/taglib/flacproperties.h
+ /usr/include/taglib/flacproperties.h \
+ /usr/include/qt6/QtCore/QRegularExpression \
+ /usr/include/qt6/QtCore/QDirIterator \
+ /usr/include/qt6/QtCore/qdiriterator.h

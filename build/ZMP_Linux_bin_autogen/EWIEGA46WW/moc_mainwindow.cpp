@@ -33,6 +33,63 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
+struct qt_meta_tag_ZN21EqualizerPresetDialogE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto EqualizerPresetDialog::qt_create_metaobjectdata<qt_meta_tag_ZN21EqualizerPresetDialogE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "EqualizerPresetDialog"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<EqualizerPresetDialog, qt_meta_tag_ZN21EqualizerPresetDialogE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject EqualizerPresetDialog::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21EqualizerPresetDialogE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21EqualizerPresetDialogE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN21EqualizerPresetDialogE_t>.metaTypes,
+    nullptr
+} };
+
+void EqualizerPresetDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<EqualizerPresetDialog *>(_o);
+    (void)_t;
+    (void)_c;
+    (void)_id;
+    (void)_a;
+}
+
+const QMetaObject *EqualizerPresetDialog::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *EqualizerPresetDialog::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21EqualizerPresetDialogE_t>.strings))
+        return static_cast<void*>(this);
+    return QDialog::qt_metacast(_clname);
+}
+
+int EqualizerPresetDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QDialog::qt_metacall(_c, _id, _a);
+    return _id;
+}
+namespace {
 struct qt_meta_tag_ZN10MainWindowE_t {};
 } // unnamed namespace
 
@@ -52,7 +109,13 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onExit",
         "animateMenu",
         "onHiddenButtonClicked",
-        "onSelectionTimeout"
+        "onSelectionTimeout",
+        "onKeyBindingChanged",
+        "SettingsWidget::KeyAction",
+        "action",
+        "SettingsWidget::KeyBinding",
+        "binding",
+        "onKeyBindingsSaved"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -76,6 +139,12 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onSelectionTimeout'
         QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onKeyBindingChanged'
+        QtMocHelpers::SlotData<void(SettingsWidget::KeyAction, const SettingsWidget::KeyBinding &)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 14, 15 }, { 0x80000000 | 16, 17 },
+        }}),
+        // Slot 'onKeyBindingsSaved'
+        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -106,6 +175,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->animateMenu(); break;
         case 5: _t->onHiddenButtonClicked(); break;
         case 6: _t->onSelectionTimeout(); break;
+        case 7: _t->onKeyBindingChanged((*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyAction>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyBinding>>(_a[2]))); break;
+        case 8: _t->onKeyBindingsSaved(); break;
         default: ;
         }
     }
@@ -130,14 +201,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 9;
     }
     return _id;
 }

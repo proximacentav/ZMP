@@ -286,9 +286,9 @@ void FilesWidget::onSearchTextChanged(const QString &text)
 {
     QString searchText = text.trimmed();
     if (searchText.isEmpty()) {
-        m_proxyModel->setFilterFixedString("");
+        m_proxyModel->setFilterRegularExpression("");
     } else {
-        m_proxyModel->setFilterFixedString(searchText);
+        m_proxyModel->setFilterRegularExpression(QRegularExpression(searchText, QRegularExpression::CaseInsensitiveOption));
     }
 }
 

@@ -61,6 +61,12 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         "filePath",
         "maxBitrateChanged",
         "bitrate",
+        "keyBindingChanged",
+        "KeyAction",
+        "action",
+        "KeyBinding",
+        "binding",
+        "keyBindingsSaved",
         "onSliderChanged",
         "v",
         "onLineEditChanged",
@@ -72,7 +78,14 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         "onSpectrumGainChanged",
         "value",
         "showAboutDialog",
-        "onIconSizeChanged"
+        "onIconSizeChanged",
+        "showKeyBindingTab",
+        "showMainSettingsTab",
+        "onKeyCaptureButtonClicked",
+        "eventFilter",
+        "watched",
+        "QEvent*",
+        "event"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -114,35 +127,53 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(int)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 21 },
         }}),
+        // Signal 'keyBindingChanged'
+        QtMocHelpers::SignalData<void(enum KeyAction, const KeyBinding &)>(22, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 23, 24 }, { 0x80000000 | 25, 26 },
+        }}),
+        // Signal 'keyBindingsSaved'
+        QtMocHelpers::SignalData<void()>(27, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 23 },
+        QtMocHelpers::SlotData<void(int)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 29 },
         }}),
         // Slot 'onLineEditChanged'
-        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'toggleTheme'
-        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onColorChanged'
-        QtMocHelpers::SlotData<void(int)>(26, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 27 },
+        QtMocHelpers::SlotData<void(int)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 33 },
         }}),
         // Slot 'onHeightSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 23 },
+        QtMocHelpers::SlotData<void(int)>(34, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 29 },
         }}),
         // Slot 'onIconSizeSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(29, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 23 },
+        QtMocHelpers::SlotData<void(int)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 29 },
         }}),
         // Slot 'onSpectrumGainChanged'
-        QtMocHelpers::SlotData<void(int)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 31 },
+        QtMocHelpers::SlotData<void(int)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 37 },
         }}),
         // Slot 'showAboutDialog'
-        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIconSizeChanged'
-        QtMocHelpers::SlotData<void(int)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 23 },
+        QtMocHelpers::SlotData<void(int)>(39, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 29 },
+        }}),
+        // Slot 'showKeyBindingTab'
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'showMainSettingsTab'
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onKeyCaptureButtonClicked'
+        QtMocHelpers::SlotData<void(enum KeyAction)>(42, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 23, 24 },
+        }}),
+        // Slot 'eventFilter'
+        QtMocHelpers::SlotData<bool(QObject *, QEvent *)>(43, 2, QMC::AccessPrivate, QMetaType::Bool, {{
+            { QMetaType::QObjectStar, 44 }, { 0x80000000 | 45, 46 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -177,15 +208,22 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 7: _t->powerModeChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 8: _t->projectMPresetSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 9: _t->maxBitrateChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 11: _t->onLineEditChanged(); break;
-        case 12: _t->toggleTheme(); break;
-        case 13: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 14: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 15: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 16: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 17: _t->showAboutDialog(); break;
-        case 18: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 10: _t->keyBindingChanged((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<KeyBinding>>(_a[2]))); break;
+        case 11: _t->keyBindingsSaved(); break;
+        case 12: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 13: _t->onLineEditChanged(); break;
+        case 14: _t->toggleTheme(); break;
+        case 15: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 16: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 17: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 18: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 19: _t->showAboutDialog(); break;
+        case 20: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 21: _t->showKeyBindingTab(); break;
+        case 22: _t->showMainSettingsTab(); break;
+        case 23: _t->onKeyCaptureButtonClicked((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1]))); break;
+        case 24: { bool _r = _t->eventFilter((*reinterpret_cast<std::add_pointer_t<QObject*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QEvent*>>(_a[2])));
+            if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -210,6 +248,10 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(int )>(_a, &SettingsWidget::maxBitrateChanged, 9))
             return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(KeyAction , const KeyBinding & )>(_a, &SettingsWidget::keyBindingChanged, 10))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)()>(_a, &SettingsWidget::keyBindingsSaved, 11))
+            return;
     }
 }
 
@@ -232,14 +274,14 @@ int SettingsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 25;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 19)
+        if (_id < 25)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 19;
+        _id -= 25;
     }
     return _id;
 }
@@ -302,5 +344,17 @@ void SettingsWidget::projectMPresetSelected(const QString & _t1)
 void SettingsWidget::maxBitrateChanged(int _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 9, nullptr, _t1);
+}
+
+// SIGNAL 10
+void SettingsWidget::keyBindingChanged(KeyAction _t1, const KeyBinding & _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 10, nullptr, _t1, _t2);
+}
+
+// SIGNAL 11
+void SettingsWidget::keyBindingsSaved()
+{
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
 }
 QT_WARNING_POP

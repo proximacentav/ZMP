@@ -391,6 +391,17 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtMultimedia/qtaudio.h \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
+ /usr/include/qt6/QtGui/QKeyEvent /usr/include/qt6/QtGui/qevent.h \
+ /usr/include/qt6/QtCore/qiodevice.h /usr/include/qt6/QtCore/qurl.h \
+ /usr/include/qt6/QtGui/qeventpoint.h /usr/include/qt6/QtGui/qvector2d.h \
+ /usr/include/qt6/QtGui/qvectornd.h \
+ /usr/include/qt6/QtGui/qpointingdevice.h \
+ /usr/include/qt6/QtGui/qinputdevice.h /usr/include/qt6/QtGui/qscreen.h \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtCore/QRect /usr/include/qt6/QtCore/QSize \
+ /usr/include/qt6/QtCore/QSizeF /usr/include/qt6/QtGui/QTransform \
+ /usr/include/qt6/QtGui/qscreen_platform.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
@@ -400,25 +411,15 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/playerwidget.h \
  /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
- /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtCore/qiodevice.h \
- /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
+ /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtGui/qtextdocument.h \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtGui/QImage \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
  /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
  /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
  /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/qtextoption.h \
  /usr/include/qt6/QtGui/qpen.h /usr/include/qt6/QtGui/QPen \
  /usr/include/qt6/QtGui/QBrush /usr/include/qt6/QtGui/QMouseEvent \
- /usr/include/qt6/QtGui/qevent.h /usr/include/qt6/QtGui/qeventpoint.h \
- /usr/include/qt6/QtGui/qvector2d.h /usr/include/qt6/QtGui/qvectornd.h \
- /usr/include/qt6/QtGui/qpointingdevice.h \
- /usr/include/qt6/QtGui/qinputdevice.h /usr/include/qt6/QtGui/qscreen.h \
- /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/QObject \
- /usr/include/qt6/QtCore/QRect /usr/include/qt6/QtCore/QSize \
- /usr/include/qt6/QtCore/QSizeF /usr/include/qt6/QtGui/QTransform \
- /usr/include/qt6/QtGui/qscreen_platform.h \
  /usr/include/qt6/QtCore/QRandomGenerator \
  /usr/include/qt6/QtCore/qrandom.h /usr/include/c++/16.1.1/random \
  /usr/include/c++/16.1.1/bits/random.h \
@@ -426,8 +427,8 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/c++/16.1.1/bits/random.tcc \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
- /home/user/cp/zmp/equalizerwidget.h /usr/include/qt6/QtCore/QMap \
- /usr/include/qt6/QtWidgets/QSpinBox \
+ /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QFrame \
+ /home/user/cp/zmp/equalizerwidget.h /usr/include/qt6/QtWidgets/QSpinBox \
  /usr/include/qt6/QtWidgets/qspinbox.h \
  /usr/include/qt6/QtWidgets/QDoubleSpinBox \
  /usr/include/qt6/QtWidgets/QScrollArea \

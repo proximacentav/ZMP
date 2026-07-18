@@ -5,11 +5,12 @@
 #include <QMap>
 #include <QColor>
 #include <QLabel>
+#include <QPushButton>
+#include <QStackedWidget>
 
 class QSlider;
 class QComboBox;
 class QLineEdit;
-class QPushButton;
 class QCheckBox;
 
 class SettingsWidget : public QWidget
@@ -19,6 +20,23 @@ class SettingsWidget : public QWidget
 public:
     explicit SettingsWidget(QWidget *parent = nullptr);
     int maxBitrate() const;
+
+    enum KeyAction {
+        PrevTrack = 0,
+        NextTrack = 1,
+        PlayPause = 2,
+        EqualizerPreset = 3,
+        KeyActionCount = 4
+    };
+
+    struct KeyBinding {
+        Qt::Key key = Qt::Key_unknown;
+        Qt::KeyboardModifiers modifiers = Qt::NoModifier;
+        QString displayName;
+    };
+
+    QMap<KeyAction, KeyBinding> getKeyBindings() const;
+    void loadKeyBindings(const QMap<KeyAction, KeyBinding> &bindings);
 
 signals:
     void accentColorChanged(const QColor &color);
@@ -31,6 +49,8 @@ signals:
     void powerModeChanged(bool enabled);
     void projectMPresetSelected(const QString &filePath);
     void maxBitrateChanged(int bitrate);
+    void keyBindingChanged(KeyAction action, const KeyBinding &binding);
+    void keyBindingsSaved();
 
 private slots:
     void onSliderChanged(int v);
@@ -42,8 +62,25 @@ private slots:
     void onSpectrumGainChanged(int value);
     void showAboutDialog();
     void onIconSizeChanged(int v);
+    
+    void showKeyBindingTab();
+    void showMainSettingsTab();
+    void onKeyCaptureButtonClicked(KeyAction action);
+    bool eventFilter(QObject *watched, QEvent *event);
 
 private:
+    void setupMainSettingsTab();
+    void setupKeyBindingTab();
+    void onKeyCaptured(Qt::Key key, Qt::KeyboardModifiers modifiers);
+    void updateKeyBindingButton(KeyAction action);
+    void updateKeyBindingButtons();
+    void updateKeyBindingButtonStyle(int index, bool isWaiting);
+    QString keyToString(Qt::Key key, Qt::KeyboardModifiers modifiers);
+    KeyBinding stringToKeyBinding(const QString &str);
+    void createConfigDir();
+    void saveKeyBindingsToConfig();
+    void loadKeyBindingsFromConfig();
+
     QSlider *m_bitrateSlider;
     QLineEdit *m_bitrateEdit;
     QSlider *m_heightSlider;
@@ -58,7 +95,19 @@ private:
     QCheckBox *m_powerModeCheck;
     QPushButton *m_projectMPresetButton;
     QLabel *m_projectMPresetPath;
+    QPushButton *m_keyBindingButton;
     
+    QStackedWidget *m_stackedWidget;
+    QWidget *m_mainSettingsWidget;
+    QWidget *m_keyBindingWidget;
+    QPushButton *m_backButton;
+    QLabel *m_keyLabels[KeyActionCount];
+    QPushButton *m_keyCaptureButtons[KeyActionCount];
+    
+    QMap<KeyAction, KeyBinding> m_keyBindings;
+    bool m_waitingForKey = false;
+    KeyAction m_currentKeyAction = PrevTrack;
+
     bool m_darkTheme;
     QColor m_accentColor;
     QMap<QString, QColor> m_colorMap;

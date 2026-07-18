@@ -479,6 +479,7 @@
   /usr/include/qt6/QtGui/QConicalGradient \
   /usr/include/qt6/QtGui/QFileSystemModel \
   /usr/include/qt6/QtGui/QImage \
+  /usr/include/qt6/QtGui/QKeyEvent \
   /usr/include/qt6/QtGui/QMouseEvent \
   /usr/include/qt6/QtGui/QPainter \
   /usr/include/qt6/QtGui/QPainterPath \
@@ -575,6 +576,7 @@
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QDoubleSpinBox \
+  /usr/include/qt6/QtWidgets/QFrame \
   /usr/include/qt6/QtWidgets/QGridLayout \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \

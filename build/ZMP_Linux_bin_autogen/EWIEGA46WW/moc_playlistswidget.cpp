@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../playlistswidget.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -119,6 +120,94 @@ void PlaylistTileWidget::doubleClicked(const QStringList & _t1)
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 namespace {
+struct qt_meta_tag_ZN13ClustersPanelE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto ClustersPanel::qt_create_metaobjectdata<qt_meta_tag_ZN13ClustersPanelE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "ClustersPanel",
+        "clusterSelected",
+        "",
+        "clusterName"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+        // Signal 'clusterSelected'
+        QtMocHelpers::SignalData<void(const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<ClustersPanel, qt_meta_tag_ZN13ClustersPanelE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject ClustersPanel::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13ClustersPanelE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13ClustersPanelE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13ClustersPanelE_t>.metaTypes,
+    nullptr
+} };
+
+void ClustersPanel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<ClustersPanel *>(_o);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->clusterSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (ClustersPanel::*)(const QString & )>(_a, &ClustersPanel::clusterSelected, 0))
+            return;
+    }
+}
+
+const QMetaObject *ClustersPanel::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *ClustersPanel::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13ClustersPanelE_t>.strings))
+        return static_cast<void*>(this);
+    return QWidget::qt_metacast(_clname);
+}
+
+int ClustersPanel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void ClustersPanel::clusterSelected(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+}
+namespace {
 struct qt_meta_tag_ZN15PlaylistsWidgetE_t {};
 } // unnamed namespace
 
@@ -134,6 +223,8 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         "onPlaylistStopped",
         "onPlaylistClear",
         "loadPlaylists",
+        "filterByCluster",
+        "clusterName",
         "onAddClicked",
         "onDeleteClicked",
         "onEditClicked",
@@ -156,16 +247,20 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'loadPlaylists'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'filterByCluster'
+        QtMocHelpers::SlotData<void(const QString &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 9 },
+        }}),
         // Slot 'onAddClicked'
-        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onDeleteClicked'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onEditClicked'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'savePlaylistColors'
+        // Slot 'onDeleteClicked'
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'loadPlaylistColors'
+        // Slot 'onEditClicked'
         QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'savePlaylistColors'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'loadPlaylistColors'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -194,11 +289,12 @@ void PlaylistsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 2: _t->onPlaylistStopped(); break;
         case 3: _t->onPlaylistClear(); break;
         case 4: _t->loadPlaylists(); break;
-        case 5: _t->onAddClicked(); break;
-        case 6: _t->onDeleteClicked(); break;
-        case 7: _t->onEditClicked(); break;
-        case 8: _t->savePlaylistColors(); break;
-        case 9: _t->loadPlaylistColors(); break;
+        case 5: _t->filterByCluster((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: _t->onAddClicked(); break;
+        case 7: _t->onDeleteClicked(); break;
+        case 8: _t->onEditClicked(); break;
+        case 9: _t->savePlaylistColors(); break;
+        case 10: _t->loadPlaylistColors(); break;
         default: ;
         }
     }
@@ -227,14 +323,14 @@ int PlaylistsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }
@@ -355,5 +451,259 @@ int PlaylistEditDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void PlaylistEditDialog::playlistColorChanged(const QString & _t1, const QColor & _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
+}
+namespace {
+struct qt_meta_tag_ZN19CreateClusterDialogE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto CreateClusterDialog::qt_create_metaobjectdata<qt_meta_tag_ZN19CreateClusterDialogE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "CreateClusterDialog",
+        "onColorSelected",
+        "",
+        "QColor",
+        "color",
+        "onCreate",
+        "onAddPlaylist"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'onColorSelected'
+        QtMocHelpers::SlotData<void(const QColor &)>(1, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
+        }}),
+        // Slot 'onCreate'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onAddPlaylist'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<CreateClusterDialog, qt_meta_tag_ZN19CreateClusterDialogE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject CreateClusterDialog::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19CreateClusterDialogE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19CreateClusterDialogE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN19CreateClusterDialogE_t>.metaTypes,
+    nullptr
+} };
+
+void CreateClusterDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<CreateClusterDialog *>(_o);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->onColorSelected((*reinterpret_cast<std::add_pointer_t<QColor>>(_a[1]))); break;
+        case 1: _t->onCreate(); break;
+        case 2: _t->onAddPlaylist(); break;
+        default: ;
+        }
+    }
+}
+
+const QMetaObject *CreateClusterDialog::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *CreateClusterDialog::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19CreateClusterDialogE_t>.strings))
+        return static_cast<void*>(this);
+    return QDialog::qt_metacast(_clname);
+}
+
+int CreateClusterDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QDialog::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 3;
+    }
+    return _id;
+}
+namespace {
+struct qt_meta_tag_ZN17EditClusterDialogE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto EditClusterDialog::qt_create_metaobjectdata<qt_meta_tag_ZN17EditClusterDialogE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "EditClusterDialog",
+        "onColorSelected",
+        "",
+        "QColor",
+        "color",
+        "onSave",
+        "onAddPlaylist"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'onColorSelected'
+        QtMocHelpers::SlotData<void(const QColor &)>(1, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 },
+        }}),
+        // Slot 'onSave'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onAddPlaylist'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<EditClusterDialog, qt_meta_tag_ZN17EditClusterDialogE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject EditClusterDialog::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17EditClusterDialogE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17EditClusterDialogE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN17EditClusterDialogE_t>.metaTypes,
+    nullptr
+} };
+
+void EditClusterDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<EditClusterDialog *>(_o);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->onColorSelected((*reinterpret_cast<std::add_pointer_t<QColor>>(_a[1]))); break;
+        case 1: _t->onSave(); break;
+        case 2: _t->onAddPlaylist(); break;
+        default: ;
+        }
+    }
+}
+
+const QMetaObject *EditClusterDialog::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *EditClusterDialog::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17EditClusterDialogE_t>.strings))
+        return static_cast<void*>(this);
+    return QDialog::qt_metacast(_clname);
+}
+
+int EditClusterDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QDialog::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 3;
+    }
+    return _id;
+}
+namespace {
+struct qt_meta_tag_ZN16ArtistScanDialogE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto ArtistScanDialog::qt_create_metaobjectdata<qt_meta_tag_ZN16ArtistScanDialogE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "ArtistScanDialog",
+        "onAddFolder",
+        "",
+        "onStartScan"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+        // Slot 'onAddFolder'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onStartScan'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<ArtistScanDialog, qt_meta_tag_ZN16ArtistScanDialogE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject ArtistScanDialog::staticMetaObject = { {
+    QMetaObject::SuperData::link<QDialog::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16ArtistScanDialogE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16ArtistScanDialogE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN16ArtistScanDialogE_t>.metaTypes,
+    nullptr
+} };
+
+void ArtistScanDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<ArtistScanDialog *>(_o);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->onAddFolder(); break;
+        case 1: _t->onStartScan(); break;
+        default: ;
+        }
+    }
+    (void)_a;
+}
+
+const QMetaObject *ArtistScanDialog::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *ArtistScanDialog::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16ArtistScanDialogE_t>.strings))
+        return static_cast<void*>(this);
+    return QDialog::qt_metacast(_clname);
+}
+
+int ArtistScanDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QDialog::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 2)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 2;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 2)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 2;
+    }
+    return _id;
 }
 QT_WARNING_POP

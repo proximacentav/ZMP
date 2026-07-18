@@ -16,6 +16,12 @@
 #include <QTransform>
 #include <QPair>
 #include <QDialog>
+#include <QMap>
+#include <QPushButton>
+#include <QStackedWidget>
+#include <QComboBox>
+#include <QLabel>
+#include <QFrame>
 
 struct PlaylistInfo {
     QString name;
@@ -25,7 +31,6 @@ struct PlaylistInfo {
 };
 Q_DECLARE_METATYPE(PlaylistInfo)
 
-// Forward declaration of PlaylistEditDialog
 class PlaylistEditDialog;
 
 class PlaylistTileWidget : public QWidget {
@@ -173,6 +178,35 @@ private:
     int m_scrollX;
 };
 
+struct ClusterInfo {
+    QString name;
+    QColor color;
+};
+
+class CreateClusterDialog;
+class EditClusterDialog;
+class ArtistScanDialog;
+
+class ClustersPanel : public QWidget {
+    Q_OBJECT
+public:
+    explicit ClustersPanel(QWidget *parent = nullptr);
+    void loadClusters();
+    void setPlaylistsWidget(class PlaylistsWidget *pw) { m_playlistsWidget = pw; }
+
+signals:
+    void clusterSelected(const QString &clusterName);
+
+private:
+    void onToggleVisibility();
+    void onAddCluster();
+    void onEditCluster();
+
+    QListWidget *m_clusterList;
+    class PlaylistsWidget *m_playlistsWidget = nullptr;
+    friend class PlaylistsWidget;
+};
+
 class PlaylistsWidget : public QWidget
 {
     Q_OBJECT
@@ -187,6 +221,7 @@ public slots:
     void onPlaylistStopped();
     void onPlaylistClear();
     void loadPlaylists();
+    void filterByCluster(const QString &clusterName);
 
 private slots:
     void onAddClicked();
@@ -198,12 +233,33 @@ private slots:
 public:
     static QString basePath();
     static QStringList supportedExts();
+    static QString clusterPath(const QString &clusterName);
+    static QString clusterFolderName(const QString &clusterName);
+
+    QStringList getPlaylistsInCluster(const QString &clusterName) const;
+    QStringList getUnclusteredPlaylists() const;
+    QStringList allPlaylistFolders() const;
+    void addPlaylistToCluster(const QString &playlistName, const QString &clusterName);
+
+    void saveClusters();
+    void loadClusters();
+    bool isFirstRun() const;
+    void setupDefaultClusters();
 
     QListWidget *m_listWidget;
+    QFrame *m_tilesFrame;
     QList<PlaylistInfo> m_playlists;
     QMap<QString, QColor> m_playlistColors;
-    
+    QList<ClusterInfo> m_clusters;
+    ClustersPanel *m_clustersPanel = nullptr;
+    QString m_currentClusterFilter;
+    static const QString UnclusteredFilter;
+
     friend class PlaylistEditDialog;
+    friend class CreateClusterDialog;
+    friend class EditClusterDialog;
+    friend class ArtistScanDialog;
+    friend class ClustersPanel;
 };
 
 class PlaylistEditDialog : public QDialog {
@@ -213,6 +269,7 @@ public:
     void loadTracks();
     void setupColorButtons();
     void saveChanges();
+    void setupClusterCombo();
 
 signals:
     void playlistColorChanged(const QString &name, const QColor &color);
@@ -231,5 +288,60 @@ private:
     QPushButton *m_applyBtn;
     QPushButton *m_cancelBtn;
     QStringList m_tracks;
+    QComboBox *m_clusterCombo = nullptr;
 };
+
+class CreateClusterDialog : public QDialog {
+    Q_OBJECT
+public:
+    explicit CreateClusterDialog(QWidget *parent = nullptr);
+    QString clusterName() const;
+    QColor clusterColor() const;
+    QStringList selectedPlaylists() const;
+
+private slots:
+    void onColorSelected(const QColor &color);
+    void onCreate();
+    void onAddPlaylist();
+
+private:
+    QLineEdit *m_nameEdit;
+    QColor m_color;
+    QListWidget *m_playlistCheckList;
+};
+
+class EditClusterDialog : public QDialog {
+    Q_OBJECT
+public:
+    explicit EditClusterDialog(const QString &clusterName, QWidget *parent = nullptr);
+    QColor clusterColor() const;
+    QStringList selectedPlaylists() const;
+
+private slots:
+    void onColorSelected(const QColor &color);
+    void onSave();
+    void onAddPlaylist();
+
+private:
+    QString m_clusterName;
+    QColor m_color;
+    QListWidget *m_playlistCheckList;
+};
+
+class ArtistScanDialog : public QDialog {
+    Q_OBJECT
+public:
+    explicit ArtistScanDialog(QWidget *parent = nullptr);
+    void scanFolders();
+
+private slots:
+    void onAddFolder();
+    void onStartScan();
+
+private:
+    QListWidget *m_folderList;
+    QPushButton *m_startBtn;
+    QLabel *m_statusLabel;
+};
+
 #endif // PLAYLISTSWIDGET_H

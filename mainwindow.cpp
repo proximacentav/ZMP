@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QTimer>
 #include <QInputDialog>
+#include <QEvent>
+#include <QKeyEvent>
+#include <QListWidget>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_menuIndicator(nullptr), m_menuIndicatorY(0), m_menuIndicatorTargetY(0)
@@ -33,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_menu->setStyleSheet(
         "QListWidget { background: transparent; border: none; outline: none; }"
         "QListWidget::item { background: transparent; color: white; padding: 12px; border-radius: 8px; }"
-        "QListWidget::item:selected { background: transparent; color: white; }" // Прозрачный при выделении
+        "QListWidget::item:selected { background: transparent; color: white; }"
     );
     menuContLayout->addWidget(m_menu, 1);
 
@@ -165,10 +168,71 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_miniPlayerBar, &MiniPlayerBar::nextClicked, m_playerWidget, &PlayerWidget::onNext);
     connect(m_playerWidget, &PlayerWidget::trackInfoChanged, m_miniPlayerBar, &MiniPlayerBar::setTrackInfo);
 
+    connect(m_settingsWidget, &SettingsWidget::keyBindingChanged, this, &MainWindow::onKeyBindingChanged);
+    connect(m_settingsWidget, &SettingsWidget::keyBindingsSaved, this, &MainWindow::onKeyBindingsSaved);
+
     if (!m_devicesWidget->selectedDevice().isNull())
         m_audioManager->setActiveOutputDevice(m_devicesWidget->selectedDevice());
 
+    qApp->installEventFilter(this);
+
+    loadKeyBindingsFromSettings();
+
     new MprisController(m_audioManager, m_playerWidget, this, this);
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
+    if (event->type() == QEvent::KeyPress) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+        handleKeyPress(static_cast<Qt::Key>(keyEvent->key()), keyEvent->modifiers());
+        return false;
+    }
+    return QMainWindow::eventFilter(watched, event);
+}
+
+void MainWindow::handleKeyPress(Qt::Key key, Qt::KeyboardModifiers modifiers) {
+    for (auto it = m_keyBindings.begin(); it != m_keyBindings.end(); ++it) {
+        const SettingsWidget::KeyBinding &binding = it.value();
+        if (binding.key == key && binding.modifiers == modifiers) {
+            switch (it.key()) {
+                case SettingsWidget::PrevTrack:
+                    m_playerWidget->onPrev();
+                    break;
+                case SettingsWidget::NextTrack:
+                    m_playerWidget->onNext();
+                    break;
+                case SettingsWidget::PlayPause:
+                    m_playerWidget->onPlayClicked();
+                    break;
+                case SettingsWidget::EqualizerPreset:
+                    showEqualizerPresetDialog();
+                    break;
+            }
+            break;
+        }
+    }
+}
+
+void MainWindow::onKeyBindingChanged(SettingsWidget::KeyAction action, const SettingsWidget::KeyBinding &binding) {
+    m_keyBindings[action] = binding;
+}
+
+void MainWindow::onKeyBindingsSaved() {
+    // Key bindings are already updated via onKeyBindingChanged
+}
+
+void MainWindow::showEqualizerPresetDialog() {
+    EqualizerPresetDialog dialog(this);
+    if (dialog.exec() == QDialog::Accepted) {
+        QString preset = dialog.getSelectedPreset();
+        if (!preset.isEmpty()) {
+            m_equalizerWidget->applyPreset(preset);
+        }
+    }
+}
+
+void MainWindow::loadKeyBindingsFromSettings() {
+    m_keyBindings = m_settingsWidget->getKeyBindings();
 }
 
 void MainWindow::animateMenu() {
@@ -292,4 +356,44 @@ void MainWindow::resetButton() {
 
 void MainWindow::onFeaturedUpdated() {
     m_playlistsWidget->loadPlaylists();
+}
+
+EqualizerPresetDialog::EqualizerPresetDialog(QWidget *parent)
+    : QDialog(parent)
+{
+    setWindowTitle("Выбор пресета");
+    resize(300, 250);
+    
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    
+    m_presetList = new QListWidget(this);
+    m_presetList->addItems({"Default", "Bass", "Treble", "Pop", "Dance"});
+    m_presetList->setCurrentRow(0);
+    m_presetList->setFocus();
+    
+    layout->addWidget(m_presetList);
+}
+
+void EqualizerPresetDialog::keyPressEvent(QKeyEvent *event) {
+    switch (event->key()) {
+        case Qt::Key_Up:
+            if (m_presetList->currentRow() > 0)
+                m_presetList->setCurrentRow(m_presetList->currentRow() - 1);
+            break;
+        case Qt::Key_Down:
+            if (m_presetList->currentRow() < m_presetList->count() - 1)
+                m_presetList->setCurrentRow(m_presetList->currentRow() + 1);
+            break;
+        case Qt::Key_Return:
+        case Qt::Key_Enter:
+            m_selectedPreset = m_presetList->currentItem()->text();
+            accept();
+            break;
+        case Qt::Key_Escape:
+            reject();
+            break;
+        default:
+            QDialog::keyPressEvent(event);
+            break;
+    }
 }
