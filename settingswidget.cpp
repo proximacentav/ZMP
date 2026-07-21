@@ -150,6 +150,14 @@ void SettingsWidget::setupMainSettingsTab() {
     m_heightSlider->setTickPosition(QSlider::TicksBelow);
     layout->addWidget(m_heightSlider);
 
+    layout->addWidget(new QLabel("Размер иконок (px):"));
+    m_iconSizeSlider = new QSlider(Qt::Horizontal);
+    m_iconSizeSlider->setRange(16, 64);
+    m_iconSizeSlider->setValue(32);
+    m_iconSizeSlider->setTickPosition(QSlider::TicksBelow);
+    m_iconSizeSlider->setTickInterval(4);
+    layout->addWidget(m_iconSizeSlider);
+
     layout->addWidget(new QLabel("чувствительность спектрограммы:"));
     m_spectrumGainSlider = new QSlider(Qt::Horizontal);
     m_spectrumGainSlider->setRange(10, 1600);

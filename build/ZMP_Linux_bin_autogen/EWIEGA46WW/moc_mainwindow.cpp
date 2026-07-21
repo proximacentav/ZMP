@@ -108,8 +108,10 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "path",
         "onExit",
         "animateMenu",
-        "onHiddenButtonClicked",
-        "onSelectionTimeout",
+        "onUserButtonClicked",
+        "showRootPasswordDialog",
+        "showLogDialog",
+        "autoSaveLogs",
         "onKeyBindingChanged",
         "SettingsWidget::KeyAction",
         "action",
@@ -135,16 +137,20 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'animateMenu'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onHiddenButtonClicked'
+        // Slot 'onUserButtonClicked'
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onSelectionTimeout'
+        // Slot 'showRootPasswordDialog'
         QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'showLogDialog'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'autoSaveLogs'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onKeyBindingChanged'
-        QtMocHelpers::SlotData<void(SettingsWidget::KeyAction, const SettingsWidget::KeyBinding &)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 14, 15 }, { 0x80000000 | 16, 17 },
+        QtMocHelpers::SlotData<void(SettingsWidget::KeyAction, const SettingsWidget::KeyBinding &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 16, 17 }, { 0x80000000 | 18, 19 },
         }}),
         // Slot 'onKeyBindingsSaved'
-        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -173,10 +179,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->onFileSelected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->onExit(); break;
         case 4: _t->animateMenu(); break;
-        case 5: _t->onHiddenButtonClicked(); break;
-        case 6: _t->onSelectionTimeout(); break;
-        case 7: _t->onKeyBindingChanged((*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyAction>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyBinding>>(_a[2]))); break;
-        case 8: _t->onKeyBindingsSaved(); break;
+        case 5: _t->onUserButtonClicked(); break;
+        case 6: _t->showRootPasswordDialog(); break;
+        case 7: _t->showLogDialog(); break;
+        case 8: _t->autoSaveLogs(); break;
+        case 9: _t->onKeyBindingChanged((*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyAction>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<SettingsWidget::KeyBinding>>(_a[2]))); break;
+        case 10: _t->onKeyBindingsSaved(); break;
         default: ;
         }
     }
@@ -201,14 +209,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 11;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 11;
     }
     return _id;
 }

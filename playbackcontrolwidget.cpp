@@ -12,6 +12,8 @@
 #include <QListWidget>
 #include <QAbstractItemView>
 #include <QDialog>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 #include <taglib/mpegfile.h>
@@ -624,85 +626,140 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
     QString currentTrack = m_playlist[m_currentIndex];
     QFileInfo currentFi(currentTrack);
     QString currentFileName = currentFi.fileName();
-
-    QDialog dialog(this);
-    dialog.setWindowTitle("Добавить в плейлист");
-    dialog.resize(300, 200);
-
-    QVBoxLayout *mainLayout = new QVBoxLayout(&dialog);
-
-    QLabel *label = new QLabel("Выберите плейлист:");
-    mainLayout->addWidget(label);
-
-    QListWidget *playlistList = new QListWidget(&dialog);
-    playlistList->setSelectionMode(QAbstractItemView::SingleSelection);
-
     QString playlistsPath = QDir::homePath() + "/zmp_playlists";
     QDir playlistsDir(playlistsPath);
 
     if (!playlistsDir.exists()) {
-        QMessageBox::warning(&dialog, "Ошибка", "Папка плейлистов не найдена");
+        QMessageBox::warning(this, "Ошибка", "Папка плейлистов не найдена");
         return;
     }
 
-    QStringList playlistDirs = playlistsDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-    bool hasPlaylists = false;
+    QStringList clusters;
+    QFile configFile(playlistsPath + "/config.json");
+    if (configFile.open(QIODevice::ReadOnly)) {
+        QJsonDocument doc = QJsonDocument::fromJson(configFile.readAll());
+        configFile.close();
+        if (doc.isObject()) {
+            QJsonObject clustersObj = doc.object()["clusters"].toObject();
+            for (auto it = clustersObj.begin(); it != clustersObj.end(); ++it)
+                clusters.append(it.key());
+        }
+    }
+    clusters.sort();
 
-    for (const QString &dir : playlistDirs) {
+    QStringList allDirs = playlistsDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    QStringList unclustered;
+    for (const QString &dir : allDirs) {
         if (dir == "featured_music") continue;
+        if (clusters.contains(dir)) continue;
+        unclustered.append(dir);
+    }
+    unclustered.sort();
 
-        playlistList->addItem(dir);
-        hasPlaylists = true;
+    // Step 1: select category
+    QDialog catDialog(this);
+    catDialog.setWindowTitle("Добавить в плейлист");
+    catDialog.resize(300, 300);
+    QVBoxLayout *catLayout = new QVBoxLayout(&catDialog);
+    QLabel *catLabel = new QLabel("Выберите категорию:");
+    catLayout->addWidget(catLabel);
+    QListWidget *catList = new QListWidget(&catDialog);
+    catList->addItem("featured_music");
+    for (const QString &c : clusters)
+        catList->addItem(c);
+    if (!unclustered.isEmpty())
+        catList->addItem("Без кластера");
+    catLayout->addWidget(catList, 1);
+    QPushButton *catOk = new QPushButton("Далее");
+    QPushButton *catCancel = new QPushButton("Отмена");
+    QHBoxLayout *catBtnLayout = new QHBoxLayout();
+    catBtnLayout->addWidget(catOk);
+    catBtnLayout->addWidget(catCancel);
+    catLayout->addLayout(catBtnLayout);
+    connect(catOk, &QPushButton::clicked, &catDialog, &QDialog::accept);
+    connect(catCancel, &QPushButton::clicked, &catDialog, &QDialog::reject);
+    connect(catList, &QListWidget::itemDoubleClicked, &catDialog, &QDialog::accept);
+
+    if (catDialog.exec() != QDialog::Accepted) return;
+    QListWidgetItem *catItem = catList->currentItem();
+    if (!catItem) return;
+    QString category = catItem->text();
+
+    QString destPath;
+    if (category == "featured_music") {
+        QString featuredPath = playlistsPath + "/featured_music";
+        QDir().mkpath(featuredPath);
+        destPath = featuredPath + "/" + currentFileName;
+    } else if (category == "Без кластера") {
+        // Step 2: choose unclustered playlist
+        QDialog plDialog(this);
+        plDialog.setWindowTitle("Выберите плейлист");
+        plDialog.resize(300, 250);
+        QVBoxLayout *plLayout = new QVBoxLayout(&plDialog);
+        QLabel *plLabel = new QLabel("Выберите плейлист:");
+        plLayout->addWidget(plLabel);
+        QListWidget *plList = new QListWidget(&plDialog);
+        for (const QString &pl : unclustered)
+            plList->addItem(pl);
+        plLayout->addWidget(plList, 1);
+        QPushButton *plOk = new QPushButton("ОК");
+        QPushButton *plCancel = new QPushButton("Отмена");
+        QHBoxLayout *plBtnLayout = new QHBoxLayout();
+        plBtnLayout->addWidget(plOk);
+        plBtnLayout->addWidget(plCancel);
+        plLayout->addLayout(plBtnLayout);
+        connect(plOk, &QPushButton::clicked, &plDialog, &QDialog::accept);
+        connect(plCancel, &QPushButton::clicked, &plDialog, &QDialog::reject);
+        connect(plList, &QListWidget::itemDoubleClicked, &plDialog, &QDialog::accept);
+        if (plDialog.exec() != QDialog::Accepted) return;
+        QListWidgetItem *plItem = plList->currentItem();
+        if (!plItem) return;
+        destPath = playlistsPath + "/" + plItem->text() + "/" + currentFileName;
+    } else {
+        // Step 2: choose playlist inside cluster
+        QDialog plDialog(this);
+        plDialog.setWindowTitle("Выберите плейлист");
+        plDialog.resize(300, 250);
+        QVBoxLayout *plLayout = new QVBoxLayout(&plDialog);
+        QLabel *plLabel = new QLabel(QString("Плейлисты в кластере \"%1\":" ).arg(category));
+        plLayout->addWidget(plLabel);
+        QListWidget *plList = new QListWidget(&plDialog);
+        QDir clusterDir(playlistsPath + "/" + category);
+        QStringList playlistsInCluster = clusterDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+        playlistsInCluster.sort();
+        for (const QString &pl : playlistsInCluster)
+            plList->addItem(pl);
+        plLayout->addWidget(plList, 1);
+        QPushButton *plOk = new QPushButton("ОК");
+        QPushButton *plCancel = new QPushButton("Отмена");
+        QHBoxLayout *plBtnLayout = new QHBoxLayout();
+        plBtnLayout->addWidget(plOk);
+        plBtnLayout->addWidget(plCancel);
+        plLayout->addLayout(plBtnLayout);
+        connect(plOk, &QPushButton::clicked, &plDialog, &QDialog::accept);
+        connect(plCancel, &QPushButton::clicked, &plDialog, &QDialog::reject);
+        connect(plList, &QListWidget::itemDoubleClicked, &plDialog, &QDialog::accept);
+        if (plDialog.exec() != QDialog::Accepted) return;
+        QListWidgetItem *plItem = plList->currentItem();
+        if (!plItem) return;
+        destPath = playlistsPath + "/" + category + "/" + plItem->text() + "/" + currentFileName;
     }
 
-    if (!hasPlaylists) {
-        playlistList->addItem("Нет плейлистов");
-    }
-
-    mainLayout->addWidget(playlistList);
-
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    QPushButton *okBtn = new QPushButton("ОК");
-    QPushButton *cancelBtn = new QPushButton("Отмена");
-
-    buttonLayout->addWidget(okBtn);
-    buttonLayout->addWidget(cancelBtn);
-    mainLayout->addLayout(buttonLayout);
-
-    connect(okBtn, &QPushButton::clicked, &dialog, &QDialog::accept);
-    connect(cancelBtn, &QPushButton::clicked, &dialog, &QDialog::reject);
-
-    if (dialog.exec() == QDialog::Accepted) {
-        QListWidgetItem *selectedItem = playlistList->currentItem();
-        if (!selectedItem) return;
-
-        QString playlistName = selectedItem->text();
-        if (playlistName == "Нет плейлистов") return;
-
-        QString playlistPath = playlistsPath + "/" + playlistName;
-        QString destPath = playlistPath + "/" + currentFileName;
-
-        if (QFile::exists(destPath)) {
-            if (QFile::remove(destPath)) {
-                if (QFile::copy(currentTrack, destPath)) {
-                    QMessageBox::information(&dialog, "Успех",
-                        QString("Файл перезаписан в плейлист \"%1\"").arg(playlistName));
-                } else {
-                    QMessageBox::critical(&dialog, "Ошибка",
-                        QString("Не удалось скопировать файл в плейлист \"%1\"").arg(playlistName));
-                }
+    if (QFile::exists(destPath)) {
+        if (QFile::remove(destPath)) {
+            if (QFile::copy(currentTrack, destPath)) {
+                QMessageBox::information(this, "Успех", "Файл перезаписан");
             } else {
-                QMessageBox::critical(&dialog, "Ошибка",
-                    QString("Не удалось удалить старый файл из плейлиста \"%1\"").arg(playlistName));
+                QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
             }
         } else {
-            if (QFile::copy(currentTrack, destPath)) {
-                QMessageBox::information(&dialog, "Успех",
-                    QString("Файл добавлен в плейлист \"%1\"").arg(playlistName));
-            } else {
-                QMessageBox::critical(&dialog, "Ошибка",
-                    QString("Не удалось скопировать файл в плейлист \"%1\"").arg(playlistName));
-            }
+            QMessageBox::critical(this, "Ошибка", "Не удалось удалить старый файл");
+        }
+    } else {
+        if (QFile::copy(currentTrack, destPath)) {
+            QMessageBox::information(this, "Успех", "Файл добавлен в плейлист");
+        } else {
+            QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
         }
     }
 }

@@ -36,6 +36,7 @@ class FilesWidget : public QWidget
 public:
     explicit FilesWidget(QWidget *parent = nullptr);
     QString currentSelectedFile() const;
+    void setRootPassword(const QString &password);
 
 signals:
     void fileSelected(const QString &path);
@@ -71,6 +72,10 @@ private slots:
     void onFtpListDoubleClicked(QListWidgetItem *item);
     void onFtpDownloadFinished();
     void onFtpBackClicked();
+    void onRootListDoubleClicked(QListWidgetItem *item);
+    void onRootBackClicked();
+    void onBrowseRootSearch();
+    void switchToRootView(const QString &path);
     void showPlaylistSaveDialog(const QString &fileName);
     void showDirectorySaveDialog(const QString &fileName);
     void onSslErrorsUi(const QList<QSslError> &errors);
@@ -107,6 +112,15 @@ private:
 
     FTPClient  *m_ftpClient;
     bool        m_ftpConnected;
+    bool        m_hasRootAccess = false;
+    QString     m_rootPassword;
+    QString     m_rootCurrentPath;
+
+    QWidget    *m_rootViewPage;
+    QLabel     *m_rootPathLabel;
+    QPushButton *m_rootBackButton;
+    QListWidget *m_rootListWidget;
+    QLineEdit  *m_rootPathEdit;
     QString     m_ftpScheme;
     QString     m_ftpHost;
     int         m_ftpPort;

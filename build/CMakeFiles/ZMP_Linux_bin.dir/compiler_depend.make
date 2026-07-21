@@ -3444,15 +3444,19 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/assert.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
   /usr/include/bits/cpu-set.h \
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/errno.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/flt-eval-method.h \
   /usr/include/bits/fp-fast.h \
   /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/libm-simd-decl-stubs.h \
@@ -3466,6 +3470,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/bits/mathcalls.h \
   /usr/include/bits/posix1_lim.h \
   /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
@@ -3512,6 +3517,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/bits/typesizes.h \
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
   /usr/include/bits/wchar.h \
@@ -3738,6 +3744,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/gnu/stubs.h \
   /usr/include/libintl.h \
   /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
   /usr/include/linux/posix_types.h \
@@ -4067,6 +4074,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/sys/single_threaded.h \
   /usr/include/sys/types.h \
   /usr/include/time.h \
+  /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/limits.h \
@@ -5319,15 +5327,22 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
+  /usr/include/bits/cloexec.h \
+  /usr/include/bits/confname.h \
   /usr/include/bits/cpu-set.h \
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/errno.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/bits/fcntl.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/flt-eval-method.h \
   /usr/include/bits/fp-fast.h \
   /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/libm-simd-decl-stubs.h \
@@ -5339,14 +5354,17 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/bits/mathcalls-macros.h \
   /usr/include/bits/mathcalls-narrow.h \
   /usr/include/bits/mathcalls.h \
+  /usr/include/bits/openat2.h \
   /usr/include/bits/posix1_lim.h \
   /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/sched.h \
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
+  /usr/include/bits/stat.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
@@ -5354,6 +5372,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/struct_stat.h \
   /usr/include/bits/thread-shared-types.h \
   /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
@@ -5376,6 +5395,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/bits/types/sigset_t.h \
   /usr/include/bits/types/struct_FILE.h \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_iovec.h \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/types/struct_sched_param.h \
   /usr/include/bits/types/struct_timespec.h \
@@ -5387,6 +5407,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/bits/typesizes.h \
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
   /usr/include/bits/wchar.h \
@@ -5608,9 +5629,11 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/opt_random.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/c++/16.1.1/x86_64-pc-linux-gnu/bits/time_members.h \
+  /usr/include/crypt.h \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
+  /usr/include/fcntl.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
@@ -5618,8 +5641,11 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/inttypes.h \
   /usr/include/libintl.h \
   /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
+  /usr/include/linux/falloc.h \
   /usr/include/linux/limits.h \
+  /usr/include/linux/openat2.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/sched/types.h \
   /usr/include/linux/stddef.h \
@@ -5627,7 +5653,10 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/locale.h \
   /usr/include/math.h \
   /usr/include/pthread.h \
+  /usr/include/pwd.h \
+  /usr/include/qt6/QtCore/QDateTime \
   /usr/include/qt6/QtCore/QDebug \
+  /usr/include/qt6/QtCore/QDir \
   /usr/include/qt6/QtCore/QEvent \
   /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFlags \
@@ -5644,9 +5673,11 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
+  /usr/include/qt6/QtCore/QSocketNotifier \
   /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
+  /usr/include/qt6/QtCore/QTextStream \
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
@@ -5765,6 +5796,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/qsharedpointer.h \
   /usr/include/qt6/QtCore/qsharedpointer_impl.h \
   /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qsocketnotifier.h \
   /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
   /usr/include/qt6/QtCore/qspan.h \
   /usr/include/qt6/QtCore/qstdlibdetection.h \
@@ -5832,6 +5864,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtGui/QPainter \
   /usr/include/qt6/QtGui/QPainterPath \
   /usr/include/qt6/QtGui/QPen \
+  /usr/include/qt6/QtGui/QPixmap \
   /usr/include/qt6/QtGui/QSurfaceFormat \
   /usr/include/qt6/QtGui/QTransform \
   /usr/include/qt6/QtGui/qaction.h \
@@ -5924,23 +5957,29 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/QApplication \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/QDialogButtonBox \
   /usr/include/qt6/QtWidgets/QDoubleSpinBox \
+  /usr/include/qt6/QtWidgets/QFileDialog \
+  /usr/include/qt6/QtWidgets/QFormLayout \
   /usr/include/qt6/QtWidgets/QFrame \
   /usr/include/qt6/QtWidgets/QGridLayout \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QInputDialog \
   /usr/include/qt6/QtWidgets/QLabel \
+  /usr/include/qt6/QtWidgets/QLayout \
   /usr/include/qt6/QtWidgets/QLineEdit \
   /usr/include/qt6/QtWidgets/QListWidget \
   /usr/include/qt6/QtWidgets/QListWidgetItem \
   /usr/include/qt6/QtWidgets/QMainWindow \
   /usr/include/qt6/QtWidgets/QMenu \
+  /usr/include/qt6/QtWidgets/QMessageBox \
   /usr/include/qt6/QtWidgets/QProgressBar \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QStackedWidget \
+  /usr/include/qt6/QtWidgets/QTextEdit \
   /usr/include/qt6/QtWidgets/QTreeView \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \
@@ -5954,6 +5993,9 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
   /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+  /usr/include/qt6/QtWidgets/qfiledialog.h \
+  /usr/include/qt6/QtWidgets/qformlayout.h \
   /usr/include/qt6/QtWidgets/qframe.h \
   /usr/include/qt6/QtWidgets/qgridlayout.h \
   /usr/include/qt6/QtWidgets/qinputdialog.h \
@@ -5965,6 +6007,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qlistwidget.h \
   /usr/include/qt6/QtWidgets/qmainwindow.h \
   /usr/include/qt6/QtWidgets/qmenu.h \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
   /usr/include/qt6/QtWidgets/qprogressbar.h \
   /usr/include/qt6/QtWidgets/qpushbutton.h \
   /usr/include/qt6/QtWidgets/qrubberband.h \
@@ -5977,6 +6020,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qstyleoption.h \
   /usr/include/qt6/QtWidgets/qtabbar.h \
   /usr/include/qt6/QtWidgets/qtabwidget.h \
+  /usr/include/qt6/QtWidgets/qtextedit.h \
   /usr/include/qt6/QtWidgets/qtreeview.h \
   /usr/include/qt6/QtWidgets/qtwidgets-config.h \
   /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
@@ -5994,6 +6038,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/sys/single_threaded.h \
   /usr/include/sys/types.h \
   /usr/include/time.h \
+  /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/limits.h \
@@ -7475,6 +7520,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtCore/QDir \
   /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFileInfo \
+  /usr/include/qt6/QtCore/QJsonDocument \
+  /usr/include/qt6/QtCore/QJsonObject \
   /usr/include/qt6/QtCore/QObject \
   /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTime \
@@ -7508,6 +7555,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtCore/qbytearraylist.h \
   /usr/include/qt6/QtCore/qbytearrayview.h \
   /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
   /usr/include/qt6/QtCore/qchar.h \
   /usr/include/qt6/QtCore/qcheckedint_impl.h \
   /usr/include/qt6/QtCore/qcompare.h \
@@ -7548,6 +7597,10 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtCore/qitemselectionmodel.h \
   /usr/include/qt6/QtCore/qiterable.h \
   /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qjsondocument.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonparseerror.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
   /usr/include/qt6/QtCore/qlatin1stringview.h \
   /usr/include/qt6/QtCore/qline.h \
   /usr/include/qt6/QtCore/qlist.h \
@@ -7622,6 +7675,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtCore/qtypes.h \
   /usr/include/qt6/QtCore/qurl.h \
   /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
@@ -10185,6 +10239,7 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
   /usr/lib/libcom_err.so.2 \
+  /usr/lib/libcrypt.so \
   /usr/lib/libcrypto.so.3 \
   /usr/lib/libcurl.so.4 \
   /usr/lib/libdbus-1.so.3 \
@@ -10486,19 +10541,9 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/c++/16.1.1/cstdarg:
 
-/usr/include/bits/unistd_ext.h:
-
-/usr/include/bits/posix_opt.h:
-
-/usr/include/bits/getopt_core.h:
-
 /usr/include/bits/dirent_ext.h:
 
 /usr/include/bits/dirent.h:
-
-CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
-
-/usr/include/bits/confname.h:
 
 /usr/include/taglib/flacproperties.h:
 
@@ -10506,15 +10551,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 
 /usr/include/qt6/QtGui/QPalette:
 
-/usr/include/qt6/QtCore/qjsonobject.h:
-
 /usr/include/qt6/QtCore/qdiriterator.h:
-
-/usr/lib32/libdl.so.2:
-
-/usr/include/qt6/QtCore/qcborcommon.h:
-
-/usr/include/qt6/QtCore/QJsonDocument:
 
 /usr/include/qt6/QtCore/QJsonArray:
 
@@ -10550,6 +10587,14 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 
 /usr/include/taglib/attachedpictureframe.h:
 
+/usr/include/qt6/QtCore/qjsonobject.h:
+
+/usr/lib32/libdl.so.2:
+
+/usr/include/qt6/QtCore/qcborcommon.h:
+
+/usr/include/qt6/QtCore/QJsonDocument:
+
 /usr/include/qt6/QtGui/qsurface.h:
 
 /usr/include/qt6/QtGui/QWindow:
@@ -10569,6 +10614,20 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 /usr/include/qt6/QtCore/QUuid:
 
 /usr/include/qt6/QtCore/QTime:
+
+/usr/include/linux/openat2.h:
+
+/usr/include/linux/falloc.h:
+
+/usr/include/bits/struct_stat.h:
+
+/usr/include/bits/stat.h:
+
+/usr/include/bits/openat2.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/cloexec.h:
 
 /usr/lib/libfontconfig.so.1:
 
@@ -10607,6 +10666,16 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 /usr/include/qt6/QtCore/QUrlQuery:
 
 /usr/include/qt6/QtCore/QDateTime:
+
+/usr/include/bits/unistd_ext.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/getopt_core.h:
+
+CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
+
+/usr/include/bits/confname.h:
 
 /usr/lib32/libngtcp2.so.16:
 
@@ -10944,6 +11013,8 @@ ZMP_Linux_bin_autogen/mocs_compilation.cpp:
 
 /usr/include/taglib/tiostream.h:
 
+/usr/include/bits/fcntl-linux.h:
+
 /usr/include/qt6/QtCore/qmalloc.h:
 
 /usr/include/qt6/QtCore/QDirIterator:
@@ -11132,6 +11203,8 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 
 /usr/include/qt6/QtCore/qanystringview.h:
 
+/usr/include/qt6/QtCore/QSocketNotifier:
+
 /usr/include/qt6/QtCore/QMap:
 
 /usr/include/qt6/QtCore/QList:
@@ -11281,6 +11354,8 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 /usr/include/qt6/QtCore/qstringbuilder.h:
 
 /usr/include/qt6/QtCore/qitemselectionmodel.h:
+
+/usr/lib/libcrypt.so:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
 
@@ -11830,6 +11905,8 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o:
 
 /usr/include/bits/setjmp.h:
 
+/usr/include/pwd.h:
+
 /usr/include/bits/mathcalls.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
@@ -12269,6 +12346,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playlistswidget.cpp:
 /home/user/cp/zmp/mainwindow.cpp:
 
 /usr/include/c++/16.1.1/iterator:
+
+/usr/include/fcntl.h:
 
 /usr/lib/cmake/Qt6/QtPublicAppleHelpers.cmake:
 
@@ -12730,6 +12809,8 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 /usr/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake:
 
+/usr/include/bits/types/struct_iovec.h:
+
 /usr/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginTargets.cmake:
@@ -13114,6 +13195,8 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPluginTargets-relwithdebinfo.cmake:
 
+/usr/include/qt6/QtCore/QTextStream:
+
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPluginTargets.cmake:
 
 /usr/include/qt6/QtCore/qstringconverter.h:
@@ -13121,6 +13204,8 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginConfig.cmake:
+
+/usr/include/qt6/QtCore/qsocketnotifier.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginTargets.cmake:
 
@@ -13141,6 +13226,8 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbGlxIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/include/crypt.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginAdditionalTargetInfo.cmake:
 

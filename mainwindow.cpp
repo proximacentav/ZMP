@@ -9,6 +9,44 @@
 #include <QEvent>
 #include <QKeyEvent>
 #include <QListWidget>
+#include <QProcess>
+#include <QMessageBox>
+#include <QDialog>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QDialogButtonBox>
+#include <QImage>
+#include <QPixmap>
+#include <QFile>
+#include <QTextEdit>
+#include <QTextStream>
+#include <QFileDialog>
+#include <QDateTime>
+#include <QDir>
+#include <unistd.h>
+#include <pwd.h>
+#include <crypt.h>
+#include <fcntl.h>
+#include <QSocketNotifier>
+
+static MainWindow *g_mainWindow = nullptr;
+static int g_original_stderr = -1;
+
+static void qtMessageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString &msg)
+{
+    Q_UNUSED(ctx)
+    if (g_mainWindow) {
+        QString prefix;
+        switch (type) {
+            case QtDebugMsg: prefix = "DEBUG"; break;
+            case QtWarningMsg: prefix = "WARN"; break;
+            case QtCriticalMsg: prefix = "ERROR"; break;
+            case QtFatalMsg: prefix = "FATAL"; break;
+            case QtInfoMsg: prefix = "INFO"; break;
+        }
+        g_mainWindow->addLog(QString("[%1] %2").arg(prefix, msg));
+    }
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_menuIndicator(nullptr), m_menuIndicatorY(0), m_menuIndicatorTargetY(0)
@@ -40,21 +78,40 @@ MainWindow::MainWindow(QWidget *parent)
     );
     menuContLayout->addWidget(m_menu, 1);
 
-    m_hiddenButton = new QPushButton("ввести");
-    m_hiddenButton->setCursor(Qt::PointingHandCursor);
-    m_hiddenButton->setStyleSheet(
-        "QPushButton { background: transparent; color: #666; border: 1px solid #555; "
-        "border-radius: 8px; padding: 12px; font-size: 14px; }"
-        "QPushButton:hover { color: #aaa; border-color: #777; }"
-    );
-    menuContLayout->addWidget(m_hiddenButton);
+    m_userButton = new QPushButton(getCurrentUsername());
+    m_userButton->setCursor(Qt::PointingHandCursor);
+    updateUserButtonStyle();
+    menuContLayout->addWidget(m_userButton);
 
-    m_state = Idle;
-    m_clickCount = 0;
-    m_selectionTimer = new QTimer(this);
-    m_selectionTimer->setSingleShot(true);
-    connect(m_selectionTimer, &QTimer::timeout, this, &MainWindow::onSelectionTimeout);
-    connect(m_hiddenButton, &QPushButton::clicked, this, &MainWindow::onHiddenButtonClicked);
+    connect(m_userButton, &QPushButton::clicked, this, &MainWindow::onUserButtonClicked);
+
+    m_logTimer = new QTimer(this);
+    m_logTimer->start(10000);
+    connect(m_logTimer, &QTimer::timeout, this, &MainWindow::autoSaveLogs);
+
+    g_mainWindow = this;
+    qInstallMessageHandler(qtMessageHandler);
+
+    int pipefd[2];
+    pipe(pipefd);
+    g_original_stderr = dup(STDERR_FILENO);
+    dup2(pipefd[1], STDERR_FILENO);
+    ::close(pipefd[1]);
+    fcntl(pipefd[0], F_SETFL, O_NONBLOCK);
+
+    QSocketNotifier *stderrNotifier = new QSocketNotifier(pipefd[0], QSocketNotifier::Read, this);
+    connect(stderrNotifier, &QSocketNotifier::activated, this, [this](int fd) {
+        char buf[4096];
+        int n;
+        while ((n = read(fd, buf, sizeof(buf) - 1)) > 0) {
+            buf[n] = 0;
+            QString msg = QString::fromUtf8(buf).trimmed();
+            if (!msg.isEmpty())
+                addLog(msg);
+        }
+    });
+
+    addLog("Программа запущена");
 
     m_menuIndicator = new QWidget(menuContainer);
     m_menuIndicator->setFixedHeight(40);
@@ -218,7 +275,6 @@ void MainWindow::onKeyBindingChanged(SettingsWidget::KeyAction action, const Set
 }
 
 void MainWindow::onKeyBindingsSaved() {
-    // Key bindings are already updated via onKeyBindingChanged
 }
 
 void MainWindow::showEqualizerPresetDialog() {
@@ -255,103 +311,292 @@ void MainWindow::onFileSelected(const QString &path) {
 }
 void MainWindow::onExit() { QApplication::quit(); }
 
-void MainWindow::onHiddenButtonClicked() {
-    switch (m_state) {
-    case Idle:
-        m_state = Deciding;
-        m_clickCount = 1;
-        m_selectionTimer->start(1000);
-        break;
-    case Deciding:
-        m_clickCount++;
-        if (m_clickCount >= 2) {
-            m_state = ActionMode;
-            m_selectionTimer->start(2000);
-        }
-        break;
-    case SelectionMode:
-        m_clickCount++;
-        m_selectionTimer->start(2000);
-        break;
-    case ActionMode:
-        m_clickCount++;
-        m_selectionTimer->start(2000);
-        break;
-    }
+QString MainWindow::getCurrentUsername()
+{
+    struct passwd *pw = getpwuid(getuid());
+    return pw ? QString::fromUtf8(pw->pw_name) : "unknown";
 }
 
-void MainWindow::onSelectionTimeout() {
-    switch (m_state) {
-    case Deciding:
-        enterSelectionMode();
-        break;
-    case SelectionMode:
-        if (m_clickCount >= 1 && m_clickCount <= 7)
-            m_menu->setCurrentRow(m_clickCount - 1);
-        resetButton();
-        break;
-    case ActionMode:
-        performAction(m_clickCount);
-        resetButton();
-        break;
-    default:
-        break;
+static bool verifyShadowPassword(const QString &username, const QString &password)
+{
+    FILE *fp = fopen("/etc/shadow", "r");
+    if (!fp) return false;
+
+    char line[4096];
+    while (fgets(line, sizeof(line), fp)) {
+        QString entry = QString::fromUtf8(line).trimmed();
+        int colon1 = entry.indexOf(':');
+        if (colon1 <= 0) continue;
+        if (entry.left(colon1) != username) continue;
+
+        int colon2 = entry.indexOf(':', colon1 + 1);
+        if (colon2 <= colon1) continue;
+        QByteArray hash = entry.mid(colon1 + 1, colon2 - colon1 - 1).toUtf8();
+        fclose(fp);
+
+        if (hash == "*" || hash == "!" || hash.isEmpty()) return false;
+
+        char *result = crypt(password.toUtf8().constData(), hash.constData());
+        return result && hash == result;
     }
+    fclose(fp);
+    return false;
 }
 
-void MainWindow::enterSelectionMode() {
-    m_state = SelectionMode;
-    m_clickCount = 0;
-    m_hiddenButton->setStyleSheet(
-        "QPushButton { background: transparent; color: #4CAF50; border: 1px solid #4CAF50; "
+void MainWindow::updateUserButtonStyle()
+{
+    bool red = (getuid() == 0) || m_isRootMode;
+    QString userName = getCurrentUsername();
+    m_userButton->setText(m_isRootMode ? userName + " (root)" : userName);
+    m_userButton->setStyleSheet(QString(
+        "QPushButton { background: transparent; color: %1; border: 1px solid %2; "
         "border-radius: 8px; padding: 12px; font-size: 14px; }"
-    );
-    m_selectionTimer->start(2000);
+        "QPushButton:hover { color: %3; border-color: %4; }"
+    ).arg(red ? "#FF4444" : "#aaa",
+          red ? "#FF4444" : "#555",
+          red ? "#FF7777" : "#ddd",
+          red ? "#FF7777" : "#777"));
 }
 
-void MainWindow::performAction(int count) {
-    int tab = m_stack->currentIndex();
-    switch (tab) {
-    case 1:
-        if (count == 2) m_playerWidget->onPlayClicked();
-        else if (count == 3) m_playerWidget->onNext();
-        else if (count == 4) m_playerWidget->onPrev();
-        else if (count == 5) m_playerWidget->onFeaturedClicked();
-        else if (count == 6) m_playerWidget->onAddToPlaylistClicked();
-        break;
-    case 2:
-        if (count == 3) {
-            bool ok;
-            QString name = QInputDialog::getText(this, "Новый плейлист",
-                "Введите название плейлиста:", QLineEdit::Normal, "", &ok);
-            if (ok && !name.isEmpty()) {
-                for (const PlaylistInfo &pl : m_playlistsWidget->m_playlists) {
-                    if (pl.name == name) {
-                        emit m_playlistsWidget->playlistSelected(pl.tracks);
-                        break;
-                    }
-                }
-            }
-        }
-        break;
-    case 4:
-        if (count == 2) m_equalizerWidget->applyPreset("Default");
-        else if (count == 3) m_equalizerWidget->applyPreset("Bass");
-        else if (count == 4) m_equalizerWidget->applyPreset("Treble");
-        else if (count == 5) m_equalizerWidget->applyPreset("Pop");
-        else if (count == 6) m_equalizerWidget->applyPreset("Dance");
-        break;
+void MainWindow::addLog(const QString &message)
+{
+    QString ts = QDateTime::currentDateTime().toString("yyyy, MM-dd-ss.zzz");
+    QString line = QString("[%1] %2").arg(ts, message);
+    m_logs.append(line);
+    if (g_original_stderr >= 0) {
+        QByteArray data = (line + "\n").toUtf8();
+        write(g_original_stderr, data.constData(), data.size());
     }
 }
 
-void MainWindow::resetButton() {
-    m_state = Idle;
-    m_clickCount = 0;
-    m_hiddenButton->setStyleSheet(
-        "QPushButton { background: transparent; color: #666; border: 1px solid #555; "
-        "border-radius: 8px; padding: 12px; font-size: 14px; }"
-        "QPushButton:hover { color: #aaa; border-color: #777; }"
+void MainWindow::saveLogs(const QString &path)
+{
+    QString filePath = path.isEmpty()
+        ? QDir::homePath() + "/zmp_playlists/zmp_logs.txt"
+        : path + "/zmp_logs.txt";
+    QDir().mkpath(QFileInfo(filePath).absolutePath());
+    QFile file(filePath);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        for (const QString &line : m_logs)
+            out << line << "\n";
+        file.close();
+    }
+}
+
+void MainWindow::autoSaveLogs()
+{
+    if (m_logs.isEmpty()) return;
+    saveLogs();
+}
+
+void MainWindow::showLogDialog()
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle("Логи");
+    dialog.resize(700, 500);
+    dialog.setStyleSheet("QDialog { background-color: #2b2b2b; color: white; }");
+
+    QVBoxLayout *layout = new QVBoxLayout(&dialog);
+    layout->setSpacing(10);
+    layout->setContentsMargins(15, 15, 15, 15);
+
+    QTextEdit *textEdit = new QTextEdit();
+    textEdit->setReadOnly(true);
+    textEdit->setStyleSheet("QTextEdit { background-color: #1e1e1e; color: #ddd; border: 1px solid #555; border-radius: 6px; padding: 8px; font-family: monospace; }");
+    for (const QString &line : m_logs)
+        textEdit->append(line);
+    layout->addWidget(textEdit, 1);
+
+    QHBoxLayout *btnLayout = new QHBoxLayout();
+    QPushButton *saveBtn = new QPushButton("Сохранить");
+    saveBtn->setStyleSheet(
+        "QPushButton { background: transparent; color: white; border: 1px solid #555; "
+        "border-radius: 6px; padding: 10px 20px; font-size: 14px; }"
+        "QPushButton:hover { border-color: #aaa; color: #ddd; }");
+    connect(saveBtn, &QPushButton::clicked, this, [this, &dialog]() {
+        QString dir = QFileDialog::getExistingDirectory(&dialog, "Выберите папку для сохранения", QDir::homePath());
+        if (!dir.isEmpty()) {
+            saveLogs(dir);
+            QMessageBox::information(&dialog, "Успех", "Логи сохранены в " + dir + "/zmp_logs.txt");
+        }
+    });
+    btnLayout->addWidget(saveBtn);
+
+    QPushButton *closeBtn = new QPushButton("Закрыть");
+    closeBtn->setStyleSheet(
+        "QPushButton { background: transparent; color: white; border: 1px solid #555; "
+        "border-radius: 6px; padding: 10px 20px; font-size: 14px; }"
+        "QPushButton:hover { border-color: #aaa; color: #ddd; }");
+    connect(closeBtn, &QPushButton::clicked, &dialog, &QDialog::accept);
+    btnLayout->addWidget(closeBtn);
+
+    layout->addLayout(btnLayout);
+    dialog.exec();
+}
+
+void MainWindow::showRootPasswordDialog()
+{
+    if (m_isRootMode) return;
+
+    QDialog dialog(this);
+    dialog.setWindowTitle("Права root");
+    dialog.setMinimumWidth(350);
+
+    QFormLayout *form = new QFormLayout(&dialog);
+
+    QLineEdit *passEdit = new QLineEdit();
+    passEdit->setPlaceholderText("Пароль root");
+    passEdit->setEchoMode(QLineEdit::Password);
+    form->addRow("Пароль:", passEdit);
+
+    QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    form->addRow(buttons);
+    connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+    if (dialog.exec() != QDialog::Accepted) return;
+
+    QString password = passEdit->text();
+    if (password.isEmpty()) return;
+
+    bool ok = false;
+    if (getuid() == 0) {
+        ok = verifyShadowPassword("root", password);
+    } else {
+        QProcess proc;
+        proc.start("su", {"-c", "id", "root"});
+        if (proc.waitForStarted()) {
+            proc.waitForReadyRead(2000);
+            proc.write((password + "\n").toUtf8());
+            proc.closeWriteChannel();
+            if (proc.waitForFinished(5000))
+                ok = (proc.exitCode() == 0);
+        }
+    }
+
+    if (ok) {
+        m_rootPassword = password;
+        m_isRootMode = true;
+        m_filesWidget->setRootPassword(password);
+        updateUserButtonStyle();
+        addLog("Режим root активирован");
+    } else {
+        QMessageBox::warning(this, "Ошибка", "Неверный пароль root");
+    }
+}
+
+void MainWindow::onUserButtonClicked()
+{
+    struct passwd *pw = getpwuid(getuid());
+    if (!pw) return;
+
+    QString userName = QString::fromUtf8(pw->pw_name);
+    QString fullName = QString::fromUtf8(pw->pw_gecos).split(',').first().trimmed();
+    QString homeDir = QString::fromUtf8(pw->pw_dir);
+    uid_t uid = pw->pw_uid;
+
+    QImage avatar;
+    QStringList avatarPaths = {
+        QString("/var/lib/AccountsService/icons/%1").arg(userName),
+        homeDir + "/.face",
+        homeDir + "/.face.icon",
+        homeDir + "/.local/share/accounts/service/icons/" + userName
+    };
+    for (const QString &path : avatarPaths) {
+        if (QFile::exists(path)) {
+            avatar.load(path);
+            if (!avatar.isNull()) break;
+        }
+    }
+
+    QDialog dialog(this);
+    dialog.setWindowTitle("Пользователь");
+    dialog.setFixedSize(540, 420);
+    dialog.setStyleSheet("QDialog { background-color: #2b2b2b; color: white; border-radius: 0; }");
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(&dialog);
+    mainLayout->setSpacing(12);
+    mainLayout->setContentsMargins(20, 20, 20, 20);
+
+    QHBoxLayout *topLayout = new QHBoxLayout();
+    topLayout->setSpacing(20);
+
+    QLabel *avatarLabel = new QLabel();
+    avatarLabel->setFixedSize(180, 180);
+    avatarLabel->setAlignment(Qt::AlignCenter);
+    avatarLabel->setStyleSheet("background-color: #444; border-radius: 10px; color: white; font-size: 48px; font-weight: bold;");
+
+    if (!avatar.isNull()) {
+        QPixmap px = QPixmap::fromImage(
+            avatar.scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        avatarLabel->setPixmap(px);
+    } else {
+        avatarLabel->setText(QString::number(uid));
+    }
+    topLayout->addWidget(avatarLabel);
+
+    QVBoxLayout *infoLayout = new QVBoxLayout();
+    infoLayout->setSpacing(6);
+
+    QLabel *displayName = new QLabel(fullName.isEmpty() ? userName : fullName);
+    displayName->setStyleSheet("font-size: 20px; font-weight: bold; color: white;");
+    infoLayout->addWidget(displayName);
+
+    QLabel *userLabel = new QLabel(userName);
+    userLabel->setStyleSheet("font-size: 14px; color: #aaa;");
+    infoLayout->addWidget(userLabel);
+
+    QLabel *homeLabel = new QLabel(homeDir);
+    homeLabel->setStyleSheet("font-size: 14px; color: #aaa;");
+    infoLayout->addWidget(homeLabel);
+
+    QLabel *uidLabel = new QLabel(QString("UID: %1").arg(uid));
+    uidLabel->setStyleSheet("font-size: 14px; color: #aaa;");
+    infoLayout->addWidget(uidLabel);
+
+    infoLayout->addStretch();
+    topLayout->addLayout(infoLayout, 1);
+    mainLayout->addLayout(topLayout);
+
+    QString btnStyle = QString(
+        "QPushButton { background: transparent; color: white; border: 1px solid %1; "
+        "border-radius: 6px; padding: 10px; font-size: 14px; }"
+        "QPushButton:hover { background: rgba(255,255,255,0.05); border-color: %2; }"
     );
+
+    if (!m_isRootMode) {
+        QPushButton *rootBtn = new QPushButton("Войти в режим root");
+        rootBtn->setStyleSheet(btnStyle.arg("#c0392b", "#e74c3c"));
+        connect(rootBtn, &QPushButton::clicked, this, [this, &dialog]() {
+            dialog.hide();
+            showRootPasswordDialog();
+            dialog.reject();
+        });
+        mainLayout->addWidget(rootBtn);
+    } else {
+        QLabel *rootActive = new QLabel("Режим root активен");
+        rootActive->setAlignment(Qt::AlignCenter);
+        rootActive->setStyleSheet("color: #FF4444; font-size: 14px; font-weight: bold;");
+        mainLayout->addWidget(rootActive);
+    }
+
+    QPushButton *logBtn = new QPushButton("Логи");
+    logBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
+    connect(logBtn, &QPushButton::clicked, this, [this]() { showLogDialog(); });
+    mainLayout->addWidget(logBtn);
+
+    QPushButton *exitBtn = new QPushButton("Выйти");
+    exitBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
+    connect(exitBtn, &QPushButton::clicked, qApp, &QApplication::quit);
+    mainLayout->addWidget(exitBtn);
+
+    QLabel *escHint = new QLabel("нажмите ESC чтобы закрыть это меню\n для того чтобы открывать директории в root режиме\n вводите путь сверху, в виде дерева root режим работает не всегда ");
+    escHint->setAlignment(Qt::AlignCenter);
+    escHint->setStyleSheet("color: #666; font-size: 11px;");
+    mainLayout->addWidget(escHint);
+
+    dialog.exec();
 }
 
 void MainWindow::onFeaturedUpdated() {

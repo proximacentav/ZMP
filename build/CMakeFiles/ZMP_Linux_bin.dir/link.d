@@ -25,6 +25,7 @@ ZMP_Linux_bin: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/../../../../lib/libbass_fx.so \
   /usr/lib/libprojectM.so \
   /usr/lib/libtag.so \
+  /usr/lib/libcrypt.so \
   /usr/lib/libQt6Widgets.so.6.11.1 \
   /usr/lib/libQt6OpenGL.so.6.11.1 \
   /usr/lib/libQt6Gui.so.6.11.1 \
@@ -222,6 +223,8 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
 /usr/lib/libprojectM.so:
 
 /usr/lib/libtag.so:
+
+/usr/lib/libcrypt.so:
 
 /usr/lib/libQt6Widgets.so.6.11.1:
 

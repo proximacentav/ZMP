@@ -32,6 +32,8 @@
 #include <QSpinBox>
 #include <QFileDialog>
 #include <QTextEdit>
+#include <QProcess>
+#include <unistd.h>
 
 class MusicHighlightDelegate : public QStyledItemDelegate
 {
@@ -133,6 +135,21 @@ void FilesWidget::setupUI()
     m_pathEdit = new QLineEdit(this);
     m_pathEdit->setText(m_currentPath);
     connect(m_pathEdit, &QLineEdit::textChanged, this, &FilesWidget::onPathChanged);
+    connect(m_pathEdit, &QLineEdit::returnPressed, this, [this]() {
+        QString path = m_pathEdit->text().trimmed();
+        if (path.isEmpty()) return;
+        QFileInfo info(path);
+        if (!info.exists() || !info.isReadable()) {
+            if (m_hasRootAccess) {
+                switchToRootView(path);
+            } else {
+                QMessageBox::warning(this, "Ошибка", "Нет доступа к " + path);
+            }
+        } else {
+            m_currentPath = path;
+            m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(path)));
+        }
+    });
     topLayout->addWidget(m_pathEdit, 1);
 
     mainLayout->addLayout(topLayout);
@@ -185,8 +202,36 @@ void FilesWidget::setupUI()
     connect(m_ftpListWidget, &QListWidget::itemDoubleClicked, this, &FilesWidget::onFtpListDoubleClicked);
     ftpLayout->addWidget(m_ftpListWidget);
 
+    m_rootViewPage = new QWidget();
+    QVBoxLayout *rootLayout = new QVBoxLayout(m_rootViewPage);
+    rootLayout->setContentsMargins(0, 0, 0, 0);
+
+    QHBoxLayout *rootTop = new QHBoxLayout();
+    m_rootBackButton = new QPushButton("< Назад");
+    m_rootBackButton->setFixedWidth(100);
+    connect(m_rootBackButton, &QPushButton::clicked, this, &FilesWidget::onRootBackClicked);
+    rootTop->addWidget(m_rootBackButton);
+
+    m_rootPathEdit = new QLineEdit();
+    m_rootPathEdit->setText("/");
+    connect(m_rootPathEdit, &QLineEdit::returnPressed, this, &FilesWidget::onBrowseRootSearch);
+    rootTop->addWidget(m_rootPathEdit, 1);
+
+    m_rootPathLabel = new QLabel("root");
+    rootTop->addWidget(m_rootPathLabel);
+    rootLayout->addLayout(rootTop);
+
+    m_rootListWidget = new QListWidget();
+    m_rootListWidget->setStyleSheet(
+        "QListWidget::item { padding: 6px; }"
+        "QListWidget::item:alternate { background: #f0f0f0; }"
+    );
+    connect(m_rootListWidget, &QListWidget::itemDoubleClicked, this, &FilesWidget::onRootListDoubleClicked);
+    rootLayout->addWidget(m_rootListWidget);
+
     m_stack->addWidget(m_localViewPage);
     m_stack->addWidget(m_ftpViewPage);
+    m_stack->addWidget(m_rootViewPage);
     m_stack->setCurrentWidget(m_localViewPage);
 
     mainLayout->addWidget(m_stack, 1);
@@ -212,6 +257,15 @@ void FilesWidget::createMenu()
 
     QAction *smbAction = m_menu->addAction("SMB");
     connect(smbAction, &QAction::triggered, this, &FilesWidget::onSmbConnect);
+
+    if (m_hasRootAccess) {
+        m_menu->addSeparator();
+        QAction *rootBrowseAction = m_menu->addAction("Root");
+        connect(rootBrowseAction, &QAction::triggered, this, [this]() {
+            m_rootCurrentPath = "/";
+            switchToRootView("/");
+        });
+    }
 
     if (m_ftpConnected) {
         m_menu->addSeparator();
@@ -251,6 +305,15 @@ void FilesWidget::onMenuButtonClicked()
 
     QAction *searchAction = m_menu->addAction(m_searchVisible ? "Скрыть поиск" : "Поиск");
     connect(searchAction, &QAction::triggered, this, &FilesWidget::onToggleSearch);
+
+    if (m_hasRootAccess) {
+        m_menu->addSeparator();
+        QAction *rootBrowseAction = m_menu->addAction("Root");
+        connect(rootBrowseAction, &QAction::triggered, this, [this]() {
+            m_rootCurrentPath = "/";
+            switchToRootView("/");
+        });
+    }
 
     if (m_ftpConnected) {
         m_menu->addSeparator();
@@ -329,10 +392,21 @@ void FilesWidget::onBrowseRoot()
 void FilesWidget::onDoubleClicked(const QModelIndex &index)
 {
     QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
-    if (!m_model->isDir(sourceIndex)) {
-        QString path = m_model->filePath(sourceIndex);
-        emit fileSelected(path);
+    QString path = m_model->filePath(sourceIndex);
+    if (m_model->isDir(sourceIndex)) {
+        if (m_hasRootAccess) {
+            QDir dir(path);
+            if (!dir.exists() || !dir.isReadable()) {
+                switchToRootView(path);
+                return;
+            }
+        }
+        m_currentPath = path;
+        m_pathEdit->setText(path);
+        m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(path)));
+        return;
     }
+    emit fileSelected(path);
 }
 
 QString FilesWidget::currentSelectedFile() const
@@ -731,6 +805,101 @@ void FilesWidget::onSslErrorsUi(const QList<QSslError> &errors)
         m_ftpConnected = false;
         switchToLocalView();
     }
+}
+
+void FilesWidget::setRootPassword(const QString &password)
+{
+    m_rootPassword = password;
+    m_hasRootAccess = true;
+    createMenu();
+}
+
+void FilesWidget::switchToRootView(const QString &path)
+{
+    m_rootCurrentPath = path;
+    m_rootPathEdit->setText(path);
+    m_rootPathLabel->setText("root: " + path);
+
+    QProcess proc;
+    proc.start("sudo", {"-S", "ls", "-1ap", path});
+    if (!proc.waitForStarted()) {
+        m_rootListWidget->clear();
+        m_rootListWidget->addItem("Ошибка: sudo не доступен");
+        return;
+    }
+    proc.write((m_rootPassword + "\n").toUtf8());
+    proc.closeWriteChannel();
+    if (!proc.waitForFinished(10000)) {
+        proc.kill();
+        m_rootListWidget->clear();
+        m_rootListWidget->addItem("Ошибка: таймаут");
+        return;
+    }
+
+    m_rootListWidget->clear();
+    QString output = QString::fromUtf8(proc.readAllStandardOutput());
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+    for (const QString &line : lines) {
+        QString name = line.trimmed();
+        if (name == "." || name == ".." || name == "./" || name == "../") continue;
+
+        bool isDir = name.endsWith('/');
+        QString display = isDir ? "📁 " + name.chopped(1) + "/" : "📄 " + name;
+        QListWidgetItem *item = new QListWidgetItem(display);
+        item->setData(Qt::UserRole, isDir ? name.chopped(1) : name);
+        item->setData(Qt::UserRole + 1, isDir);
+        m_rootListWidget->addItem(item);
+    }
+
+    m_stack->setCurrentWidget(m_rootViewPage);
+}
+
+void FilesWidget::onRootListDoubleClicked(QListWidgetItem *item)
+{
+    if (!item) return;
+    QString name = item->data(Qt::UserRole).toString();
+    bool isDir = item->data(Qt::UserRole + 1).toBool();
+
+    if (isDir) {
+        QString newPath = m_rootCurrentPath;
+        if (!newPath.endsWith('/')) newPath += '/';
+        newPath += name;
+        switchToRootView(newPath);
+        return;
+    }
+
+    QString localPath = "/tmp/zmp_root_" + QString::number(getpid());
+    QDir().mkpath(localPath);
+    QString destPath = localPath + "/" + name;
+
+    QProcess proc;
+    proc.start("sudo", {"-S", "cp", m_rootCurrentPath + "/" + name, destPath});
+    proc.write((m_rootPassword + "\n").toUtf8());
+    proc.closeWriteChannel();
+    if (proc.waitForFinished(10000) && proc.exitCode() == 0) {
+        emit fileSelected(destPath);
+    } else {
+        QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
+    }
+}
+
+void FilesWidget::onRootBackClicked()
+{
+    if (m_rootCurrentPath == "/") {
+        m_stack->setCurrentWidget(m_localViewPage);
+        return;
+    }
+    QFileInfo fi(m_rootCurrentPath);
+    QString parent = fi.path();
+    if (parent.isEmpty()) parent = "/";
+    switchToRootView(parent);
+}
+
+void FilesWidget::onBrowseRootSearch()
+{
+    QString path = m_rootPathEdit->text().trimmed();
+    if (path.isEmpty()) path = "/";
+    switchToRootView(path);
 }
 
 void FilesWidget::switchToFtpView()

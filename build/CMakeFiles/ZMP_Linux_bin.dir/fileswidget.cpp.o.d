@@ -498,4 +498,8 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QFileDialog \
  /usr/include/qt6/QtWidgets/qfiledialog.h \
  /usr/include/qt6/QtWidgets/QTextEdit \
- /usr/include/qt6/QtWidgets/qtextedit.h
+ /usr/include/qt6/QtWidgets/qtextedit.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h

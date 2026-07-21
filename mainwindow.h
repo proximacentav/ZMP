@@ -43,6 +43,7 @@ public:
     ~MainWindow();
     
     bool eventFilter(QObject *watched, QEvent *event) override;
+    void addLog(const QString &message);
 
 private slots:
     void onMenuChanged(int row);
@@ -50,8 +51,10 @@ private slots:
     void onFileSelected(const QString &path);
     void onExit();
     void animateMenu();
-    void onHiddenButtonClicked();
-    void onSelectionTimeout();
+    void onUserButtonClicked();
+    void showRootPasswordDialog();
+    void showLogDialog();
+    void autoSaveLogs();
     void onKeyBindingChanged(SettingsWidget::KeyAction action, const SettingsWidget::KeyBinding &binding);
     void onKeyBindingsSaved();
 
@@ -71,17 +74,17 @@ private:
     QTimer *m_menuAnimTimer;
     qreal m_menuIndicatorY;
     qreal m_menuIndicatorTargetY;
-    enum State { Idle, Deciding, SelectionMode, ActionMode };
-    State m_state;
-    int m_clickCount;
-    QTimer *m_selectionTimer;
-    QPushButton *m_hiddenButton;
+    QPushButton *m_userButton;
+    QString m_rootPassword;
+    bool m_isRootMode = false;
+    QStringList m_logs;
+    QTimer *m_logTimer;
     QMap<SettingsWidget::KeyAction, SettingsWidget::KeyBinding> m_keyBindings;
+    void saveLogs(const QString &path = QString());
     
-    void performAction(int count);
-    void enterSelectionMode();
-    void resetButton();
     void onFeaturedUpdated();
+    static QString getCurrentUsername();
+    void updateUserButtonStyle();
     void handleKeyPress(Qt::Key key, Qt::KeyboardModifiers modifiers);
     void loadKeyBindingsFromSettings();
     void showEqualizerPresetDialog();

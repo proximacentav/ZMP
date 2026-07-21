@@ -434,6 +434,14 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QMessageBox \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ /usr/include/qt6/QtCore/QJsonDocument \
+ /usr/include/qt6/QtCore/qjsondocument.h \
+ /usr/include/qt6/QtCore/qjsonparseerror.h \
+ /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h \
+ /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
  /usr/include/taglib/fileref.h /usr/include/taglib/tfile.h \
  /usr/include/taglib/tbytevector.h /usr/include/taglib/taglib_export.h \
  /usr/include/taglib/tiostream.h /usr/include/taglib/taglib.h \

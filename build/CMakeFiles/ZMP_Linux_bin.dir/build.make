@@ -334,6 +334,7 @@ ZMP_Linux_bin: /usr/lib/libbass.so
 ZMP_Linux_bin: /usr/lib/libbass_fx.so
 ZMP_Linux_bin: /usr/lib/libprojectM.so
 ZMP_Linux_bin: /usr/lib/libtag.so
+ZMP_Linux_bin: /usr/lib/libcrypt.so
 ZMP_Linux_bin: /usr/lib/libQt6Widgets.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6OpenGL.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6Gui.so.6.11.1

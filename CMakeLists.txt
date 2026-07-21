@@ -20,6 +20,11 @@ find_library(PROJECTM_LIBRARY NAMES projectM PATHS /usr/lib /usr/local/lib)
 find_path(TAGLIB_INCLUDE_DIR NAMES taglib/tag.h PATHS /usr/include /usr/local/include)
 find_library(TAGLIB_LIBRARY NAMES tag libtag PATHS /usr/lib /usr/local/lib)
 
+find_library(CRYPT_LIBRARY NAMES crypt)
+if(CRYPT_LIBRARY)
+    list(APPEND EXTRA_LIBS ${CRYPT_LIBRARY})
+endif()
+
 if(NOT TAGLIB_LIBRARY)
     message(FATAL_ERROR "TagLib not found. Install it: sudo pacman -S taglib (Arch) or apt-get install libtag1-dev (Debian)")
 endif()
@@ -54,4 +59,5 @@ target_link_libraries(ZMP_Linux_bin
     ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
     ${PROJECTM_LIBRARY}
     ${TAGLIB_LIBRARY}
+    ${EXTRA_LIBS}
 )
