@@ -11,6 +11,7 @@
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \
   /home/user/cp/zmp/settingswidget.h \
+  /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.h \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
@@ -293,6 +294,7 @@
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFlags \
+  /usr/include/qt6/QtCore/QHash \
   /usr/include/qt6/QtCore/QIODevice \
   /usr/include/qt6/QtCore/QList \
   /usr/include/qt6/QtCore/QMap \

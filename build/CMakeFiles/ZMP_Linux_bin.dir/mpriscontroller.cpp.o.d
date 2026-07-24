@@ -403,7 +403,9 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: \
  /usr/include/qt6/QtWidgets/qrubberband.h \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
- /home/user/cp/zmp/iconbutton.h /usr/include/qt6/QtGui/QGuiApplication \
+ /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/qt6/QtGui/QGuiApplication \
  /usr/include/qt6/QtGui/qguiapplication.h \
  /usr/include/qt6/QtCore/qcoreapplication.h \
  /usr/include/qt6/QtCore/qcoreevent.h \

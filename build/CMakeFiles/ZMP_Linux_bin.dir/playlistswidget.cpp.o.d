@@ -408,6 +408,9 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qcombobox.h /usr/include/qt6/QtWidgets/QLabel \
  /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
  /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtWidgets/QFrame \
+ /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \

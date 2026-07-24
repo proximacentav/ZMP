@@ -319,7 +319,9 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
  /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /usr/include/c++/16.1.1/cfloat \
+ /usr/include/bass_fx.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/qt6/QtCore/qhash.h /usr/include/c++/16.1.1/cfloat \
  /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/include/float.h \
  /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtCore/qdebug.h \
  /usr/include/qt6/QtCore/qtextstream.h \
@@ -338,8 +340,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: \
  /usr/include/c++/16.1.1/bits/unordered_set.h \
  /usr/include/qt6/QtCore/qmap.h \
  /usr/include/qt6/QtCore/qshareddata_impl.h \
- /usr/include/qt6/QtCore/qset.h /usr/include/qt6/QtCore/qhash.h \
- /usr/include/qt6/QtCore/qvarlengtharray.h \
+ /usr/include/qt6/QtCore/qset.h /usr/include/qt6/QtCore/qvarlengtharray.h \
  /usr/include/qt6/QtCore/qalloc.h /usr/include/qt6/QtCore/QFile \
  /usr/include/qt6/QtCore/qfile.h /usr/include/qt6/QtCore/qfiledevice.h \
  /usr/include/qt6/QtCore/qiodevice.h /usr/include/c++/16.1.1/filesystem \

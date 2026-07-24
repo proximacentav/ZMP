@@ -391,17 +391,18 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
  /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /usr/include/libprojectM/projectM.hpp \
- /usr/include/dirent.h /usr/include/bits/dirent.h \
- /usr/include/bits/dirent_ext.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/libprojectM/dlldefs.h \
- /usr/include/libprojectM/event.h /usr/include/libprojectM/fatal.h \
- /usr/include/libprojectM/PCM.hpp /usr/include/libprojectM/Common.hpp \
- /usr/include/c++/16.1.1/cstdarg /usr/include/qt6/QtCore/QDebug \
- /usr/include/qt6/QtGui/QOpenGLFunctions \
+ /usr/include/bass_fx.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/libprojectM/projectM.hpp /usr/include/dirent.h \
+ /usr/include/bits/dirent.h /usr/include/bits/dirent_ext.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/bits/unistd_ext.h /usr/include/linux/close_range.h \
+ /usr/include/libprojectM/dlldefs.h /usr/include/libprojectM/event.h \
+ /usr/include/libprojectM/fatal.h /usr/include/libprojectM/PCM.hpp \
+ /usr/include/libprojectM/Common.hpp /usr/include/c++/16.1.1/cstdarg \
+ /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtGui/QOpenGLFunctions \
  /usr/include/qt6/QtGui/qopenglfunctions.h \
  /usr/include/qt6/QtGui/qopenglcontext.h \
  /usr/include/qt6/QtCore/qnativeinterface.h \

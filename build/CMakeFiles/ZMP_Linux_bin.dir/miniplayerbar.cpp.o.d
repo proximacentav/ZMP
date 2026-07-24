@@ -397,5 +397,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
  /usr/include/bass_fx.h /home/user/cp/zmp/iconbutton.h \
- /usr/include/qt6/QtCore/QTime /usr/include/qt6/QtCore/qdatetime.h \
- /usr/include/qt6/QtCore/qcalendar.h /usr/include/qt6/QtGui/QPixmap
+ /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QString \
+ /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QTime \
+ /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
+ /usr/include/qt6/QtGui/QPixmap

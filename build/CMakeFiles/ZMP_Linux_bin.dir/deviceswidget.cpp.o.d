@@ -369,6 +369,9 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: \
  /usr/include/qt6/QtMultimedia/qtaudio.h \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
+ /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \

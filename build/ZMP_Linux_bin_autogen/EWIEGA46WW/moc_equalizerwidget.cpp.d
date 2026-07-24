@@ -1,6 +1,7 @@
 /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp: /home/user/cp/zmp/equalizerwidget.h \
   /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/moc_predefs.h \
   /home/user/cp/zmp/audiomanager.h \
+  /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -273,8 +274,10 @@
   /usr/include/linux/types.h \
   /usr/include/locale.h \
   /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QHash \
   /usr/include/qt6/QtCore/QMap \
   /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QVector \

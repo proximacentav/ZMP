@@ -23,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/cp/zmp/playerwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o.d"
   "/home/user/cp/zmp/playlistswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o.d"
   "/home/user/cp/zmp/settingswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o.d"
+  "/home/user/cp/zmp/translator.cpp" "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o.d"
   "/home/user/cp/zmp/visualizationwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o.d"
   "" "ZMP_Linux_bin" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/link.d"
   )

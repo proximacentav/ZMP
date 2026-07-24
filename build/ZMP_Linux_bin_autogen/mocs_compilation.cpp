@@ -12,4 +12,5 @@
 #include "EWIEGA46WW/moc_playerwidget.cpp"
 #include "EWIEGA46WW/moc_playlistswidget.cpp"
 #include "EWIEGA46WW/moc_settingswidget.cpp"
+#include "EWIEGA46WW/moc_translator.cpp"
 #include "EWIEGA46WW/moc_visualizationwidget.cpp"

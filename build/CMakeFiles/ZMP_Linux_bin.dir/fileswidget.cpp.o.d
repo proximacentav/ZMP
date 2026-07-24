@@ -468,7 +468,9 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
  /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
  /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
- /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtWidgets/QHeaderView \
+ /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QVector \
+ /usr/include/qt6/QtCore/qvector.h /usr/include/qt6/QtWidgets/QHeaderView \
  /usr/include/qt6/QtWidgets/qheaderview.h \
  /usr/include/qt6/QtWidgets/QStyleFactory \
  /usr/include/qt6/QtWidgets/qstylefactory.h \

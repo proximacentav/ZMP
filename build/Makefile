@@ -491,6 +491,30 @@ settingswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.s
 .PHONY : settingswidget.cpp.s
 
+translator.o: translator.cpp.o
+.PHONY : translator.o
+
+# target to build an object file
+translator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o
+.PHONY : translator.cpp.o
+
+translator.i: translator.cpp.i
+.PHONY : translator.i
+
+# target to preprocess a source file
+translator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.i
+.PHONY : translator.cpp.i
+
+translator.s: translator.cpp.s
+.PHONY : translator.s
+
+# target to generate assembly for a file
+translator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.s
+.PHONY : translator.cpp.s
+
 visualizationwidget.o: visualizationwidget.cpp.o
 .PHONY : visualizationwidget.o
 
@@ -568,6 +592,9 @@ help:
 	@echo "... settingswidget.o"
 	@echo "... settingswidget.i"
 	@echo "... settingswidget.s"
+	@echo "... translator.o"
+	@echo "... translator.i"
+	@echo "... translator.s"
 	@echo "... visualizationwidget.o"
 	@echo "... visualizationwidget.i"
 	@echo "... visualizationwidget.s"

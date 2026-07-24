@@ -408,7 +408,9 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
  /usr/include/bass_fx.h /home/user/cp/zmp/deviceswidget.h \
  /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/QComboBox \
- /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/playerwidget.h \
+ /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /home/user/cp/zmp/playerwidget.h \
  /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
  /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtGui/qtextdocument.h \
@@ -528,8 +530,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
  /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/ftpclient.h \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QList \
- /usr/include/qt6/QtNetwork/QSslSocket /usr/include/qt6/QtCore/QProcess \
- /usr/include/qt6/QtCore/qprocess.h /usr/include/qt6/QtCore/QQueue \
- /usr/include/qt6/QtCore/qqueue.h /usr/include/qt6/QtCore/QFile \
- /home/user/cp/zmp/miniplayerbar.h
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
+ /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
+ /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
+ /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/miniplayerbar.h

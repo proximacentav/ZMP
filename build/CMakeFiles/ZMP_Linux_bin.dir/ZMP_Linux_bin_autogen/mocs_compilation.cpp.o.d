@@ -385,6 +385,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/qrubberband.h \
  /usr/include/qt6/QtWidgets/qframe.h \
  /usr/include/qt6/QtCore/qabstractitemmodel.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../equalizerwidget.h \
  /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QSpinBox \
@@ -498,11 +500,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
  /usr/include/qt6/QtNetwork/QTcpSocket \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../ftpclient.h \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QList \
- /usr/include/qt6/QtNetwork/QSslSocket /usr/include/qt6/QtCore/QProcess \
- /usr/include/qt6/QtCore/qprocess.h /usr/include/qt6/QtCore/QQueue \
- /usr/include/qt6/QtCore/qqueue.h /usr/include/qt6/QtCore/QFile \
- /usr/include/qt6/QtNetwork/QSslError \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
+ /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
+ /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
+ /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtNetwork/QSslError \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_ftpclient.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../ftpclient.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_iconbutton.cpp \
@@ -582,5 +583,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_settingswidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_translator.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../translator.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_visualizationwidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h

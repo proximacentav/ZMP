@@ -693,6 +693,12 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/translator.h",
+			"Mu",
+			"EWIEGA46WW/moc_translator.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/visualizationwidget.h",
 			"Mu",
 			"EWIEGA46WW/moc_visualizationwidget.cpp",
@@ -788,6 +794,7 @@
 		[ "/home/user/cp/zmp/playerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playlistswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/settingswidget.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/translator.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/visualizationwidget.cpp", "Mu", null ]
 	],
 	"USE_BETTER_GRAPH" : true,

@@ -4,6 +4,7 @@ ZMP_Linux_bin: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16.1.1/crtbeginS.o \
   CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o \
@@ -181,6 +182,8 @@ ZMP_Linux_bin: \
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o:
 
