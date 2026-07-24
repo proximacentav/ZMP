@@ -1,4 +1,5 @@
 #include "fileswidget.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -83,6 +84,8 @@ FilesWidget::FilesWidget(QWidget *parent)
     setupUI();
     createMenu();
 
+    connect(&Translator::instance(), &Translator::languageChanged, this, &FilesWidget::retranslateUi);
+
     connect(m_networkManager, &QNetworkAccessManager::finished, this, &FilesWidget::onDownloadFinished);
     connect(m_pingSocket, &QTcpSocket::connected, this, &FilesWidget::onPingSocketConnected);
     connect(m_pingSocket, &QTcpSocket::errorOccurred, this, &FilesWidget::onPingSocketError);
@@ -106,9 +109,14 @@ FilesWidget::FilesWidget(QWidget *parent)
                                 .arg(protoName).arg(m_ftpHost).arg(m_ftpPort).arg(path));
         m_ftpStatusLabel->setText(QString("... %1").arg(path));
         m_ftpListWidget->clear();
-        m_ftpListWidget->addItem("Загрузка...");
+        m_ftpListWidget->addItem(ztr("Загрузка..."));
         m_ftpClient->list(path);
     });
+}
+
+void FilesWidget::retranslateUi()
+{
+    runRetrans(m_retrans);
 }
 
 void FilesWidget::setupUI()
@@ -121,13 +129,14 @@ void FilesWidget::setupUI()
     topLayout->setContentsMargins(5, 5, 5, 5);
     topLayout->setSpacing(5);
 
-    m_menuButton = new QPushButton("=Меню", this);
+    m_menuButton = new QPushButton(this);
+    ztrSetText(m_retrans, m_menuButton, "=Меню");
     m_menuButton->setFixedWidth(100);
     connect(m_menuButton, &QPushButton::clicked, this, &FilesWidget::onMenuButtonClicked);
     topLayout->addWidget(m_menuButton);
 
     m_searchEdit = new QLineEdit(this);
-    m_searchEdit->setPlaceholderText("Поиск по названию и расширению...");
+    ztrSetPlaceholder(m_retrans, m_searchEdit, "Поиск по названию и расширению...");
     m_searchEdit->setVisible(false);
     connect(m_searchEdit, &QLineEdit::textChanged, this, &FilesWidget::onSearchTextChanged);
     topLayout->addWidget(m_searchEdit);
@@ -143,7 +152,7 @@ void FilesWidget::setupUI()
             if (m_hasRootAccess) {
                 switchToRootView(path);
             } else {
-                QMessageBox::warning(this, "Ошибка", "Нет доступа к " + path);
+                QMessageBox::warning(this, ztr("Ошибка"), ztr("Нет доступа к ") + path);
             }
         } else {
             m_currentPath = path;
@@ -185,7 +194,8 @@ void FilesWidget::setupUI()
     ftpLayout->setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout *ftpTop = new QHBoxLayout();
-    m_ftpBackButton = new QPushButton("< Назад");
+    m_ftpBackButton = new QPushButton();
+    ztrSetText(m_retrans, m_ftpBackButton, "< Назад");
     m_ftpBackButton->setFixedWidth(100);
     connect(m_ftpBackButton, &QPushButton::clicked, this, &FilesWidget::onFtpBackClicked);
     ftpTop->addWidget(m_ftpBackButton);
@@ -207,7 +217,8 @@ void FilesWidget::setupUI()
     rootLayout->setContentsMargins(0, 0, 0, 0);
 
     QHBoxLayout *rootTop = new QHBoxLayout();
-    m_rootBackButton = new QPushButton("< Назад");
+    m_rootBackButton = new QPushButton();
+    ztrSetText(m_retrans, m_rootBackButton, "< Назад");
     m_rootBackButton->setFixedWidth(100);
     connect(m_rootBackButton, &QPushButton::clicked, this, &FilesWidget::onRootBackClicked);
     rootTop->addWidget(m_rootBackButton);
@@ -269,7 +280,7 @@ void FilesWidget::createMenu()
 
     if (m_ftpConnected) {
         m_menu->addSeparator();
-        QAction *disconnectAction = m_menu->addAction("Отключиться от FTP/FTPS/SMB");
+        QAction *disconnectAction = m_menu->addAction(ztr("Отключиться от FTP/FTPS/SMB"));
         connect(disconnectAction, &QAction::triggered, this, [this]() {
             if (m_ftpConnected) {
                 m_ftpClient->disconnect();
@@ -303,7 +314,7 @@ void FilesWidget::onMenuButtonClicked()
 
     m_menu->addSeparator();
 
-    QAction *searchAction = m_menu->addAction(m_searchVisible ? "Скрыть поиск" : "Поиск");
+    QAction *searchAction = m_menu->addAction(m_searchVisible ? ztr("Скрыть поиск") : ztr("Поиск"));
     connect(searchAction, &QAction::triggered, this, &FilesWidget::onToggleSearch);
 
     if (m_hasRootAccess) {
@@ -317,7 +328,7 @@ void FilesWidget::onMenuButtonClicked()
 
     if (m_ftpConnected) {
         m_menu->addSeparator();
-        QAction *disconnectAction = m_menu->addAction("Отключиться от FTP/FTPS/SMB");
+        QAction *disconnectAction = m_menu->addAction(ztr("Отключиться от FTP/FTPS/SMB"));
         connect(disconnectAction, &QAction::triggered, this, [this]() {
             if (m_ftpConnected) {
                 m_ftpClient->disconnect();
@@ -432,13 +443,13 @@ void FilesWidget::showConnectionDialog(FTPClient::Protocol proto)
     QString title;
     int defaultPort = 21;
     if (proto == FTPClient::FTPS) {
-        title = "Подключение к FTPS";
+        title = ztr("Подключение к FTPS");
         defaultPort = 990;
     } else if (proto == FTPClient::SMB) {
-        title = "Подключение к SMB";
+        title = ztr("Подключение к SMB");
         defaultPort = 445;
     } else {
-        title = "Подключение к FTP";
+        title = ztr("Подключение к FTP");
         defaultPort = 21;
     }
     dialog.setWindowTitle(title);
@@ -447,28 +458,28 @@ void FilesWidget::showConnectionDialog(FTPClient::Protocol proto)
     QFormLayout *form = new QFormLayout(&dialog);
 
     QLineEdit *hostEdit = new QLineEdit();
-    hostEdit->setPlaceholderText("example.com или IP");
-    form->addRow("Хост:", hostEdit);
+    hostEdit->setPlaceholderText(ztr("example.com или IP"));
+    form->addRow(ztr("Хост:"), hostEdit);
 
     QSpinBox *portSpin = new QSpinBox();
     portSpin->setRange(1, 65535);
     portSpin->setValue(defaultPort);
-    form->addRow("Порт:", portSpin);
+    form->addRow(ztr("Порт:"), portSpin);
 
     QLineEdit *userEdit = new QLineEdit();
     userEdit->setPlaceholderText("anonymous");
-    form->addRow("Пользователь:", userEdit);
+    form->addRow(ztr("Пользователь:"), userEdit);
 
     QLineEdit *passEdit = new QLineEdit();
     passEdit->setPlaceholderText("email@example.com");
     passEdit->setEchoMode(QLineEdit::Password);
-    form->addRow("Пароль:", passEdit);
+    form->addRow(ztr("Пароль:"), passEdit);
 
     QLineEdit *shareEdit = nullptr;
     if (proto == FTPClient::SMB) {
         shareEdit = new QLineEdit();
         shareEdit->setPlaceholderText("share_name");
-        form->addRow("Ресурс (share):", shareEdit);
+        form->addRow(ztr("Ресурс (share):"), shareEdit);
     }
 
     QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -485,7 +496,7 @@ void FilesWidget::showConnectionDialog(FTPClient::Protocol proto)
     m_ftpPass = passEdit->text().trimmed();
 
     if (m_ftpHost.isEmpty()) {
-        QMessageBox::warning(this, "Ошибка", "Хост не может быть пустым");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Хост не может быть пустым"));
         return;
     }
 
@@ -495,7 +506,7 @@ void FilesWidget::showConnectionDialog(FTPClient::Protocol proto)
         m_ftpClient->setSmbShare(share);
     }
 
-    m_ftpStatusLabel->setText(QString("Подключение к %1:%2...").arg(m_ftpHost).arg(m_ftpPort));
+    m_ftpStatusLabel->setText(QString(ztr("Подключение к %1:%2...")).arg(m_ftpHost).arg(m_ftpPort));
     switchToFtpView();
     m_ftpClient->connectToHost(m_ftpHost, m_ftpPort, m_ftpUser, m_ftpPass, proto);
 }
@@ -532,25 +543,25 @@ void FilesWidget::onFtpConnected()
                                   .arg(m_ftpHost)
                                   .arg(m_ftpPort));
     m_ftpListWidget->clear();
-    m_ftpListWidget->addItem("Загрузка списка файлов...");
+    m_ftpListWidget->addItem(ztr("Загрузка списка файлов..."));
     m_ftpClient->list("/");
 }
 
 void FilesWidget::onFtpError(const QString &error)
 {
-    m_ftpStatusLabel->setText("Ошибка: " + error);
+    m_ftpStatusLabel->setText(ztr("Ошибка: ") + error);
     if (!m_ftpConnected) {
-        QMessageBox::critical(this, "Ошибка подключения", error);
+        QMessageBox::critical(this, ztr("Ошибка подключения"), error);
         switchToLocalView();
     } else {
-        QMessageBox::warning(this, "Ошибка", error);
+        QMessageBox::warning(this, ztr("Ошибка"), error);
     }
 }
 
 void FilesWidget::onFtpDisconnected()
 {
     m_ftpConnected = false;
-    m_ftpStatusLabel->setText("Отключено");
+    m_ftpStatusLabel->setText(ztr("Отключено"));
     m_pathEdit->setText(QDir::homePath());
 }
 
@@ -558,7 +569,7 @@ void FilesWidget::onFtpListReceived(const QList<FileEntry> &list)
 {
     m_ftpListWidget->clear();
     if (list.isEmpty()) {
-        m_ftpListWidget->addItem("(пусто)");
+        m_ftpListWidget->addItem(ztr("(пусто)"));
         return;
     }
 
@@ -616,11 +627,11 @@ void FilesWidget::onFtpListDoubleClicked(QListWidgetItem *item)
     }
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle("Сохранение файла");
-    msgBox.setText("Куда сохранить файл \"" + name + "\"?");
-    QPushButton *playlistBtn = msgBox.addButton("Плейлист", QMessageBox::ActionRole);
-    QPushButton *dirBtn = msgBox.addButton("Директория", QMessageBox::ActionRole);
-    msgBox.addButton("Отмена", QMessageBox::RejectRole);
+    msgBox.setWindowTitle(ztr("Сохранение файла"));
+    msgBox.setText(ztr("Куда сохранить файл \"") + name + "\"?");
+    QPushButton *playlistBtn = msgBox.addButton(ztr("Плейлист"), QMessageBox::ActionRole);
+    QPushButton *dirBtn = msgBox.addButton(ztr("Директория"), QMessageBox::ActionRole);
+    msgBox.addButton(ztr("Отмена"), QMessageBox::RejectRole);
     msgBox.setDefaultButton(static_cast<QPushButton*>(msgBox.buttons().last()));
     msgBox.exec();
 
@@ -655,7 +666,7 @@ void FilesWidget::downloadToCache(const QString &remotePath)
         case FTPClient::SMB: protoName = "SMB"; break;
         default: protoName = "?"; break;
     }
-    m_ftpStatusLabel->setText(QString("Скачивание %1: %2...").arg(protoName).arg(remotePath));
+    m_ftpStatusLabel->setText(QString(ztr("Скачивание %1: %2...")).arg(protoName).arg(remotePath));
     m_progressBar->setVisible(true);
     m_progressBar->setRange(0, 0);
     m_ftpClient->download(remotePath, localPath);
@@ -689,12 +700,12 @@ void FilesWidget::onFtpDownloadFinished()
 void FilesWidget::showPlaylistSaveDialog(const QString &fileName)
 {
     QDialog dialog(this);
-    dialog.setWindowTitle("Выберите плейлист");
+    dialog.setWindowTitle(ztr("Выберите плейлист"));
     dialog.setMinimumSize(300, 350);
 
     QVBoxLayout *layout = new QVBoxLayout(&dialog);
 
-    QLabel *label = new QLabel("Выберите плейлист для сохранения:");
+    QLabel *label = new QLabel(ztr("Выберите плейлист для сохранения:"));
     layout->addWidget(label);
 
     QListWidget *listWidget = new QListWidget;
@@ -708,7 +719,7 @@ void FilesWidget::showPlaylistSaveDialog(const QString &fileName)
     }
     layout->addWidget(listWidget);
 
-    QPushButton *cancelBtn = new QPushButton("Отмена");
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
     layout->addWidget(cancelBtn);
 
     connect(cancelBtn, &QPushButton::clicked, &dialog, &QDialog::reject);
@@ -724,7 +735,7 @@ void FilesWidget::showPlaylistSaveDialog(const QString &fileName)
             case FTPClient::SMB: protoName = "SMB"; break;
             default: protoName = "?"; break;
         }
-        m_ftpStatusLabel->setText(QString("Скачивание %1: %2...").arg(protoName).arg(fileName));
+        m_ftpStatusLabel->setText(QString(ztr("Скачивание %1: %2...")).arg(protoName).arg(fileName));
         m_progressBar->setVisible(true);
         m_progressBar->setRange(0, 0);
         m_ftpClient->download(fileName, savePath);
@@ -737,7 +748,7 @@ void FilesWidget::showPlaylistSaveDialog(const QString &fileName)
 void FilesWidget::showDirectorySaveDialog(const QString &fileName)
 {
     QString dirPath = QFileDialog::getExistingDirectory(this,
-        "Выберите папку для сохранения", QDir::homePath());
+        ztr("Выберите папку для сохранения"), QDir::homePath());
     if (dirPath.isEmpty()) return;
 
     QString savePath = dirPath + "/" + fileName;
@@ -750,7 +761,7 @@ void FilesWidget::showDirectorySaveDialog(const QString &fileName)
         case FTPClient::SMB: protoName = "SMB"; break;
         default: protoName = "?"; break;
     }
-    m_ftpStatusLabel->setText(QString("Скачивание %1: %2...").arg(protoName).arg(fileName));
+    m_ftpStatusLabel->setText(QString(ztr("Скачивание %1: %2...")).arg(protoName).arg(fileName));
     m_progressBar->setVisible(true);
     m_progressBar->setRange(0, 0);
     m_ftpClient->download(fileName, savePath);
@@ -759,12 +770,12 @@ void FilesWidget::showDirectorySaveDialog(const QString &fileName)
 void FilesWidget::onSslErrorsUi(const QList<QSslError> &errors)
 {
     QDialog dialog(this);
-    dialog.setWindowTitle("Ошибка SSL сертификата");
+    dialog.setWindowTitle(ztr("Ошибка SSL сертификата"));
     dialog.setMinimumSize(450, 350);
 
     QVBoxLayout *layout = new QVBoxLayout(&dialog);
 
-    QLabel *titleLabel = new QLabel("Сертификат сервера не действителен:");
+    QLabel *titleLabel = new QLabel(ztr("Сертификат сервера не действителен:"));
     titleLabel->setStyleSheet("font-weight: bold; font-size: 14px;");
     layout->addWidget(titleLabel);
 
@@ -773,9 +784,9 @@ void FilesWidget::onSslErrorsUi(const QList<QSslError> &errors)
         info += "- " + err.errorString() + "\n";
         QSslCertificate cert = err.certificate();
         if (!cert.isNull()) {
-            info += "\n  Издатель: " + cert.issuerInfo(QSslCertificate::CommonName).join(", ") + "\n";
-            info += "  Владелец: " + cert.subjectInfo(QSslCertificate::CommonName).join(", ") + "\n";
-            info += "  Срок действия: " + cert.effectiveDate().toString("dd.MM.yyyy")
+            info += ztr("\n  Издатель: ") + cert.issuerInfo(QSslCertificate::CommonName).join(", ") + "\n";
+            info += ztr("  Владелец: ") + cert.subjectInfo(QSslCertificate::CommonName).join(", ") + "\n";
+            info += ztr("  Срок действия: ") + cert.effectiveDate().toString("dd.MM.yyyy")
                     + " - " + cert.expiryDate().toString("dd.MM.yyyy") + "\n";
         }
         info += "\n";
@@ -788,8 +799,8 @@ void FilesWidget::onSslErrorsUi(const QList<QSslError> &errors)
 
     QHBoxLayout *btnLayout = new QHBoxLayout();
 
-    QPushButton *allowBtn = new QPushButton("Разрешить");
-    QPushButton *denyBtn = new QPushButton("Запретить");
+    QPushButton *allowBtn = new QPushButton(ztr("Разрешить"));
+    QPushButton *denyBtn = new QPushButton(ztr("Запретить"));
     btnLayout->addWidget(allowBtn);
     btnLayout->addWidget(denyBtn);
 
@@ -824,7 +835,7 @@ void FilesWidget::switchToRootView(const QString &path)
     proc.start("sudo", {"-S", "ls", "-1ap", path});
     if (!proc.waitForStarted()) {
         m_rootListWidget->clear();
-        m_rootListWidget->addItem("Ошибка: sudo не доступен");
+        m_rootListWidget->addItem(ztr("Ошибка: sudo не доступен"));
         return;
     }
     proc.write((m_rootPassword + "\n").toUtf8());
@@ -832,7 +843,7 @@ void FilesWidget::switchToRootView(const QString &path)
     if (!proc.waitForFinished(10000)) {
         proc.kill();
         m_rootListWidget->clear();
-        m_rootListWidget->addItem("Ошибка: таймаут");
+        m_rootListWidget->addItem(ztr("Ошибка: таймаут"));
         return;
     }
 
@@ -879,7 +890,7 @@ void FilesWidget::onRootListDoubleClicked(QListWidgetItem *item)
     if (proc.waitForFinished(10000) && proc.exitCode() == 0) {
         emit fileSelected(destPath);
     } else {
-        QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
+        QMessageBox::critical(this, ztr("Ошибка"), ztr("Не удалось скопировать файл"));
     }
 }
 
@@ -928,13 +939,13 @@ void FilesWidget::onIPValidationError(bool &continueConnection)
 {
     continueConnection = false;
     QDialog dialog(this);
-    dialog.setWindowTitle("Неверный IP-адрес");
+    dialog.setWindowTitle(ztr("Неверный IP-адрес"));
     dialog.setFixedSize(300, 120);
-    QLabel *label = new QLabel("IP-адрес не действителен. Продолжить попытку подключения?", &dialog);
+    QLabel *label = new QLabel(ztr("IP-адрес не действителен. Продолжить попытку подключения?"), &dialog);
     label->setAlignment(Qt::AlignCenter);
     QHBoxLayout *buttonLayout = new QHBoxLayout();
-    QPushButton *cancelBtn = new QPushButton("Отмена");
-    QPushButton *continueBtn = new QPushButton("Продолжить");
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
+    QPushButton *continueBtn = new QPushButton(ztr("Продолжить"));
     connect(cancelBtn, &QPushButton::clicked, &dialog, &QDialog::reject);
     connect(continueBtn, &QPushButton::clicked, &dialog, &QDialog::accept);
     buttonLayout->addWidget(cancelBtn);
@@ -950,7 +961,7 @@ void FilesWidget::onIPValidationError(bool &continueConnection)
 void FilesWidget::startPing(const QString &ip, int port)
 {
     if (!isValidIPv4(ip) && !isValidIPv6(ip)) {
-        QMessageBox::warning(this, "Ошибка", "Неверный IP-адрес");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Неверный IP-адрес"));
         return;
     }
     m_pingSocket->abort();
@@ -986,7 +997,7 @@ void FilesWidget::onPingSocketTimeout()
     m_pingSocket = new QTcpSocket(this);
     connect(m_pingSocket, &QTcpSocket::connected, this, &FilesWidget::onPingSocketConnected);
     connect(m_pingSocket, &QTcpSocket::errorOccurred, this, &FilesWidget::onPingSocketError);
-    QMessageBox::critical(this, "Ошибка", "Сервер не доступен");
+    QMessageBox::critical(this, ztr("Ошибка"), ztr("Сервер не доступен"));
 }
 
 void FilesWidget::onDownloadFinished()
@@ -1003,13 +1014,13 @@ void FilesWidget::onDownloadFinished()
             if (file.open(QIODevice::WriteOnly)) {
                 file.write(data);
                 file.close();
-                QMessageBox::information(this, "Скачивание",
-                    QString("Файл сохранен в %1").arg(localPath));
+                QMessageBox::information(this, ztr("Скачивание"),
+                    QString(ztr("Файл сохранен в %1")).arg(localPath));
             } else {
-                QMessageBox::warning(this, "Ошибка", "Не удалось сохранить файл");
+                QMessageBox::warning(this, ztr("Ошибка"), ztr("Не удалось сохранить файл"));
             }
         } else {
-            QMessageBox::critical(this, "Ошибка скачивания",
+            QMessageBox::critical(this, ztr("Ошибка скачивания"),
                 m_currentDownload->errorString());
         }
         m_currentDownload->deleteLater();
@@ -1034,7 +1045,7 @@ void FilesWidget::onDownloadError(QNetworkReply::NetworkError error)
 {
     Q_UNUSED(error)
     if (m_currentDownload) {
-        QMessageBox::critical(this, "Ошибка", m_currentDownload->errorString());
+        QMessageBox::critical(this, ztr("Ошибка"), m_currentDownload->errorString());
         m_currentDownload->deleteLater();
         m_currentDownload = nullptr;
         m_progressBar->setVisible(false);

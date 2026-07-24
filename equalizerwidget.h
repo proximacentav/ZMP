@@ -13,6 +13,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include "audiomanager.h"
+#include "translator.h"
 
 class EqualizerWidget : public QWidget
 {
@@ -67,6 +68,9 @@ private:
     void setPreampValue(int value);
     void setSpeedValue(double value);
     void setPitchValue(double value);
+
+    RetransList m_retrans;
+    void retranslateUi();
 };
 
 #endif

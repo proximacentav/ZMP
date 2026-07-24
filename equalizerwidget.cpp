@@ -1,4 +1,5 @@
 #include "equalizerwidget.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -21,7 +22,8 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     mainLayout->addWidget(m_powerModeLabel);
 
     QHBoxLayout *resetLayout = new QHBoxLayout;
-    m_resetButton = new QPushButton("Сбросить EQ");
+    m_resetButton = new QPushButton;
+    ztrSetText(m_retrans, m_resetButton, "Сбросить EQ");
     resetLayout->addWidget(m_resetButton);
     resetLayout->addStretch();
     mainLayout->addLayout(resetLayout);
@@ -104,6 +106,12 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_speedSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EqualizerWidget::onSpeedSpinBoxChanged);
     connect(m_pitchSlider, &QSlider::valueChanged, this, &EqualizerWidget::onPitchSliderMoved);
     connect(m_pitchSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EqualizerWidget::onPitchSpinBoxChanged);
+
+    connect(&Translator::instance(), &Translator::languageChanged, this, &EqualizerWidget::retranslateUi);
+}
+
+void EqualizerWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 void EqualizerWidget::createBands() {

@@ -1,4 +1,5 @@
 #include "playlistswidget.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -77,6 +78,14 @@ static QString extractArtist(const QString &filePath) {
     return QString();
 }
 
+// Translated display name for well-known built-in cluster identifiers. The
+// stored cluster.name (used for paths/comparisons) stays as the Russian
+// identifier; only what the user sees is translated.
+static QString clusterDisplayName(const QString &name) {
+    if (name == QString::fromUtf8("по исполнителю")) return ztr("по исполнителю");
+    return name;
+}
+
 // ----------------------------------------------------------------
 //  ClustersPanel
 // ----------------------------------------------------------------
@@ -104,6 +113,9 @@ ClustersPanel::ClustersPanel(QWidget *parent) : QWidget(parent) {
             emit clusterSelected(name);
         }
     });
+
+    // Refresh cluster labels ("(без кластера)", translated built-in names) live.
+    connect(&Translator::instance(), &Translator::languageChanged, this, [this]{ loadClusters(); });
 }
 
 void ClustersPanel::loadClusters() {
@@ -111,9 +123,10 @@ void ClustersPanel::loadClusters() {
     if (!m_playlistsWidget) return;
 
     for (const ClusterInfo &ci : m_playlistsWidget->m_clusters) {
+        const QString disp = clusterDisplayName(ci.name);
         QString label = ci.color.isValid()
-            ? QString("● %1").arg(ci.name)
-            : ci.name;
+            ? QString("● %1").arg(disp)
+            : disp;
         QListWidgetItem *item = new QListWidgetItem(label);
         item->setData(Qt::UserRole, ci.name);
         if (ci.color.isValid()) {
@@ -123,7 +136,7 @@ void ClustersPanel::loadClusters() {
     }
 
     // Always show "(без кластера)" at the bottom
-    QListWidgetItem *noClusterItem = new QListWidgetItem("(без кластера)");
+    QListWidgetItem *noClusterItem = new QListWidgetItem(ztr("(без кластера)"));
     noClusterItem->setData(Qt::UserRole, PlaylistsWidget::UnclusteredFilter);
     noClusterItem->setForeground(QColor(150, 150, 150));
     m_clusterList->addItem(noClusterItem);
@@ -221,12 +234,12 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *top = new QHBoxLayout;
     QPushButton *addBtn = new QPushButton("+");
     addBtn->setFixedSize(40,40);
-    QPushButton *editBtn = new QPushButton("Редактировать");
+    QPushButton *editBtn = ztrButton(m_retrans, "Редактировать");
     editBtn->setFixedSize(100,40);
     QPushButton *delBtn = new QPushButton("Delete");
     delBtn->setFixedSize(70,40);
 
-    QPushButton *clusterToggleBtn = new QPushButton("Кластеры");
+    QPushButton *clusterToggleBtn = ztrButton(m_retrans, "Кластеры");
     clusterToggleBtn->setFixedSize(90,40);
     clusterToggleBtn->setCursor(Qt::PointingHandCursor);
     clusterToggleBtn->setStyleSheet(
@@ -235,7 +248,7 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
         "QPushButton:hover { color: white; border-color: #888; }"
     );
 
-    QPushButton *addClusterBtn = new QPushButton("+ кластер");
+    QPushButton *addClusterBtn = ztrButton(m_retrans, "+ кластер");
     addClusterBtn->setFixedSize(80,40);
     addClusterBtn->setCursor(Qt::PointingHandCursor);
     addClusterBtn->setStyleSheet(
@@ -244,7 +257,7 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
         "QPushButton:hover { background: rgba(76,175,80,0.2); }"
     );
 
-    QPushButton *editClusterBtn = new QPushButton("ред. кластер");
+    QPushButton *editClusterBtn = ztrButton(m_retrans, "ред. кластер");
     editClusterBtn->setFixedSize(90,40);
     editClusterBtn->setCursor(Qt::PointingHandCursor);
     editClusterBtn->setStyleSheet(
@@ -293,7 +306,7 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     connect(this, &PlaylistsWidget::playlistSelected, this, &PlaylistsWidget::onPlaylistPlaying);
     connect(clusterToggleBtn, &QPushButton::clicked, this, [this, clusterToggleBtn]() {
         m_clustersPanel->onToggleVisibility();
-        clusterToggleBtn->setText(m_clustersPanel->isVisible() ? "Кластеры" : "Кластеры");
+        clusterToggleBtn->setText(m_clustersPanel->isVisible() ? ztr("Кластеры") : ztr("Кластеры"));
     });
     connect(addClusterBtn, &QPushButton::clicked, m_clustersPanel, &ClustersPanel::onAddCluster);
     connect(editClusterBtn, &QPushButton::clicked, m_clustersPanel, &ClustersPanel::onEditCluster);
@@ -307,6 +320,12 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     if (isFirstRun()) {
         setupDefaultClusters();
     }
+
+    connect(&Translator::instance(), &Translator::languageChanged, this, &PlaylistsWidget::retranslateUi);
+}
+
+void PlaylistsWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 const QString PlaylistsWidget::UnclusteredFilter = QStringLiteral("__unclustered__");
@@ -633,29 +652,29 @@ void PlaylistsWidget::filterByCluster(const QString &clusterName) {
 
 void PlaylistsWidget::onAddClicked() {
     QDialog dlg(this);
-    dlg.setWindowTitle("Создать плейлист");
+    dlg.setWindowTitle(ztr("Создать плейлист"));
     dlg.setModal(true);
     dlg.resize(450, 450);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Название:"));
+    l->addWidget(new QLabel(ztr("Название:")));
     QLineEdit *nameEdit = new QLineEdit;
     l->addWidget(nameEdit);
-    l->addWidget(new QLabel("Файлы:"));
+    l->addWidget(new QLabel(ztr("Файлы:")));
     QListWidget *fileList = new QListWidget;
     l->addWidget(fileList);
     QHBoxLayout *btnL = new QHBoxLayout;
-    QPushButton *addFileBtn = new QPushButton("Добавить файлы");
-    QPushButton *removeFileBtn = new QPushButton("Удалить выбранный");
-    QPushButton *importBtn = new QPushButton("Импорт");
+    QPushButton *addFileBtn = new QPushButton(ztr("Добавить файлы"));
+    QPushButton *removeFileBtn = new QPushButton(ztr("Удалить выбранный"));
+    QPushButton *importBtn = new QPushButton(ztr("Импорт"));
     btnL->addWidget(addFileBtn);
     btnL->addWidget(removeFileBtn);
     btnL->addWidget(importBtn);
     l->addLayout(btnL);
 
     // Cluster selection
-    l->addWidget(new QLabel("Добавить в кластер:"));
+    l->addWidget(new QLabel(ztr("Добавить в кластер:")));
     QComboBox *clusterCombo = new QComboBox;
-    clusterCombo->addItem("(без кластера)", QString());
+    clusterCombo->addItem(ztr("(без кластера)"), QString());
     for (const ClusterInfo &ci : m_clusters) {
         clusterCombo->addItem(ci.name, ci.name);
     }
@@ -667,22 +686,22 @@ void PlaylistsWidget::onAddClicked() {
     l->addWidget(clusterCombo);
 
     QHBoxLayout *dialogBtns = new QHBoxLayout;
-    QPushButton *okBtn = new QPushButton("Создать");
-    QPushButton *cancelBtn = new QPushButton("Отмена");
+    QPushButton *okBtn = new QPushButton(ztr("Создать"));
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
     dialogBtns->addWidget(okBtn);
     dialogBtns->addWidget(cancelBtn);
     l->addLayout(dialogBtns);
 
     connect(addFileBtn, &QPushButton::clicked, [&](){
-        QStringList files = QFileDialog::getOpenFileNames(&dlg, "Выберите аудиофайлы", QDir::homePath(),
-            "Аудио (*.mp3 *.wav *.flac *.aac *.aiff)");
+        QStringList files = QFileDialog::getOpenFileNames(&dlg, ztr("Выберите аудиофайлы"), QDir::homePath(),
+            ztr("Аудио (*.mp3 *.wav *.flac *.aac *.aiff)"));
         for (const QString &f : files) fileList->addItem(f);
     });
     connect(removeFileBtn, &QPushButton::clicked, [&](){
         delete fileList->currentItem();
     });
     connect(importBtn, &QPushButton::clicked, [&](){
-        QString dir = QFileDialog::getExistingDirectory(&dlg, "Выберите папку с аудиофайлами");
+        QString dir = QFileDialog::getExistingDirectory(&dlg, ztr("Выберите папку с аудиофайлами"));
         if (dir.isEmpty()) return;
         QDir d(dir);
         QStringList files = d.entryList(QStringList() << "*.mp3" << "*.wav" << "*.flac" << "*.aac" << "*.aiff", QDir::Files, QDir::Name);
@@ -695,11 +714,11 @@ void PlaylistsWidget::onAddClicked() {
 
     if (dlg.exec() == QDialog::Accepted) {
         QString name = nameEdit->text().trimmed();
-        if (name.isEmpty()) { QMessageBox::warning(this, "Ошибка", "Введите название"); return; }
+        if (name.isEmpty()) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Введите название")); return; }
         name.replace('/', '_');
         QStringList files;
         for (int i=0; i<fileList->count(); ++i) files << fileList->item(i)->text();
-        if (files.isEmpty()) { QMessageBox::warning(this, "Ошибка", "Добавьте файлы"); return; }
+        if (files.isEmpty()) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Добавьте файлы")); return; }
 
         QString targetCluster = clusterCombo->currentData().toString();
         QString playlistDir;
@@ -711,8 +730,8 @@ void PlaylistsWidget::onAddClicked() {
         }
 
         QDir dir;
-        if (dir.exists(playlistDir)) { QMessageBox::warning(this, "Ошибка", "Плейлист уже существует"); return; }
-        if (!dir.mkpath(playlistDir)) { QMessageBox::warning(this, "Ошибка", "Не удалось создать папку"); return; }
+        if (dir.exists(playlistDir)) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Плейлист уже существует")); return; }
+        if (!dir.mkpath(playlistDir)) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Не удалось создать папку")); return; }
         for (const QString &src : files) {
             QFileInfo fi(src);
             if (supportedExts().contains(fi.suffix().toLower().prepend('.'))) {
@@ -726,16 +745,16 @@ void PlaylistsWidget::onAddClicked() {
 
 void PlaylistsWidget::onDeleteClicked() {
     QDialog dlg(this);
-    dlg.setWindowTitle("Удалить плейлист");
+    dlg.setWindowTitle(ztr("Удалить плейлист"));
     dlg.setModal(true);
     dlg.resize(300,150);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Введите название плейлиста для удаления:"));
+    l->addWidget(new QLabel(ztr("Введите название плейлиста для удаления:")));
     QLineEdit *nameEdit = new QLineEdit;
     l->addWidget(nameEdit);
     QHBoxLayout *b = new QHBoxLayout;
-    QPushButton *ok = new QPushButton("Удалить");
-    QPushButton *cancel = new QPushButton("Отмена");
+    QPushButton *ok = new QPushButton(ztr("Удалить"));
+    QPushButton *cancel = new QPushButton(ztr("Отмена"));
     b->addWidget(ok);
     b->addWidget(cancel);
     l->addLayout(b);
@@ -743,7 +762,7 @@ void PlaylistsWidget::onDeleteClicked() {
     connect(cancel, &QPushButton::clicked, &dlg, &QDialog::reject);
     if (dlg.exec() == QDialog::Accepted) {
         QString name = nameEdit->text().trimmed();
-        if (name.isEmpty()) { QMessageBox::warning(this, "Ошибка", "Введите название"); return; }
+        if (name.isEmpty()) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Введите название")); return; }
         // Try unclustered path first, then cluster paths
         QString path = basePath() + "/" + name;
         QDir dir(path);
@@ -754,9 +773,9 @@ void PlaylistsWidget::onDeleteClicked() {
                 if (dir.exists()) break;
             }
         }
-        if (!dir.exists()) { QMessageBox::warning(this, "Ошибка", "Плейлист не найден"); return; }
+        if (!dir.exists()) { QMessageBox::warning(this, ztr("Ошибка"), ztr("Плейлист не найден")); return; }
         if (dir.removeRecursively()) loadPlaylists();
-        else QMessageBox::warning(this, "Ошибка", "Не удалось удалить");
+        else QMessageBox::warning(this, ztr("Ошибка"), ztr("Не удалось удалить"));
     }
 }
 
@@ -792,12 +811,12 @@ void PlaylistsWidget::onPlaylistStopped() {
 
 void PlaylistsWidget::onEditClicked() {
     QDialog dlg(this);
-    dlg.setWindowTitle("Редактировать плейлист");
+    dlg.setWindowTitle(ztr("Редактировать плейлист"));
     dlg.setModal(true);
     dlg.resize(400, 300);
 
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Выберите плейлист:"));
+    l->addWidget(new QLabel(ztr("Выберите плейлист:")));
 
     QListWidget *playlistList = new QListWidget;
     QStringList allFolders = allPlaylistFolders();
@@ -808,8 +827,8 @@ void PlaylistsWidget::onEditClicked() {
     l->addWidget(playlistList);
 
     QHBoxLayout *btns = new QHBoxLayout;
-    QPushButton *okBtn = new QPushButton("Открыть");
-    QPushButton *cancelBtn = new QPushButton("Отмена");
+    QPushButton *okBtn = new QPushButton(ztr("Открыть"));
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
     btns->addWidget(okBtn);
     btns->addWidget(cancelBtn);
     l->addLayout(btns);
@@ -838,13 +857,13 @@ void PlaylistsWidget::onEditClicked() {
 PlaylistEditDialog::PlaylistEditDialog(const QString &playlistName, QWidget *parent)
     : QDialog(parent), m_playlistName(playlistName), m_borderColor(0, 255, 100)
 {
-    setWindowTitle("Редактирование плейлиста: " + playlistName);
+    setWindowTitle(ztr("Редактирование плейлиста: ") + playlistName);
     resize(600, 500);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QHBoxLayout *colorLayout = new QHBoxLayout;
-    colorLayout->addWidget(new QLabel("Цвет полосы:"));
+    colorLayout->addWidget(new QLabel(ztr("Цвет полосы:")));
 
     m_trackList = new QListWidget;
     m_trackList->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -852,10 +871,10 @@ PlaylistEditDialog::PlaylistEditDialog(const QString &playlistName, QWidget *par
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout;
 
-    QPushButton *addBtn = new QPushButton("Добавить файлы");
-    QPushButton *removeBtn = new QPushButton("Удалить выбранный");
-    m_applyBtn = new QPushButton("Применить");
-    m_cancelBtn = new QPushButton("Отмена");
+    QPushButton *addBtn = new QPushButton(ztr("Добавить файлы"));
+    QPushButton *removeBtn = new QPushButton(ztr("Удалить выбранный"));
+    m_applyBtn = new QPushButton(ztr("Применить"));
+    m_cancelBtn = new QPushButton(ztr("Отмена"));
 
     buttonsLayout->addWidget(addBtn);
     buttonsLayout->addWidget(removeBtn);
@@ -911,15 +930,15 @@ void PlaylistEditDialog::setupColorButtons() {
     if (!mainLayout) return;
 
     QHBoxLayout *colorButtonsLayout = new QHBoxLayout;
-    colorButtonsLayout->addWidget(new QLabel("Встроенные цвета:"));
+    colorButtonsLayout->addWidget(new QLabel(ztr("Встроенные цвета:")));
 
     const QList<QPair<QString, QColor>> presetColors = {
-        {"Зеленый", QColor(0, 255, 100)},
-        {"Фиолетовый", QColor(128, 0, 128)},
-        {"Красный", QColor(255, 0, 0)},
-        {"Синий", QColor(0, 100, 255)},
-        {"Оранжевый", QColor(255, 165, 0)},
-        {"Желтый", QColor(255, 255, 0)}
+        {ztr("Зеленый"), QColor(0, 255, 100)},
+        {ztr("Фиолетовый"), QColor(128, 0, 128)},
+        {ztr("Красный"), QColor(255, 0, 0)},
+        {ztr("Синий"), QColor(0, 100, 255)},
+        {ztr("Оранжевый"), QColor(255, 165, 0)},
+        {ztr("Желтый"), QColor(255, 255, 0)}
     };
 
     for (const auto &preset : presetColors) {
@@ -949,7 +968,7 @@ void PlaylistEditDialog::setupColorButtons() {
     bEdit->setPlaceholderText("B");
     bEdit->setMaximumWidth(50);
 
-    QPushButton *rgbBtn = new QPushButton("Выбрать");
+    QPushButton *rgbBtn = new QPushButton(ztr("Выбрать"));
     rgbBtn->setMaximumWidth(80);
 
     rgbLayout->addWidget(rEdit);
@@ -978,10 +997,10 @@ void PlaylistEditDialog::setupClusterCombo() {
     if (!mainLayout) return;
 
     QHBoxLayout *clusterLayout = new QHBoxLayout;
-    clusterLayout->addWidget(new QLabel("Кластер:"));
+    clusterLayout->addWidget(new QLabel(ztr("Кластер:")));
 
     m_clusterCombo = new QComboBox;
-    m_clusterCombo->addItem("(без кластера)", QString());
+    m_clusterCombo->addItem(ztr("(без кластера)"), QString());
 
     PlaylistsWidget *pw = qobject_cast<PlaylistsWidget*>(parent());
     if (pw) {
@@ -1008,8 +1027,8 @@ void PlaylistEditDialog::onColorSelected(const QColor &color) {
 }
 
 void PlaylistEditDialog::onAddFiles() {
-    QStringList files = QFileDialog::getOpenFileNames(this, "Выберите аудиофайлы",
-        QDir::homePath(), "Аудио (*.mp3 *.wav *.flac *.aac *.aiff)");
+    QStringList files = QFileDialog::getOpenFileNames(this, ztr("Выберите аудиофайлы"),
+        QDir::homePath(), ztr("Аудио (*.mp3 *.wav *.flac *.aac *.aiff)"));
 
     if (!files.isEmpty()) {
         // Find playlist path (could be in cluster or root)
@@ -1167,25 +1186,25 @@ void PlaylistEditDialog::saveChanges() {
 CreateClusterDialog::CreateClusterDialog(QWidget *parent)
     : QDialog(parent), m_color(0, 255, 100)
 {
-    setWindowTitle("Создать кластер");
+    setWindowTitle(ztr("Создать кластер"));
     resize(450, 500);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    mainLayout->addWidget(new QLabel("Название кластера:"));
+    mainLayout->addWidget(new QLabel(ztr("Название кластера:")));
     m_nameEdit = new QLineEdit;
-    m_nameEdit->setPlaceholderText("Введите название...");
+    m_nameEdit->setPlaceholderText(ztr("Введите название..."));
     mainLayout->addWidget(m_nameEdit);
 
-    mainLayout->addWidget(new QLabel("Цвет:"));
+    mainLayout->addWidget(new QLabel(ztr("Цвет:")));
     QHBoxLayout *colorButtonsLayout = new QHBoxLayout;
     const QList<QPair<QString, QColor>> presetColors = {
-        {"Зеленый", QColor(0, 255, 100)},
-        {"Фиолетовый", QColor(128, 0, 128)},
-        {"Красный", QColor(255, 0, 0)},
-        {"Синий", QColor(0, 100, 255)},
-        {"Оранжевый", QColor(255, 165, 0)},
-        {"Желтый", QColor(255, 255, 0)}
+        {ztr("Зеленый"), QColor(0, 255, 100)},
+        {ztr("Фиолетовый"), QColor(128, 0, 128)},
+        {ztr("Красный"), QColor(255, 0, 0)},
+        {ztr("Синий"), QColor(0, 100, 255)},
+        {ztr("Оранжевый"), QColor(255, 165, 0)},
+        {ztr("Желтый"), QColor(255, 255, 0)}
     };
     for (const auto &preset : presetColors) {
         QPushButton *btn = new QPushButton(preset.first);
@@ -1207,7 +1226,7 @@ CreateClusterDialog::CreateClusterDialog(QWidget *parent)
     gEdit->setPlaceholderText("G"); gEdit->setMaximumWidth(50);
     QLineEdit *bEdit = new QLineEdit;
     bEdit->setPlaceholderText("B"); bEdit->setMaximumWidth(50);
-    QPushButton *rgbBtn = new QPushButton("Выбрать");
+    QPushButton *rgbBtn = new QPushButton(ztr("Выбрать"));
     rgbBtn->setMaximumWidth(80);
     rgbLayout->addWidget(rEdit);
     rgbLayout->addWidget(gEdit);
@@ -1223,7 +1242,7 @@ CreateClusterDialog::CreateClusterDialog(QWidget *parent)
         onColorSelected(m_color);
     });
 
-    mainLayout->addWidget(new QLabel("Добавить плейлисты:"));
+    mainLayout->addWidget(new QLabel(ztr("Добавить плейлисты:")));
     m_playlistCheckList = new QListWidget;
     PlaylistsWidget *pw = qobject_cast<PlaylistsWidget*>(parent);
     if (pw) {
@@ -1237,14 +1256,14 @@ CreateClusterDialog::CreateClusterDialog(QWidget *parent)
     }
     mainLayout->addWidget(m_playlistCheckList);
 
-    QPushButton *addPlaylistBtn = new QPushButton("+ добавить плейлист");
+    QPushButton *addPlaylistBtn = new QPushButton(ztr("+ добавить плейлист"));
     addPlaylistBtn->setStyleSheet("QPushButton { background: transparent; color: #4CAF50; border: 1px solid #4CAF50; border-radius: 4px; padding: 6px; } QPushButton:hover { background: rgba(76,175,80,0.2); }");
     mainLayout->addWidget(addPlaylistBtn);
     connect(addPlaylistBtn, &QPushButton::clicked, this, &CreateClusterDialog::onAddPlaylist);
 
     QHBoxLayout *btns = new QHBoxLayout;
-    QPushButton *createBtn = new QPushButton("Создать");
-    QPushButton *cancelBtn = new QPushButton("Отмена");
+    QPushButton *createBtn = new QPushButton(ztr("Создать"));
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
     btns->addWidget(createBtn);
     btns->addWidget(cancelBtn);
     mainLayout->addLayout(btns);
@@ -1259,7 +1278,7 @@ void CreateClusterDialog::onColorSelected(const QColor &color) {
 
 void CreateClusterDialog::onCreate() {
     if (m_nameEdit->text().trimmed().isEmpty()) {
-        QMessageBox::warning(this, "Ошибка", "Введите название кластера");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Введите название кластера"));
         return;
     }
     accept();
@@ -1301,21 +1320,21 @@ void CreateClusterDialog::onAddPlaylist() {
     }
 
     if (available.isEmpty()) {
-        QMessageBox::information(this, "Информация", "Нет доступных плейлистов для добавления");
+        QMessageBox::information(this, ztr("Информация"), ztr("Нет доступных плейлистов для добавления"));
         return;
     }
 
     QDialog dlg(this);
-    dlg.setWindowTitle("Добавить плейлист");
+    dlg.setWindowTitle(ztr("Добавить плейлист"));
     dlg.resize(350, 300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Выберите плейлист:"));
+    l->addWidget(new QLabel(ztr("Выберите плейлист:")));
     QListWidget *list = new QListWidget;
     for (const QString &pl : available) list->addItem(pl);
     l->addWidget(list);
     QHBoxLayout *b = new QHBoxLayout;
-    QPushButton *ok = new QPushButton("Добавить");
-    QPushButton *cancel = new QPushButton("Отмена");
+    QPushButton *ok = new QPushButton(ztr("Добавить"));
+    QPushButton *cancel = new QPushButton(ztr("Отмена"));
     b->addWidget(ok);
     b->addWidget(cancel);
     l->addLayout(b);
@@ -1337,20 +1356,20 @@ void CreateClusterDialog::onAddPlaylist() {
 EditClusterDialog::EditClusterDialog(const QString &clusterName, QWidget *parentWidget)
     : QDialog(parentWidget), m_clusterName(clusterName), m_color(0, 255, 100)
 {
-    setWindowTitle("Редактировать кластер: " + clusterName);
+    setWindowTitle(ztr("Редактировать кластер: ") + clusterName);
     resize(450, 500);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    mainLayout->addWidget(new QLabel("Цвет кластера:"));
+    mainLayout->addWidget(new QLabel(ztr("Цвет кластера:")));
     QHBoxLayout *colorButtonsLayout = new QHBoxLayout;
     const QList<QPair<QString, QColor>> presetColors = {
-        {"Зеленый", QColor(0, 255, 100)},
-        {"Фиолетовый", QColor(128, 0, 128)},
-        {"Красный", QColor(255, 0, 0)},
-        {"Синий", QColor(0, 100, 255)},
-        {"Оранжевый", QColor(255, 165, 0)},
-        {"Желтый", QColor(255, 255, 0)}
+        {ztr("Зеленый"), QColor(0, 255, 100)},
+        {ztr("Фиолетовый"), QColor(128, 0, 128)},
+        {ztr("Красный"), QColor(255, 0, 0)},
+        {ztr("Синий"), QColor(0, 100, 255)},
+        {ztr("Оранжевый"), QColor(255, 165, 0)},
+        {ztr("Желтый"), QColor(255, 255, 0)}
     };
     for (const auto &preset : presetColors) {
         QPushButton *btn = new QPushButton(preset.first);
@@ -1372,7 +1391,7 @@ EditClusterDialog::EditClusterDialog(const QString &clusterName, QWidget *parent
     gEdit->setPlaceholderText("G"); gEdit->setMaximumWidth(50);
     QLineEdit *bEdit = new QLineEdit;
     bEdit->setPlaceholderText("B"); bEdit->setMaximumWidth(50);
-    QPushButton *rgbBtn = new QPushButton("Выбрать");
+    QPushButton *rgbBtn = new QPushButton(ztr("Выбрать"));
     rgbBtn->setMaximumWidth(80);
     rgbLayout->addWidget(rEdit);
     rgbLayout->addWidget(gEdit);
@@ -1388,7 +1407,7 @@ EditClusterDialog::EditClusterDialog(const QString &clusterName, QWidget *parent
         onColorSelected(m_color);
     });
 
-    mainLayout->addWidget(new QLabel("Плейлисты в кластере:"));
+    mainLayout->addWidget(new QLabel(ztr("Плейлисты в кластере:")));
     m_playlistCheckList = new QListWidget;
     PlaylistsWidget *pw = qobject_cast<PlaylistsWidget*>(parentWidget);
     if (pw) {
@@ -1419,14 +1438,14 @@ EditClusterDialog::EditClusterDialog(const QString &clusterName, QWidget *parent
     }
     mainLayout->addWidget(m_playlistCheckList);
 
-    QPushButton *addPlaylistBtn = new QPushButton("+ добавить плейлист");
+    QPushButton *addPlaylistBtn = new QPushButton(ztr("+ добавить плейлист"));
     addPlaylistBtn->setStyleSheet("QPushButton { background: transparent; color: #4CAF50; border: 1px solid #4CAF50; border-radius: 4px; padding: 6px; } QPushButton:hover { background: rgba(76,175,80,0.2); }");
     mainLayout->addWidget(addPlaylistBtn);
     connect(addPlaylistBtn, &QPushButton::clicked, this, &EditClusterDialog::onAddPlaylist);
 
     QHBoxLayout *btns = new QHBoxLayout;
-    QPushButton *saveBtn = new QPushButton("Сохранить");
-    QPushButton *cancelBtn = new QPushButton("Отмена");
+    QPushButton *saveBtn = new QPushButton(ztr("Сохранить"));
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
     btns->addWidget(saveBtn);
     btns->addWidget(cancelBtn);
     mainLayout->addLayout(btns);
@@ -1473,21 +1492,21 @@ void EditClusterDialog::onAddPlaylist() {
     }
 
     if (available.isEmpty()) {
-        QMessageBox::information(this, "Информация", "Нет доступных плейлистов для добавления");
+        QMessageBox::information(this, ztr("Информация"), ztr("Нет доступных плейлистов для добавления"));
         return;
     }
 
     QDialog dlg(this);
-    dlg.setWindowTitle("Добавить плейлист");
+    dlg.setWindowTitle(ztr("Добавить плейлист"));
     dlg.resize(350, 300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("Выберите плейлист:"));
+    l->addWidget(new QLabel(ztr("Выберите плейлист:")));
     QListWidget *list = new QListWidget;
     for (const QString &pl : available) list->addItem(pl);
     l->addWidget(list);
     QHBoxLayout *b = new QHBoxLayout;
-    QPushButton *ok = new QPushButton("Добавить");
-    QPushButton *cancel = new QPushButton("Отмена");
+    QPushButton *ok = new QPushButton(ztr("Добавить"));
+    QPushButton *cancel = new QPushButton(ztr("Отмена"));
     b->addWidget(ok);
     b->addWidget(cancel);
     l->addLayout(b);
@@ -1509,15 +1528,12 @@ void EditClusterDialog::onAddPlaylist() {
 ArtistScanDialog::ArtistScanDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle("Настройка кластера \"по исполнителю\"");
+    setWindowTitle(ztr("Настройка кластера \"по исполнителю\""));
     resize(500, 400);
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    QLabel *desc = new QLabel("Выберите папки для сканирования аудиофайлов.\n"
-                              "Будут найдены все mp3, flac, wav, aac, aiff файлы,\n"
-                              "прочитаны их теги исполнителей и созданы плейлисты\n"
-                              "в кластере \"по исполнителю\".");
+    QLabel *desc = new QLabel(ztr("Выберите папки для сканирования аудиофайлов.\nБудут найдены все mp3, flac, wav, aac, aiff файлы,\nпрочитаны их теги исполнителей и созданы плейлисты\nв кластере \"по исполнителю\"."));
     desc->setWordWrap(true);
     mainLayout->addWidget(desc);
 
@@ -1525,9 +1541,9 @@ ArtistScanDialog::ArtistScanDialog(QWidget *parent)
     mainLayout->addWidget(m_folderList, 1);
 
     QHBoxLayout *btnLayout = new QHBoxLayout;
-    QPushButton *addFolderBtn = new QPushButton("Добавить папку");
-    m_startBtn = new QPushButton("Начать сканирование");
-    QPushButton *skipBtn = new QPushButton("Пропустить");
+    QPushButton *addFolderBtn = new QPushButton(ztr("Добавить папку"));
+    m_startBtn = new QPushButton(ztr("Начать сканирование"));
+    QPushButton *skipBtn = new QPushButton(ztr("Пропустить"));
     btnLayout->addWidget(addFolderBtn);
     btnLayout->addWidget(m_startBtn);
     btnLayout->addWidget(skipBtn);
@@ -1542,7 +1558,7 @@ ArtistScanDialog::ArtistScanDialog(QWidget *parent)
 }
 
 void ArtistScanDialog::onAddFolder() {
-    QString dir = QFileDialog::getExistingDirectory(this, "Выберите папку с аудиофайлами");
+    QString dir = QFileDialog::getExistingDirectory(this, ztr("Выберите папку с аудиофайлами"));
     if (!dir.isEmpty()) {
         m_folderList->addItem(dir);
     }
@@ -1550,7 +1566,7 @@ void ArtistScanDialog::onAddFolder() {
 
 void ArtistScanDialog::onStartScan() {
     if (m_folderList->count() == 0) {
-        QMessageBox::warning(this, "Ошибка", "Добавьте хотя бы одну папку для сканирования");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Добавьте хотя бы одну папку для сканирования"));
         return;
     }
     accept();
@@ -1560,7 +1576,7 @@ void ArtistScanDialog::scanFolders() {
     PlaylistsWidget *pw = qobject_cast<PlaylistsWidget*>(parent());
     if (!pw) return;
 
-    m_statusLabel->setText("Сканирование...");
+    m_statusLabel->setText(ztr("Сканирование..."));
     QApplication::processEvents();
 
     QMap<QString, QStringList> artistTracks; // artist -> list of file paths
@@ -1600,7 +1616,7 @@ void ArtistScanDialog::scanFolders() {
         playlistCount++;
     }
 
-    m_statusLabel->setText(QString("Готово: найдено %1 файлов, создано %2 плейлистов")
+    m_statusLabel->setText(QString(ztr("Готово: найдено %1 файлов, создано %2 плейлистов"))
                           .arg(totalFiles).arg(playlistCount));
     QApplication::processEvents();
     QTimer::singleShot(1500, this, &QDialog::accept);

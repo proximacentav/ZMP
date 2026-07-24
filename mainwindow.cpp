@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "mpriscontroller.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QApplication>
@@ -51,7 +52,7 @@ static void qtMessageHandler(QtMsgType type, const QMessageLogContext &ctx, cons
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), m_menuIndicator(nullptr), m_menuIndicatorY(0), m_menuIndicatorTargetY(0)
 {
-    setWindowTitle("Медиаплеер");
+    ztrRegister(m_retrans, [this]{ setWindowTitle(ztr("Медиаплеер")); });
     resize(1200, 800);
 
     QWidget *central = new QWidget(this);
@@ -67,7 +68,11 @@ MainWindow::MainWindow(QWidget *parent)
     menuContLayout->setContentsMargins(5, 10, 5, 10);
 
     m_menu = new QListWidget;
-    m_menu->addItems({"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Визуализация", "Параметры"});
+    for (int i = 0; i < 7; ++i) m_menu->addItem(QString());
+    ztrRegister(m_retrans, [this]{
+        static const char *items[7] = {"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Визуализация", "Параметры"};
+        for (int i = 0; i < 7 && i < m_menu->count(); ++i) m_menu->item(i)->setText(ztr(items[i]));
+    });
     m_menu->setCurrentRow(0);
 
     m_menu->setSpacing(10);
@@ -111,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
-    addLog("Программа запущена");
+    addLog(ztr("Программа запущена"));
 
     m_menuIndicator = new QWidget(menuContainer);
     m_menuIndicator->setFixedHeight(40);
@@ -235,7 +240,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     loadKeyBindingsFromSettings();
 
+    connect(&Translator::instance(), &Translator::languageChanged,
+            this, &MainWindow::retranslateUi);
+
     new MprisController(m_audioManager, m_playerWidget, this, this);
+}
+
+void MainWindow::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
@@ -393,7 +405,7 @@ void MainWindow::autoSaveLogs()
 void MainWindow::showLogDialog()
 {
     QDialog dialog(this);
-    dialog.setWindowTitle("Логи");
+    dialog.setWindowTitle(ztr("Логи"));
     dialog.resize(700, 500);
     dialog.setStyleSheet("QDialog { background-color: #2b2b2b; color: white; }");
 
@@ -409,21 +421,21 @@ void MainWindow::showLogDialog()
     layout->addWidget(textEdit, 1);
 
     QHBoxLayout *btnLayout = new QHBoxLayout();
-    QPushButton *saveBtn = new QPushButton("Сохранить");
+    QPushButton *saveBtn = new QPushButton(ztr("Сохранить"));
     saveBtn->setStyleSheet(
         "QPushButton { background: transparent; color: white; border: 1px solid #555; "
         "border-radius: 6px; padding: 10px 20px; font-size: 14px; }"
         "QPushButton:hover { border-color: #aaa; color: #ddd; }");
     connect(saveBtn, &QPushButton::clicked, this, [this, &dialog]() {
-        QString dir = QFileDialog::getExistingDirectory(&dialog, "Выберите папку для сохранения", QDir::homePath());
+        QString dir = QFileDialog::getExistingDirectory(&dialog, ztr("Выберите папку для сохранения"), QDir::homePath());
         if (!dir.isEmpty()) {
             saveLogs(dir);
-            QMessageBox::information(&dialog, "Успех", "Логи сохранены в " + dir + "/zmp_logs.txt");
+            QMessageBox::information(&dialog, ztr("Успех"), ztr("Логи сохранены в ") + dir + "/zmp_logs.txt");
         }
     });
     btnLayout->addWidget(saveBtn);
 
-    QPushButton *closeBtn = new QPushButton("Закрыть");
+    QPushButton *closeBtn = new QPushButton(ztr("Закрыть"));
     closeBtn->setStyleSheet(
         "QPushButton { background: transparent; color: white; border: 1px solid #555; "
         "border-radius: 6px; padding: 10px 20px; font-size: 14px; }"
@@ -440,15 +452,15 @@ void MainWindow::showRootPasswordDialog()
     if (m_isRootMode) return;
 
     QDialog dialog(this);
-    dialog.setWindowTitle("Права root");
+    dialog.setWindowTitle(ztr("Права root"));
     dialog.setMinimumWidth(350);
 
     QFormLayout *form = new QFormLayout(&dialog);
 
     QLineEdit *passEdit = new QLineEdit();
-    passEdit->setPlaceholderText("Пароль root");
+    passEdit->setPlaceholderText(ztr("Пароль root"));
     passEdit->setEchoMode(QLineEdit::Password);
-    form->addRow("Пароль:", passEdit);
+    form->addRow(ztr("Пароль:"), passEdit);
 
     QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     form->addRow(buttons);
@@ -480,9 +492,9 @@ void MainWindow::showRootPasswordDialog()
         m_isRootMode = true;
         m_filesWidget->setRootPassword(password);
         updateUserButtonStyle();
-        addLog("Режим root активирован");
+        addLog(ztr("Режим root активирован"));
     } else {
-        QMessageBox::warning(this, "Ошибка", "Неверный пароль root");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Неверный пароль root"));
     }
 }
 
@@ -511,7 +523,7 @@ void MainWindow::onUserButtonClicked()
     }
 
     QDialog dialog(this);
-    dialog.setWindowTitle("Пользователь");
+    dialog.setWindowTitle(ztr("Пользователь"));
     dialog.setFixedSize(540, 420);
     dialog.setStyleSheet("QDialog { background-color: #2b2b2b; color: white; border-radius: 0; }");
 
@@ -566,7 +578,7 @@ void MainWindow::onUserButtonClicked()
     );
 
     if (!m_isRootMode) {
-        QPushButton *rootBtn = new QPushButton("Войти в режим root");
+        QPushButton *rootBtn = new QPushButton(ztr("Войти в режим root"));
         rootBtn->setStyleSheet(btnStyle.arg("#c0392b", "#e74c3c"));
         connect(rootBtn, &QPushButton::clicked, this, [this, &dialog]() {
             dialog.hide();
@@ -575,23 +587,23 @@ void MainWindow::onUserButtonClicked()
         });
         mainLayout->addWidget(rootBtn);
     } else {
-        QLabel *rootActive = new QLabel("Режим root активен");
+        QLabel *rootActive = new QLabel(ztr("Режим root активен"));
         rootActive->setAlignment(Qt::AlignCenter);
         rootActive->setStyleSheet("color: #FF4444; font-size: 14px; font-weight: bold;");
         mainLayout->addWidget(rootActive);
     }
 
-    QPushButton *logBtn = new QPushButton("Логи");
+    QPushButton *logBtn = new QPushButton(ztr("Логи"));
     logBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
     connect(logBtn, &QPushButton::clicked, this, [this]() { showLogDialog(); });
     mainLayout->addWidget(logBtn);
 
-    QPushButton *exitBtn = new QPushButton("Выйти");
+    QPushButton *exitBtn = new QPushButton(ztr("Выйти"));
     exitBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
     connect(exitBtn, &QPushButton::clicked, qApp, &QApplication::quit);
     mainLayout->addWidget(exitBtn);
 
-    QLabel *escHint = new QLabel("нажмите ESC чтобы закрыть это меню\n для того чтобы открывать директории в root режиме\n вводите путь сверху, в виде дерева root режим работает не всегда ");
+    QLabel *escHint = new QLabel(ztr("нажмите ESC чтобы закрыть это меню\n для того чтобы открывать директории в root режиме\n вводите путь сверху, в виде дерева root режим работает не всегда "));
     escHint->setAlignment(Qt::AlignCenter);
     escHint->setStyleSheet("color: #666; font-size: 11px;");
     mainLayout->addWidget(escHint);
@@ -606,7 +618,7 @@ void MainWindow::onFeaturedUpdated() {
 EqualizerPresetDialog::EqualizerPresetDialog(QWidget *parent)
     : QDialog(parent)
 {
-    setWindowTitle("Выбор пресета");
+    setWindowTitle(ztr("Выбор пресета"));
     resize(300, 250);
     
     QVBoxLayout *layout = new QVBoxLayout(this);

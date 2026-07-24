@@ -31,6 +31,7 @@ endif()
 
 add_executable(ZMP_Linux_bin
     main.cpp
+    translator.h translator.cpp
     mainwindow.h mainwindow.cpp
     audiomanager.h audiomanager.cpp
     deviceswidget.h deviceswidget.cpp

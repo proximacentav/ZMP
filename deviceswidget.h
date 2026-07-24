@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QAudioDevice>
+#include "translator.h"
 
 class DevicesWidget : public QWidget
 {
@@ -21,6 +22,8 @@ private slots:
 private:
     QComboBox *m_combo;
     QList<QAudioDevice> m_devices;
+    RetransList m_retrans;
+    void retranslateUi();
 };
 
 #endif
