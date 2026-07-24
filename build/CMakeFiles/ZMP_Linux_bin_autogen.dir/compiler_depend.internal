@@ -33,6 +33,8 @@
  /home/user/cp/zmp/playlistswidget.h
  /home/user/cp/zmp/settingswidget.cpp
  /home/user/cp/zmp/settingswidget.h
+ /home/user/cp/zmp/translator.cpp
+ /home/user/cp/zmp/translator.h
  /home/user/cp/zmp/visualizationwidget.cpp
  /home/user/cp/zmp/visualizationwidget.h
  /usr/bin/cmake
@@ -317,6 +319,7 @@
  /usr/include/pthread.h
  /usr/include/qt6/QtCore/QFile
  /usr/include/qt6/QtCore/QFlags
+ /usr/include/qt6/QtCore/QHash
  /usr/include/qt6/QtCore/QIODevice
  /usr/include/qt6/QtCore/QList
  /usr/include/qt6/QtCore/QMap
@@ -607,6 +610,7 @@
  /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h
  /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h
  /usr/include/qt6/QtWidgets/QAbstractItemView
+ /usr/include/qt6/QtWidgets/QCheckBox
  /usr/include/qt6/QtWidgets/QComboBox
  /usr/include/qt6/QtWidgets/QDialog
  /usr/include/qt6/QtWidgets/QDoubleSpinBox
@@ -635,6 +639,7 @@
  /usr/include/qt6/QtWidgets/qabstractslider.h
  /usr/include/qt6/QtWidgets/qabstractspinbox.h
  /usr/include/qt6/QtWidgets/qboxlayout.h
+ /usr/include/qt6/QtWidgets/qcheckbox.h
  /usr/include/qt6/QtWidgets/qcombobox.h
  /usr/include/qt6/QtWidgets/qdialog.h
  /usr/include/qt6/QtWidgets/qframe.h

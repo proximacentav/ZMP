@@ -439,6 +439,8 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
+ /usr/include/qt6/QtWidgets/QCheckBox \
+ /usr/include/qt6/QtWidgets/qcheckbox.h \
  /home/user/cp/zmp/visualizationwidget.h \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \

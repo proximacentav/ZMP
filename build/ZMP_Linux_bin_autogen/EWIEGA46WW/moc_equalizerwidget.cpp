@@ -59,6 +59,8 @@ template <> constexpr inline auto EqualizerWidget::qt_create_metaobjectdata<qt_m
         "onSpeedSpinBoxChanged",
         "onPitchSliderMoved",
         "onPitchSpinBoxChanged",
+        "onEchoToggled",
+        "enabled",
         "onResetClicked",
         "onModeChanged",
         "index"
@@ -113,11 +115,15 @@ template <> constexpr inline auto EqualizerWidget::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void(double)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Double, 12 },
         }}),
+        // Slot 'onEchoToggled'
+        QtMocHelpers::SlotData<void(bool)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 21 },
+        }}),
         // Slot 'onResetClicked'
-        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onModeChanged'
-        QtMocHelpers::SlotData<void(int)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 22 },
+        QtMocHelpers::SlotData<void(int)>(23, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 24 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -154,8 +160,9 @@ void EqualizerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 9: _t->onSpeedSpinBoxChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1]))); break;
         case 10: _t->onPitchSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 11: _t->onPitchSpinBoxChanged((*reinterpret_cast<std::add_pointer_t<double>>(_a[1]))); break;
-        case 12: _t->onResetClicked(); break;
-        case 13: _t->onModeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 12: _t->onEchoToggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 13: _t->onResetClicked(); break;
+        case 14: _t->onModeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -190,14 +197,14 @@ int EqualizerWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 15;
     }
     return _id;
 }
