@@ -49,6 +49,7 @@ AudioManager::~AudioManager() {
     for (int i = 0; i < 17; ++i) {
         if (m_eqFX[i]) BASS_FXFree(m_eqFX[i]);
     }
+    if (m_echoFX) BASS_FXFree(m_echoFX);
     if (m_currentStream) BASS_StreamFree(m_currentStream);
     BASS_Free();
     cleanupTempDir();
@@ -61,6 +62,7 @@ void AudioManager::setSourceFile(const QString &filePath) {
     for (int i = 0; i < 15; ++i) {
         m_eqFX[i] = 0;
     }
+    m_echoFX = 0;
     m_currentFilePath = filePath;
 
     QString playPath = filePath;
@@ -105,6 +107,7 @@ void AudioManager::setSourceFile(const QString &filePath) {
     setPlaybackSpeed(m_currentSpeed);
     setPitchShift(m_currentPitch);
     setPreampGain(m_preampGain);
+    setEchoEnabled(m_echoEnabled);
     for (int i = 0; i < 17; ++i) {
         setEqualizerGain(i, m_eqGains[i]);
     }
@@ -262,6 +265,33 @@ void AudioManager::setPitchShift(double semitones) {
     double pitchFactor = pow(2.0, semitones / 12.0);
     double newFreq = m_originalFreq * m_currentSpeed * pitchFactor;
     BASS_ChannelSetAttribute(m_currentStream, BASS_ATTRIB_FREQ, newFreq);
+}
+
+void AudioManager::setEchoEnabled(bool enabled) {
+    m_echoEnabled = enabled;
+    if (!m_currentStream) return;
+
+    if (enabled) {
+        if (m_echoFX) return;
+        m_echoFX = BASS_ChannelSetFX(m_currentStream, BASS_FX_BFX_ECHO4, 0);
+        if (!m_echoFX) {
+            qWarning() << "Failed to create echo effect, error:" << BASS_ErrorGetCode();
+            return;
+        }
+        BASS_BFX_ECHO4 echo = {0};
+        echo.lChannel = BASS_BFX_CHANALL;
+        echo.bStereo = TRUE;
+        echo.fDryMix = 1.0f;
+        echo.fWetMix = 0.5f;
+        echo.fFeedback = 0.3f;
+        echo.fDelay = 0.4f;
+        BASS_FXSetParameters(m_echoFX, &echo);
+    } else {
+        if (m_echoFX) {
+            BASS_ChannelRemoveFX(m_currentStream, m_echoFX);
+            m_echoFX = 0;
+        }
+    }
 }
 
 void AudioManager::setActiveOutputDevice(const QAudioDevice &device) {

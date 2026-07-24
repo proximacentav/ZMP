@@ -98,6 +98,10 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     m_modeCombo->addItem("Dance");
     mainLayout->addWidget(m_modeCombo);
 
+    m_echoCheckBox = new QCheckBox;
+    ztrSetText(m_retrans, m_echoCheckBox, "Эхо");
+    mainLayout->addWidget(m_echoCheckBox);
+
     connect(m_resetButton, &QPushButton::clicked, this, &EqualizerWidget::onResetClicked);
     connect(m_modeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EqualizerWidget::onModeChanged);
     connect(m_preampSlider, &QSlider::valueChanged, this, &EqualizerWidget::onPreampSliderMoved);
@@ -106,6 +110,7 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_speedSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EqualizerWidget::onSpeedSpinBoxChanged);
     connect(m_pitchSlider, &QSlider::valueChanged, this, &EqualizerWidget::onPitchSliderMoved);
     connect(m_pitchSpinBox, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, &EqualizerWidget::onPitchSpinBoxChanged);
+    connect(m_echoCheckBox, &QCheckBox::toggled, this, &EqualizerWidget::onEchoToggled);
 
     connect(&Translator::instance(), &Translator::languageChanged, this, &EqualizerWidget::retranslateUi);
 }
@@ -305,6 +310,11 @@ void EqualizerWidget::onPitchSpinBoxChanged(double pitch) {
     if (m_audioManager) m_audioManager->setPitchShift(pitch);
     if (!m_isApplyingPreset) m_modeCombo->setCurrentIndex(0);
 }
+
+void EqualizerWidget::onEchoToggled(bool enabled) {
+    if (m_audioManager) m_audioManager->setEchoEnabled(enabled);
+}
+
 void EqualizerWidget::setPowerMode(bool enabled) {
     m_powerMode = enabled;
     m_powerModeLabel->setVisible(enabled);

@@ -33,6 +33,7 @@ public:
     void setPreampGain(float gainDb);
     void setPlaybackSpeed(double speed);
     void setPitchShift(double semitones);
+    void setEchoEnabled(bool enabled);
     void setActiveOutputDevice(const QAudioDevice &device);
     QList<QAudioDevice> availableOutputDevices() const;
     QString currentDeviceName() const;
@@ -62,6 +63,7 @@ public slots:
 private:
     HSTREAM m_currentStream;
     HSTREAM m_eqFX[17];
+    HFX m_echoFX = 0;
     QVector<double> m_bands;
     bool m_playing;
     bool m_seeking;
@@ -81,6 +83,7 @@ private:
     double m_volume = 1.0;
     int m_spectrumBands = 64;
     int m_maxBitrate = 0;
+    bool m_echoEnabled = false;
     QStringList m_tempFilePaths;
     int detectBitrate(const QString &filePath);
     QString transcodeFile(const QString &filePath, int targetBitrate);

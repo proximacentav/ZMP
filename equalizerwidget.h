@@ -11,6 +11,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QComboBox>
+#include <QCheckBox>
 #include <QLabel>
 #include "audiomanager.h"
 #include "translator.h"
@@ -40,6 +41,7 @@ private slots:
     void onSpeedSpinBoxChanged(double value);
     void onPitchSliderMoved(int value);
     void onPitchSpinBoxChanged(double value);
+    void onEchoToggled(bool enabled);
     void onResetClicked();
     void onModeChanged(int index);
 
@@ -59,6 +61,7 @@ private:
     QGridLayout *m_layout;
     QPushButton *m_resetButton;
     QComboBox *m_modeCombo;
+    QCheckBox *m_echoCheckBox;
     QLabel *m_powerModeLabel;
     bool m_isApplyingPreset = false;
     bool m_powerMode = false;
