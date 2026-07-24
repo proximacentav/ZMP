@@ -1,4 +1,5 @@
 #include "deviceswidget.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QMediaDevices>
@@ -6,7 +7,7 @@
 DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->addWidget(new QLabel("Устройство вывода звука:", this));
+    layout->addWidget(ztrLabel(m_retrans, "Устройство вывода звука:", this));
     m_combo = new QComboBox(this);
     layout->addWidget(m_combo);
 
@@ -16,6 +17,11 @@ DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
     }
     if (m_combo->count() > 0) m_combo->setCurrentIndex(0);
     connect(m_combo, &QComboBox::currentIndexChanged, this, &DevicesWidget::onCurrentIndexChanged);
+    connect(&Translator::instance(), &Translator::languageChanged, this, &DevicesWidget::retranslateUi);
+}
+
+void DevicesWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 QAudioDevice DevicesWidget::selectedDevice() const {

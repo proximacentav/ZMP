@@ -241,9 +241,13 @@ VisualizationWidget::VisualizationWidget(AudioManager *audioManager, QWidget *pa
     mainLayout->setContentsMargins(10, 10, 10, 10);
 
     m_modeCombo = new QComboBox;
-    m_modeCombo->addItem("Ничего");
-    m_modeCombo->addItem("Спектрограмма");
+    m_modeCombo->addItem(ztr("Ничего"));
+    m_modeCombo->addItem(ztr("Спектрограмма"));
     m_modeCombo->addItem("projectM");
+    ztrRegister(m_retrans, [this]{
+        m_modeCombo->setItemText(0, ztr("Ничего"));
+        m_modeCombo->setItemText(1, ztr("Спектрограмма"));
+    });
     mainLayout->addWidget(m_modeCombo);
 
     m_spectrogram = new SpectrogramWidget;
@@ -265,6 +269,12 @@ VisualizationWidget::VisualizationWidget(AudioManager *audioManager, QWidget *pa
     });
 
     m_modeCombo->setCurrentIndex(0);
+
+    connect(&Translator::instance(), &Translator::languageChanged, this, &VisualizationWidget::retranslateUi);
+}
+
+void VisualizationWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 void VisualizationWidget::updateSpectrum(const QVector<float> &levels, const QVector<double> &frequencies)

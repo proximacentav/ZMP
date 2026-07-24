@@ -12,6 +12,7 @@
 #include <QTimer>
 #include "audiomanager.h"
 #include "iconbutton.h"
+#include "translator.h"
 
 class SpectrumWidget;  // forward
 
@@ -110,6 +111,9 @@ private:
     
     int m_timeChangeTrack = 100; // миллисекунды
     QTimer *m_trackSwitchTimer;
+
+    RetransList m_retrans;
+    void retranslateUi();
 };
 
 #endif // PLAYBACKCONTROLWIDGET_H

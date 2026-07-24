@@ -19,6 +19,7 @@
 #include "settingswidget.h"
 #include "fileswidget.h"
 #include "miniplayerbar.h"
+#include "translator.h"
 
 class EqualizerPresetDialog : public QDialog
 {
@@ -88,6 +89,9 @@ private:
     void handleKeyPress(Qt::Key key, Qt::KeyboardModifiers modifiers);
     void loadKeyBindingsFromSettings();
     void showEqualizerPresetDialog();
+
+    RetransList m_retrans;   // live-retranslation registry (window title + menu)
+    void retranslateUi();
 };
 
 #endif

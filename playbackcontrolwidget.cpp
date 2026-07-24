@@ -1,4 +1,5 @@
 #include "playbackcontrolwidget.h"
+#include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFileInfo>
@@ -203,7 +204,7 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     mainLayout->addLayout(btnLayout);
 
     m_playlistWidget = new QListWidget;
-    mainLayout->addWidget(new QLabel("Очередь воспроизведения:"));
+    mainLayout->addWidget(ztrLabel(m_retrans, "Очередь воспроизведения:"));
     mainLayout->addWidget(m_playlistWidget);
 
     m_iconSize = 40;
@@ -222,6 +223,12 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     connect(m_audioManager, &AudioManager::trackEnded, this, [this]() {
         onStateChanged(false);
     });
+
+    connect(&Translator::instance(), &Translator::languageChanged, this, &PlaybackControlWidget::retranslateUi);
+}
+
+void PlaybackControlWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 void PlaybackControlWidget::loadIcons() {
@@ -518,7 +525,7 @@ void PlaybackControlWidget::updateTrackInfo(const TrackMetadata &meta) {
         m_coverLabel->clear();
         m_coverLabel->hide();
     }
-    m_titleLabel->setText(meta.title.isEmpty() ? "Неизвестно" : meta.title);
+    m_titleLabel->setText(meta.title.isEmpty() ? ztr("Неизвестно") : meta.title);
     m_artistLabel->setText(meta.artist);
     QString album = meta.album;
     QString year = meta.year > 0 ? QString::number(meta.year) : "";
@@ -619,7 +626,7 @@ void PlaybackControlWidget::onAddToPlaylistClicked() {
 
 void PlaybackControlWidget::showAddToPlaylistDialog() {
     if (m_playlist.isEmpty() || m_currentIndex < 0) {
-        QMessageBox::warning(this, "Внимание", "Нет активного трека");
+        QMessageBox::warning(this, ztr("Внимание"), ztr("Нет активного трека"));
         return;
     }
 
@@ -630,7 +637,7 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
     QDir playlistsDir(playlistsPath);
 
     if (!playlistsDir.exists()) {
-        QMessageBox::warning(this, "Ошибка", "Папка плейлистов не найдена");
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Папка плейлистов не найдена"));
         return;
     }
 
@@ -658,20 +665,20 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
 
     // Step 1: select category
     QDialog catDialog(this);
-    catDialog.setWindowTitle("Добавить в плейлист");
+    catDialog.setWindowTitle(ztr("Добавить в плейлист"));
     catDialog.resize(300, 300);
     QVBoxLayout *catLayout = new QVBoxLayout(&catDialog);
-    QLabel *catLabel = new QLabel("Выберите категорию:");
+    QLabel *catLabel = new QLabel(ztr("Выберите категорию:"));
     catLayout->addWidget(catLabel);
     QListWidget *catList = new QListWidget(&catDialog);
     catList->addItem("featured_music");
     for (const QString &c : clusters)
         catList->addItem(c);
     if (!unclustered.isEmpty())
-        catList->addItem("Без кластера");
+        catList->addItem(ztr("Без кластера"));
     catLayout->addWidget(catList, 1);
-    QPushButton *catOk = new QPushButton("Далее");
-    QPushButton *catCancel = new QPushButton("Отмена");
+    QPushButton *catOk = new QPushButton(ztr("Далее"));
+    QPushButton *catCancel = new QPushButton(ztr("Отмена"));
     QHBoxLayout *catBtnLayout = new QHBoxLayout();
     catBtnLayout->addWidget(catOk);
     catBtnLayout->addWidget(catCancel);
@@ -690,20 +697,20 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
         QString featuredPath = playlistsPath + "/featured_music";
         QDir().mkpath(featuredPath);
         destPath = featuredPath + "/" + currentFileName;
-    } else if (category == "Без кластера") {
+    } else if (category == ztr("Без кластера")) {
         // Step 2: choose unclustered playlist
         QDialog plDialog(this);
-        plDialog.setWindowTitle("Выберите плейлист");
+        plDialog.setWindowTitle(ztr("Выберите плейлист"));
         plDialog.resize(300, 250);
         QVBoxLayout *plLayout = new QVBoxLayout(&plDialog);
-        QLabel *plLabel = new QLabel("Выберите плейлист:");
+        QLabel *plLabel = new QLabel(ztr("Выберите плейлист:"));
         plLayout->addWidget(plLabel);
         QListWidget *plList = new QListWidget(&plDialog);
         for (const QString &pl : unclustered)
             plList->addItem(pl);
         plLayout->addWidget(plList, 1);
-        QPushButton *plOk = new QPushButton("ОК");
-        QPushButton *plCancel = new QPushButton("Отмена");
+        QPushButton *plOk = new QPushButton(ztr("ОК"));
+        QPushButton *plCancel = new QPushButton(ztr("Отмена"));
         QHBoxLayout *plBtnLayout = new QHBoxLayout();
         plBtnLayout->addWidget(plOk);
         plBtnLayout->addWidget(plCancel);
@@ -718,10 +725,10 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
     } else {
         // Step 2: choose playlist inside cluster
         QDialog plDialog(this);
-        plDialog.setWindowTitle("Выберите плейлист");
+        plDialog.setWindowTitle(ztr("Выберите плейлист"));
         plDialog.resize(300, 250);
         QVBoxLayout *plLayout = new QVBoxLayout(&plDialog);
-        QLabel *plLabel = new QLabel(QString("Плейлисты в кластере \"%1\":" ).arg(category));
+        QLabel *plLabel = new QLabel(QString(ztr("Плейлисты в кластере \"%1\":") ).arg(category));
         plLayout->addWidget(plLabel);
         QListWidget *plList = new QListWidget(&plDialog);
         QDir clusterDir(playlistsPath + "/" + category);
@@ -730,8 +737,8 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
         for (const QString &pl : playlistsInCluster)
             plList->addItem(pl);
         plLayout->addWidget(plList, 1);
-        QPushButton *plOk = new QPushButton("ОК");
-        QPushButton *plCancel = new QPushButton("Отмена");
+        QPushButton *plOk = new QPushButton(ztr("ОК"));
+        QPushButton *plCancel = new QPushButton(ztr("Отмена"));
         QHBoxLayout *plBtnLayout = new QHBoxLayout();
         plBtnLayout->addWidget(plOk);
         plBtnLayout->addWidget(plCancel);
@@ -748,18 +755,18 @@ void PlaybackControlWidget::showAddToPlaylistDialog() {
     if (QFile::exists(destPath)) {
         if (QFile::remove(destPath)) {
             if (QFile::copy(currentTrack, destPath)) {
-                QMessageBox::information(this, "Успех", "Файл перезаписан");
+                QMessageBox::information(this, ztr("Успех"), ztr("Файл перезаписан"));
             } else {
-                QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
+                QMessageBox::critical(this, ztr("Ошибка"), ztr("Не удалось скопировать файл"));
             }
         } else {
-            QMessageBox::critical(this, "Ошибка", "Не удалось удалить старый файл");
+            QMessageBox::critical(this, ztr("Ошибка"), ztr("Не удалось удалить старый файл"));
         }
     } else {
         if (QFile::copy(currentTrack, destPath)) {
-            QMessageBox::information(this, "Успех", "Файл добавлен в плейлист");
+            QMessageBox::information(this, ztr("Успех"), ztr("Файл добавлен в плейлист"));
         } else {
-            QMessageBox::critical(this, "Ошибка", "Не удалось скопировать файл");
+            QMessageBox::critical(this, ztr("Ошибка"), ztr("Не удалось скопировать файл"));
         }
     }
 }
@@ -775,7 +782,7 @@ void PlaybackControlWidget::onFeaturedClicked() {
 
     if (!featuredDir.exists()) {
         if (!featuredDir.mkpath(featuredPath)) {
-            qDebug() << "Не удалось создать папку featured";
+            qDebug() << ztr("Не удалось создать папку featured");
             return;
         }
     }
@@ -785,8 +792,8 @@ void PlaybackControlWidget::onFeaturedClicked() {
         QString filePath = featuredPath + "/" + fileName;
 
         QMessageBox msgBox;
-        msgBox.setWindowTitle("Подтверждение удаления");
-        msgBox.setText("Вы уверены, что хотите удалить:\n" + filePath);
+        msgBox.setWindowTitle(ztr("Подтверждение удаления"));
+        msgBox.setText(ztr("Вы уверены, что хотите удалить:\n") + filePath);
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
         msgBox.setIcon(QMessageBox::Question);
@@ -798,7 +805,7 @@ void PlaybackControlWidget::onFeaturedClicked() {
                     updateFeaturedButtonIcon();
                     emit featuredUpdated();
                 } else {
-                    QMessageBox::warning(&msgBox, "Ошибка", "Не удалось удалить файл");
+                    QMessageBox::warning(&msgBox, ztr("Ошибка"), ztr("Не удалось удалить файл"));
                 }
             }
         }
@@ -807,8 +814,8 @@ void PlaybackControlWidget::onFeaturedClicked() {
         QString filePath = featuredPath + "/" + fileName;
 
         QMessageBox msgBox;
-        msgBox.setWindowTitle("Подтверждение добавления");
-        msgBox.setText("Вы уверены, что хотите добавить:\n" + filePath);
+        msgBox.setWindowTitle(ztr("Подтверждение добавления"));
+        msgBox.setText(ztr("Вы уверены, что хотите добавить:\n") + filePath);
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
         msgBox.setIcon(QMessageBox::Question);
@@ -818,9 +825,9 @@ void PlaybackControlWidget::onFeaturedClicked() {
             if (QFile::copy(currentTrack, filePath)) {
                 updateFeaturedButtonIcon();
                 emit featuredUpdated();
-                QMessageBox::information(&msgBox, "Успех", "Файл добавлен в featured");
+                QMessageBox::information(&msgBox, ztr("Успех"), ztr("Файл добавлен в featured"));
             } else {
-                QMessageBox::warning(&msgBox, "Ошибка", "Не удалось добавить файл");
+                QMessageBox::warning(&msgBox, ztr("Ошибка"), ztr("Не удалось добавить файл"));
             }
         }
     }

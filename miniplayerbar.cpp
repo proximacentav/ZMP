@@ -1,4 +1,5 @@
 #include "miniplayerbar.h"
+#include "translator.h"
 #include <QTime>
 #include <QPixmap>
 
@@ -22,7 +23,7 @@ MiniPlayerBar::MiniPlayerBar(AudioManager *audioManager, QWidget *parent)
     QVBoxLayout *rightLayout = new QVBoxLayout;
     rightLayout->setSpacing(2);
 
-    m_titleLabel = new QLabel("Нет трека");
+    m_titleLabel = new QLabel(ztr("Нет трека"));
     m_titleLabel->setStyleSheet("font-size: 10pt; font-weight: bold; background: transparent;");
     rightLayout->addWidget(m_titleLabel);
 
@@ -76,7 +77,7 @@ MiniPlayerBar::MiniPlayerBar(AudioManager *audioManager, QWidget *parent)
 }
 
 void MiniPlayerBar::setTrackInfo(const TrackMetadata &meta) {
-    m_titleLabel->setText(meta.title.isEmpty() ? "Неизвестно" : meta.title);
+    m_titleLabel->setText(meta.title.isEmpty() ? ztr("Неизвестно") : meta.title);
     if (!meta.cover.isNull()) {
         QPixmap pix = QPixmap::fromImage(meta.cover);
         m_coverLabel->setPixmap(pix.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));

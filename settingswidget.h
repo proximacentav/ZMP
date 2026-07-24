@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QStackedWidget>
+#include "translator.h"
 
 class QSlider;
 class QComboBox;
@@ -88,6 +89,7 @@ private:
     QPushButton *m_aboutButton;
     QPushButton *m_themeButton;
     QComboBox *m_colorCombo;
+    QComboBox *m_languageCombo;
     QPushButton *m_exitButton;
     QSlider *m_spectrumGainSlider;
     QComboBox *m_spectrumFpsCombo;
@@ -110,7 +112,9 @@ private:
 
     bool m_darkTheme;
     QColor m_accentColor;
-    QMap<QString, QColor> m_colorMap;
+
+    RetransList m_retrans;      // live-retranslation registry
+    void retranslateUi();
 
     void applyTheme(bool dark);
     void applyAccentColor();

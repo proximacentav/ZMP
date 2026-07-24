@@ -1,4 +1,6 @@
 #include "settingswidget.h"
+#include "translator.h"
+#include <QVariant>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -39,9 +41,16 @@ SettingsWidget::SettingsWidget(QWidget *parent)
     
     loadKeyBindingsFromConfig();
     updateKeyBindingButtons();
-    
+
     applyTheme(true);
     applyAccentColor();
+
+    connect(&Translator::instance(), &Translator::languageChanged,
+            this, &SettingsWidget::retranslateUi);
+}
+
+void SettingsWidget::retranslateUi() {
+    runRetrans(m_retrans);
 }
 
 int SettingsWidget::maxBitrate() const {
@@ -61,12 +70,12 @@ void SettingsWidget::onLineEditChanged() {
 void SettingsWidget::toggleTheme() {
     m_darkTheme = !m_darkTheme;
     applyTheme(m_darkTheme);
-    m_themeButton->setText(m_darkTheme ? "Светлая тема" : "Тёмная тема");
+    m_themeButton->setText(m_darkTheme ? ztr("Светлая тема") : ztr("Тёмная тема"));
     applyAccentColor();
 }
 void SettingsWidget::onColorChanged(int index) {
     if (index >= 0 && index < m_colorCombo->count()) {
-        m_accentColor = m_colorMap[m_colorCombo->itemText(index)];
+        m_accentColor = m_colorCombo->itemData(index).value<QColor>();
         applyAccentColor();
         emit accentColorChanged(m_accentColor);
     }
@@ -76,11 +85,11 @@ void SettingsWidget::onIconSizeSliderChanged(int v) { emit iconSizeChanged(v); }
 void SettingsWidget::onIconSizeChanged(int v) { m_iconSizeSlider->blockSignals(true); m_iconSizeSlider->setValue(v); m_iconSizeSlider->blockSignals(false); }
 void SettingsWidget::showAboutDialog() {
     QDialog dlg(this);
-    dlg.setWindowTitle("О программе");
+    dlg.setWindowTitle(ztr("О программе"));
     dlg.resize(400,300);
     QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel("version 1.4.0 (cluster&keybinds)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE\nтакже был использован projectM"));
-    QPushButton *closeBtn = new QPushButton("Закрыть");
+    l->addWidget(new QLabel(ztr("version 1.4.0 (cluster&keybinds)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE\nтакже был использован projectM")));
+    QPushButton *closeBtn = new QPushButton(ztr("Закрыть"));
     l->addWidget(closeBtn);
     connect(closeBtn, &QPushButton::clicked, &dlg, &QDialog::accept);
     dlg.exec();
@@ -128,10 +137,31 @@ void SettingsWidget::onSpectrumGainChanged(int value) {
 void SettingsWidget::setupMainSettingsTab() {
     m_mainSettingsWidget = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout(m_mainSettingsWidget);
-    
+
     layout->addStretch(1);
-    
-    layout->addWidget(new QLabel("Максимальный битрейт (kbps):"));
+
+    // Language selector
+    QHBoxLayout *langLayout = new QHBoxLayout;
+    langLayout->addWidget(ztrLabel(m_retrans, "Язык:"));
+    m_languageCombo = new QComboBox;
+    m_languageCombo->addItem(Translator::nativeName(Translator::Russian), int(Translator::Russian));
+    m_languageCombo->addItem(Translator::nativeName(Translator::English), int(Translator::English));
+    m_languageCombo->addItem(Translator::nativeName(Translator::German),  int(Translator::German));
+    for (int i = 0; i < m_languageCombo->count(); ++i) {
+        if (m_languageCombo->itemData(i).toInt() == int(Translator::instance().language())) {
+            m_languageCombo->setCurrentIndex(i);
+            break;
+        }
+    }
+    langLayout->addWidget(m_languageCombo, 1);
+    layout->addLayout(langLayout);
+    connect(m_languageCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int idx){
+        if (idx < 0) return;
+        Translator::instance().setLanguage(
+            static_cast<Translator::Language>(m_languageCombo->itemData(idx).toInt()));
+    });
+
+    layout->addWidget(ztrLabel(m_retrans, "Максимальный битрейт (kbps):"));
     m_bitrateSlider = new QSlider(Qt::Horizontal);
     m_bitrateSlider->setRange(1,1000); m_bitrateSlider->setValue(320);
     layout->addWidget(m_bitrateSlider);
@@ -139,18 +169,18 @@ void SettingsWidget::setupMainSettingsTab() {
     m_bitrateEdit->setValidator(new QIntValidator(1,99999));
     m_bitrateEdit->setText("320");
     layout->addWidget(m_bitrateEdit);
-    QLabel *note = new QLabel("0 или значение >1000 означает 'не ограничено'");
+    QLabel *note = ztrLabel(m_retrans, "0 или значение >1000 означает 'не ограничено'");
     note->setStyleSheet("color:gray; font-size:10px;");
     layout->addWidget(note);
 
-    layout->addWidget(new QLabel("Высота области метаданных (px):"));
+    layout->addWidget(ztrLabel(m_retrans, "Высота области метаданных (px):"));
     m_heightSlider = new QSlider(Qt::Horizontal);
     m_heightSlider->setRange(150,400); m_heightSlider->setValue(220);
     m_heightSlider->setTickInterval(10);
     m_heightSlider->setTickPosition(QSlider::TicksBelow);
     layout->addWidget(m_heightSlider);
 
-    layout->addWidget(new QLabel("Размер иконок (px):"));
+    layout->addWidget(ztrLabel(m_retrans, "Размер иконок (px):"));
     m_iconSizeSlider = new QSlider(Qt::Horizontal);
     m_iconSizeSlider->setRange(16, 64);
     m_iconSizeSlider->setValue(32);
@@ -158,7 +188,7 @@ void SettingsWidget::setupMainSettingsTab() {
     m_iconSizeSlider->setTickInterval(4);
     layout->addWidget(m_iconSizeSlider);
 
-    layout->addWidget(new QLabel("чувствительность спектрограммы:"));
+    layout->addWidget(ztrLabel(m_retrans, "чувствительность спектрограммы:"));
     m_spectrumGainSlider = new QSlider(Qt::Horizontal);
     m_spectrumGainSlider->setRange(10, 1600);
     m_spectrumGainSlider->setValue(800);
@@ -166,7 +196,7 @@ void SettingsWidget::setupMainSettingsTab() {
     m_spectrumGainSlider->setTickInterval(50);
     layout->addWidget(m_spectrumGainSlider);
 
-    layout->addWidget(new QLabel("частота обновления спектраграммы (FPS):"));
+    layout->addWidget(ztrLabel(m_retrans, "частота обновления спектраграммы (FPS):"));
     m_spectrumFpsCombo = new QComboBox;
     m_spectrumFpsCombo->addItems({"5", "10", "20", "40", "60", "90", "120", "144", "240", "360", "480", "720", "900", "1600", "1000000"});
     m_spectrumFpsCombo->setCurrentIndex(2);
@@ -176,7 +206,7 @@ void SettingsWidget::setupMainSettingsTab() {
         emit spectrumFpsChanged(m_spectrumFpsCombo->itemText(index).toInt());
     });
 
-    layout->addWidget(new QLabel("количество частот спектрограммы:"));
+    layout->addWidget(ztrLabel(m_retrans, "количество частот спектрограммы:"));
     m_spectrumBandsCombo = new QComboBox;
     m_spectrumBandsCombo->addItems({"6", "25", "64", "120", "128", "256", "512", "1024", "2048", "4096", "8192", "16000"});
     m_spectrumBandsCombo->setCurrentIndex(2);
@@ -185,9 +215,9 @@ void SettingsWidget::setupMainSettingsTab() {
         emit spectrumBandsChanged(m_spectrumBandsCombo->itemText(index).toInt());
     });
 
-    layout->addWidget(new QLabel("projectM пресет:"));
+    layout->addWidget(ztrLabel(m_retrans, "projectM пресет:"));
     QHBoxLayout *projectMLayout = new QHBoxLayout;
-    m_projectMPresetButton = new QPushButton("Выбрать .milk файл");
+    m_projectMPresetButton = ztrButton(m_retrans, "Выбрать .milk файл");
     projectMLayout->addWidget(m_projectMPresetButton);
     m_projectMPresetPath = new QLabel("");
     m_projectMPresetPath->setStyleSheet("color: #888; font-size: 10px;");
@@ -195,7 +225,7 @@ void SettingsWidget::setupMainSettingsTab() {
     projectMLayout->addWidget(m_projectMPresetPath, 1);
     layout->addLayout(projectMLayout);
     connect(m_projectMPresetButton, &QPushButton::clicked, this, [this]() {
-        QString path = QFileDialog::getOpenFileName(this, "Выберите .milk пресет", QString(), "Milk presets (*.milk);;All files (*)");
+        QString path = QFileDialog::getOpenFileName(this, ztr("Выберите .milk пресет"), QString(), "Milk presets (*.milk);;All files (*)");
         if (!path.isEmpty()) {
             m_projectMPresetPath->setText(path);
             emit projectMPresetSelected(path);
@@ -206,27 +236,38 @@ void SettingsWidget::setupMainSettingsTab() {
     layout->addWidget(m_powerModeCheck);
     connect(m_powerModeCheck, &QCheckBox::toggled, this, &SettingsWidget::powerModeChanged);
 
-    m_aboutButton = new QPushButton("О программе");
+    m_aboutButton = ztrButton(m_retrans, "О программе");
     layout->addWidget(m_aboutButton);
 
     QHBoxLayout *themeLayout = new QHBoxLayout;
-    m_themeButton = new QPushButton("Тёмная тема");
+    m_themeButton = new QPushButton;
+    ztrRegister(m_retrans, [this]{
+        m_themeButton->setText(m_darkTheme ? ztr("Светлая тема") : ztr("Тёмная тема"));
+    });
     themeLayout->addWidget(m_themeButton);
     m_colorCombo = new QComboBox;
-    m_colorMap["Синий"] = QColor(42,130,218);
-    m_colorMap["Красный"] = QColor(218,42,42);
-    m_colorMap["Зелёный"] = QColor(42,218,42);
-    m_colorMap["Фиолетовый"] = QColor(142,42,218);
-    m_colorMap["Коричневый"] = QColor(160,80,40);
-    for (const QString &name : m_colorMap.keys()) m_colorCombo->addItem(name);
+    struct ColorEntry { const char *ru; QColor color; };
+    const ColorEntry colorEntries[] = {
+        {"Синий",       QColor(42,130,218)},
+        {"Красный",     QColor(218,42,42)},
+        {"Зелёный",     QColor(42,218,42)},
+        {"Фиолетовый",  QColor(142,42,218)},
+        {"Коричневый",  QColor(160,80,40)}
+    };
+    for (const ColorEntry &e : colorEntries) {
+        const int idx = m_colorCombo->count();
+        const QString ruKey = QString::fromUtf8(e.ru);
+        m_colorCombo->addItem(ztr(ruKey), QVariant::fromValue(e.color)); // display text + color payload
+        ztrRegister(m_retrans, [this, idx, ruKey]{ m_colorCombo->setItemText(idx, ztr(ruKey)); });
+    }
     m_colorCombo->setCurrentIndex(0);
     themeLayout->addWidget(m_colorCombo);
     layout->addLayout(themeLayout);
 
-    m_exitButton = new QPushButton("Выйти из программы");
+    m_exitButton = ztrButton(m_retrans, "Выйти из программы");
     layout->addWidget(m_exitButton);
 
-    m_keyBindingButton = new QPushButton("Клавиши");
+    m_keyBindingButton = ztrButton(m_retrans, "Клавиши");
     m_keyBindingButton->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
     layout->addWidget(m_keyBindingButton);
     connect(m_keyBindingButton, &QPushButton::clicked, this, &SettingsWidget::showKeyBindingTab);
@@ -251,55 +292,59 @@ void SettingsWidget::setupKeyBindingTab() {
     layout->addStretch(1);
     
     QHBoxLayout *headerLayout = new QHBoxLayout;
-    m_backButton = new QPushButton("Назад");
+    m_backButton = ztrButton(m_retrans, "Назад");
     m_backButton->setFixedWidth(80);
     headerLayout->addWidget(m_backButton);
     headerLayout->addStretch();
-    QLabel *titleLabel = new QLabel("Назначение клавиш");
+    QLabel *titleLabel = ztrLabel(m_retrans, "Назначение клавиш");
     titleLabel->setStyleSheet("font-size: 18px; font-weight: bold; color: palette(highlight);");
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();
     layout->addLayout(headerLayout);
-    
+
     connect(m_backButton, &QPushButton::clicked, this, &SettingsWidget::showMainSettingsTab);
-    
-    const QString actionNames[KeyActionCount] = {
+
+    static const char *actionNames[KeyActionCount] = {
         "Предыдущий трек",
-        "Следующий трек", 
+        "Следующий трек",
         "Снять с паузы/Запустить трек",
         "Пресет эквалайзера"
     };
-    
+
     for (int i = 0; i < KeyActionCount; ++i) {
         KeyAction action = static_cast<KeyAction>(i);
         QHBoxLayout *actionLayout = new QHBoxLayout;
-        
-        QLabel *actionLabel = new QLabel(actionNames[i]);
+
+        QLabel *actionLabel = ztrLabel(m_retrans, actionNames[i]);
         actionLabel->setMinimumWidth(200);
         actionLabel->setStyleSheet("font-size: 14px;");
         actionLayout->addWidget(actionLabel);
-        
+
         actionLayout->addStretch();
-        
+
         m_keyLabels[i] = new QLabel();
         m_keyLabels[i]->setMinimumWidth(120);
         m_keyLabels[i]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         m_keyLabels[i]->setStyleSheet("font-size: 14px; color: palette(highlight); font-weight: bold;");
         actionLayout->addWidget(m_keyLabels[i]);
-        
-        m_keyCaptureButtons[i] = new QPushButton("КЛАВИША");
+
+        m_keyCaptureButtons[i] = new QPushButton;
         m_keyCaptureButtons[i]->setFixedSize(120, 40);
         updateKeyBindingButtonStyle(i, false);
         m_keyCaptureButtons[i]->setProperty("keyAction", i);
         actionLayout->addWidget(m_keyCaptureButtons[i]);
-        
+
         connect(m_keyCaptureButtons[i], &QPushButton::clicked, this, [this, action]() {
             onKeyCaptureButtonClicked(action);
         });
-        
+
         layout->addLayout(actionLayout);
     }
-    
+
+    // Key labels/buttons carry translatable state text ("КЛАВИША" / "не назначено"),
+    // so refresh them whenever the language changes.
+    ztrRegister(m_retrans, [this]{ updateKeyBindingButtons(); });
+
     layout->addStretch();
 }
 
@@ -319,7 +364,7 @@ void SettingsWidget::onKeyCaptureButtonClicked(KeyAction action) {
     m_waitingForKey = true;
     m_currentKeyAction = action;
     
-    m_keyCaptureButtons[action]->setText("Нажмите клавишу...");
+    m_keyCaptureButtons[action]->setText(ztr("Нажмите клавишу..."));
     updateKeyBindingButtonStyle(action, true);
     m_keyCaptureButtons[action]->setEnabled(false);
     
@@ -385,8 +430,8 @@ void SettingsWidget::updateKeyBindingButton(KeyAction action) {
         m_keyCaptureButtons[action]->setText(binding.displayName);
         m_keyLabels[action]->setText("");
     } else {
-        m_keyCaptureButtons[action]->setText("КЛАВИША");
-        m_keyLabels[action]->setText("не назначено");
+        m_keyCaptureButtons[action]->setText(ztr("КЛАВИША"));
+        m_keyLabels[action]->setText(ztr("не назначено"));
     }
     updateKeyBindingButtonStyle(action, false);
 }

@@ -1,4 +1,5 @@
 #include "audiomanager.h"
+#include "translator.h"
 #include <cmath>
 #include <cfloat>
 #include <QDebug>
@@ -77,7 +78,7 @@ void AudioManager::setSourceFile(const QString &filePath) {
     m_currentStream = BASS_StreamCreateFile(FALSE, pathBytes.constData(), 0, 0, BASS_STREAM_AUTOFREE);
     if (!m_currentStream) {
         qCritical() << "Failed to load file. BASS error:" << BASS_ErrorGetCode();
-        emit errorOccurred("Не удалось загрузить файл");
+        emit errorOccurred(ztr("Не удалось загрузить файл"));
         return;
     }
 
@@ -110,7 +111,7 @@ void AudioManager::setSourceFile(const QString &filePath) {
 }
 
 void AudioManager::play() {
-    if (!m_currentStream) { emit errorOccurred("Файл не выбран"); return; }
+    if (!m_currentStream) { emit errorOccurred(ztr("Файл не выбран")); return; }
     if (BASS_ChannelPlay(m_currentStream, FALSE)) {
         m_playing = true;
         m_positionTimer->start();
@@ -142,7 +143,7 @@ void AudioManager::stop() {
 
 void AudioManager::next() {
     if (m_currentFilePath.isEmpty()) {
-        emit errorOccurred("Файл не выбран");
+        emit errorOccurred(ztr("Файл не выбран"));
         return;
     }
     
@@ -161,13 +162,13 @@ void AudioManager::next() {
         setSourceFile(nextFile);
         play();
     } else {
-        emit errorOccurred("Больше файлов в очереди");
+        emit errorOccurred(ztr("Больше файлов в очереди"));
     }
 }
 
 void AudioManager::previous() {
     if (m_currentFilePath.isEmpty()) {
-        emit errorOccurred("Файл не выбран");
+        emit errorOccurred(ztr("Файл не выбран"));
         return;
     }
     
@@ -186,7 +187,7 @@ void AudioManager::previous() {
         setSourceFile(prevFile);
         play();
     } else {
-        emit errorOccurred("Это первый файл в очереди");
+        emit errorOccurred(ztr("Это первый файл в очереди"));
     }
 }
 
@@ -273,7 +274,7 @@ QList<QAudioDevice> AudioManager::availableOutputDevices() const {
 }
 
 QString AudioManager::currentDeviceName() const {
-    return m_currentDevice.isNull() ? "По умолчанию" : m_currentDevice.description();
+    return m_currentDevice.isNull() ? ztr("По умолчанию") : m_currentDevice.description();
 }
 
 void AudioManager::updatePosition() {

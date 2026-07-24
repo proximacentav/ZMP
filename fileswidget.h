@@ -28,6 +28,7 @@
 #include <QTcpSocket>
 
 #include "ftpclient.h"
+#include "translator.h"
 
 class FilesWidget : public QWidget
 {
@@ -147,6 +148,9 @@ private:
 
     bool isValidIPv4(const QString &ip);
     bool isValidIPv6(const QString &ip);
+
+    RetransList m_retrans;
+    void retranslateUi();
 };
 
 #endif

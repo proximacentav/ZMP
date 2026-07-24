@@ -9,6 +9,7 @@
 #include <QOpenGLWidget>
 #include <QTimer>
 #include "audiomanager.h"
+#include "translator.h"
 
 class projectM;
 
@@ -61,6 +62,8 @@ private:
     QComboBox *m_modeCombo;
     SpectrogramWidget *m_spectrogram;
     ProjectMWidget *m_projectMWidget;
+    RetransList m_retrans;
+    void retranslateUi();
 };
 
 #endif

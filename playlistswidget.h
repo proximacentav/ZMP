@@ -22,6 +22,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QFrame>
+#include "translator.h"
 
 struct PlaylistInfo {
     QString name;
@@ -107,7 +108,7 @@ protected:
             p.setBrush(QColor(80, 80, 80));
             p.drawRect(coverR);
             p.setPen(Qt::white);
-            p.drawText(coverR, Qt::AlignCenter, "Нет обложки");
+            p.drawText(coverR, Qt::AlignCenter, ztr("Нет обложки"));
         }
         p.setClipping(false);
 
@@ -254,6 +255,9 @@ public:
     ClustersPanel *m_clustersPanel = nullptr;
     QString m_currentClusterFilter;
     static const QString UnclusteredFilter;
+
+    RetransList m_retrans;
+    void retranslateUi();
 
     friend class PlaylistEditDialog;
     friend class CreateClusterDialog;
