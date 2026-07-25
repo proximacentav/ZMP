@@ -18,6 +18,8 @@
  /home/user/cp/zmp/ftpclient.cpp
  /home/user/cp/zmp/ftpclient.h
  /home/user/cp/zmp/iconbutton.h
+ /home/user/cp/zmp/jamendowidget.cpp
+ /home/user/cp/zmp/jamendowidget.h
  /home/user/cp/zmp/main.cpp
  /home/user/cp/zmp/mainwindow.cpp
  /home/user/cp/zmp/mainwindow.h
@@ -321,6 +323,9 @@
  /usr/include/qt6/QtCore/QFlags
  /usr/include/qt6/QtCore/QHash
  /usr/include/qt6/QtCore/QIODevice
+ /usr/include/qt6/QtCore/QJsonArray
+ /usr/include/qt6/QtCore/QJsonDocument
+ /usr/include/qt6/QtCore/QJsonObject
  /usr/include/qt6/QtCore/QList
  /usr/include/qt6/QtCore/QMap
  /usr/include/qt6/QtCore/QMetaType
@@ -372,6 +377,8 @@
  /usr/include/qt6/QtCore/qbytearraylist.h
  /usr/include/qt6/QtCore/qbytearrayview.h
  /usr/include/qt6/QtCore/qcalendar.h
+ /usr/include/qt6/QtCore/qcborcommon.h
+ /usr/include/qt6/QtCore/qcborvalue.h
  /usr/include/qt6/QtCore/qchar.h
  /usr/include/qt6/QtCore/qcheckedint_impl.h
  /usr/include/qt6/QtCore/qcompare.h
@@ -416,6 +423,11 @@
  /usr/include/qt6/QtCore/qitemselectionmodel.h
  /usr/include/qt6/QtCore/qiterable.h
  /usr/include/qt6/QtCore/qiterator.h
+ /usr/include/qt6/QtCore/qjsonarray.h
+ /usr/include/qt6/QtCore/qjsondocument.h
+ /usr/include/qt6/QtCore/qjsonobject.h
+ /usr/include/qt6/QtCore/qjsonparseerror.h
+ /usr/include/qt6/QtCore/qjsonvalue.h
  /usr/include/qt6/QtCore/qlatin1stringview.h
  /usr/include/qt6/QtCore/qline.h
  /usr/include/qt6/QtCore/qlist.h
@@ -496,6 +508,7 @@
  /usr/include/qt6/QtCore/qtypes.h
  /usr/include/qt6/QtCore/qurl.h
  /usr/include/qt6/QtCore/qutf8stringview.h
+ /usr/include/qt6/QtCore/quuid.h
  /usr/include/qt6/QtCore/qvariant.h
  /usr/include/qt6/QtCore/qvariantmap.h
  /usr/include/qt6/QtCore/qvarlengtharray.h
@@ -521,6 +534,7 @@
  /usr/include/qt6/QtGui/QPainter
  /usr/include/qt6/QtGui/QPainterPath
  /usr/include/qt6/QtGui/QPen
+ /usr/include/qt6/QtGui/QShowEvent
  /usr/include/qt6/QtGui/QSurfaceFormat
  /usr/include/qt6/QtGui/QTransform
  /usr/include/qt6/QtGui/qaction.h
@@ -613,11 +627,15 @@
  /usr/include/qt6/QtWidgets/QCheckBox
  /usr/include/qt6/QtWidgets/QComboBox
  /usr/include/qt6/QtWidgets/QDialog
+ /usr/include/qt6/QtWidgets/QDialogButtonBox
  /usr/include/qt6/QtWidgets/QDoubleSpinBox
+ /usr/include/qt6/QtWidgets/QFormLayout
  /usr/include/qt6/QtWidgets/QFrame
  /usr/include/qt6/QtWidgets/QGridLayout
+ /usr/include/qt6/QtWidgets/QGroupBox
  /usr/include/qt6/QtWidgets/QHBoxLayout
  /usr/include/qt6/QtWidgets/QLabel
+ /usr/include/qt6/QtWidgets/QLayout
  /usr/include/qt6/QtWidgets/QLineEdit
  /usr/include/qt6/QtWidgets/QListWidget
  /usr/include/qt6/QtWidgets/QListWidgetItem
@@ -642,8 +660,11 @@
  /usr/include/qt6/QtWidgets/qcheckbox.h
  /usr/include/qt6/QtWidgets/qcombobox.h
  /usr/include/qt6/QtWidgets/qdialog.h
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h
+ /usr/include/qt6/QtWidgets/qformlayout.h
  /usr/include/qt6/QtWidgets/qframe.h
  /usr/include/qt6/QtWidgets/qgridlayout.h
+ /usr/include/qt6/QtWidgets/qgroupbox.h
  /usr/include/qt6/QtWidgets/qlabel.h
  /usr/include/qt6/QtWidgets/qlayout.h
  /usr/include/qt6/QtWidgets/qlayoutitem.h

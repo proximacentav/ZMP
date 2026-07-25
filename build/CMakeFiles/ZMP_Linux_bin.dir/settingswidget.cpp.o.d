@@ -434,7 +434,11 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: \
  /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
  /usr/include/qt6/QtCore/qfile.h /usr/include/qt6/QtCore/qfileinfo.h \
  /usr/include/qt6/QtCore/qtimezone.h /usr/include/qt6/QtCore/QFile \
- /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QJsonDocument \
+ /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QFileInfo \
+ /usr/include/qt6/QtWidgets/QMessageBox \
+ /usr/include/qt6/QtWidgets/qmessagebox.h \
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ /usr/include/qt6/QtCore/QJsonDocument \
  /usr/include/qt6/QtCore/qjsondocument.h \
  /usr/include/qt6/QtCore/qjsonparseerror.h \
  /usr/include/qt6/QtCore/QJsonObject \

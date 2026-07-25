@@ -535,4 +535,20 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
  /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
  /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
- /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/miniplayerbar.h
+ /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/jamendowidget.h \
+ /usr/include/qt6/QtCore/QJsonDocument \
+ /usr/include/qt6/QtCore/qjsondocument.h \
+ /usr/include/qt6/QtCore/qjsonparseerror.h \
+ /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h \
+ /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
+ /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
+ /usr/include/qt6/QtWidgets/QFormLayout \
+ /usr/include/qt6/QtWidgets/qformlayout.h \
+ /usr/include/qt6/QtWidgets/QLayout /usr/include/qt6/QtWidgets/QGroupBox \
+ /usr/include/qt6/QtWidgets/qgroupbox.h \
+ /usr/include/qt6/QtWidgets/QDialogButtonBox \
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ /usr/include/qt6/QtGui/QShowEvent /home/user/cp/zmp/miniplayerbar.h

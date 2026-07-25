@@ -67,6 +67,7 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         "KeyBinding",
         "binding",
         "keyBindingsSaved",
+        "jamendoReconfigureRequested",
         "onSliderChanged",
         "v",
         "onLineEditChanged",
@@ -133,47 +134,49 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         }}),
         // Signal 'keyBindingsSaved'
         QtMocHelpers::SignalData<void()>(27, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'jamendoReconfigureRequested'
+        QtMocHelpers::SignalData<void()>(28, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 29 },
+        QtMocHelpers::SlotData<void(int)>(29, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 30 },
         }}),
         // Slot 'onLineEditChanged'
-        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'toggleTheme'
         QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'toggleTheme'
+        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onColorChanged'
-        QtMocHelpers::SlotData<void(int)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 33 },
+        QtMocHelpers::SlotData<void(int)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 34 },
         }}),
         // Slot 'onHeightSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(34, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 29 },
+        QtMocHelpers::SlotData<void(int)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 30 },
         }}),
         // Slot 'onIconSizeSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 29 },
+        QtMocHelpers::SlotData<void(int)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 30 },
         }}),
         // Slot 'onSpectrumGainChanged'
-        QtMocHelpers::SlotData<void(int)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 37 },
+        QtMocHelpers::SlotData<void(int)>(37, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 38 },
         }}),
         // Slot 'showAboutDialog'
-        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIconSizeChanged'
-        QtMocHelpers::SlotData<void(int)>(39, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 29 },
+        QtMocHelpers::SlotData<void(int)>(40, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 30 },
         }}),
         // Slot 'showKeyBindingTab'
-        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'showMainSettingsTab'
         QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'showMainSettingsTab'
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onKeyCaptureButtonClicked'
-        QtMocHelpers::SlotData<void(enum KeyAction)>(42, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(enum KeyAction)>(43, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { 0x80000000 | 23, 24 },
         }}),
         // Slot 'eventFilter'
-        QtMocHelpers::SlotData<bool(QObject *, QEvent *)>(43, 2, QMC::AccessPrivate, QMetaType::Bool, {{
-            { QMetaType::QObjectStar, 44 }, { 0x80000000 | 45, 46 },
+        QtMocHelpers::SlotData<bool(QObject *, QEvent *)>(44, 2, QMC::AccessPrivate, QMetaType::Bool, {{
+            { QMetaType::QObjectStar, 45 }, { 0x80000000 | 46, 47 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -210,19 +213,20 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 9: _t->maxBitrateChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 10: _t->keyBindingChanged((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<KeyBinding>>(_a[2]))); break;
         case 11: _t->keyBindingsSaved(); break;
-        case 12: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 13: _t->onLineEditChanged(); break;
-        case 14: _t->toggleTheme(); break;
-        case 15: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 16: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 17: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 18: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 19: _t->showAboutDialog(); break;
-        case 20: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 21: _t->showKeyBindingTab(); break;
-        case 22: _t->showMainSettingsTab(); break;
-        case 23: _t->onKeyCaptureButtonClicked((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1]))); break;
-        case 24: { bool _r = _t->eventFilter((*reinterpret_cast<std::add_pointer_t<QObject*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QEvent*>>(_a[2])));
+        case 12: _t->jamendoReconfigureRequested(); break;
+        case 13: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 14: _t->onLineEditChanged(); break;
+        case 15: _t->toggleTheme(); break;
+        case 16: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 17: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 18: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 19: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 20: _t->showAboutDialog(); break;
+        case 21: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 22: _t->showKeyBindingTab(); break;
+        case 23: _t->showMainSettingsTab(); break;
+        case 24: _t->onKeyCaptureButtonClicked((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1]))); break;
+        case 25: { bool _r = _t->eventFilter((*reinterpret_cast<std::add_pointer_t<QObject*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QEvent*>>(_a[2])));
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -252,6 +256,8 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)()>(_a, &SettingsWidget::keyBindingsSaved, 11))
             return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)()>(_a, &SettingsWidget::jamendoReconfigureRequested, 12))
+            return;
     }
 }
 
@@ -274,14 +280,14 @@ int SettingsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 26;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 26)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 25;
+        _id -= 26;
     }
     return _id;
 }
@@ -356,5 +362,11 @@ void SettingsWidget::keyBindingChanged(KeyAction _t1, const KeyBinding & _t2)
 void SettingsWidget::keyBindingsSaved()
 {
     QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
+}
+
+// SIGNAL 12
+void SettingsWidget::jamendoReconfigureRequested()
+{
+    QMetaObject::activate(this, &staticMetaObject, 12, nullptr);
 }
 QT_WARNING_POP

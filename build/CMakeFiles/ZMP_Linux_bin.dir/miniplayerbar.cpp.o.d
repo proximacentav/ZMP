@@ -352,6 +352,8 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: \
  /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtWidgets/qslider.h \
  /usr/include/qt6/QtWidgets/qabstractslider.h \
+ /usr/include/qt6/QtWidgets/QProgressBar \
+ /usr/include/qt6/QtWidgets/qprogressbar.h \
  /usr/include/qt6/QtWidgets/QHBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
@@ -400,4 +402,5 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: \
  /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QString \
  /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QTime \
  /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
- /usr/include/qt6/QtGui/QPixmap
+ /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtWidgets/QFrame \
+ /usr/include/qt6/QtCore/QDateTime

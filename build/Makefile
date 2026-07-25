@@ -299,6 +299,30 @@ ftpclient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.s
 .PHONY : ftpclient.cpp.s
 
+jamendowidget.o: jamendowidget.cpp.o
+.PHONY : jamendowidget.o
+
+# target to build an object file
+jamendowidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o
+.PHONY : jamendowidget.cpp.o
+
+jamendowidget.i: jamendowidget.cpp.i
+.PHONY : jamendowidget.i
+
+# target to preprocess a source file
+jamendowidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.i
+.PHONY : jamendowidget.cpp.i
+
+jamendowidget.s: jamendowidget.cpp.s
+.PHONY : jamendowidget.s
+
+# target to generate assembly for a file
+jamendowidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.s
+.PHONY : jamendowidget.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -568,6 +592,9 @@ help:
 	@echo "... ftpclient.o"
 	@echo "... ftpclient.i"
 	@echo "... ftpclient.s"
+	@echo "... jamendowidget.o"
+	@echo "... jamendowidget.i"
+	@echo "... jamendowidget.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

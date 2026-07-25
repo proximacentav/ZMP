@@ -651,6 +651,12 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/jamendowidget.h",
+			"Mu",
+			"EWIEGA46WW/moc_jamendowidget.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/mainwindow.h",
 			"Mu",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -786,6 +792,7 @@
 		[ "/home/user/cp/zmp/equalizerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/fileswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/ftpclient.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/jamendowidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/main.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/mainwindow.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/miniplayerbar.cpp", "Mu", null ],

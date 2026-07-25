@@ -15,6 +15,7 @@ ZMP_Linux_bin: \
   CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o \
@@ -204,6 +205,8 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o:
 CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o:
 

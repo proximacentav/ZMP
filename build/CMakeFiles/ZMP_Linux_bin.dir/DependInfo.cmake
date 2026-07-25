@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/cp/zmp/equalizerwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o.d"
   "/home/user/cp/zmp/fileswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o.d"
   "/home/user/cp/zmp/ftpclient.cpp" "CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o.d"
+  "/home/user/cp/zmp/jamendowidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o.d"
   "/home/user/cp/zmp/main.cpp" "CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o.d"
   "/home/user/cp/zmp/mainwindow.cpp" "CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o.d"
   "/home/user/cp/zmp/miniplayerbar.cpp" "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o.d"

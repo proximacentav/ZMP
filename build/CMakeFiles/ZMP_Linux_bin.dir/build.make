@@ -260,10 +260,24 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/fileswidget.cpp -o CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.s
 
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidget.cpp
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o -c /home/user/cp/zmp/jamendowidget.cpp
+
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/jamendowidget.cpp > CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.i
+
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/jamendowidget.cpp -o CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.s
+
 CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistswidget.cpp
 CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o -c /home/user/cp/zmp/playlistswidget.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.i: cmake_force
@@ -277,7 +291,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.s: cmake_force
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerbar.cpp
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o -c /home/user/cp/zmp/miniplayerbar.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.i: cmake_force
@@ -291,7 +305,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.s: cmake_force
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontroller.cpp
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o -c /home/user/cp/zmp/mpriscontroller.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.i: cmake_force
@@ -317,6 +331,7 @@ ZMP_Linux_bin_OBJECTS = \
 "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o"
@@ -337,6 +352,7 @@ ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o
@@ -359,7 +375,7 @@ ZMP_Linux_bin: /usr/lib/libQt6Core.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libGLX.so
 ZMP_Linux_bin: /usr/lib/libOpenGL.so
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable ZMP_Linux_bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable ZMP_Linux_bin"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ZMP_Linux_bin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

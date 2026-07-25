@@ -1,7 +1,7 @@
-CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
- /home/user/cp/zmp/mainwindow.cpp /usr/include/stdc-predef.h \
- /home/user/cp/zmp/mainwindow.h /usr/include/qt6/QtWidgets/QMainWindow \
- /usr/include/qt6/QtWidgets/qmainwindow.h \
+CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: \
+ /home/user/cp/zmp/jamendowidget.cpp /usr/include/stdc-predef.h \
+ /home/user/cp/zmp/jamendowidget.h /usr/include/qt6/QtWidgets/QWidget \
+ /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
  /usr/include/qt6/QtGui/qtguiglobal.h /usr/include/qt6/QtCore/qglobal.h \
  /usr/include/c++/16.1.1/type_traits \
@@ -152,7 +152,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/qtguiexports.h \
  /usr/include/qt6/QtWidgets/qtwidgets-config.h \
  /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
- /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtGui/qwindowdefs.h \
  /usr/include/qt6/QtCore/qobjectdefs.h \
  /usr/include/qt6/QtCore/qnamespace.h /usr/include/qt6/QtCore/qcompare.h \
@@ -347,17 +346,14 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
  /usr/include/qt6/QtGui/qcursor.h /usr/include/qt6/QtGui/qbitmap.h \
- /usr/include/qt6/QtWidgets/qtabwidget.h \
- /usr/include/qt6/QtWidgets/QStackedWidget \
- /usr/include/qt6/QtWidgets/qstackedwidget.h \
- /usr/include/qt6/QtWidgets/qframe.h \
- /usr/include/qt6/QtWidgets/QListWidget \
- /usr/include/qt6/QtWidgets/qlistwidget.h \
- /usr/include/qt6/QtWidgets/qlistview.h \
- /usr/include/qt6/QtWidgets/qabstractitemview.h \
- /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
- /usr/include/qt6/QtCore/qabstractitemmodel.h \
- /usr/include/qt6/QtCore/qitemselectionmodel.h \
+ /usr/include/qt6/QtWidgets/QLineEdit \
+ /usr/include/qt6/QtWidgets/qlineedit.h \
+ /usr/include/qt6/QtWidgets/qframe.h /usr/include/qt6/QtGui/qtextcursor.h \
+ /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
+ /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtGui/qpen.h \
+ /usr/include/qt6/QtGui/qtextoption.h \
+ /usr/include/qt6/QtWidgets/QComboBox \
+ /usr/include/qt6/QtWidgets/qcombobox.h \
  /usr/include/qt6/QtWidgets/qabstractitemdelegate.h \
  /usr/include/qt6/QtWidgets/qstyleoption.h \
  /usr/include/qt6/QtCore/qlocale.h \
@@ -367,30 +363,87 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtWidgets/qslider.h \
  /usr/include/qt6/QtWidgets/qabstractslider.h \
  /usr/include/qt6/QtWidgets/qstyle.h /usr/include/qt6/QtWidgets/qtabbar.h \
+ /usr/include/qt6/QtWidgets/qtabwidget.h \
  /usr/include/qt6/QtWidgets/qrubberband.h \
+ /usr/include/qt6/QtCore/qabstractitemmodel.h \
+ /usr/include/qt6/QtWidgets/QCheckBox \
+ /usr/include/qt6/QtWidgets/qcheckbox.h \
+ /usr/include/qt6/QtWidgets/qabstractbutton.h \
+ /usr/include/qt6/QtWidgets/QListWidget \
+ /usr/include/qt6/QtWidgets/qlistwidget.h \
+ /usr/include/qt6/QtWidgets/qlistview.h \
+ /usr/include/qt6/QtWidgets/qabstractitemview.h \
+ /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
+ /usr/include/qt6/QtCore/qitemselectionmodel.h \
  /usr/include/qt6/QtWidgets/QPushButton \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h \
- /usr/include/qt6/QtMultimedia/QAudioDevice \
- /usr/include/qt6/QtMultimedia/qaudiodevice.h \
- /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
- /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
- /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
- /usr/include/qt6/QtMultimedia/qtaudio.h \
- /usr/include/qt6/QtMultimedia/qaudio.h \
- /usr/include/qt6/QtMultimedia/qaudioformat.h \
- /usr/include/qt6/QtGui/QKeyEvent /usr/include/qt6/QtGui/qevent.h \
+ /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
+ /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtCore/qiodevice.h \
+ /usr/include/qt6/QtNetwork/QNetworkAccessManager \
+ /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
+ /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
+ /usr/include/qt6/QtNetwork/qtnetwork-config.h \
+ /usr/include/qt6/QtNetwork/qtnetworkexports.h \
+ /usr/include/qt6/QtNetwork/qnetworkrequest.h \
+ /usr/include/qt6/QtNetwork/qhttpheaders.h \
+ /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
+ /usr/include/qt6/QtCore/qmetaobject.h \
+ /usr/include/qt6/QtCore/QSharedDataPointer \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QUrl \
+ /usr/include/qt6/QtCore/QVariant /usr/include/qt6/QtCore/q26numeric.h \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtNetwork/QSslConfiguration \
+ /usr/include/qt6/QtNetwork/qsslconfiguration.h \
+ /usr/include/qt6/QtNetwork/qsslsocket.h \
+ /usr/include/qt6/QtNetwork/qtcpsocket.h \
+ /usr/include/qt6/QtNetwork/qabstractsocket.h \
+ /usr/include/qt6/QtNetwork/qhostaddress.h \
+ /usr/include/qt6/QtNetwork/qsslerror.h \
+ /usr/include/qt6/QtNetwork/qsslcertificate.h \
+ /usr/include/qt6/QtCore/qcryptographichash.h \
+ /usr/include/qt6/QtNetwork/qssl.h /usr/include/qt6/QtCore/QFlags \
+ /usr/include/qt6/QtNetwork/QSslPreSharedKeyAuthenticator \
+ /usr/include/qt6/QtNetwork/qsslpresharedkeyauthenticator.h \
+ /usr/include/qt6/QtCore/QMetaType \
+ /usr/include/qt6/QtNetwork/QNetworkReply \
+ /usr/include/qt6/QtNetwork/qnetworkreply.h \
+ /usr/include/qt6/QtCore/QIODevice \
+ /usr/include/qt6/QtNetwork/QNetworkRequest \
+ /usr/include/qt6/QtNetwork/QNetworkAccessManager \
+ /usr/include/qt6/QtCore/QJsonDocument \
+ /usr/include/qt6/QtCore/qjsondocument.h \
+ /usr/include/qt6/QtCore/qjsonparseerror.h \
+ /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h \
+ /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
+ /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtWidgets/QVBoxLayout \
+ /usr/include/qt6/QtWidgets/qboxlayout.h \
+ /usr/include/qt6/QtWidgets/qlayout.h \
+ /usr/include/qt6/QtWidgets/qlayoutitem.h \
+ /usr/include/qt6/QtWidgets/qgridlayout.h \
+ /usr/include/qt6/QtWidgets/QHBoxLayout \
+ /usr/include/qt6/QtWidgets/QFormLayout \
+ /usr/include/qt6/QtWidgets/qformlayout.h \
+ /usr/include/qt6/QtWidgets/QLayout /usr/include/qt6/QtWidgets/QGroupBox \
+ /usr/include/qt6/QtWidgets/qgroupbox.h \
+ /usr/include/qt6/QtWidgets/QDialogButtonBox \
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ /usr/include/qt6/QtWidgets/QStackedWidget \
+ /usr/include/qt6/QtWidgets/qstackedwidget.h \
+ /usr/include/qt6/QtGui/QShowEvent /usr/include/qt6/QtGui/qevent.h \
  /usr/include/qt6/QtCore/qcoreevent.h \
  /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /usr/include/qt6/QtCore/qiodevice.h /usr/include/qt6/QtCore/qurl.h \
  /usr/include/qt6/QtGui/qeventpoint.h /usr/include/qt6/QtGui/qvector2d.h \
  /usr/include/qt6/QtGui/qvectornd.h \
  /usr/include/qt6/QtGui/qpointingdevice.h \
  /usr/include/qt6/QtGui/qinputdevice.h /usr/include/qt6/QtGui/qscreen.h \
- /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtCore/QRect /usr/include/qt6/QtCore/QSize \
  /usr/include/qt6/QtCore/QSizeF /usr/include/qt6/QtGui/QTransform \
  /usr/include/qt6/QtCore/qnativeinterface.h \
@@ -400,26 +453,14 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
  /usr/include/qt6/QtGui/qinputmethod.h \
  /usr/include/qt6/QtGui/qguiapplication_platform.h \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
- /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
- /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
- /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /home/user/cp/zmp/deviceswidget.h \
- /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/QComboBox \
- /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/translator.h \
+ /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
- /home/user/cp/zmp/playerwidget.h \
- /home/user/cp/zmp/playbackcontrolwidget.h \
- /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
- /usr/include/qt6/QtGui/qpicture.h /usr/include/qt6/QtGui/qtextdocument.h \
- /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtGui/QImage \
- /usr/include/qt6/QtWidgets/QAbstractItemView \
- /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
- /usr/include/qt6/QtGui/QPainterPath \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
+ /home/user/cp/zmp/playlistswidget.h /usr/include/qt6/QtGui/QImage \
+ /usr/include/qt6/QtCore/QStringList /usr/include/qt6/QtCore/QTimer \
+ /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
- /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/qtextoption.h \
- /usr/include/qt6/QtGui/qpen.h /usr/include/qt6/QtGui/QPen \
+ /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/QPen \
  /usr/include/qt6/QtGui/QBrush /usr/include/qt6/QtGui/QMouseEvent \
  /usr/include/qt6/QtCore/QRandomGenerator \
  /usr/include/qt6/QtCore/qrandom.h /usr/include/c++/16.1.1/random \
@@ -429,33 +470,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QFrame \
- /home/user/cp/zmp/equalizerwidget.h /usr/include/qt6/QtWidgets/QSpinBox \
- /usr/include/qt6/QtWidgets/qspinbox.h \
- /usr/include/qt6/QtWidgets/QDoubleSpinBox \
- /usr/include/qt6/QtWidgets/QScrollArea \
- /usr/include/qt6/QtWidgets/qscrollarea.h \
- /usr/include/qt6/QtWidgets/QGridLayout \
- /usr/include/qt6/QtWidgets/qgridlayout.h \
- /usr/include/qt6/QtWidgets/qlayout.h \
- /usr/include/qt6/QtWidgets/qlayoutitem.h \
- /usr/include/qt6/QtWidgets/qboxlayout.h \
- /usr/include/qt6/QtWidgets/QCheckBox \
- /usr/include/qt6/QtWidgets/qcheckbox.h \
- /home/user/cp/zmp/visualizationwidget.h \
- /usr/include/qt6/QtWidgets/QVBoxLayout \
- /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \
- /usr/include/qt6/QtOpenGLWidgets/qopenglwidget.h \
- /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
- /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h \
- /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtGui/QSurfaceFormat \
- /usr/include/qt6/QtGui/qsurfaceformat.h /usr/include/qt6/QtGui/qopengl.h \
- /usr/include/GL/gl.h /usr/include/qt6/QtGui/qopenglext.h \
- /usr/include/inttypes.h /home/user/cp/zmp/settingswidget.h \
- /usr/include/qt6/QtGui/QColor /home/user/cp/zmp/fileswidget.h \
- /usr/include/qt6/QtCore/QtGlobal /usr/include/qt6/QtWidgets/QTreeView \
- /usr/include/qt6/QtWidgets/qtreeview.h \
- /usr/include/qt6/QtGui/QFileSystemModel \
- /usr/include/qt6/QtGui/qfilesystemmodel.h /usr/include/qt6/QtCore/qdir.h \
+ /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/qdir.h \
  /usr/include/qt6/QtCore/qdirlisting.h \
  /usr/include/qt6/QtCore/qfiledevice.h /usr/include/c++/16.1.1/filesystem \
  /usr/include/c++/16.1.1/bits/fs_fwd.h \
@@ -483,108 +498,15 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/c++/16.1.1/bits/istream.tcc \
  /usr/include/c++/16.1.1/bits/sstream.tcc /usr/include/c++/16.1.1/codecvt \
  /usr/include/c++/16.1.1/bits/fs_dir.h \
- /usr/include/c++/16.1.1/bits/fs_ops.h \
- /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
- /usr/include/qt6/QtCore/qfile.h /usr/include/qt6/QtCore/qfileinfo.h \
- /usr/include/qt6/QtCore/qtimezone.h \
- /usr/include/qt6/QtCore/QSortFilterProxyModel \
- /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
- /usr/include/qt6/QtCore/qabstractproxymodel.h \
- /usr/include/qt6/QtWidgets/QLineEdit \
- /usr/include/qt6/QtWidgets/qlineedit.h \
- /usr/include/qt6/QtGui/qtextcursor.h \
- /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtWidgets/QMenu \
- /usr/include/qt6/QtWidgets/qmenu.h \
- /usr/include/qt6/QtNetwork/QNetworkAccessManager \
- /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
- /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
- /usr/include/qt6/QtNetwork/qtnetwork-config.h \
- /usr/include/qt6/QtNetwork/qtnetworkexports.h \
- /usr/include/qt6/QtNetwork/qnetworkrequest.h \
- /usr/include/qt6/QtNetwork/qhttpheaders.h \
- /usr/include/qt6/QtCore/qmetaobject.h \
- /usr/include/qt6/QtCore/QSharedDataPointer \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QUrl \
- /usr/include/qt6/QtCore/QVariant /usr/include/qt6/QtCore/q26numeric.h \
- /usr/include/qt6/QtNetwork/QSslConfiguration \
- /usr/include/qt6/QtNetwork/qsslconfiguration.h \
- /usr/include/qt6/QtNetwork/qsslsocket.h \
- /usr/include/qt6/QtNetwork/qtcpsocket.h \
- /usr/include/qt6/QtNetwork/qabstractsocket.h \
- /usr/include/qt6/QtNetwork/qhostaddress.h \
- /usr/include/qt6/QtNetwork/qsslerror.h \
- /usr/include/qt6/QtNetwork/qsslcertificate.h \
- /usr/include/qt6/QtCore/qcryptographichash.h \
- /usr/include/qt6/QtNetwork/qssl.h /usr/include/qt6/QtCore/QFlags \
- /usr/include/qt6/QtNetwork/QSslPreSharedKeyAuthenticator \
- /usr/include/qt6/QtNetwork/qsslpresharedkeyauthenticator.h \
- /usr/include/qt6/QtCore/QMetaType \
- /usr/include/qt6/QtNetwork/QNetworkReply \
- /usr/include/qt6/QtNetwork/qnetworkreply.h \
- /usr/include/qt6/QtCore/QIODevice \
- /usr/include/qt6/QtNetwork/QNetworkRequest \
- /usr/include/qt6/QtNetwork/QNetworkAccessManager \
- /usr/include/qt6/QtNetwork/QSslError \
- /usr/include/qt6/QtNetwork/QSslCertificate \
- /usr/include/qt6/QtWidgets/QProgressBar \
- /usr/include/qt6/QtWidgets/qprogressbar.h \
- /usr/include/qt6/QtWidgets/QHBoxLayout \
- /usr/include/qt6/QtWidgets/QListWidgetItem \
- /usr/include/qt6/QtNetwork/QTcpSocket /home/user/cp/zmp/ftpclient.h \
- /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
- /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
- /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
- /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/jamendowidget.h \
- /usr/include/qt6/QtCore/QJsonDocument \
- /usr/include/qt6/QtCore/qjsondocument.h \
- /usr/include/qt6/QtCore/qjsonparseerror.h \
- /usr/include/qt6/QtCore/QJsonObject \
- /usr/include/qt6/QtCore/qjsonobject.h \
- /usr/include/qt6/QtCore/qjsonvalue.h \
- /usr/include/qt6/QtCore/qcborvalue.h \
- /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
- /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
- /usr/include/qt6/QtWidgets/QFormLayout \
- /usr/include/qt6/QtWidgets/qformlayout.h \
- /usr/include/qt6/QtWidgets/QLayout /usr/include/qt6/QtWidgets/QGroupBox \
- /usr/include/qt6/QtWidgets/qgroupbox.h \
- /usr/include/qt6/QtWidgets/QDialogButtonBox \
- /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/qt6/QtGui/QShowEvent /home/user/cp/zmp/miniplayerbar.h \
- /home/user/cp/zmp/mpriscontroller.h \
- /usr/include/qt6/QtDBus/QDBusAbstractAdaptor \
- /usr/include/qt6/QtDBus/qdbusabstractadaptor.h \
- /usr/include/qt6/QtDBus/qtdbusglobal.h \
- /usr/include/qt6/QtDBus/qtdbusexports.h \
- /usr/include/qt6/QtDBus/QDBusConnection \
- /usr/include/qt6/QtDBus/qdbusconnection.h \
- /usr/include/qt6/QtDBus/QDBusObjectPath \
- /usr/include/qt6/QtDBus/qdbusextratypes.h \
- /usr/include/qt6/QtCore/QVariantMap \
- /usr/include/qt6/QtCore/qvariantmap.h /usr/include/qt6/QtCore/QMap \
- /usr/include/qt6/QtWidgets/QApplication \
- /usr/include/qt6/QtWidgets/qapplication.h /usr/include/qt6/QtCore/QDebug \
- /usr/include/qt6/QtWidgets/QInputDialog \
- /usr/include/qt6/QtWidgets/qinputdialog.h /usr/include/qt6/QtCore/QEvent \
+ /usr/include/c++/16.1.1/bits/fs_ops.h /usr/include/qt6/QtCore/qfile.h \
+ /usr/include/qt6/QtCore/qfileinfo.h /usr/include/qt6/QtCore/qtimezone.h \
+ /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/QFileInfo \
  /usr/include/qt6/QtWidgets/QMessageBox \
- /usr/include/qt6/QtWidgets/qmessagebox.h /usr/include/qt6/QtGui/QPixmap \
- /usr/include/qt6/QtWidgets/QTextEdit \
- /usr/include/qt6/QtWidgets/qtextedit.h \
- /usr/include/qt6/QtCore/QTextStream \
+ /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/QFileDialog \
  /usr/include/qt6/QtWidgets/qfiledialog.h \
- /usr/include/qt6/QtCore/QDateTime /usr/include/qt6/QtCore/QDir \
- /usr/include/qt6/QtCore/QRegularExpression \
  /usr/include/qt6/QtNetwork/QNetworkProxy \
- /usr/include/qt6/QtNetwork/qnetworkproxy.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/pwd.h /usr/include/crypt.h \
- /usr/include/fcntl.h /usr/include/bits/fcntl.h \
- /usr/include/bits/fcntl-linux.h /usr/include/bits/types/struct_iovec.h \
- /usr/include/bits/cloexec.h /usr/include/linux/falloc.h \
- /usr/include/linux/openat2.h /usr/include/bits/openat2.h \
- /usr/include/bits/stat.h /usr/include/bits/struct_stat.h \
- /usr/include/qt6/QtCore/QSocketNotifier \
- /usr/include/qt6/QtCore/qsocketnotifier.h
+ /usr/include/qt6/QtNetwork/qnetworkproxy.h \
+ /usr/include/qt6/QtNetwork/QNetworkRequest /usr/include/qt6/QtCore/QUrl \
+ /usr/include/qt6/QtCore/QUrlQuery /usr/include/qt6/QtCore/qurlquery.h \
+ /usr/include/qt6/QtCore/QDebug

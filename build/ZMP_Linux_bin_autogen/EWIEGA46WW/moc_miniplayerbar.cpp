@@ -44,6 +44,7 @@ template <> constexpr inline auto MiniPlayerBar::qt_create_metaobjectdata<qt_met
         "",
         "prevClicked",
         "nextClicked",
+        "downloadCancelled",
         "setTrackInfo",
         "TrackMetadata",
         "meta",
@@ -64,25 +65,27 @@ template <> constexpr inline auto MiniPlayerBar::qt_create_metaobjectdata<qt_met
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'nextClicked'
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'downloadCancelled'
+        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'setTrackInfo'
-        QtMocHelpers::SlotData<void(const TrackMetadata &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
+        QtMocHelpers::SlotData<void(const TrackMetadata &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 7, 8 },
         }}),
         // Slot 'onPositionChanged'
-        QtMocHelpers::SlotData<void(qint64)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 9 },
+        QtMocHelpers::SlotData<void(qint64)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 10 },
         }}),
         // Slot 'onDurationChanged'
-        QtMocHelpers::SlotData<void(qint64)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 11 },
+        QtMocHelpers::SlotData<void(qint64)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 12 },
         }}),
         // Slot 'onStateChanged'
-        QtMocHelpers::SlotData<void(bool)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 13 },
+        QtMocHelpers::SlotData<void(bool)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 14 },
         }}),
         // Slot 'onSliderMoved'
-        QtMocHelpers::SlotData<void(int)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 15 },
+        QtMocHelpers::SlotData<void(int)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 16 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -110,11 +113,12 @@ void MiniPlayerBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->playClicked(); break;
         case 1: _t->prevClicked(); break;
         case 2: _t->nextClicked(); break;
-        case 3: _t->setTrackInfo((*reinterpret_cast<std::add_pointer_t<TrackMetadata>>(_a[1]))); break;
-        case 4: _t->onPositionChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 5: _t->onDurationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 6: _t->onStateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 7: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->downloadCancelled(); break;
+        case 4: _t->setTrackInfo((*reinterpret_cast<std::add_pointer_t<TrackMetadata>>(_a[1]))); break;
+        case 5: _t->onPositionChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 6: _t->onDurationChanged((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 7: _t->onStateChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 8: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -124,6 +128,8 @@ void MiniPlayerBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         if (QtMocHelpers::indexOfMethod<void (MiniPlayerBar::*)()>(_a, &MiniPlayerBar::prevClicked, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (MiniPlayerBar::*)()>(_a, &MiniPlayerBar::nextClicked, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (MiniPlayerBar::*)()>(_a, &MiniPlayerBar::downloadCancelled, 3))
             return;
     }
 }
@@ -147,14 +153,14 @@ int MiniPlayerBar::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }
@@ -175,5 +181,11 @@ void MiniPlayerBar::prevClicked()
 void MiniPlayerBar::nextClicked()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void MiniPlayerBar::downloadCancelled()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
 QT_WARNING_POP

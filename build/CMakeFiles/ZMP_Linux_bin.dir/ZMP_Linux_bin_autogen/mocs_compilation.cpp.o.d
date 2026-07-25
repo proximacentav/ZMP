@@ -510,11 +510,25 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../ftpclient.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_iconbutton.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../iconbutton.h \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mainwindow.cpp \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../mainwindow.h \
- /usr/include/qt6/QtWidgets/QMainWindow \
- /usr/include/qt6/QtWidgets/qmainwindow.h \
- /usr/include/qt6/QtGui/QKeyEvent /usr/include/qt6/QtGui/qevent.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_jamendowidget.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../jamendowidget.h \
+ /usr/include/qt6/QtCore/QJsonDocument \
+ /usr/include/qt6/QtCore/qjsondocument.h \
+ /usr/include/qt6/QtCore/qjsonparseerror.h \
+ /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h \
+ /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
+ /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtWidgets/QFormLayout \
+ /usr/include/qt6/QtWidgets/qformlayout.h \
+ /usr/include/qt6/QtWidgets/QLayout /usr/include/qt6/QtWidgets/QGroupBox \
+ /usr/include/qt6/QtWidgets/qgroupbox.h \
+ /usr/include/qt6/QtWidgets/QDialogButtonBox \
+ /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+ /usr/include/qt6/QtGui/QShowEvent /usr/include/qt6/QtGui/qevent.h \
  /usr/include/qt6/QtCore/qcoreevent.h \
  /usr/include/qt6/QtGui/qeventpoint.h /usr/include/qt6/QtGui/qvector2d.h \
  /usr/include/qt6/QtGui/qvectornd.h \
@@ -529,7 +543,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
  /usr/include/qt6/QtGui/qinputmethod.h \
  /usr/include/qt6/QtGui/qguiapplication_platform.h \
- /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mainwindow.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../mainwindow.h \
+ /usr/include/qt6/QtWidgets/QMainWindow \
+ /usr/include/qt6/QtWidgets/qmainwindow.h \
+ /usr/include/qt6/QtGui/QKeyEvent \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../deviceswidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playerwidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playbackcontrolwidget.h \
@@ -562,6 +580,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h \
  /usr/include/qt6/QtGui/QColor \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../fileswidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../jamendowidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../miniplayerbar.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_miniplayerbar.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../miniplayerbar.h \
