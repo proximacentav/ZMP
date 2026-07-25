@@ -18,8 +18,10 @@
 #include "visualizationwidget.h"
 #include "settingswidget.h"
 #include "fileswidget.h"
+#include "jamendowidget.h"
 #include "miniplayerbar.h"
 #include "translator.h"
+#include <QNetworkReply>
 
 class EqualizerPresetDialog : public QDialog
 {
@@ -71,6 +73,7 @@ private:
     VisualizationWidget *m_visualizationWidget;
     SettingsWidget *m_settingsWidget;
     FilesWidget *m_filesWidget;
+    JamendoWidget *m_jamendoWidget;
     QWidget *m_menuIndicator;
     QTimer *m_menuAnimTimer;
     qreal m_menuIndicatorY;
@@ -89,6 +92,7 @@ private:
     void handleKeyPress(Qt::Key key, Qt::KeyboardModifiers modifiers);
     void loadKeyBindingsFromSettings();
     void showEqualizerPresetDialog();
+    QNetworkReply *m_currentDownloadReply = nullptr;
 
     RetransList m_retrans;   // live-retranslation registry (window title + menu)
     void retranslateUi();

@@ -52,6 +52,7 @@ signals:
     void maxBitrateChanged(int bitrate);
     void keyBindingChanged(KeyAction action, const KeyBinding &binding);
     void keyBindingsSaved();
+    void jamendoReconfigureRequested();
 
 private slots:
     void onSliderChanged(int v);
@@ -98,6 +99,8 @@ private:
     QPushButton *m_projectMPresetButton;
     QLabel *m_projectMPresetPath;
     QPushButton *m_keyBindingButton;
+    QPushButton *m_clearJamendoCacheBtn;
+    QPushButton *m_jamendoReconfigureBtn;
     
     QStackedWidget *m_stackedWidget;
     QWidget *m_mainSettingsWidget;

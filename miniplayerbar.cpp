@@ -2,15 +2,64 @@
 #include "translator.h"
 #include <QTime>
 #include <QPixmap>
+#include <QFrame>
+#include <QDateTime>
 
 MiniPlayerBar::MiniPlayerBar(AudioManager *audioManager, QWidget *parent)
     : QWidget(parent), m_audioManager(audioManager), m_isSeeking(false), m_accentColor(42,130,218), m_duration(0)
 {
-    setFixedHeight(80);
+    QVBoxLayout *outerLayout = new QVBoxLayout(this);
+    outerLayout->setContentsMargins(0, 0, 0, 0);
+    outerLayout->setSpacing(0);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    m_downloadInfoWidget = new QWidget;
+    m_downloadInfoWidget->setStyleSheet("background-color: #1e3a3a;");
+    m_downloadInfoWidget->setVisible(false);
+    QVBoxLayout *dlLayout = new QVBoxLayout(m_downloadInfoWidget);
+    dlLayout->setContentsMargins(10, 4, 10, 4);
+    dlLayout->setSpacing(1);
+
+    m_downloadStatusLabel = new QLabel(ztr("Загрузка из Jamendo..."));
+    m_downloadStatusLabel->setStyleSheet("font-size: 9pt; color: #4CAF50; font-weight: bold; background: transparent;");
+    dlLayout->addWidget(m_downloadStatusLabel);
+
+    m_downloadTrackLabel = new QLabel;
+    m_downloadTrackLabel->setStyleSheet("font-size: 8pt; color: #ccc; background: transparent;");
+    dlLayout->addWidget(m_downloadTrackLabel);
+
+    QHBoxLayout *speedRow = new QHBoxLayout;
+    speedRow->setSpacing(8);
+
+    m_cancelDownloadBtn = new QPushButton(ztr("Отмена"));
+    m_cancelDownloadBtn->setFixedSize(60, 20);
+    m_cancelDownloadBtn->setStyleSheet(
+        "QPushButton { background: #c0392b; color: white; border: none; "
+        "border-radius: 3px; font-size: 8pt; font-weight: bold; }"
+        "QPushButton:hover { background: #e74c3c; }");
+    speedRow->addWidget(m_cancelDownloadBtn);
+
+    m_downloadSpeedLabel = new QLabel;
+    m_downloadSpeedLabel->setStyleSheet("font-size: 8pt; background: transparent;");
+    speedRow->addWidget(m_downloadSpeedLabel, 1);
+
+    dlLayout->addLayout(speedRow);
+
+    m_downloadProgress = new QProgressBar;
+    m_downloadProgress->setRange(0, 100);
+    m_downloadProgress->setValue(0);
+    m_downloadProgress->setFixedHeight(3);
+    m_downloadProgress->setTextVisible(false);
+    m_downloadProgress->setStyleSheet(
+        "QProgressBar { background: transparent; border: none; }"
+        "QProgressBar::chunk { background: #4CAF50; border-radius: 1px; }");
+    dlLayout->addWidget(m_downloadProgress);
+
+    outerLayout->addWidget(m_downloadInfoWidget);
+
+    QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->setContentsMargins(8, 4, 8, 4);
     mainLayout->setSpacing(8);
+    outerLayout->addLayout(mainLayout);
 
     m_coverLabel = new QLabel;
     m_coverLabel->setFixedSize(50, 50);
@@ -68,6 +117,7 @@ MiniPlayerBar::MiniPlayerBar(AudioManager *audioManager, QWidget *parent)
 
     setAccentColor(m_accentColor);
 
+    connect(m_cancelDownloadBtn, &QPushButton::clicked, this, &MiniPlayerBar::downloadCancelled);
     connect(m_prevIcon, &IconButton::clicked, this, &MiniPlayerBar::prevClicked);
     connect(m_playIcon, &IconButton::clicked, this, &MiniPlayerBar::playClicked);
     connect(m_nextIcon, &IconButton::clicked, this, &MiniPlayerBar::nextClicked);
@@ -124,6 +174,67 @@ void MiniPlayerBar::setAccentColor(const QColor &color) {
         "QSlider::handle:horizontal { background:%1; width:12px; height:12px; margin:-5px 0; border-radius:6px; }"
     ).arg(color.name());
     m_positionSlider->setStyleSheet(sliderStyle);
+}
+
+void MiniPlayerBar::setDownloadActive(bool active)
+{
+    m_downloadInfoWidget->setVisible(active);
+    if (!active) {
+        m_downloadProgress->setValue(0);
+    }
+}
+
+void MiniPlayerBar::setDownloadProgress(double percent) {
+    m_downloadProgress->setValue(static_cast<int>(percent));
+}
+
+void MiniPlayerBar::setDownloadInfo(const QString &trackName, qint64 bytesReceived, qint64 bytesTotal,
+                                     const QString &proxyHost, bool hasProxy)
+{
+    m_downloadTrackLabel->setText(trackName);
+
+    // Speed calculation
+    qint64 speedBps = 0;
+    static qint64 prevBytes = 0;
+    static qint64 prevTime = 0;
+    qint64 now = QDateTime::currentMSecsSinceEpoch();
+    if (prevTime > 0 && now > prevTime) {
+        speedBps = (bytesReceived - prevBytes) * 1000 / (now - prevTime);
+    }
+    prevBytes = bytesReceived;
+    prevTime = now;
+
+    // Format speed
+    QString speedStr;
+    double speedKBps = speedBps / 1024.0;
+    if (speedBps > 1000LL * 1024 * 1024) {
+        speedStr = QString("%1 ГБ/с").arg(speedBps / (1024.0 * 1024 * 1024), 0, 'f', 2);
+    } else if (speedBps > 4000 * 1024) {
+        speedStr = QString("%1 МБ/с").arg(speedBps / (1024.0 * 1024), 0, 'f', 2);
+    } else {
+        speedStr = QString("%1 КБ/с").arg(speedKBps, 0, 'f', 1);
+    }
+
+    // Proxy info with color
+    QString proxyText;
+    QString proxyColor;
+    if (hasProxy) {
+        proxyText = proxyHost;
+        if (speedKBps > 900)
+            proxyColor = "#4CAF50";
+        else if (speedKBps > 200)
+            proxyColor = "#FFC107";
+        else if (speedKBps > 5)
+            proxyColor = "#F44336";
+        else
+            proxyColor = "#000000";
+    } else {
+        proxyText = ztr("без прокси");
+        proxyColor = "#4CAF50";
+    }
+
+    m_downloadSpeedLabel->setText(QString("%1 | <span style='color:%2;'>%3</span>").arg(speedStr, proxyColor, proxyText));
+    m_downloadSpeedLabel->setTextFormat(Qt::RichText);
 }
 
 void MiniPlayerBar::updatePlayButtonIcon(bool playing) {

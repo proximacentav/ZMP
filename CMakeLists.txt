@@ -42,6 +42,7 @@ add_executable(ZMP_Linux_bin
     settingswidget.h settingswidget.cpp
     ftpclient.h ftpclient.cpp
     fileswidget.h fileswidget.cpp
+    jamendowidget.h jamendowidget.cpp
     playlistswidget.h playlistswidget.cpp
     iconbutton.h
     miniplayerbar.h miniplayerbar.cpp

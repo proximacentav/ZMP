@@ -17,6 +17,8 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
+#include <QFileInfo>
+#include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
@@ -271,6 +273,53 @@ void SettingsWidget::setupMainSettingsTab() {
     m_keyBindingButton->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
     layout->addWidget(m_keyBindingButton);
     connect(m_keyBindingButton, &QPushButton::clicked, this, &SettingsWidget::showKeyBindingTab);
+
+    m_clearJamendoCacheBtn = ztrButton(m_retrans, "Очистить кэш Jamendo");
+    m_clearJamendoCacheBtn->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
+    layout->addWidget(m_clearJamendoCacheBtn);
+    connect(m_clearJamendoCacheBtn, &QPushButton::clicked, this, [this]() {
+        QString cacheDir = QDir::homePath() + "/zmp_playlists/jamendo_cache";
+        QDir dir(cacheDir);
+        if (!dir.exists()) {
+            QMessageBox::information(this, ztr("Очистить кэш Jamendo"), ztr("Кэш пуст"));
+            return;
+        }
+
+        qint64 totalSize = 0;
+        QStringList files = dir.entryList(QDir::Files);
+        for (const QString &f : files)
+            totalSize += QFileInfo(dir.absoluteFilePath(f)).size();
+
+        QString sizeStr;
+        if (totalSize >= 1099511627776LL)
+            sizeStr = QString("%1 %2").arg(totalSize / 1099511627776.0, 0, 'f', 2).arg(ztr("ТБ"));
+        else if (totalSize >= 1073741824)
+            sizeStr = QString("%1 %2").arg(totalSize / 1073741824.0, 0, 'f', 2).arg(ztr("ГБ"));
+        else if (totalSize >= 1048576)
+            sizeStr = QString("%1 %2").arg(totalSize / 1048576.0, 0, 'f', 2).arg(ztr("МБ"));
+        else if (totalSize >= 1024)
+            sizeStr = QString("%1 %2").arg(totalSize / 1024.0, 0, 'f', 2).arg(ztr("КБ"));
+        else
+            sizeStr = QString("%1 %2").arg(totalSize).arg(ztr("Б"));
+
+        QMessageBox::StandardButton reply = QMessageBox::question(this,
+            ztr("Очистить кэш Jamendo?"),
+            ztr("Хотите ли вы очистить кэш ") + cacheDir + "/* (" + sizeStr + ")?",
+            QMessageBox::Yes | QMessageBox::No);
+
+        if (reply == QMessageBox::Yes) {
+            for (const QString &f : files)
+                QFile::remove(dir.absoluteFilePath(f));
+            QMessageBox::information(this, ztr("Очистить кэш Jamendo"), ztr("Кэш очищен"));
+        }
+    });
+
+    m_jamendoReconfigureBtn = ztrButton(m_retrans, "Jamendo перенастройка");
+    m_jamendoReconfigureBtn->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
+    layout->addWidget(m_jamendoReconfigureBtn);
+    connect(m_jamendoReconfigureBtn, &QPushButton::clicked, this, [this]() {
+        emit jamendoReconfigureRequested();
+    });
 
     connect(m_bitrateSlider, &QSlider::valueChanged, this, &SettingsWidget::onSliderChanged);
     connect(m_bitrateEdit, &QLineEdit::editingFinished, this, &SettingsWidget::onLineEditChanged);

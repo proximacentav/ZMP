@@ -24,6 +24,12 @@
 #include <QFileDialog>
 #include <QDateTime>
 #include <QDir>
+#include <QRegularExpression>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkProxy>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <unistd.h>
 #include <pwd.h>
 #include <crypt.h>
@@ -68,10 +74,10 @@ MainWindow::MainWindow(QWidget *parent)
     menuContLayout->setContentsMargins(5, 10, 5, 10);
 
     m_menu = new QListWidget;
-    for (int i = 0; i < 7; ++i) m_menu->addItem(QString());
+    for (int i = 0; i < 8; ++i) m_menu->addItem(QString());
     ztrRegister(m_retrans, [this]{
-        static const char *items[7] = {"Устройства", "Плеер", "Плейлисты", "Файлы", "Эквалайзер", "Визуализация", "Параметры"};
-        for (int i = 0; i < 7 && i < m_menu->count(); ++i) m_menu->item(i)->setText(ztr(items[i]));
+        static const char *items[8] = {"Устройства", "Плеер", "Плейлисты", "Jamendo", "Файлы", "Эквалайзер", "Визуализация", "Параметры"};
+        for (int i = 0; i < 8 && i < m_menu->count(); ++i) m_menu->item(i)->setText(ztr(items[i]));
     });
     m_menu->setCurrentRow(0);
 
@@ -147,6 +153,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_devicesWidget = new DevicesWidget(this);
     m_playerWidget = new PlayerWidget(m_audioManager, this);
     m_playlistsWidget = new PlaylistsWidget(this);
+    m_jamendoWidget = new JamendoWidget(this);
     m_filesWidget = new FilesWidget(this);
     m_equalizerWidget = new EqualizerWidget(m_audioManager, this);
     m_visualizationWidget = new VisualizationWidget(m_audioManager, this);
@@ -182,6 +189,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_stack->addWidget(m_devicesWidget);
     m_stack->addWidget(m_playerWidget);
     m_stack->addWidget(m_playlistsWidget);
+    m_stack->addWidget(m_jamendoWidget);
     m_stack->addWidget(m_filesWidget);
     m_stack->addWidget(m_equalizerWidget);
     m_stack->addWidget(m_visualizationWidget);
@@ -198,6 +206,160 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
+    connect(m_jamendoWidget, &JamendoWidget::trackSelected, this,
+        [this](const QString &audioUrl, const QString &title, const QString &artist) {
+        auto applyJamendoProxy = [](QNetworkAccessManager *nam) {
+            QString configPath = QDir::homePath() + "/zmp_playlists/config.json";
+            QFile f(configPath);
+            if (!f.open(QIODevice::ReadOnly)) return;
+            QJsonDocument doc = QJsonDocument::fromJson(f.readAll());
+            f.close();
+            if (!doc.isObject()) return;
+            QJsonObject jamendo = doc.object()["jamendo"].toObject();
+            QString type = jamendo["proxy_type"].toString("none");
+            if (type == "none") {
+                nam->setProxy(QNetworkProxy::NoProxy);
+            } else {
+                QString hostPort = jamendo["proxy_host"].toString();
+                QStringList parts = hostPort.split(':');
+                if (parts.size() == 2) {
+                    QNetworkProxy::ProxyType qtType = QNetworkProxy::NoProxy;
+                    if (type == "socks5") qtType = QNetworkProxy::Socks5Proxy;
+                    else if (type == "http" || type == "https") qtType = QNetworkProxy::HttpProxy;
+                    QNetworkProxy proxy(qtType, parts[0], parts[1].toInt());
+                    if (jamendo["proxy_auth"].toBool()) {
+                        proxy.setUser(jamendo["proxy_username"].toString());
+                        proxy.setPassword(jamendo["proxy_password"].toString());
+                    }
+                    nam->setProxy(proxy);
+                }
+            }
+            if (jamendo["proxy_ssl_allow"].toBool()) {
+                QObject::connect(nam, &QNetworkAccessManager::sslErrors,
+                    [](QNetworkReply *reply, const QList<QSslError> &errors) {
+                        Q_UNUSED(errors) reply->ignoreSslErrors();
+                    });
+            }
+        };
+
+        QStringList clusterNames;
+        for (const ClusterInfo &ci : m_playlistsWidget->m_clusters)
+            clusterNames << ci.name;
+
+        JamendoPlaylistSelectDialog dlg(clusterNames,
+            [this](const QString &c) { return m_playlistsWidget->getPlaylistsInCluster(c); },
+            this);
+        if (dlg.exec() != QDialog::Accepted) return;
+
+        QString clusterName = dlg.selectedCluster();
+        QString selectedPlaylist = dlg.selectedPlaylist();
+
+        // Determine playlist directory
+        QString playlistDir;
+        if (dlg.isCustomPath()) {
+            playlistDir = dlg.customPath();
+        } else if (dlg.isPlayQueue()) {
+            playlistDir = QDir::homePath() + "/zmp_playlists/jamendo_cache";
+            QDir().mkpath(playlistDir);
+        } else if (clusterName.isEmpty()) {
+            playlistDir = QDir::homePath() + "/zmp_playlists/jamendo_cache";
+            QDir().mkpath(playlistDir);
+        } else {
+            if (selectedPlaylist.isEmpty()) {
+                bool ok = false;
+                QString newName = QInputDialog::getText(this, ztr("Новый плейлист"),
+                    ztr("Введите название плейлиста:"), QLineEdit::Normal, title, &ok);
+                if (!ok || newName.trimmed().isEmpty()) return;
+                newName = newName.trimmed();
+                newName.replace('/', '_');
+                playlistDir = PlaylistsWidget::clusterPath(clusterName) + "/" + newName;
+                QDir().mkpath(playlistDir);
+            } else {
+                playlistDir = PlaylistsWidget::clusterPath(clusterName) + "/" + selectedPlaylist;
+            }
+        }
+
+        // Determine format extension
+        QString formatExt = "." + dlg.selectedFormat();
+
+        // Determine filename
+        QString customName = dlg.customFilename();
+        QString safeName;
+        if (!customName.isEmpty()) {
+            safeName = customName;
+        } else {
+            safeName = title;
+        }
+        safeName.replace(QRegularExpression("[^a-zA-Zа-яА-Я0-9_\\-]"), "_");
+        QString filePath = playlistDir + "/" + safeName + formatExt;
+
+        // Get proxy info for display
+        QJsonObject jamendoConfig = JamendoSetupDialog::loadJamendoConfig();
+        QString proxyHost = jamendoConfig["proxy_host"].toString();
+        bool hasProxy = jamendoConfig["proxy_type"].toString("none") != "none";
+
+        // Cancel any previous download
+        if (m_currentDownloadReply) {
+            m_currentDownloadReply->abort();
+            m_currentDownloadReply->deleteLater();
+            m_currentDownloadReply = nullptr;
+        }
+
+        // Start download
+        QNetworkAccessManager *dlm = new QNetworkAccessManager(this);
+        applyJamendoProxy(dlm);
+        QNetworkReply *reply = dlm->get(QNetworkRequest(QUrl(audioUrl)));
+        m_currentDownloadReply = reply;
+        m_miniPlayerBar->setDownloadActive(true);
+        m_miniPlayerBar->setDownloadInfo(title, 0, 0, proxyHost, hasProxy);
+        m_miniPlayerBar->setDownloadProgress(0);
+        connect(reply, &QNetworkReply::downloadProgress, this,
+            [this, title, proxyHost, hasProxy](qint64 received, qint64 total) {
+            if (total > 0) {
+                m_miniPlayerBar->setDownloadProgress(100.0 * received / total);
+                m_miniPlayerBar->setDownloadInfo(title, received, total, proxyHost, hasProxy);
+            }
+        });
+        bool playAfterDownload = dlg.isPlayQueue() || dlg.isCustomPath() || clusterName.isEmpty();
+        connect(reply, &QNetworkReply::finished, this,
+            [this, reply, dlm, filePath, playAfterDownload]() {
+            if (m_currentDownloadReply == reply)
+                m_currentDownloadReply = nullptr;
+            reply->deleteLater();
+            dlm->deleteLater();
+            m_miniPlayerBar->setDownloadActive(false);
+            if (reply->error() != QNetworkReply::NoError &&
+                reply->error() != QNetworkReply::OperationCanceledError) {
+                return;
+            }
+            QByteArray data = reply->readAll();
+            QFile file(filePath);
+            if (file.open(QIODevice::WriteOnly)) {
+                file.write(data);
+                file.close();
+            }
+            if (playAfterDownload) {
+                m_playerWidget->setPlaylist({filePath});
+                m_playerWidget->setCurrentPlaylist({filePath});
+                m_playerWidget->onPlay();
+                m_menu->setCurrentRow(1);
+            } else {
+                m_playlistsWidget->loadPlaylists();
+            }
+        });
+
+        // Connect cancel button (disconnect previous, reconnect once)
+        disconnect(m_miniPlayerBar, &MiniPlayerBar::downloadCancelled, nullptr, nullptr);
+        connect(m_miniPlayerBar, &MiniPlayerBar::downloadCancelled, this, [this]() {
+            if (m_currentDownloadReply) {
+                m_currentDownloadReply->abort();
+                m_currentDownloadReply->deleteLater();
+                m_currentDownloadReply = nullptr;
+            }
+            m_miniPlayerBar->setDownloadActive(false);
+        });
+    });
+
     connect(m_playlistsWidget, &PlaylistsWidget::playlistSelected, this, [this](const QStringList &tracks) {
         m_playerWidget->setPlaylist(tracks);
         m_playerWidget->setCurrentPlaylist(tracks);
@@ -219,6 +381,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_settingsWidget, &SettingsWidget::spectrumBandsChanged, m_audioManager, &AudioManager::setSpectrumBands);
     connect(m_settingsWidget, &SettingsWidget::projectMPresetSelected, m_visualizationWidget, &VisualizationWidget::loadProjectMPreset);
     connect(m_settingsWidget, &SettingsWidget::maxBitrateChanged, m_audioManager, &AudioManager::setMaxBitrate);
+    connect(m_settingsWidget, &SettingsWidget::jamendoReconfigureRequested, this, [this]() {
+        m_jamendoWidget->reconfigure();
+    });
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_playerWidget, &PlayerWidget::updateSpectrum);
     connect(m_audioManager, &AudioManager::spectrumDataChanged, m_visualizationWidget, &VisualizationWidget::updateSpectrum);
 
