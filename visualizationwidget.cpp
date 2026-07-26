@@ -190,7 +190,8 @@ void ProjectMWidget::ensureProjectM()
 
     if (!m_pendingPreset.isEmpty()) {
         QFileInfo fi(m_pendingPreset);
-        QByteArray pathBytes = m_pendingPreset.toUtf8();
+        QString presetFileName = fi.fileName();
+        QByteArray pathBytes = presetFileName.toUtf8();
         std::string urlStr(pathBytes.constData());
         unsigned int idx = m_projectM->getPresetIndex(urlStr);
 
@@ -198,6 +199,7 @@ void ProjectMWidget::ensureProjectM()
             m_projectM->selectPreset(idx, true);
         } else if (m_projectM->getPlaylistSize() > 0) {
             m_projectM->selectPreset(0, true);
+            qWarning() << "ProjectM preset not found:" << presetFileName;
         }
 
         m_pendingPreset.clear();

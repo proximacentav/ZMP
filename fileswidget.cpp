@@ -360,9 +360,11 @@ void FilesWidget::onSearchTextChanged(const QString &text)
 {
     QString searchText = text.trimmed();
     if (searchText.isEmpty()) {
-        m_proxyModel->setFilterRegularExpression("");
+        m_proxyModel->setFilterFixedString("");
     } else {
-        m_proxyModel->setFilterRegularExpression(QRegularExpression(searchText, QRegularExpression::CaseInsensitiveOption));
+        m_proxyModel->setFilterKeyColumn(0);
+        m_proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+        m_proxyModel->setFilterFixedString(searchText);
     }
 }
 
