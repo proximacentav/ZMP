@@ -3,6 +3,7 @@
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/iconbutton.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -17,8 +18,6 @@
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -144,6 +143,7 @@
   /usr/include/c++/16/bits/specfun.h \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -175,6 +175,7 @@
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -217,6 +218,7 @@
   /usr/include/c++/16/list \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -500,6 +502,10 @@
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \

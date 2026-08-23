@@ -27,6 +27,12 @@ void showAboutZmpDialog(QWidget *parent)
         licenseText->setPlainText(ztr("Не удалось загрузить лицензию"));
     layout->addWidget(licenseText, 1);
 
+    QLabel *creditsLabel = new QLabel(
+        ztr("Использованы библиотеки:") + " Qt6, projectM, miniaudio, SoundTouch, KissFFT, FFmpeg, TagLib");
+    creditsLabel->setWordWrap(true);
+    creditsLabel->setStyleSheet("color: #888; font-size: 11px;");
+    layout->addWidget(creditsLabel);
+
     QLabel *byLabel = new QLabel(
         ztr("от proximacentav:") +
         "<br><a href=\"https://github.com/proximacentav/ZMP\">https://github.com/proximacentav/ZMP</a>"

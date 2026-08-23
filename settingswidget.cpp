@@ -1,7 +1,12 @@
 #include "settingswidget.h"
 #include "aboutdialog.h"
 #include "depsmanager.h"
+#include "zmpinstaller.h"
 #include "translator.h"
+#include <QNetworkProxy>
+#include <QCoreApplication>
+#include <QNetworkAccessManager>
+#include <functional>
 #include <QVariant>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -89,6 +94,89 @@ void SettingsWidget::onIconSizeSliderChanged(int v) { emit iconSizeChanged(v); }
 void SettingsWidget::onIconSizeChanged(int v) { m_iconSizeSlider->blockSignals(true); m_iconSizeSlider->setValue(v); m_iconSizeSlider->blockSignals(false); }
 void SettingsWidget::showAboutDialog() {
     showAboutZmpDialog(this);
+}
+
+// ---------------------------------------------------------------------------
+//  Автономный режим: ZMP полностью запрещает себе сетевые подключения —
+//  и интернет, и локальную сеть, включая ::1 и 127.0.0.1. Реализовано через
+//  системный прокси-перехватчик Qt: все QTcpSocket/QNetworkAccessManager
+//  приложения (даже на localhost) обязаны идти через заведомо нерабочий
+//  прокси и не могут соединиться ни с чем.
+// ---------------------------------------------------------------------------
+
+namespace {
+constexpr const char *kOfflineProxyHost = "127.0.0.1";
+constexpr quint16 kOfflineProxyPort = 1;   // порт, который никто не слушает
+
+QString offlineConfigPath()
+{
+    return QDir::homePath() + "/zmp_playlists/config.json";
+}
+} // namespace
+
+bool SettingsWidget::loadOfflineModeFromConfig()
+{
+    QFile f(offlineConfigPath());
+    if (!f.open(QIODevice::ReadOnly))
+        return false;
+    const QJsonObject root = QJsonDocument::fromJson(f.readAll()).object();
+    f.close();
+    return root.value("offline_mode").toBool(false);
+}
+
+void SettingsWidget::saveOfflineModeToConfig(bool on)
+{
+    QFile f(offlineConfigPath());
+    QJsonObject root;
+    if (f.open(QIODevice::ReadOnly)) {
+        root = QJsonDocument::fromJson(f.readAll()).object();
+        f.close();
+    }
+    root["offline_mode"] = on;
+    if (f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        f.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
+        f.close();
+    }
+}
+
+void SettingsWidget::applyOfflineMode(bool on)
+{
+    if (on) {
+        QNetworkProxy blocker(QNetworkProxy::Socks5Proxy,
+                              kOfflineProxyHost, kOfflineProxyPort);
+
+        // Глобальный прокси блокирует новые сокеты, но объекты с собственным
+        // setProxy() его игнорируют — ставим блокировщик каждому NAM явно.
+        std::function<void(QObject *)> apply = [&](QObject *obj) {
+            if (auto *nam = qobject_cast<QNetworkAccessManager *>(obj))
+                nam->setProxy(blocker);
+            for (QObject *child : obj->children())
+                apply(child);
+        };
+        apply(QCoreApplication::instance());
+
+        QNetworkProxy::setApplicationProxy(blocker);
+    } else {
+        QNetworkProxy::setApplicationProxy(QNetworkProxy::DefaultProxy);
+    }
+}
+
+void SettingsWidget::updateOfflineButtonStyle()
+{
+    if (m_offlineMode)
+        m_offlineBtn->setStyleSheet(
+            "QPushButton { background-color: #4CAF50; color: white; padding: 8px; }");
+    else
+        m_offlineBtn->setStyleSheet({});
+}
+
+void SettingsWidget::toggleOfflineMode()
+{
+    m_offlineMode = !m_offlineMode;
+    applyOfflineMode(m_offlineMode);
+    updateOfflineButtonStyle();
+    saveOfflineModeToConfig(m_offlineMode);
+    emit offlineModeChanged(m_offlineMode);
 }
 void SettingsWidget::applyTheme(bool dark) {
     QPalette pal;
@@ -264,7 +352,6 @@ void SettingsWidget::setupMainSettingsTab() {
     layout->addWidget(m_exitButton);
 
     m_keyBindingButton = ztrButton(m_retrans, "Клавиши");
-    m_keyBindingButton->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
     layout->addWidget(m_keyBindingButton);
     connect(m_keyBindingButton, &QPushButton::clicked, this, &SettingsWidget::showKeyBindingTab);
 
@@ -309,7 +396,6 @@ void SettingsWidget::setupMainSettingsTab() {
     });
 
     m_jamendoReconfigureBtn = ztrButton(m_retrans, "Jamendo перенастройка");
-    m_jamendoReconfigureBtn->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
     layout->addWidget(m_jamendoReconfigureBtn);
     connect(m_jamendoReconfigureBtn, &QPushButton::clicked, this, [this]() {
         emit jamendoReconfigureRequested();
@@ -323,6 +409,48 @@ void SettingsWidget::setupMainSettingsTab() {
         dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->show();
     });
+
+    m_updateLocalBtn = ztrButton(m_retrans, "Обновить локально");
+    layout->addWidget(m_updateLocalBtn);
+    connect(m_updateLocalBtn, &QPushButton::clicked, this, [this]() {
+        const QString running = QFileInfo("/proc/self/exe").symLinkTarget();
+        const QString installed = ZmpInstallDialog::installedBinaryPath();
+
+        const QString hRun = ZmpInstallDialog::md5OfFile(running);
+        const bool haveInstalled = !installed.isEmpty();
+        const QString hInst = haveInstalled ? ZmpInstallDialog::md5OfFile(installed)
+                                            : ztr("файл не найден");
+
+        const QString hashText =
+            ztr("md5 хэш установщика (путь до zmp который запущен сейчас):") +
+            "\n  " + (running.isEmpty() ? "?" : running) + " = " + hRun + "\n" +
+            ztr("md5 хэш установленной версии (обычно /usr/bin/zmp):") +
+            "\n  " + (haveInstalled ? installed : "/usr/bin/zmp") + " = " + hInst;
+
+        // Хэши совпадают — обновление бессмысленно, но можно принудительно
+        if (haveInstalled && hRun == hInst) {
+            QMessageBox ask(this);
+            ask.setWindowTitle(ztr("Обновить локально"));
+            ask.setText(hashText + "\n\n" +
+                        ztr("Кажется md5 хэши совпадают. Это скорее всего значит что "
+                            "ничего после обновления не изменится и оно не требуется."));
+            QPushButton *cancel = ask.addButton(ztr("Отмена"), QMessageBox::RejectRole);
+            QPushButton *cont = ask.addButton(ztr("Продолжить"), QMessageBox::AcceptRole);
+            ask.exec();
+            if (ask.clickedButton() != cont)
+                return;
+        }
+
+        ZmpInstallDialog dlg(ZmpInstallDialog::Mode::Update, this);
+        dlg.exec();
+    });
+
+    m_offlineBtn = ztrButton(m_retrans, "Автономный режим");
+    m_offlineMode = loadOfflineModeFromConfig();
+    applyOfflineMode(m_offlineMode);
+    updateOfflineButtonStyle();
+    layout->addWidget(m_offlineBtn);
+    connect(m_offlineBtn, &QPushButton::clicked, this, &SettingsWidget::toggleOfflineMode);
 
     connect(m_bitrateSlider, &QSlider::valueChanged, this, &SettingsWidget::onSliderChanged);
     connect(m_bitrateEdit, &QLineEdit::editingFinished, this, &SettingsWidget::onLineEditChanged);

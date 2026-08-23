@@ -457,13 +457,7 @@ void PlaybackControlWidget::onStateChanged(bool playing) {
     if (!m_playlist.isEmpty() && m_currentIndex < m_playlist.size() - 1) {
         m_trackSwitchTimer->start();
     } else {
-        emit stateChanged(false);
-        updatePlayButtonIcon(false);
-        m_isPlaying = false;
-        if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
-            m_audioManager->setSavedPosition(m_audioManager->position());
-        }
-        emit featuredUpdated();
+        finishQueue();
     }
 }
 
@@ -498,14 +492,51 @@ void PlaybackControlWidget::onTrackSwitchTimeout() {
         m_currentIndex++;
         onPlay();
     } else {
-        emit stateChanged(false);
-        updatePlayButtonIcon(false);
-        m_isPlaying = false;
-        if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
-            m_audioManager->setSavedPosition(m_audioManager->position());
-        }
-        emit featuredUpdated();
+        finishQueue();
     }
+}
+
+// Конец очереди: остановка + сводка по проигранным файлам
+void PlaybackControlWidget::finishQueue()
+{
+    emit stateChanged(false);
+    updatePlayButtonIcon(false);
+    m_isPlaying = false;
+    if (m_currentIndex >= 0 && m_currentIndex < m_playlist.size()) {
+        m_audioManager->setSavedPosition(m_audioManager->position());
+    }
+    emit featuredUpdated();
+
+    // Статистика очереди
+    int mp3 = 0, flac = 0, alac = 0, wav = 0, other = 0;
+    qint64 totalMs = 0;
+    int counted = 0;
+
+    for (const QString &f : m_playlist) {
+        const QString suf = QFileInfo(f).suffix().toLower();
+        if (suf == "mp3") ++mp3;
+        else if (suf == "flac") ++flac;
+        else if (suf == "alac" || suf == "m4a" || suf == "aac") ++alac;
+        else if (suf == "wav") ++wav;
+        else ++other;
+
+        TagLib::FileRef fr(f.toUtf8().constData());
+        if (!fr.isNull() && fr.audioProperties()) {
+            totalMs += fr.audioProperties()->lengthInSeconds() * 1000LL;
+            ++counted;
+        }
+    }
+
+    const double avgMinutes = counted > 0 ? (totalMs / counted) / 60000.0 : 0.0;
+    const QString msg = ztr("очередь проигрывания завершена\n"
+                            "было проиграно %1 файлов из них mp3: %2 файлов, FLAC: %3 файлов, "
+                            "ALAC: %4 файлов, WAV: %5 файлов, другие форматы: %6 файлов.\n"
+                            "средняя продолжительность %7 минут")
+                            .arg(m_playlist.size())
+                            .arg(mp3).arg(flac).arg(alac).arg(wav).arg(other)
+                            .arg(avgMinutes, 0, 'f', 6);
+
+    QMessageBox::information(this, ztr("Очередь"), msg);
 }
 
 void PlaybackControlWidget::updateUI() {
@@ -585,7 +616,7 @@ void PlaybackControlWidget::setAccentColor(const QColor &color) {
 
 void PlaybackControlWidget::onPlayClicked() {
     m_trackSwitchTimer->stop();
-    
+
     if (m_audioManager->isPlaying()) {
         m_savedPosition = m_audioManager->position();
         m_isUserManuallyStopped = true;
@@ -620,6 +651,15 @@ void PlaybackControlWidget::onPlayClicked() {
 
         m_isPlaying = true;
     }
+}
+
+void PlaybackControlWidget::playFromIndex(int index)
+{
+    if (index < 0 || index >= m_playlist.size())
+        return;
+    m_currentIndex = index;
+    m_audioManager->setSavedPosition(0);
+    onPlay();
 }
 
 void PlaybackControlWidget::onNextClicked() {

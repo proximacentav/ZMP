@@ -20,17 +20,21 @@ ZMP_Linux_bin: \
   CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o \
   CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o \
   /usr/lib/libQt6Multimedia.so.6.11.1 \
   /usr/lib/libQt6Svg.so.6.11.1 \
   /usr/lib/libQt6Network.so.6.11.1 \
   /usr/lib/libQt6OpenGLWidgets.so.6.11.1 \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libbass.so \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libbass_fx.so \
   /usr/lib/libprojectM.so \
   /usr/lib/libtag.so \
+  /usr/lib/libSoundTouch.so \
   /usr/lib/libcrypt.so \
   /usr/lib/libQt6Widgets.so.6.11.1 \
   /usr/lib/libQt6OpenGL.so.6.11.1 \
@@ -79,14 +83,9 @@ ZMP_Linux_bin: \
   /usr/lib/libproxy.so.1 \
   /usr/lib/libproxy.so.1 \
   /usr/lib/libcrypto.so.3 \
-  /usr/lib32/libdl.so.2 \
-  /usr/lib/libdl.so.2 \
-  /usr/lib32/libpthread.so.0 \
-  /usr/lib/libpthread.so.0 \
-  /usr/lib32/librt.so.1 \
-  /usr/lib/librt.so.1 \
   /usr/lib32/libGL.so.1 \
   /usr/lib/libGL.so.1 \
+  /usr/lib/libmvec.so.1 \
   /usr/lib/libEGL.so.1 \
   /usr/lib/libfontconfig.so.1 \
   /usr/lib/libX11.so.6 \
@@ -179,7 +178,6 @@ ZMP_Linux_bin: \
   /usr/lib/libgmodule-2.0.so.0 \
   /usr/lib32/libmount.so.1 \
   /usr/lib/libmount.so.1 \
-  /usr/lib/libmvec.so.1 \
   /usr/lib32/libunistring.so.5 \
   /usr/lib/libunistring.so.5 \
   /usr/lib32/libblkid.so.1 \
@@ -227,9 +225,19 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o:
 
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o:
+
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
@@ -241,13 +249,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
 /usr/lib/libQt6OpenGLWidgets.so.6.11.1:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libbass.so:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/libbass_fx.so:
-
 /usr/lib/libprojectM.so:
 
 /usr/lib/libtag.so:
+
+/usr/lib/libSoundTouch.so:
 
 /usr/lib/libcrypt.so:
 
@@ -345,21 +351,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
 /usr/lib/libcrypto.so.3:
 
-/usr/lib32/libdl.so.2:
-
-/usr/lib/libdl.so.2:
-
-/usr/lib32/libpthread.so.0:
-
-/usr/lib/libpthread.so.0:
-
-/usr/lib32/librt.so.1:
-
-/usr/lib/librt.so.1:
-
 /usr/lib32/libGL.so.1:
 
 /usr/lib/libGL.so.1:
+
+/usr/lib/libmvec.so.1:
 
 /usr/lib/libEGL.so.1:
 
@@ -544,8 +540,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 /usr/lib32/libmount.so.1:
 
 /usr/lib/libmount.so.1:
-
-/usr/lib/libmvec.so.1:
 
 /usr/lib32/libunistring.so.5:
 

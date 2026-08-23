@@ -42,6 +42,7 @@ public:
     void setPlaylist(const QStringList &files);
     void setCurrentPlaylist(const QStringList &tracks);
     QStringList getCurrentPlaylist() const { return m_playlist; }
+    void playFromIndex(int index);
 
 signals:
     void stateChanged(bool playing);
@@ -75,6 +76,7 @@ private:
     bool isTrackInFeatured();
     void showAddToPlaylistDialog();
     TrackMetadata extractMetadata(const QString &filePath);
+    void finishQueue();
     void updateUI();
     void updateTrackInfo(const TrackMetadata &meta);
 

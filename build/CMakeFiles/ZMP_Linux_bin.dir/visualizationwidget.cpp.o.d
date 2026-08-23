@@ -369,11 +369,18 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: \
  /usr/include/qt6/QtMultimedia/qtaudio.h \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /home/user/cp/zmp/translator.h \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
- /home/user/cp/zmp/depsmanager.h /usr/include/qt6/QtWidgets/QDialog \
- /usr/include/qt6/QtWidgets/qdialog.h /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/QStringList /usr/include/c++/16/mutex \
+ /usr/include/c++/16/bits/std_mutex.h \
+ /usr/include/c++/16/bits/unique_lock.h \
+ /home/user/cp/zmp/third_party/miniaudio.h \
+ /usr/include/soundtouch/SoundTouch.h \
+ /usr/include/soundtouch/FIFOSamplePipe.h \
+ /usr/include/soundtouch/STTypes.h \
+ /usr/include/soundtouch/soundtouch_config.h \
+ /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QString \
+ /usr/include/qt6/QtCore/QHash /home/user/cp/zmp/depsmanager.h \
+ /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
+ /usr/include/qt6/QtCore/QJsonObject \
  /usr/include/qt6/QtCore/qjsonobject.h \
  /usr/include/qt6/QtCore/qjsonvalue.h \
  /usr/include/qt6/QtCore/qcborvalue.h \

@@ -345,10 +345,66 @@ CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/aboutdialog.cpp -o CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.s
 
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o: /home/user/cp/zmp/audiomodecontroller.cpp
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o -c /home/user/cp/zmp/audiomodecontroller.cpp
+
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/audiomodecontroller.cpp > CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.i
+
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/audiomodecontroller.cpp -o CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.s
+
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o: /home/user/cp/zmp/devicemanagerdialog.cpp
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o -c /home/user/cp/zmp/devicemanagerdialog.cpp
+
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/devicemanagerdialog.cpp > CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.i
+
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/devicemanagerdialog.cpp -o CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.s
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o: /home/user/cp/zmp/zmpinstaller.cpp
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o -c /home/user/cp/zmp/zmpinstaller.cpp
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/zmpinstaller.cpp > CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.i
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/zmpinstaller.cpp -o CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.s
+
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o: /home/user/cp/zmp/cliplayer.cpp
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o -c /home/user/cp/zmp/cliplayer.cpp
+
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/cp/zmp/cliplayer.cpp > CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.i
+
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/cliplayer.cpp -o CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.s
+
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerbar.cpp
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o -c /home/user/cp/zmp/miniplayerbar.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.i: cmake_force
@@ -362,7 +418,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.s: cmake_force
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontroller.cpp
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o -c /home/user/cp/zmp/mpriscontroller.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.i: cmake_force
@@ -373,10 +429,24 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/cp/zmp/mpriscontroller.cpp -o CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.s
 
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o: /home/user/cp/zmp/third_party/kiss_fft.c
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o -MF CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o.d -o CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o -c /home/user/cp/zmp/third_party/kiss_fft.c
+
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/user/cp/zmp/third_party/kiss_fft.c > CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.i
+
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/user/cp/zmp/third_party/kiss_fft.c -o CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.s
+
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/flags.make
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o: ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o -MF CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o.d -o CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o -c /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp
 
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.i: cmake_force
@@ -407,8 +477,13 @@ ZMP_Linux_bin_OBJECTS = \
 "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o" \
+"CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o" \
 "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o"
 
 # External object files for target ZMP_Linux_bin
@@ -432,8 +507,13 @@ ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o
+ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/build.make
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
@@ -441,10 +521,9 @@ ZMP_Linux_bin: /usr/lib/libQt6Multimedia.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6Svg.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6Network.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6OpenGLWidgets.so.6.11.1
-ZMP_Linux_bin: /usr/lib/libbass.so
-ZMP_Linux_bin: /usr/lib/libbass_fx.so
 ZMP_Linux_bin: /usr/lib/libprojectM.so
 ZMP_Linux_bin: /usr/lib/libtag.so
+ZMP_Linux_bin: /usr/lib/libSoundTouch.so
 ZMP_Linux_bin: /usr/lib/libcrypt.so
 ZMP_Linux_bin: /usr/lib/libQt6Widgets.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libQt6OpenGL.so.6.11.1
@@ -454,7 +533,7 @@ ZMP_Linux_bin: /usr/lib/libQt6Core.so.6.11.1
 ZMP_Linux_bin: /usr/lib/libGLX.so
 ZMP_Linux_bin: /usr/lib/libOpenGL.so
 ZMP_Linux_bin: CMakeFiles/ZMP_Linux_bin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable ZMP_Linux_bin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Linking CXX executable ZMP_Linux_bin"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ZMP_Linux_bin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

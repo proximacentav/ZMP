@@ -378,10 +378,16 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: \
  /usr/include/qt6/QtMultimedia/qaudio.h \
  /usr/include/qt6/QtMultimedia/qaudioformat.h \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /home/user/cp/zmp/iconbutton.h \
- /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QString \
- /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QTime \
- /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
- /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtWidgets/QFrame \
- /usr/include/qt6/QtCore/QDateTime
+ /usr/include/qt6/QtCore/QStringList /usr/include/c++/16/mutex \
+ /usr/include/c++/16/bits/std_mutex.h \
+ /usr/include/c++/16/bits/unique_lock.h \
+ /home/user/cp/zmp/third_party/miniaudio.h \
+ /usr/include/soundtouch/SoundTouch.h \
+ /usr/include/soundtouch/FIFOSamplePipe.h \
+ /usr/include/soundtouch/STTypes.h \
+ /usr/include/soundtouch/soundtouch_config.h \
+ /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /usr/include/qt6/QtCore/QTime /usr/include/qt6/QtCore/qdatetime.h \
+ /usr/include/qt6/QtCore/qcalendar.h /usr/include/qt6/QtGui/QPixmap \
+ /usr/include/qt6/QtWidgets/QFrame /usr/include/qt6/QtCore/QDateTime

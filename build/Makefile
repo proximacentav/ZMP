@@ -251,6 +251,54 @@ audiomanager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.s
 .PHONY : audiomanager.cpp.s
 
+audiomodecontroller.o: audiomodecontroller.cpp.o
+.PHONY : audiomodecontroller.o
+
+# target to build an object file
+audiomodecontroller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o
+.PHONY : audiomodecontroller.cpp.o
+
+audiomodecontroller.i: audiomodecontroller.cpp.i
+.PHONY : audiomodecontroller.i
+
+# target to preprocess a source file
+audiomodecontroller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.i
+.PHONY : audiomodecontroller.cpp.i
+
+audiomodecontroller.s: audiomodecontroller.cpp.s
+.PHONY : audiomodecontroller.s
+
+# target to generate assembly for a file
+audiomodecontroller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.s
+.PHONY : audiomodecontroller.cpp.s
+
+cliplayer.o: cliplayer.cpp.o
+.PHONY : cliplayer.o
+
+# target to build an object file
+cliplayer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o
+.PHONY : cliplayer.cpp.o
+
+cliplayer.i: cliplayer.cpp.i
+.PHONY : cliplayer.i
+
+# target to preprocess a source file
+cliplayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.i
+.PHONY : cliplayer.cpp.i
+
+cliplayer.s: cliplayer.cpp.s
+.PHONY : cliplayer.s
+
+# target to generate assembly for a file
+cliplayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.s
+.PHONY : cliplayer.cpp.s
+
 depsmanager.o: depsmanager.cpp.o
 .PHONY : depsmanager.o
 
@@ -274,6 +322,30 @@ depsmanager.s: depsmanager.cpp.s
 depsmanager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.s
 .PHONY : depsmanager.cpp.s
+
+devicemanagerdialog.o: devicemanagerdialog.cpp.o
+.PHONY : devicemanagerdialog.o
+
+# target to build an object file
+devicemanagerdialog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o
+.PHONY : devicemanagerdialog.cpp.o
+
+devicemanagerdialog.i: devicemanagerdialog.cpp.i
+.PHONY : devicemanagerdialog.i
+
+# target to preprocess a source file
+devicemanagerdialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.i
+.PHONY : devicemanagerdialog.cpp.i
+
+devicemanagerdialog.s: devicemanagerdialog.cpp.s
+.PHONY : devicemanagerdialog.s
+
+# target to generate assembly for a file
+devicemanagerdialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.s
+.PHONY : devicemanagerdialog.cpp.s
 
 deviceswidget.o: deviceswidget.cpp.o
 .PHONY : deviceswidget.o
@@ -611,6 +683,30 @@ settingswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.s
 .PHONY : settingswidget.cpp.s
 
+third_party/kiss_fft.o: third_party/kiss_fft.c.o
+.PHONY : third_party/kiss_fft.o
+
+# target to build an object file
+third_party/kiss_fft.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o
+.PHONY : third_party/kiss_fft.c.o
+
+third_party/kiss_fft.i: third_party/kiss_fft.c.i
+.PHONY : third_party/kiss_fft.i
+
+# target to preprocess a source file
+third_party/kiss_fft.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.i
+.PHONY : third_party/kiss_fft.c.i
+
+third_party/kiss_fft.s: third_party/kiss_fft.c.s
+.PHONY : third_party/kiss_fft.s
+
+# target to generate assembly for a file
+third_party/kiss_fft.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.s
+.PHONY : third_party/kiss_fft.c.s
+
 translator.o: translator.cpp.o
 .PHONY : translator.o
 
@@ -659,6 +755,30 @@ visualizationwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.s
 .PHONY : visualizationwidget.cpp.s
 
+zmpinstaller.o: zmpinstaller.cpp.o
+.PHONY : zmpinstaller.o
+
+# target to build an object file
+zmpinstaller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o
+.PHONY : zmpinstaller.cpp.o
+
+zmpinstaller.i: zmpinstaller.cpp.i
+.PHONY : zmpinstaller.i
+
+# target to preprocess a source file
+zmpinstaller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.i
+.PHONY : zmpinstaller.cpp.i
+
+zmpinstaller.s: zmpinstaller.cpp.s
+.PHONY : zmpinstaller.s
+
+# target to generate assembly for a file
+zmpinstaller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZMP_Linux_bin.dir/build.make CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.s
+.PHONY : zmpinstaller.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -682,9 +802,18 @@ help:
 	@echo "... audiomanager.o"
 	@echo "... audiomanager.i"
 	@echo "... audiomanager.s"
+	@echo "... audiomodecontroller.o"
+	@echo "... audiomodecontroller.i"
+	@echo "... audiomodecontroller.s"
+	@echo "... cliplayer.o"
+	@echo "... cliplayer.i"
+	@echo "... cliplayer.s"
 	@echo "... depsmanager.o"
 	@echo "... depsmanager.i"
 	@echo "... depsmanager.s"
+	@echo "... devicemanagerdialog.o"
+	@echo "... devicemanagerdialog.i"
+	@echo "... devicemanagerdialog.s"
 	@echo "... deviceswidget.o"
 	@echo "... deviceswidget.i"
 	@echo "... deviceswidget.s"
@@ -727,12 +856,18 @@ help:
 	@echo "... settingswidget.o"
 	@echo "... settingswidget.i"
 	@echo "... settingswidget.s"
+	@echo "... third_party/kiss_fft.o"
+	@echo "... third_party/kiss_fft.i"
+	@echo "... third_party/kiss_fft.s"
 	@echo "... translator.o"
 	@echo "... translator.i"
 	@echo "... translator.s"
 	@echo "... visualizationwidget.o"
 	@echo "... visualizationwidget.i"
 	@echo "... visualizationwidget.s"
+	@echo "... zmpinstaller.o"
+	@echo "... zmpinstaller.i"
+	@echo "... zmpinstaller.s"
 .PHONY : help
 
 

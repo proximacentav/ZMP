@@ -929,6 +929,15 @@ void FilesWidget::switchToLocalView()
     m_stack->setCurrentWidget(m_localViewPage);
 }
 
+void FilesWidget::disconnectFromServer()
+{
+    if (m_ftpConnected) {
+        m_ftpClient->disconnect();
+        m_ftpConnected = false;
+        switchToLocalView();
+    }
+}
+
 void FilesWidget::onShowPartitions()
 {
     PartitionsDialog dlg(this);

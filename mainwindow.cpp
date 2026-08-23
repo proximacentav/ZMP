@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "aboutdialog.h"
+#include "zmpinstaller.h"
 #include "mpriscontroller.h"
 #include "translator.h"
 #include <QVBoxLayout>
@@ -36,9 +37,18 @@
 #include <crypt.h>
 #include <fcntl.h>
 #include <QSocketNotifier>
+#include <QSplashScreen>
+#include <QPainter>
 
 static MainWindow *g_mainWindow = nullptr;
 static int g_original_stderr = -1;
+static QSplashScreen *g_splash = nullptr;
+static QStringList g_splashLines;
+
+void MainWindow::setSplash(QSplashScreen *splash)
+{
+    g_splash = splash;
+}
 
 static void qtMessageHandler(QtMsgType type, const QMessageLogContext &ctx, const QString &msg)
 {
@@ -204,6 +214,18 @@ MainWindow::MainWindow(QWidget *parent)
 
         QMessageBox::information(this, ztr("Установка зависимостей"), msg.trimmed());
     });
+
+    // Автономный режим: разрываем активные сетевые подключения при включении
+    connect(m_settingsWidget, &SettingsWidget::offlineModeChanged, this,
+            [this](bool enabled) {
+        if (enabled)
+            m_filesWidget->disconnectFromServer();
+    });
+
+    createDepsWarningBanner(rightLayout);
+    createInstallBanner(rightLayout);
+    QTimer::singleShot(800, this, &MainWindow::checkDependenciesAtStartup);
+    QTimer::singleShot(400, this, &MainWindow::checkInstallAtStartup);
 
     connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
         if (playing) {
@@ -459,9 +481,117 @@ void MainWindow::retranslateUi() {
     runRetrans(m_retrans);
 }
 
-void MainWindow::updateDepsBanner(const QString &pkg, int percent, qint64 speedBps)
+void MainWindow::createDepsWarningBanner(QVBoxLayout *rightLayout)
 {
-    // Speed coloring identical to the Jamendo download indicator
+    m_depsWarnBanner = new QWidget(this);
+    m_depsWarnBanner->setFixedHeight(30); // примерно половина мини-плеера
+    m_depsWarnBanner->setStyleSheet("background-color: #c62828;");
+
+    QHBoxLayout *l = new QHBoxLayout(m_depsWarnBanner);
+    l->setContentsMargins(8, 2, 8, 2);
+    l->setSpacing(8);
+
+    QLabel *text = new QLabel(ztr("Не хватает зависимостей"));
+    text->setStyleSheet("color: white; font-weight: bold;");
+    l->addWidget(text, 1);
+
+    QPushButton *ignoreBtn = new QPushButton(ztr("Игнорировать"));
+    QPushButton *moreBtn = new QPushButton(ztr("См. далее"));
+    for (QPushButton *b : {ignoreBtn, moreBtn}) {
+        b->setFixedHeight(22);
+        b->setStyleSheet(
+            "QPushButton { background-color: rgba(255,255,255,0.15); color: white;"
+            " border: 1px solid rgba(255,255,255,0.4); border-radius: 3px; padding: 1px 10px; }"
+            "QPushButton:hover { background-color: rgba(255,255,255,0.3); }");
+        l->addWidget(b);
+    }
+
+    connect(ignoreBtn, &QPushButton::clicked, this, [this]() {
+        m_depsWarnBanner->hide();
+    });
+    connect(moreBtn, &QPushButton::clicked, this, [this]() {
+        DependencyCheckDialog *dlg = new DependencyCheckDialog(this);
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        // После закрытия диалога перепроверяем — если всё установлено, убираем баннер
+        connect(dlg, &QDialog::finished, this, [this]() {
+            QTimer::singleShot(300, this, &MainWindow::checkDependenciesAtStartup);
+        });
+        dlg->show();
+    });
+
+    // Скрываем красный баннер, когда началась/идёт установка (показывается жёлтый прогресс)
+    connect(DependencyManager::instance(), &DependencyManager::installStarted,
+            m_depsWarnBanner, &QWidget::hide);
+
+    m_depsWarnBanner->hide();
+    rightLayout->insertWidget(0, m_depsWarnBanner);
+}
+
+void MainWindow::checkDependenciesAtStartup()
+{
+    const QVector<DependencyManager::DepResult> results =
+        DependencyManager::instance()->runChecks();
+
+    bool missing = false;
+    for (const auto &r : results) {
+        if (r.status != DependencyManager::Found) {
+            missing = true;
+            break;
+        }
+    }
+
+    if (missing && !m_depsWarnBanner->isVisible())
+        m_depsWarnBanner->show();
+    else if (!missing)
+        m_depsWarnBanner->hide();
+}
+
+void MainWindow::createInstallBanner(QVBoxLayout *rightLayout)
+{
+    m_installBanner = new QWidget(this);
+    m_installBanner->setFixedHeight(30);
+    m_installBanner->setStyleSheet("background-color: #1565c0;");
+
+    QHBoxLayout *l = new QHBoxLayout(m_installBanner);
+    l->setContentsMargins(8, 2, 8, 2);
+    l->setSpacing(8);
+
+    QLabel *text = new QLabel(ztr("Установите ZMP как приложение для ПК"));
+    text->setStyleSheet("color: white; font-weight: bold;");
+    l->addWidget(text, 1);
+
+    QPushButton *installBtn = new QPushButton(ztr("Установить"));
+    QPushButton *ignoreBtn = new QPushButton(ztr("Игнорировать"));
+    for (QPushButton *b : {installBtn, ignoreBtn}) {
+        b->setFixedHeight(22);
+        b->setStyleSheet(
+            "QPushButton { background-color: rgba(255,255,255,0.15); color: white;"
+            " border: 1px solid rgba(255,255,255,0.4); border-radius: 3px; padding: 1px 10px; }"
+            "QPushButton:hover { background-color: rgba(255,255,255,0.3); }");
+        l->addWidget(b);
+    }
+
+    connect(ignoreBtn, &QPushButton::clicked, this, [this]() {
+        m_installBanner->hide();
+    });
+    connect(installBtn, &QPushButton::clicked, this, [this]() {
+        ZmpInstallDialog dlg(ZmpInstallDialog::Mode::Install, this);
+        if (dlg.exec() == QDialog::Accepted)
+            m_installBanner->hide();
+    });
+
+    m_installBanner->hide();
+    rightLayout->insertWidget(0, m_installBanner);
+}
+
+void MainWindow::checkInstallAtStartup()
+{
+    if (!zmpInstalledAsApp() && !m_installBanner->isVisible())
+        m_installBanner->show();
+}
+
+void MainWindow::updateDepsBanner(const QString &pkg, int percent, qint64 speedBps)
+{    // Speed coloring identical to the Jamendo download indicator
     QString color;
     double speedKBps = speedBps / 1024.0;
     if (speedKBps > 900)      color = "#4CAF50";
@@ -496,7 +626,10 @@ void MainWindow::updateDepsBanner(const QString &pkg, int percent, qint64 speedB
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-        handleKeyPress(static_cast<Qt::Key>(keyEvent->key()), keyEvent->modifiers());
+        // Автоповтор зажатой клавиши игнорируем: иначе пауза через секунду
+        // сама выключается (повторное срабатывание toggle)
+        if (!keyEvent->isAutoRepeat())
+            handleKeyPress(static_cast<Qt::Key>(keyEvent->key()), keyEvent->modifiers());
         return false;
     }
     return QMainWindow::eventFilter(watched, event);
@@ -618,6 +751,44 @@ void MainWindow::addLog(const QString &message)
     QString ts = QDateTime::currentDateTime().toString("yyyy, MM-dd-ss.zzz");
     QString line = QString("[%1] %2").arg(ts, message);
     m_logs.append(line);
+
+    // Ограничиваем журнал: иначе при запуске без терминала (логи только в
+    // память) список растёт бесконечно и через несколько минут ZMP зависает
+    constexpr int kMaxLogs = 1000;
+    if (m_logs.size() > kMaxLogs)
+        m_logs.removeFirst();
+
+    // Обновляем splash "ZMP is starting..." — заголовок сверху, ниже логи
+    if (g_splash) {
+        g_splashLines.append(message);
+        while (g_splashLines.size() > 8)
+            g_splashLines.removeFirst();
+
+        QPixmap pm(520, 220);
+        pm.fill(QColor("#1b1b1b"));
+        QPainter p(&pm);
+        p.setRenderHint(QPainter::TextAntialiasing);
+        QFont f = p.font();
+        f.setBold(true);
+        f.setPixelSize(18);
+        p.setFont(f);
+        p.setPen(Qt::white);
+        p.drawText(16, 34, QStringLiteral("ZMP is starting..."));
+
+        f.setBold(false);
+        f.setPixelSize(11);
+        p.setFont(f);
+        p.setPen(QColor("#9a9a9a"));
+        int y = 70;
+        for (const QString &l : g_splashLines) {
+            p.drawText(16, y, l);
+            y += 17;
+        }
+        p.end();
+        g_splash->setPixmap(pm);
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+    }
+
     if (g_original_stderr >= 0) {
         QByteArray data = (line + "\n").toUtf8();
         write(g_original_stderr, data.constData(), data.size());
@@ -863,6 +1034,51 @@ void MainWindow::onUserButtonClicked()
 
 void MainWindow::onFeaturedUpdated() {
     m_playlistsWidget->loadPlaylists();
+}
+
+// Файлы из файлового менеджера / -o: добавить в текущую очередь и играть
+void MainWindow::openFilesInQueue(const QStringList &files)
+{
+    QStringList filtered;
+    for (const QString &f : files) {
+        if (QFileInfo::exists(f))
+            filtered << f;
+    }
+    if (filtered.isEmpty())
+        return;
+
+    QStringList queue = m_playerWidget->getCurrentPlaylist();
+    const int firstNew = queue.size();
+    for (const QString &f : filtered) {
+        if (!queue.contains(f))
+            queue << f;
+    }
+
+    m_menu->setCurrentRow(1);
+    m_playerWidget->setPlaylist(queue);
+    m_playerWidget->setCurrentPlaylist(queue);
+    m_playlistsWidget->onPlaylistPlaying(queue);
+    m_playerWidget->playFromIndex(firstNew);
+}
+
+// Проиграть плейлист из кластера (файлы в каталоге плейлиста)
+void MainWindow::playExternalPlaylist(const QString &cluster, const QString &name)
+{
+    QDir dir(PlaylistsWidget::clusterPath(cluster) + "/" + name);
+    if (!dir.exists()) {
+        QMessageBox::warning(this, ztr("Плейлист"),
+                             ztr("Плейлист не найден:") + " " + cluster + "/" + name);
+        return;
+    }
+    QStringList files;
+    for (const QString &f : dir.entryList(QDir::Files, QDir::Name))
+        files << dir.absoluteFilePath(f);
+
+    m_menu->setCurrentRow(1);
+    m_playerWidget->setPlaylist(files);
+    m_playerWidget->setCurrentPlaylist(files);
+    m_playlistsWidget->onPlaylistPlaying(files);
+    m_playerWidget->playFromIndex(0);
 }
 
 EqualizerPresetDialog::EqualizerPresetDialog(QWidget *parent)

@@ -23,6 +23,7 @@
 #include "translator.h"
 #include <QNetworkReply>
 #include <QLabel>
+#include <QVBoxLayout>
 #include "depsmanager.h"
 
 class EqualizerPresetDialog : public QDialog
@@ -49,6 +50,9 @@ public:
     
     bool eventFilter(QObject *watched, QEvent *event) override;
     void addLog(const QString &message);
+    static void setSplash(class QSplashScreen *splash);   // окно "ZMP is starting..."
+    void openFilesInQueue(const QStringList &files);
+    void playExternalPlaylist(const QString &cluster, const QString &name);
 
 private slots:
     void onMenuChanged(int row);
@@ -97,7 +101,13 @@ private:
     QNetworkReply *m_currentDownloadReply = nullptr;
 
     QLabel *m_depsBanner = nullptr;   // "Установка зависимостей: ..." над вкладками
+    QWidget *m_depsWarnBanner = nullptr; // красный баннер "не хватает зависимостей"
+    QWidget *m_installBanner = nullptr;  // баннер "установите ZMP как приложение"
     void updateDepsBanner(const QString &pkg, int percent, qint64 speedBps);
+    void createDepsWarningBanner(QVBoxLayout *rightLayout);
+    void checkDependenciesAtStartup();
+    void createInstallBanner(QVBoxLayout *rightLayout);
+    void checkInstallAtStartup();
 
     RetransList m_retrans;   // live-retranslation registry (window title + menu)
     void retranslateUi();

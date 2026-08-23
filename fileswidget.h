@@ -42,6 +42,7 @@ public:
     void setRootPassword(const QString &password);
     bool hasRootAccess() const { return m_hasRootAccess; }
     QString rootPassword() const { return m_rootPassword; }
+    void disconnectFromServer();
 
 signals:
     void fileSelected(const QString &path);

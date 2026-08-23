@@ -11,8 +11,14 @@ file(REMOVE_RECURSE
   "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o"
@@ -41,10 +47,14 @@ file(REMOVE_RECURSE
   "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o.d"
   "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o"
   "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o.d"
+  "CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o"
+  "CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o.d"
   "ZMP_Linux_bin"
   "ZMP_Linux_bin.pdb"
   "ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp"
@@ -53,6 +63,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang CXX)
+foreach(lang C CXX)
   include(CMakeFiles/ZMP_Linux_bin.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

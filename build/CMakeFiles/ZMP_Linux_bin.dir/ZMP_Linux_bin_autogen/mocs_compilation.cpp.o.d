@@ -301,11 +301,24 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /usr/include/qt6/QtCore/QList \
- /usr/include/qt6/QtCore/qtmochelpers.h \
+ /usr/include/qt6/QtCore/QStringList /usr/include/c++/16/mutex \
+ /usr/include/c++/16/bits/std_mutex.h \
+ /usr/include/c++/16/bits/unique_lock.h \
+ /home/user/cp/zmp/third_party/miniaudio.h \
+ /usr/include/soundtouch/SoundTouch.h \
+ /usr/include/soundtouch/FIFOSamplePipe.h \
+ /usr/include/soundtouch/STTypes.h \
+ /usr/include/soundtouch/soundtouch_config.h \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/qtmochelpers.h \
  /usr/include/qt6/QtCore/qtmocconstants.h \
  /usr/include/qt6/QtCore/q20algorithm.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_audiomodecontroller.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../audiomodecontroller.h \
+ /usr/include/qt6/QtCore/QString \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_cliplayer.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../cliplayer.h \
+ /usr/include/qt6/QtCore/QSocketNotifier \
+ /usr/include/qt6/QtCore/qsocketnotifier.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_depsmanager.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../depsmanager.h \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
@@ -361,8 +374,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qurl.h /usr/include/qt6/QtCore/quuid.h \
  /usr/include/qt6/QtCore/qjsondocument.h \
  /usr/include/qt6/QtCore/qjsonparseerror.h \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QPointer \
- /usr/include/qt6/QtCore/qpointer.h \
+ /usr/include/qt6/QtCore/QPointer /usr/include/qt6/QtCore/qpointer.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_devicemanagerdialog.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../devicemanagerdialog.h \
+ /usr/include/qt6/QtCore/QList /usr/include/qt6/QtCore/QSet \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_deviceswidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../deviceswidget.h \
  /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/QComboBox \
@@ -377,6 +392,9 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/qrubberband.h \
  /usr/include/qt6/QtWidgets/qframe.h \
  /usr/include/qt6/QtCore/qabstractitemmodel.h \
+ /usr/include/qt6/QtWidgets/QPushButton \
+ /usr/include/qt6/QtWidgets/qpushbutton.h \
+ /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../translator.h \
  /usr/include/qt6/QtCore/QHash \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp \
@@ -393,9 +411,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
- /usr/include/qt6/QtWidgets/QPushButton \
- /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h \
  /usr/include/qt6/QtWidgets/QCheckBox \
  /usr/include/qt6/QtWidgets/qcheckbox.h /usr/include/qt6/QtWidgets/QLabel \
  /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
@@ -490,10 +505,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/QListWidgetItem \
  /usr/include/qt6/QtNetwork/QTcpSocket \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../ftpclient.h \
- /usr/include/qt6/QtCore/QList /usr/include/qt6/QtNetwork/QSslSocket \
- /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
- /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
- /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtNetwork/QSslError \
+ /usr/include/qt6/QtNetwork/QSslSocket /usr/include/qt6/QtCore/QProcess \
+ /usr/include/qt6/QtCore/qprocess.h /usr/include/qt6/QtCore/QQueue \
+ /usr/include/qt6/QtCore/qqueue.h /usr/include/qt6/QtCore/QFile \
+ /usr/include/qt6/QtNetwork/QSslError \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_ftpclient.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../ftpclient.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_iconbutton.cpp \
@@ -587,7 +602,18 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_settingswidget.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../settingswidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_singleinstance.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../singleinstance.h \
+ /usr/include/qt6/QtNetwork/QLocalServer \
+ /usr/include/qt6/QtNetwork/qlocalserver.h \
+ /usr/include/qt6/QtCore/qproperty.h \
+ /usr/include/qt6/QtCore/qpropertyprivate.h \
+ /usr/include/c++/16/experimental/source_location \
+ /usr/include/qt6/QtNetwork/QLocalSocket \
+ /usr/include/qt6/QtNetwork/qlocalsocket.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_translator.cpp \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../translator.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_visualizationwidget.cpp \
- /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_zmpinstaller.cpp \
+ /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../zmpinstaller.h

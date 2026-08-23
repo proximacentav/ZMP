@@ -379,6 +379,12 @@ Qt6Widgets_DIR:PATH=/usr/lib/cmake/Qt6Widgets
 Qt6_DIR:PATH=/usr/lib/cmake/Qt6
 
 //Path to a file.
+SOUNDTOUCH_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+SOUNDTOUCH_LIBRARY:FILEPATH=/usr/lib/libSoundTouch.so
+
+//Path to a file.
 TAGLIB_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a library.

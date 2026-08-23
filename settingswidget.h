@@ -54,6 +54,7 @@ signals:
     void keyBindingChanged(KeyAction action, const KeyBinding &binding);
     void keyBindingsSaved();
     void jamendoReconfigureRequested();
+    void offlineModeChanged(bool enabled);
 
 private slots:
     void onSliderChanged(int v);
@@ -103,6 +104,15 @@ private:
     QPushButton *m_clearJamendoCacheBtn;
     QPushButton *m_jamendoReconfigureBtn;
     QPushButton *m_checkDepsBtn;
+    QPushButton *m_updateLocalBtn;
+    QPushButton *m_offlineBtn;
+    bool m_offlineMode = false;
+
+    void toggleOfflineMode();
+    void applyOfflineMode(bool on);
+    void updateOfflineButtonStyle();
+    static bool loadOfflineModeFromConfig();
+    static void saveOfflineModeToConfig(bool on);
     
     QStackedWidget *m_stackedWidget;
     QWidget *m_mainSettingsWidget;

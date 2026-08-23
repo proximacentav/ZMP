@@ -329,9 +329,16 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: \
  /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/bass.h \
- /usr/include/bass_fx.h /home/user/cp/zmp/playerwidget.h \
- /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/c++/16/mutex \
+ /usr/include/c++/16/bits/std_mutex.h \
+ /usr/include/c++/16/bits/unique_lock.h \
+ /home/user/cp/zmp/third_party/miniaudio.h \
+ /usr/include/soundtouch/SoundTouch.h \
+ /usr/include/soundtouch/FIFOSamplePipe.h \
+ /usr/include/soundtouch/STTypes.h \
+ /usr/include/soundtouch/soundtouch_config.h \
+ /home/user/cp/zmp/playerwidget.h /usr/include/qt6/QtWidgets/QWidget \
+ /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
  /usr/include/qt6/QtWidgets/qtwidgets-config.h \
  /usr/include/qt6/QtWidgets/qtwidgetsexports.h \

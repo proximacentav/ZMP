@@ -6,9 +6,22 @@
 #include <QVector>
 #include <QTimer>
 #include <QStringList>
-#include <bass.h>
-#include <bass_fx.h>
+#include <mutex>
+#include <atomic>
 
+#include "miniaudio.h"
+#include "soundtouch/SoundTouch.h"
+
+struct Biquad {
+    double b0 = 1, b1 = 0, b2 = 0, a1 = 0, a2 = 0;
+    double x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+    float process(float x);
+    void reset();
+};
+
+// Аудио-движок ZMP: miniaudio (декодирование+вывод) + SoundTouch (скорость/
+// питч) + собственный 17-полосный biquad-эквалайзер + KissFFT (спектр).
+// Публичный интерфейс полностью повторяет прежний (на базе BASS).
 class AudioManager : public QObject
 {
     Q_OBJECT
@@ -61,29 +74,62 @@ public slots:
     void setSpectrumFps(int fps);
 
 private:
-    HSTREAM m_currentStream;
-    HSTREAM m_eqFX[17];
-    HFX m_echoFX = 0;
+    // --- аудио-конвейер ---
+    static void dataCallbackStatic(ma_device *pDevice, void *output,
+                                   const void *input, ma_uint32 frameCount);
+    void fillOutput(float *out, ma_uint32 frames);
+    bool openDevice(double sampleRate);
+    void closeDevice();
+    void rebuildEqCoeffs();
+    float currentGainLinear() const;
+
+    ma_device m_device = {};
+    bool m_deviceOpen = false;
+    double m_deviceRate = 0;
+
+    ma_decoder m_decoder;
+    bool m_decoderValid = false;
+
+    soundtouch::SoundTouch m_st;
+    // 17 полос эквалайзера, коэффициенты пересчитываются при смене частоты
+    Biquad m_eqL[17];
+    Biquad m_eqR[17];
+    double m_eqCoeffRate = 0;
+
+    // Эхо (стерео feedback-delay)
+    QVector<float> m_echoBuf[2];
+    int m_echoPos = 0;
+
+    // Кольцевой буфер выходного PCM (для спектра и projectM)
+    mutable std::mutex m_ringMutex;
+    QVector<float> m_pcmRing;
+    int m_ringSize = 1 << 16;
+    qint64 m_ringTotalWritten = 0;
+
+    std::mutex m_paramMutex;
+    mutable std::mutex m_decoderMutex;   // сериализует доступ к ma_decoder
+
     QVector<double> m_bands;
-    bool m_playing;
-    bool m_seeking;
-    qint64 m_duration;
+    bool m_playing = false;
+    bool m_seeking = false;
+    qint64 m_duration = 0;
     QTimer *m_positionTimer;
     QTimer *m_spectrumTimer;
-    double m_originalFreq;
+    double m_srcRate = 44100;
     double m_currentSpeed;
     double m_currentPitch;
     QAudioDevice m_currentDevice;
     float m_spectrumGain;
     QString m_currentFilePath;
     qint64 m_savedPosition = 0;
-    QWORD m_lastPosition = 0;
     float m_eqGains[17];
     float m_preampGain = 0.0f;
     double m_volume = 1.0;
     int m_spectrumBands = 64;
     int m_maxBitrate = 0;
     bool m_echoEnabled = false;
+    bool m_eofReached = false;   // декодер дошёл до конца файла
+    std::atomic<bool> m_trackFinished{false};   // трек доиграл до конца (для trackEnded)
     QStringList m_tempFilePaths;
     int detectBitrate(const QString &filePath);
     QString transcodeFile(const QString &filePath, int targetBitrate);

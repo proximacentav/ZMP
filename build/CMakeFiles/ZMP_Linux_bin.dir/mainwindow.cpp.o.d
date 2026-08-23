@@ -383,9 +383,16 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
- /usr/include/qt6/QtCore/QStringList /usr/include/bass.h \
- /usr/include/bass_fx.h /home/user/cp/zmp/deviceswidget.h \
- /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/QComboBox \
+ /usr/include/qt6/QtCore/QStringList /usr/include/c++/16/mutex \
+ /usr/include/c++/16/bits/std_mutex.h \
+ /usr/include/c++/16/bits/unique_lock.h \
+ /home/user/cp/zmp/third_party/miniaudio.h \
+ /usr/include/soundtouch/SoundTouch.h \
+ /usr/include/soundtouch/FIFOSamplePipe.h \
+ /usr/include/soundtouch/STTypes.h \
+ /usr/include/soundtouch/soundtouch_config.h \
+ /home/user/cp/zmp/deviceswidget.h /usr/include/qt6/QtWidgets/QWidget \
+ /usr/include/qt6/QtWidgets/QComboBox \
  /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/translator.h \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
  /home/user/cp/zmp/playerwidget.h \
@@ -529,7 +536,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/QShowEvent /home/user/cp/zmp/miniplayerbar.h \
  /home/user/cp/zmp/depsmanager.h /usr/include/qt6/QtCore/QPointer \
  /usr/include/qt6/QtCore/qpointer.h /home/user/cp/zmp/aboutdialog.h \
- /home/user/cp/zmp/mpriscontroller.h \
+ /home/user/cp/zmp/zmpinstaller.h /home/user/cp/zmp/mpriscontroller.h \
  /usr/include/qt6/QtDBus/QDBusAbstractAdaptor \
  /usr/include/qt6/QtDBus/qdbusabstractadaptor.h \
  /usr/include/qt6/QtDBus/qtdbusglobal.h \
@@ -565,4 +572,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/linux/openat2.h /usr/include/bits/openat2.h \
  /usr/include/bits/stat.h /usr/include/bits/struct_stat.h \
  /usr/include/qt6/QtCore/QSocketNotifier \
- /usr/include/qt6/QtCore/qsocketnotifier.h
+ /usr/include/qt6/QtCore/qsocketnotifier.h \
+ /usr/include/qt6/QtWidgets/QSplashScreen \
+ /usr/include/qt6/QtWidgets/qsplashscreen.h

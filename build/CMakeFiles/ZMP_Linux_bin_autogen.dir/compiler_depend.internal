@@ -7,12 +7,18 @@
  /home/user/cp/zmp/aboutdialog.h
  /home/user/cp/zmp/audiomanager.cpp
  /home/user/cp/zmp/audiomanager.h
+ /home/user/cp/zmp/audiomodecontroller.cpp
+ /home/user/cp/zmp/audiomodecontroller.h
  /home/user/cp/zmp/build/CMakeFiles/4.4.2/CMakeCCompiler.cmake
  /home/user/cp/zmp/build/CMakeFiles/4.4.2/CMakeCXXCompiler.cmake
  /home/user/cp/zmp/build/CMakeFiles/4.4.2/CMakeSystem.cmake
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/moc_predefs.h
+ /home/user/cp/zmp/cliplayer.cpp
+ /home/user/cp/zmp/cliplayer.h
  /home/user/cp/zmp/depsmanager.cpp
  /home/user/cp/zmp/depsmanager.h
+ /home/user/cp/zmp/devicemanagerdialog.cpp
+ /home/user/cp/zmp/devicemanagerdialog.h
  /home/user/cp/zmp/deviceswidget.cpp
  /home/user/cp/zmp/deviceswidget.h
  /home/user/cp/zmp/equalizerwidget.cpp
@@ -42,10 +48,16 @@
  /home/user/cp/zmp/res.qrc
  /home/user/cp/zmp/settingswidget.cpp
  /home/user/cp/zmp/settingswidget.h
+ /home/user/cp/zmp/singleinstance.h
+ /home/user/cp/zmp/third_party/kiss_fft.c
+ /home/user/cp/zmp/third_party/kiss_fft.h
+ /home/user/cp/zmp/third_party/miniaudio.h
  /home/user/cp/zmp/translator.cpp
  /home/user/cp/zmp/translator.h
  /home/user/cp/zmp/visualizationwidget.cpp
  /home/user/cp/zmp/visualizationwidget.h
+ /home/user/cp/zmp/zmpinstaller.cpp
+ /home/user/cp/zmp/zmpinstaller.h
  /usr/bin/cmake
  /usr/include/GL/gl.h
  /usr/include/alloca.h
@@ -61,8 +73,6 @@
  /usr/include/asm/posix_types_64.h
  /usr/include/asm/types.h
  /usr/include/assert.h
- /usr/include/bass.h
- /usr/include/bass_fx.h
  /usr/include/bits/atomic_wide_counter.h
  /usr/include/bits/byteswap.h
  /usr/include/bits/cpu-set.h
@@ -190,6 +200,7 @@
  /usr/include/c++/16/bits/specfun.h
  /usr/include/c++/16/bits/std_abs.h
  /usr/include/c++/16/bits/std_function.h
+ /usr/include/c++/16/bits/std_mutex.h
  /usr/include/c++/16/bits/stdexcept_except.h
  /usr/include/c++/16/bits/stdexcept_throw.h
  /usr/include/c++/16/bits/stdexcept_throwfwd.h
@@ -221,6 +232,7 @@
  /usr/include/c++/16/bits/string_view.tcc
  /usr/include/c++/16/bits/stringfwd.h
  /usr/include/c++/16/bits/uniform_int_dist.h
+ /usr/include/c++/16/bits/unique_lock.h
  /usr/include/c++/16/bits/unique_ptr.h
  /usr/include/c++/16/bits/unordered_map.h
  /usr/include/c++/16/bits/unordered_set.h
@@ -248,6 +260,7 @@
  /usr/include/c++/16/debug/assertions.h
  /usr/include/c++/16/debug/debug.h
  /usr/include/c++/16/exception
+ /usr/include/c++/16/experimental/source_location
  /usr/include/c++/16/ext/aligned_buffer.h
  /usr/include/c++/16/ext/alloc_traits.h
  /usr/include/c++/16/ext/atomicity.h
@@ -264,6 +277,7 @@
  /usr/include/c++/16/list
  /usr/include/c++/16/map
  /usr/include/c++/16/memory
+ /usr/include/c++/16/mutex
  /usr/include/c++/16/new
  /usr/include/c++/16/numeric
  /usr/include/c++/16/optional
@@ -343,9 +357,11 @@
  /usr/include/qt6/QtCore/QQueue
  /usr/include/qt6/QtCore/QRandomGenerator
  /usr/include/qt6/QtCore/QRect
+ /usr/include/qt6/QtCore/QSet
  /usr/include/qt6/QtCore/QSharedDataPointer
  /usr/include/qt6/QtCore/QSize
  /usr/include/qt6/QtCore/QSizeF
+ /usr/include/qt6/QtCore/QSocketNotifier
  /usr/include/qt6/QtCore/QSortFilterProxyModel
  /usr/include/qt6/QtCore/QString
  /usr/include/qt6/QtCore/QStringList
@@ -462,6 +478,8 @@
  /usr/include/qt6/QtCore/qpointer.h
  /usr/include/qt6/QtCore/qprocess.h
  /usr/include/qt6/QtCore/qprocessordetection.h
+ /usr/include/qt6/QtCore/qproperty.h
+ /usr/include/qt6/QtCore/qpropertyprivate.h
  /usr/include/qt6/QtCore/qqueue.h
  /usr/include/qt6/QtCore/qrandom.h
  /usr/include/qt6/QtCore/qrect.h
@@ -475,6 +493,7 @@
  /usr/include/qt6/QtCore/qsharedpointer.h
  /usr/include/qt6/QtCore/qsharedpointer_impl.h
  /usr/include/qt6/QtCore/qsize.h
+ /usr/include/qt6/QtCore/qsocketnotifier.h
  /usr/include/qt6/QtCore/qsortfilterproxymodel.h
  /usr/include/qt6/QtCore/qspan.h
  /usr/include/qt6/QtCore/qstdlibdetection.h
@@ -603,6 +622,8 @@
  /usr/include/qt6/QtMultimedia/qtmultimedia-config.h
  /usr/include/qt6/QtMultimedia/qtmultimediaexports.h
  /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h
+ /usr/include/qt6/QtNetwork/QLocalServer
+ /usr/include/qt6/QtNetwork/QLocalSocket
  /usr/include/qt6/QtNetwork/QNetworkAccessManager
  /usr/include/qt6/QtNetwork/QNetworkReply
  /usr/include/qt6/QtNetwork/QNetworkRequest
@@ -615,6 +636,8 @@
  /usr/include/qt6/QtNetwork/qabstractsocket.h
  /usr/include/qt6/QtNetwork/qhostaddress.h
  /usr/include/qt6/QtNetwork/qhttpheaders.h
+ /usr/include/qt6/QtNetwork/qlocalserver.h
+ /usr/include/qt6/QtNetwork/qlocalsocket.h
  /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h
  /usr/include/qt6/QtNetwork/qnetworkreply.h
  /usr/include/qt6/QtNetwork/qnetworkrequest.h
@@ -700,6 +723,10 @@
  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h
  /usr/include/qt6/QtWidgets/qwidget.h
  /usr/include/sched.h
+ /usr/include/soundtouch/FIFOSamplePipe.h
+ /usr/include/soundtouch/STTypes.h
+ /usr/include/soundtouch/SoundTouch.h
+ /usr/include/soundtouch/soundtouch_config.h
  /usr/include/stdc-predef.h
  /usr/include/stdint.h
  /usr/include/stdio.h

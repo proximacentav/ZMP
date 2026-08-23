@@ -521,6 +521,7 @@ void PlaylistsWidget::loadPlaylistColors() {
 }
 
 void PlaylistsWidget::loadPlaylists() {
+    qDebug() << "playlists: scanning" << basePath() << "for playlists";
     loadPlaylistColors();
     m_playlists.clear();
     m_listWidget->clear();
@@ -557,8 +558,7 @@ void PlaylistsWidget::loadPlaylists() {
         }
         if (folderPath.isEmpty()) continue;
 
-        PlaylistInfo info;
-        info.name = folder;
+        PlaylistInfo info;        info.name = folder;
         QDir pd(folderPath);
         for (const QString &f : pd.entryList(QDir::Files)) {
             if (supportedExts().contains(QFileInfo(f).suffix().toLower().prepend('.'))) {
@@ -569,6 +569,8 @@ void PlaylistsWidget::loadPlaylists() {
         }
         if (!info.tracks.isEmpty()) info.cover = extractCover(info.tracks.first());
         m_playlists.append(info);
+        qDebug() << "playlists: read playlist" << folder
+                 << "with" << info.tracks.size() << "tracks";
 
         QListWidgetItem *item = new QListWidgetItem(m_listWidget);
         item->setSizeHint(QSize(190, 240));

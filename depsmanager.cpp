@@ -91,8 +91,7 @@ static std::string zmpMissingDepsReportText()
             report += " (?)";
         report += "\n";
     };
-    add("BASS (libbass.so)", libFound("libbass.so"));
-    add("BASS FX (libbass_fx.so)", libFound("libbass_fx.so"));
+    add("SoundTouch (libSoundTouch.so)", libFound("libSoundTouch.so"));
     add("TagLib (libtag.so)", libFound("libtag.so"));
     add("projectM (libprojectM.so)", libFound("libprojectM.so"));
     add("FFmpeg (ffmpeg/ffprobe)",
@@ -443,6 +442,7 @@ QString DependencyManager::pkgManagerCommand() const
 
 QVector<DependencyManager::DepResult> DependencyManager::runChecks()
 {
+    qDebug() << "deps: checking dependencies (os-release, ldconfig, PATH)";
     detectOs();
 
     QVector<DepResult> results;
@@ -486,10 +486,8 @@ QVector<DependencyManager::DepResult> DependencyManager::runChecks()
         results.append(r);
     };
 
-    libEntry("BASS", ztr("Аудиодвижок BASS (libbass.so)"), "libbass.so",
-             {"libbass"}, {"bass"}, {"bass"});
-    libEntry("BASS FX", ztr("Эффекты для BASS (libbass_fx.so)"), "libbass_fx.so",
-             {"libbassfx"}, {"bass-fx"}, {"bass_fx"});
+    libEntry("SoundTouch", ztr("Скорость и питч аудио (libSoundTouch.so)"), "libSoundTouch.so",
+             {"libsoundtouch1-dev", "libsoundtouch-float1"}, {"soundtouch-devel"}, {"soundtouch"});
     libEntry("TagLib", ztr("Чтение тегов и обложек (libtag.so)"), "libtag.so",
              {"libtag1v5", "libtag1-dev"}, {"taglib"}, {"taglib"});
     libEntry("projectM", ztr("Визуализация projectM (libprojectM.so)"), "libprojectM.so",
@@ -519,6 +517,12 @@ QVector<DependencyManager::DepResult> DependencyManager::runChecks()
               : (m_pkgManager == Pacman) ? QStringList{"smbclient"}
               : (m_pkgManager == Dnf || m_pkgManager == Yum) ? QStringList{"samba-client"}
               : QStringList{});
+
+    for (const DepResult &r : results) {
+        qDebug() << "deps:" << r.title << "->"
+                 << (r.status == Found ? "found"
+                     : r.status == Missing ? "missing" : "unknown");
+    }
 
     emit checksFinished(results);
     return results;

@@ -8,12 +8,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/user/cp/zmp/third_party/kiss_fft.c" "CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o.d"
   "" "ZMP_Linux_bin_autogen/timestamp" "custom" "ZMP_Linux_bin_autogen/deps"
   "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o.d"
   "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/mocs_compilation.cpp" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o.d"
   "/home/user/cp/zmp/aboutdialog.cpp" "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o.d"
   "/home/user/cp/zmp/audiomanager.cpp" "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o.d"
+  "/home/user/cp/zmp/audiomodecontroller.cpp" "CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o.d"
+  "/home/user/cp/zmp/cliplayer.cpp" "CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o.d"
   "/home/user/cp/zmp/depsmanager.cpp" "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o.d"
+  "/home/user/cp/zmp/devicemanagerdialog.cpp" "CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o.d"
   "/home/user/cp/zmp/deviceswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o.d"
   "/home/user/cp/zmp/equalizerwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o.d"
   "/home/user/cp/zmp/fileswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o.d"
@@ -30,6 +34,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/cp/zmp/settingswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o.d"
   "/home/user/cp/zmp/translator.cpp" "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o.d"
   "/home/user/cp/zmp/visualizationwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o.d"
+  "/home/user/cp/zmp/zmpinstaller.cpp" "CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o.d"
   "" "ZMP_Linux_bin" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/link.d"
   )
 

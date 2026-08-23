@@ -6,12 +6,18 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /home/user/cp/zmp/aboutdialog.h \
   /home/user/cp/zmp/audiomanager.cpp \
   /home/user/cp/zmp/audiomanager.h \
+  /home/user/cp/zmp/audiomodecontroller.cpp \
+  /home/user/cp/zmp/audiomodecontroller.h \
   CMakeFiles/4.4.2/CMakeCCompiler.cmake \
   CMakeFiles/4.4.2/CMakeCXXCompiler.cmake \
   CMakeFiles/4.4.2/CMakeSystem.cmake \
   ZMP_Linux_bin_autogen/moc_predefs.h \
+  /home/user/cp/zmp/cliplayer.cpp \
+  /home/user/cp/zmp/cliplayer.h \
   /home/user/cp/zmp/depsmanager.cpp \
   /home/user/cp/zmp/depsmanager.h \
+  /home/user/cp/zmp/devicemanagerdialog.cpp \
+  /home/user/cp/zmp/devicemanagerdialog.h \
   /home/user/cp/zmp/deviceswidget.cpp \
   /home/user/cp/zmp/deviceswidget.h \
   /home/user/cp/zmp/equalizerwidget.cpp \
@@ -41,10 +47,16 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /home/user/cp/zmp/res.qrc \
   /home/user/cp/zmp/settingswidget.cpp \
   /home/user/cp/zmp/settingswidget.h \
+  /home/user/cp/zmp/singleinstance.h \
+  /home/user/cp/zmp/third_party/kiss_fft.c \
+  /home/user/cp/zmp/third_party/kiss_fft.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.cpp \
   /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.cpp \
   /home/user/cp/zmp/visualizationwidget.h \
+  /home/user/cp/zmp/zmpinstaller.cpp \
+  /home/user/cp/zmp/zmpinstaller.h \
   /usr/bin/cmake \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
@@ -60,8 +72,6 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -189,6 +199,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/c++/16/bits/specfun.h \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -220,6 +231,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -247,6 +259,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/c++/16/debug/assertions.h \
   /usr/include/c++/16/debug/debug.h \
   /usr/include/c++/16/exception \
+  /usr/include/c++/16/experimental/source_location \
   /usr/include/c++/16/ext/aligned_buffer.h \
   /usr/include/c++/16/ext/alloc_traits.h \
   /usr/include/c++/16/ext/atomicity.h \
@@ -263,6 +276,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/c++/16/list \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -342,9 +356,11 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/QQueue \
   /usr/include/qt6/QtCore/QRandomGenerator \
   /usr/include/qt6/QtCore/QRect \
+  /usr/include/qt6/QtCore/QSet \
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
+  /usr/include/qt6/QtCore/QSocketNotifier \
   /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
@@ -461,6 +477,8 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/qpointer.h \
   /usr/include/qt6/QtCore/qprocess.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qproperty.h \
+  /usr/include/qt6/QtCore/qpropertyprivate.h \
   /usr/include/qt6/QtCore/qqueue.h \
   /usr/include/qt6/QtCore/qrandom.h \
   /usr/include/qt6/QtCore/qrect.h \
@@ -474,6 +492,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/qsharedpointer.h \
   /usr/include/qt6/QtCore/qsharedpointer_impl.h \
   /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qsocketnotifier.h \
   /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
   /usr/include/qt6/QtCore/qspan.h \
   /usr/include/qt6/QtCore/qstdlibdetection.h \
@@ -602,6 +621,8 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
+  /usr/include/qt6/QtNetwork/QLocalServer \
+  /usr/include/qt6/QtNetwork/QLocalSocket \
   /usr/include/qt6/QtNetwork/QNetworkAccessManager \
   /usr/include/qt6/QtNetwork/QNetworkReply \
   /usr/include/qt6/QtNetwork/QNetworkRequest \
@@ -614,6 +635,8 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtNetwork/qabstractsocket.h \
   /usr/include/qt6/QtNetwork/qhostaddress.h \
   /usr/include/qt6/QtNetwork/qhttpheaders.h \
+  /usr/include/qt6/QtNetwork/qlocalserver.h \
+  /usr/include/qt6/QtNetwork/qlocalsocket.h \
   /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
   /usr/include/qt6/QtNetwork/qnetworkreply.h \
   /usr/include/qt6/QtNetwork/qnetworkrequest.h \
@@ -699,6 +722,10 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -1231,7 +1258,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o: ZMP
 
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_Linux_bin_autogen/mocs_compilation.cpp \
   /home/user/cp/zmp/audiomanager.h \
+  /home/user/cp/zmp/audiomodecontroller.h \
+  /home/user/cp/zmp/cliplayer.h \
   /home/user/cp/zmp/depsmanager.h \
+  /home/user/cp/zmp/devicemanagerdialog.h \
   /home/user/cp/zmp/deviceswidget.h \
   /home/user/cp/zmp/equalizerwidget.h \
   /home/user/cp/zmp/fileswidget.h \
@@ -1246,10 +1276,15 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \
   /home/user/cp/zmp/settingswidget.h \
+  /home/user/cp/zmp/singleinstance.h \
   /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.h \
+  /home/user/cp/zmp/zmpinstaller.h \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_audiomanager.cpp \
+  ZMP_Linux_bin_autogen/EWIEGA46WW/moc_audiomodecontroller.cpp \
+  ZMP_Linux_bin_autogen/EWIEGA46WW/moc_cliplayer.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_depsmanager.cpp \
+  ZMP_Linux_bin_autogen/EWIEGA46WW/moc_devicemanagerdialog.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_deviceswidget.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_fileswidget.cpp \
@@ -1264,8 +1299,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playerwidget.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playlistswidget.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_settingswidget.cpp \
+  ZMP_Linux_bin_autogen/EWIEGA46WW/moc_singleinstance.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_translator.cpp \
   ZMP_Linux_bin_autogen/EWIEGA46WW/moc_visualizationwidget.cpp \
+  ZMP_Linux_bin_autogen/EWIEGA46WW/moc_zmpinstaller.cpp \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -1280,8 +1318,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -1439,6 +1475,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -1470,6 +1507,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -1499,6 +1537,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/c++/16/debug/assertions.h \
   /usr/include/c++/16/debug/debug.h \
   /usr/include/c++/16/exception \
+  /usr/include/c++/16/experimental/source_location \
   /usr/include/c++/16/ext/aligned_buffer.h \
   /usr/include/c++/16/ext/alloc_traits.h \
   /usr/include/c++/16/ext/atomicity.h \
@@ -1519,6 +1558,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -1609,9 +1649,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/QQueue \
   /usr/include/qt6/QtCore/QRandomGenerator \
   /usr/include/qt6/QtCore/QRect \
+  /usr/include/qt6/QtCore/QSet \
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
+  /usr/include/qt6/QtCore/QSocketNotifier \
   /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
@@ -1729,6 +1771,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/qpointer.h \
   /usr/include/qt6/QtCore/qprocess.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qproperty.h \
+  /usr/include/qt6/QtCore/qpropertyprivate.h \
   /usr/include/qt6/QtCore/qqueue.h \
   /usr/include/qt6/QtCore/qrandom.h \
   /usr/include/qt6/QtCore/qrect.h \
@@ -1742,6 +1786,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/qsharedpointer.h \
   /usr/include/qt6/QtCore/qsharedpointer_impl.h \
   /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qsocketnotifier.h \
   /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
   /usr/include/qt6/QtCore/qspan.h \
   /usr/include/qt6/QtCore/qstdlibdetection.h \
@@ -1872,6 +1917,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
+  /usr/include/qt6/QtNetwork/QLocalServer \
+  /usr/include/qt6/QtNetwork/QLocalSocket \
   /usr/include/qt6/QtNetwork/QNetworkAccessManager \
   /usr/include/qt6/QtNetwork/QNetworkReply \
   /usr/include/qt6/QtNetwork/QNetworkRequest \
@@ -1884,6 +1931,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtNetwork/qabstractsocket.h \
   /usr/include/qt6/QtNetwork/qhostaddress.h \
   /usr/include/qt6/QtNetwork/qhttpheaders.h \
+  /usr/include/qt6/QtNetwork/qlocalserver.h \
+  /usr/include/qt6/QtNetwork/qlocalsocket.h \
   /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
   /usr/include/qt6/QtNetwork/qnetworkreply.h \
   /usr/include/qt6/QtNetwork/qnetworkrequest.h \
@@ -1969,6 +2018,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -2556,6 +2609,8 @@ CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o: /home/user/cp/zmp/aboutdialog.cp
 CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.cpp \
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/depsmanager.h \
+  /home/user/cp/zmp/third_party/kiss_fft.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -2570,19 +2625,24 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
   /usr/include/bits/cpu-set.h \
+  /usr/include/bits/dl_find_object.h \
+  /usr/include/bits/dlfcn.h \
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/errno.h \
+  /usr/include/bits/eventfd.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/flt-eval-method.h \
   /usr/include/bits/fp-fast.h \
   /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/libm-simd-decl-stubs.h \
@@ -2594,14 +2654,19 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/bits/mathcalls-macros.h \
   /usr/include/bits/mathcalls-narrow.h \
   /usr/include/bits/mathcalls.h \
+  /usr/include/bits/poll.h \
   /usr/include/bits/posix1_lim.h \
   /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
   /usr/include/bits/sched.h \
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
+  /usr/include/bits/stat.h \
+  /usr/include/bits/statx-generic.h \
+  /usr/include/bits/statx.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
@@ -2609,6 +2674,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/struct_stat.h \
   /usr/include/bits/thread-shared-types.h \
   /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
@@ -2633,6 +2699,8 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/bits/types/struct___jmp_buf_tag.h \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_statx.h \
+  /usr/include/bits/types/struct_statx_timestamp.h \
   /usr/include/bits/types/struct_timespec.h \
   /usr/include/bits/types/struct_timeval.h \
   /usr/include/bits/types/struct_tm.h \
@@ -2642,6 +2710,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/bits/typesizes.h \
   /usr/include/bits/uintn-identity.h \
   /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
   /usr/include/bits/wchar.h \
@@ -2727,6 +2796,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -2758,6 +2828,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -2807,7 +2878,9 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/c++/16/list \
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
+  /usr/include/c++/16/math.h \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -2861,6 +2934,7 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/time_members.h \
   /usr/include/ctype.h \
+  /usr/include/dlfcn.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
   /usr/include/features-time64.h \
@@ -2869,14 +2943,17 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/gnu/stubs.h \
   /usr/include/libintl.h \
   /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/sched/types.h \
+  /usr/include/linux/stat.h \
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
   /usr/include/math.h \
+  /usr/include/poll.h \
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/QCryptographicHash \
   /usr/include/qt6/QtCore/QDebug \
@@ -3091,6 +3168,507 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/eventfd.h \
+  /usr/include/sys/poll.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/single_threaded.h \
+  /usr/include/sys/stat.h \
+  /usr/include/sys/time.h \
+  /usr/include/sys/types.h \
+  /usr/include/time.h \
+  /usr/include/unistd.h \
+  /usr/include/wchar.h \
+  /usr/include/wctype.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/emmintrin.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mm_malloc.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mmintrin.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/xmmintrin.h
+
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o: /home/user/cp/zmp/audiomodecontroller.cpp \
+  /home/user/cp/zmp/audiomodecontroller.h \
+  /home/user/cp/zmp/translator.h \
+  /usr/include/alloca.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm/bitsperlong.h \
+  /usr/include/asm/errno.h \
+  /usr/include/asm/posix_types.h \
+  /usr/include/asm/posix_types_64.h \
+  /usr/include/asm/types.h \
+  /usr/include/assert.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/cpu-set.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/errno.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/locale.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/setjmp.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/error_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_itimerspec.h \
+  /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/types/wint_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/c++/16/algorithm \
+  /usr/include/c++/16/array \
+  /usr/include/c++/16/atomic \
+  /usr/include/c++/16/backward/auto_ptr.h \
+  /usr/include/c++/16/backward/binders.h \
+  /usr/include/c++/16/bit \
+  /usr/include/c++/16/bits/algorithmfwd.h \
+  /usr/include/c++/16/bits/align.h \
+  /usr/include/c++/16/bits/alloc_traits.h \
+  /usr/include/c++/16/bits/allocated_ptr.h \
+  /usr/include/c++/16/bits/allocator.h \
+  /usr/include/c++/16/bits/atomic_base.h \
+  /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16/bits/basic_string.h \
+  /usr/include/c++/16/bits/basic_string.tcc \
+  /usr/include/c++/16/bits/char_traits.h \
+  /usr/include/c++/16/bits/charconv.h \
+  /usr/include/c++/16/bits/chrono.h \
+  /usr/include/c++/16/bits/concept_check.h \
+  /usr/include/c++/16/bits/cpp_type_traits.h \
+  /usr/include/c++/16/bits/cxxabi_forced.h \
+  /usr/include/c++/16/bits/cxxabi_init_exception.h \
+  /usr/include/c++/16/bits/enable_special_members.h \
+  /usr/include/c++/16/bits/erase_if.h \
+  /usr/include/c++/16/bits/exception.h \
+  /usr/include/c++/16/bits/exception_defines.h \
+  /usr/include/c++/16/bits/exception_ptr.h \
+  /usr/include/c++/16/bits/functexcept.h \
+  /usr/include/c++/16/bits/functional_hash.h \
+  /usr/include/c++/16/bits/hash_bytes.h \
+  /usr/include/c++/16/bits/hashtable.h \
+  /usr/include/c++/16/bits/hashtable_policy.h \
+  /usr/include/c++/16/bits/invoke.h \
+  /usr/include/c++/16/bits/ios_base.h \
+  /usr/include/c++/16/bits/list.tcc \
+  /usr/include/c++/16/bits/locale_classes.h \
+  /usr/include/c++/16/bits/locale_classes.tcc \
+  /usr/include/c++/16/bits/localefwd.h \
+  /usr/include/c++/16/bits/memory_resource.h \
+  /usr/include/c++/16/bits/memoryfwd.h \
+  /usr/include/c++/16/bits/monostate.h \
+  /usr/include/c++/16/bits/move.h \
+  /usr/include/c++/16/bits/nested_exception.h \
+  /usr/include/c++/16/bits/new_allocator.h \
+  /usr/include/c++/16/bits/new_except.h \
+  /usr/include/c++/16/bits/new_throw.h \
+  /usr/include/c++/16/bits/node_handle.h \
+  /usr/include/c++/16/bits/ostream_insert.h \
+  /usr/include/c++/16/bits/parse_numbers.h \
+  /usr/include/c++/16/bits/postypes.h \
+  /usr/include/c++/16/bits/predefined_ops.h \
+  /usr/include/c++/16/bits/ptr_traits.h \
+  /usr/include/c++/16/bits/range_access.h \
+  /usr/include/c++/16/bits/refwrap.h \
+  /usr/include/c++/16/bits/requires_hosted.h \
+  /usr/include/c++/16/bits/shared_ptr.h \
+  /usr/include/c++/16/bits/shared_ptr_atomic.h \
+  /usr/include/c++/16/bits/shared_ptr_base.h \
+  /usr/include/c++/16/bits/specfun.h \
+  /usr/include/c++/16/bits/std_abs.h \
+  /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/stdexcept_except.h \
+  /usr/include/c++/16/bits/stdexcept_throw.h \
+  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
+  /usr/include/c++/16/bits/stl_algo.h \
+  /usr/include/c++/16/bits/stl_algobase.h \
+  /usr/include/c++/16/bits/stl_bvector.h \
+  /usr/include/c++/16/bits/stl_construct.h \
+  /usr/include/c++/16/bits/stl_function.h \
+  /usr/include/c++/16/bits/stl_heap.h \
+  /usr/include/c++/16/bits/stl_iterator.h \
+  /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/16/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16/bits/stl_list.h \
+  /usr/include/c++/16/bits/stl_map.h \
+  /usr/include/c++/16/bits/stl_multimap.h \
+  /usr/include/c++/16/bits/stl_multiset.h \
+  /usr/include/c++/16/bits/stl_numeric.h \
+  /usr/include/c++/16/bits/stl_pair.h \
+  /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/16/bits/stl_relops.h \
+  /usr/include/c++/16/bits/stl_set.h \
+  /usr/include/c++/16/bits/stl_tempbuf.h \
+  /usr/include/c++/16/bits/stl_tree.h \
+  /usr/include/c++/16/bits/stl_uninitialized.h \
+  /usr/include/c++/16/bits/stl_vector.h \
+  /usr/include/c++/16/bits/stream_iterator.h \
+  /usr/include/c++/16/bits/streambuf.tcc \
+  /usr/include/c++/16/bits/streambuf_iterator.h \
+  /usr/include/c++/16/bits/string_view.tcc \
+  /usr/include/c++/16/bits/stringfwd.h \
+  /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_ptr.h \
+  /usr/include/c++/16/bits/unordered_map.h \
+  /usr/include/c++/16/bits/unordered_set.h \
+  /usr/include/c++/16/bits/uses_allocator.h \
+  /usr/include/c++/16/bits/uses_allocator_args.h \
+  /usr/include/c++/16/bits/utility.h \
+  /usr/include/c++/16/bits/vector.tcc \
+  /usr/include/c++/16/bits/version.h \
+  /usr/include/c++/16/cassert \
+  /usr/include/c++/16/cctype \
+  /usr/include/c++/16/cerrno \
+  /usr/include/c++/16/chrono \
+  /usr/include/c++/16/climits \
+  /usr/include/c++/16/clocale \
+  /usr/include/c++/16/cmath \
+  /usr/include/c++/16/compare \
+  /usr/include/c++/16/concepts \
+  /usr/include/c++/16/cstddef \
+  /usr/include/c++/16/cstdint \
+  /usr/include/c++/16/cstdio \
+  /usr/include/c++/16/cstdlib \
+  /usr/include/c++/16/cstring \
+  /usr/include/c++/16/ctime \
+  /usr/include/c++/16/cwchar \
+  /usr/include/c++/16/debug/assertions.h \
+  /usr/include/c++/16/debug/debug.h \
+  /usr/include/c++/16/exception \
+  /usr/include/c++/16/ext/aligned_buffer.h \
+  /usr/include/c++/16/ext/alloc_traits.h \
+  /usr/include/c++/16/ext/atomicity.h \
+  /usr/include/c++/16/ext/concurrence.h \
+  /usr/include/c++/16/ext/numeric_traits.h \
+  /usr/include/c++/16/ext/string_conversions.h \
+  /usr/include/c++/16/ext/type_traits.h \
+  /usr/include/c++/16/functional \
+  /usr/include/c++/16/initializer_list \
+  /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/iterator \
+  /usr/include/c++/16/limits \
+  /usr/include/c++/16/list \
+  /usr/include/c++/16/map \
+  /usr/include/c++/16/memory \
+  /usr/include/c++/16/new \
+  /usr/include/c++/16/numeric \
+  /usr/include/c++/16/optional \
+  /usr/include/c++/16/pstl/execution_defs.h \
+  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/16/pstl/glue_memory_defs.h \
+  /usr/include/c++/16/pstl/glue_numeric_defs.h \
+  /usr/include/c++/16/pstl/pstl_config.h \
+  /usr/include/c++/16/ratio \
+  /usr/include/c++/16/set \
+  /usr/include/c++/16/stdexcept \
+  /usr/include/c++/16/stdlib.h \
+  /usr/include/c++/16/streambuf \
+  /usr/include/c++/16/string \
+  /usr/include/c++/16/string_view \
+  /usr/include/c++/16/system_error \
+  /usr/include/c++/16/tr1/bessel_function.tcc \
+  /usr/include/c++/16/tr1/beta_function.tcc \
+  /usr/include/c++/16/tr1/ell_integral.tcc \
+  /usr/include/c++/16/tr1/exp_integral.tcc \
+  /usr/include/c++/16/tr1/gamma.tcc \
+  /usr/include/c++/16/tr1/hypergeometric.tcc \
+  /usr/include/c++/16/tr1/legendre_function.tcc \
+  /usr/include/c++/16/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/16/tr1/poly_hermite.tcc \
+  /usr/include/c++/16/tr1/poly_laguerre.tcc \
+  /usr/include/c++/16/tr1/riemann_zeta.tcc \
+  /usr/include/c++/16/tr1/special_function_util.h \
+  /usr/include/c++/16/tuple \
+  /usr/include/c++/16/type_traits \
+  /usr/include/c++/16/typeinfo \
+  /usr/include/c++/16/unordered_map \
+  /usr/include/c++/16/unordered_set \
+  /usr/include/c++/16/utility \
+  /usr/include/c++/16/variant \
+  /usr/include/c++/16/vector \
+  /usr/include/c++/16/version \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/ctype.h \
+  /usr/include/endian.h \
+  /usr/include/errno.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/linux/errno.h \
+  /usr/include/linux/limits.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/sched/types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/linux/types.h \
+  /usr/include/locale.h \
+  /usr/include/math.h \
+  /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QHash \
+  /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QProcess \
+  /usr/include/qt6/QtCore/QRegularExpression \
+  /usr/include/qt6/QtCore/QString \
+  /usr/include/qt6/QtCore/QStringList \
+  /usr/include/qt6/QtCore/QVector \
+  /usr/include/qt6/QtCore/q17memory.h \
+  /usr/include/qt6/QtCore/q20bit.h \
+  /usr/include/qt6/QtCore/q20functional.h \
+  /usr/include/qt6/QtCore/q20iterator.h \
+  /usr/include/qt6/QtCore/q20memory.h \
+  /usr/include/qt6/QtCore/q20type_traits.h \
+  /usr/include/qt6/QtCore/q20utility.h \
+  /usr/include/qt6/QtCore/q23type_traits.h \
+  /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+  /usr/include/qt6/QtCore/qalgorithms.h \
+  /usr/include/qt6/QtCore/qalloc.h \
+  /usr/include/qt6/QtCore/qanystringview.h \
+  /usr/include/qt6/QtCore/qarraydata.h \
+  /usr/include/qt6/QtCore/qarraydataops.h \
+  /usr/include/qt6/QtCore/qarraydatapointer.h \
+  /usr/include/qt6/QtCore/qassert.h \
+  /usr/include/qt6/QtCore/qatomic.h \
+  /usr/include/qt6/QtCore/qatomic_cxx11.h \
+  /usr/include/qt6/QtCore/qbasicatomic.h \
+  /usr/include/qt6/QtCore/qbasictimer.h \
+  /usr/include/qt6/QtCore/qbindingstorage.h \
+  /usr/include/qt6/QtCore/qbytearray.h \
+  /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
+  /usr/include/qt6/QtCore/qbytearraylist.h \
+  /usr/include/qt6/QtCore/qbytearrayview.h \
+  /usr/include/qt6/QtCore/qchar.h \
+  /usr/include/qt6/QtCore/qcheckedint_impl.h \
+  /usr/include/qt6/QtCore/qcompare.h \
+  /usr/include/qt6/QtCore/qcompare_impl.h \
+  /usr/include/qt6/QtCore/qcomparehelpers.h \
+  /usr/include/qt6/QtCore/qcompilerdetection.h \
+  /usr/include/qt6/QtCore/qconfig.h \
+  /usr/include/qt6/QtCore/qconstructormacros.h \
+  /usr/include/qt6/QtCore/qcontainerfwd.h \
+  /usr/include/qt6/QtCore/qcontainerinfo.h \
+  /usr/include/qt6/QtCore/qcontainertools_impl.h \
+  /usr/include/qt6/QtCore/qcontiguouscache.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qdarwinhelpers.h \
+  /usr/include/qt6/QtCore/qdatastream.h \
+  /usr/include/qt6/QtCore/qdeadlinetimer.h \
+  /usr/include/qt6/QtCore/qdebug.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qexceptionhandling.h \
+  /usr/include/qt6/QtCore/qflags.h \
+  /usr/include/qt6/QtCore/qfloat16.h \
+  /usr/include/qt6/QtCore/qforeach.h \
+  /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
+  /usr/include/qt6/QtCore/qfunctionpointer.h \
+  /usr/include/qt6/QtCore/qgenericatomic.h \
+  /usr/include/qt6/QtCore/qglobal.h \
+  /usr/include/qt6/QtCore/qglobalstatic.h \
+  /usr/include/qt6/QtCore/qhash.h \
+  /usr/include/qt6/QtCore/qhashfunctions.h \
+  /usr/include/qt6/QtCore/qiodevice.h \
+  /usr/include/qt6/QtCore/qiodevicebase.h \
+  /usr/include/qt6/QtCore/qiterable.h \
+  /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qlatin1stringview.h \
+  /usr/include/qt6/QtCore/qline.h \
+  /usr/include/qt6/QtCore/qlist.h \
+  /usr/include/qt6/QtCore/qlocale.h \
+  /usr/include/qt6/QtCore/qlogging.h \
+  /usr/include/qt6/QtCore/qmalloc.h \
+  /usr/include/qt6/QtCore/qmap.h \
+  /usr/include/qt6/QtCore/qmargins.h \
+  /usr/include/qt6/QtCore/qmath.h \
+  /usr/include/qt6/QtCore/qmetacontainer.h \
+  /usr/include/qt6/QtCore/qmetatype.h \
+  /usr/include/qt6/QtCore/qminmax.h \
+  /usr/include/qt6/QtCore/qnamespace.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qnumeric.h \
+  /usr/include/qt6/QtCore/qobject.h \
+  /usr/include/qt6/QtCore/qobject_impl.h \
+  /usr/include/qt6/QtCore/qobjectdefs.h \
+  /usr/include/qt6/QtCore/qobjectdefs_impl.h \
+  /usr/include/qt6/QtCore/qoverload.h \
+  /usr/include/qt6/QtCore/qpair.h \
+  /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qprocess.h \
+  /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qrect.h \
+  /usr/include/qt6/QtCore/qrefcount.h \
+  /usr/include/qt6/QtCore/qregularexpression.h \
+  /usr/include/qt6/QtCore/qscopedpointer.h \
+  /usr/include/qt6/QtCore/qscopeguard.h \
+  /usr/include/qt6/QtCore/qset.h \
+  /usr/include/qt6/QtCore/qshareddata.h \
+  /usr/include/qt6/QtCore/qshareddata_impl.h \
+  /usr/include/qt6/QtCore/qsharedpointer.h \
+  /usr/include/qt6/QtCore/qsharedpointer_impl.h \
+  /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qspan.h \
+  /usr/include/qt6/QtCore/qstdlibdetection.h \
+  /usr/include/qt6/QtCore/qstring.h \
+  /usr/include/qt6/QtCore/qstringalgorithms.h \
+  /usr/include/qt6/QtCore/qstringbuilder.h \
+  /usr/include/qt6/QtCore/qstringconverter.h \
+  /usr/include/qt6/QtCore/qstringconverter_base.h \
+  /usr/include/qt6/QtCore/qstringfwd.h \
+  /usr/include/qt6/QtCore/qstringlist.h \
+  /usr/include/qt6/QtCore/qstringmatcher.h \
+  /usr/include/qt6/QtCore/qstringtokenizer.h \
+  /usr/include/qt6/QtCore/qstringview.h \
+  /usr/include/qt6/QtCore/qswap.h \
+  /usr/include/qt6/QtCore/qsysinfo.h \
+  /usr/include/qt6/QtCore/qsystemdetection.h \
+  /usr/include/qt6/QtCore/qtaggedpointer.h \
+  /usr/include/qt6/QtCore/qtclasshelpermacros.h \
+  /usr/include/qt6/QtCore/qtconfiginclude.h \
+  /usr/include/qt6/QtCore/qtconfigmacros.h \
+  /usr/include/qt6/QtCore/qtcore-config.h \
+  /usr/include/qt6/QtCore/qtcoreexports.h \
+  /usr/include/qt6/QtCore/qtcoreglobal.h \
+  /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
+  /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
+  /usr/include/qt6/QtCore/qtenvironmentvariables.h \
+  /usr/include/qt6/QtCore/qtextstream.h \
+  /usr/include/qt6/QtCore/qtformat_impl.h \
+  /usr/include/qt6/QtCore/qtmetamacros.h \
+  /usr/include/qt6/QtCore/qtnoop.h \
+  /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
+  /usr/include/qt6/QtCore/qtresource.h \
+  /usr/include/qt6/QtCore/qttranslation.h \
+  /usr/include/qt6/QtCore/qttypetraits.h \
+  /usr/include/qt6/QtCore/qtversion.h \
+  /usr/include/qt6/QtCore/qtversionchecks.h \
+  /usr/include/qt6/QtCore/qtypeinfo.h \
+  /usr/include/qt6/QtCore/qtypes.h \
+  /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/qt6/QtCore/qvector.h \
+  /usr/include/qt6/QtCore/qversiontagging.h \
+  /usr/include/qt6/QtCore/qxptype_traits.h \
+  /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/qbitmap.h \
+  /usr/include/qt6/QtGui/qcolor.h \
+  /usr/include/qt6/QtGui/qcursor.h \
+  /usr/include/qt6/QtGui/qguiapplication.h \
+  /usr/include/qt6/QtGui/qguiapplication_platform.h \
+  /usr/include/qt6/QtGui/qimage.h \
+  /usr/include/qt6/QtGui/qinputmethod.h \
+  /usr/include/qt6/QtGui/qpaintdevice.h \
+  /usr/include/qt6/QtGui/qpixelformat.h \
+  /usr/include/qt6/QtGui/qpixmap.h \
+  /usr/include/qt6/QtGui/qpolygon.h \
+  /usr/include/qt6/QtGui/qregion.h \
+  /usr/include/qt6/QtGui/qrgb.h \
+  /usr/include/qt6/QtGui/qrgba64.h \
+  /usr/include/qt6/QtGui/qtgui-config.h \
+  /usr/include/qt6/QtGui/qtguiexports.h \
+  /usr/include/qt6/QtGui/qtguiglobal.h \
+  /usr/include/qt6/QtGui/qtransform.h \
+  /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/qapplication.h \
+  /usr/include/qt6/QtWidgets/qtwidgets-config.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
+  /usr/include/sched.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -3102,9 +3680,563 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o: /home/user/cp/zmp/audiomanager.
   /usr/include/sys/single_threaded.h \
   /usr/include/sys/types.h \
   /usr/include/time.h \
+  /usr/include/unistd.h \
+  /usr/include/wchar.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
+
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o: /home/user/cp/zmp/cliplayer.cpp \
+  /home/user/cp/zmp/audiomanager.h \
+  /home/user/cp/zmp/cliplayer.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
+  /usr/include/alloca.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm/bitsperlong.h \
+  /usr/include/asm/errno.h \
+  /usr/include/asm/posix_types.h \
+  /usr/include/asm/posix_types_64.h \
+  /usr/include/asm/types.h \
+  /usr/include/assert.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/cpu-set.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/errno.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/locale.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/poll.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/setjmp.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/termios-baud.h \
+  /usr/include/bits/termios-c_cc.h \
+  /usr/include/bits/termios-c_cflag.h \
+  /usr/include/bits/termios-c_iflag.h \
+  /usr/include/bits/termios-c_lflag.h \
+  /usr/include/bits/termios-c_oflag.h \
+  /usr/include/bits/termios-cbaud.h \
+  /usr/include/bits/termios-misc.h \
+  /usr/include/bits/termios-struct.h \
+  /usr/include/bits/termios-tcflow.h \
+  /usr/include/bits/termios.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/error_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_itimerspec.h \
+  /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/types/wint_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wctype-wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/c++/16/algorithm \
+  /usr/include/c++/16/array \
+  /usr/include/c++/16/atomic \
+  /usr/include/c++/16/backward/auto_ptr.h \
+  /usr/include/c++/16/backward/binders.h \
+  /usr/include/c++/16/bit \
+  /usr/include/c++/16/bits/algorithmfwd.h \
+  /usr/include/c++/16/bits/align.h \
+  /usr/include/c++/16/bits/alloc_traits.h \
+  /usr/include/c++/16/bits/allocated_ptr.h \
+  /usr/include/c++/16/bits/allocator.h \
+  /usr/include/c++/16/bits/atomic_base.h \
+  /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16/bits/basic_ios.h \
+  /usr/include/c++/16/bits/basic_ios.tcc \
+  /usr/include/c++/16/bits/basic_string.h \
+  /usr/include/c++/16/bits/basic_string.tcc \
+  /usr/include/c++/16/bits/char_traits.h \
+  /usr/include/c++/16/bits/charconv.h \
+  /usr/include/c++/16/bits/chrono.h \
+  /usr/include/c++/16/bits/codecvt.h \
+  /usr/include/c++/16/bits/concept_check.h \
+  /usr/include/c++/16/bits/cpp_type_traits.h \
+  /usr/include/c++/16/bits/cxxabi_forced.h \
+  /usr/include/c++/16/bits/cxxabi_init_exception.h \
+  /usr/include/c++/16/bits/enable_special_members.h \
+  /usr/include/c++/16/bits/erase_if.h \
+  /usr/include/c++/16/bits/exception.h \
+  /usr/include/c++/16/bits/exception_defines.h \
+  /usr/include/c++/16/bits/exception_ptr.h \
+  /usr/include/c++/16/bits/fs_dir.h \
+  /usr/include/c++/16/bits/fs_fwd.h \
+  /usr/include/c++/16/bits/fs_ops.h \
+  /usr/include/c++/16/bits/fs_path.h \
+  /usr/include/c++/16/bits/functexcept.h \
+  /usr/include/c++/16/bits/functional_hash.h \
+  /usr/include/c++/16/bits/hash_bytes.h \
+  /usr/include/c++/16/bits/hashtable.h \
+  /usr/include/c++/16/bits/hashtable_policy.h \
+  /usr/include/c++/16/bits/invoke.h \
+  /usr/include/c++/16/bits/ios_base.h \
+  /usr/include/c++/16/bits/istream.tcc \
+  /usr/include/c++/16/bits/list.tcc \
+  /usr/include/c++/16/bits/locale_classes.h \
+  /usr/include/c++/16/bits/locale_classes.tcc \
+  /usr/include/c++/16/bits/locale_conv.h \
+  /usr/include/c++/16/bits/locale_facets.h \
+  /usr/include/c++/16/bits/locale_facets.tcc \
+  /usr/include/c++/16/bits/locale_facets_nonio.h \
+  /usr/include/c++/16/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/16/bits/localefwd.h \
+  /usr/include/c++/16/bits/memory_resource.h \
+  /usr/include/c++/16/bits/memoryfwd.h \
+  /usr/include/c++/16/bits/monostate.h \
+  /usr/include/c++/16/bits/move.h \
+  /usr/include/c++/16/bits/nested_exception.h \
+  /usr/include/c++/16/bits/new_allocator.h \
+  /usr/include/c++/16/bits/new_except.h \
+  /usr/include/c++/16/bits/new_throw.h \
+  /usr/include/c++/16/bits/node_handle.h \
+  /usr/include/c++/16/bits/ostream.h \
+  /usr/include/c++/16/bits/ostream.tcc \
+  /usr/include/c++/16/bits/ostream_insert.h \
+  /usr/include/c++/16/bits/ostream_print.h \
+  /usr/include/c++/16/bits/parse_numbers.h \
+  /usr/include/c++/16/bits/postypes.h \
+  /usr/include/c++/16/bits/predefined_ops.h \
+  /usr/include/c++/16/bits/ptr_traits.h \
+  /usr/include/c++/16/bits/quoted_string.h \
+  /usr/include/c++/16/bits/range_access.h \
+  /usr/include/c++/16/bits/refwrap.h \
+  /usr/include/c++/16/bits/requires_hosted.h \
+  /usr/include/c++/16/bits/shared_ptr.h \
+  /usr/include/c++/16/bits/shared_ptr_atomic.h \
+  /usr/include/c++/16/bits/shared_ptr_base.h \
+  /usr/include/c++/16/bits/specfun.h \
+  /usr/include/c++/16/bits/sstream.tcc \
+  /usr/include/c++/16/bits/std_abs.h \
+  /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
+  /usr/include/c++/16/bits/stdexcept_except.h \
+  /usr/include/c++/16/bits/stdexcept_throw.h \
+  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
+  /usr/include/c++/16/bits/stl_algo.h \
+  /usr/include/c++/16/bits/stl_algobase.h \
+  /usr/include/c++/16/bits/stl_bvector.h \
+  /usr/include/c++/16/bits/stl_construct.h \
+  /usr/include/c++/16/bits/stl_function.h \
+  /usr/include/c++/16/bits/stl_heap.h \
+  /usr/include/c++/16/bits/stl_iterator.h \
+  /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/16/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16/bits/stl_list.h \
+  /usr/include/c++/16/bits/stl_map.h \
+  /usr/include/c++/16/bits/stl_multimap.h \
+  /usr/include/c++/16/bits/stl_multiset.h \
+  /usr/include/c++/16/bits/stl_numeric.h \
+  /usr/include/c++/16/bits/stl_pair.h \
+  /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/16/bits/stl_relops.h \
+  /usr/include/c++/16/bits/stl_set.h \
+  /usr/include/c++/16/bits/stl_tempbuf.h \
+  /usr/include/c++/16/bits/stl_tree.h \
+  /usr/include/c++/16/bits/stl_uninitialized.h \
+  /usr/include/c++/16/bits/stl_vector.h \
+  /usr/include/c++/16/bits/stream_iterator.h \
+  /usr/include/c++/16/bits/streambuf.tcc \
+  /usr/include/c++/16/bits/streambuf_iterator.h \
+  /usr/include/c++/16/bits/string_view.tcc \
+  /usr/include/c++/16/bits/stringfwd.h \
+  /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
+  /usr/include/c++/16/bits/unique_ptr.h \
+  /usr/include/c++/16/bits/unordered_map.h \
+  /usr/include/c++/16/bits/unordered_set.h \
+  /usr/include/c++/16/bits/uses_allocator.h \
+  /usr/include/c++/16/bits/uses_allocator_args.h \
+  /usr/include/c++/16/bits/utility.h \
+  /usr/include/c++/16/bits/vector.tcc \
+  /usr/include/c++/16/bits/version.h \
+  /usr/include/c++/16/cassert \
+  /usr/include/c++/16/cctype \
+  /usr/include/c++/16/cerrno \
+  /usr/include/c++/16/chrono \
+  /usr/include/c++/16/climits \
+  /usr/include/c++/16/clocale \
+  /usr/include/c++/16/cmath \
+  /usr/include/c++/16/codecvt \
+  /usr/include/c++/16/compare \
+  /usr/include/c++/16/concepts \
+  /usr/include/c++/16/cstddef \
+  /usr/include/c++/16/cstdint \
+  /usr/include/c++/16/cstdio \
+  /usr/include/c++/16/cstdlib \
+  /usr/include/c++/16/cstring \
+  /usr/include/c++/16/ctime \
+  /usr/include/c++/16/cwchar \
+  /usr/include/c++/16/cwctype \
+  /usr/include/c++/16/debug/assertions.h \
+  /usr/include/c++/16/debug/debug.h \
+  /usr/include/c++/16/exception \
+  /usr/include/c++/16/ext/aligned_buffer.h \
+  /usr/include/c++/16/ext/alloc_traits.h \
+  /usr/include/c++/16/ext/atomicity.h \
+  /usr/include/c++/16/ext/concurrence.h \
+  /usr/include/c++/16/ext/numeric_traits.h \
+  /usr/include/c++/16/ext/string_conversions.h \
+  /usr/include/c++/16/ext/type_traits.h \
+  /usr/include/c++/16/filesystem \
+  /usr/include/c++/16/functional \
+  /usr/include/c++/16/initializer_list \
+  /usr/include/c++/16/iomanip \
+  /usr/include/c++/16/ios \
+  /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/istream \
+  /usr/include/c++/16/iterator \
+  /usr/include/c++/16/limits \
+  /usr/include/c++/16/list \
+  /usr/include/c++/16/locale \
+  /usr/include/c++/16/map \
+  /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
+  /usr/include/c++/16/new \
+  /usr/include/c++/16/numeric \
+  /usr/include/c++/16/optional \
+  /usr/include/c++/16/ostream \
+  /usr/include/c++/16/pstl/execution_defs.h \
+  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/16/pstl/glue_memory_defs.h \
+  /usr/include/c++/16/pstl/glue_numeric_defs.h \
+  /usr/include/c++/16/pstl/pstl_config.h \
+  /usr/include/c++/16/ratio \
+  /usr/include/c++/16/set \
+  /usr/include/c++/16/sstream \
+  /usr/include/c++/16/stdexcept \
+  /usr/include/c++/16/stdlib.h \
+  /usr/include/c++/16/streambuf \
+  /usr/include/c++/16/string \
+  /usr/include/c++/16/string_view \
+  /usr/include/c++/16/system_error \
+  /usr/include/c++/16/tr1/bessel_function.tcc \
+  /usr/include/c++/16/tr1/beta_function.tcc \
+  /usr/include/c++/16/tr1/ell_integral.tcc \
+  /usr/include/c++/16/tr1/exp_integral.tcc \
+  /usr/include/c++/16/tr1/gamma.tcc \
+  /usr/include/c++/16/tr1/hypergeometric.tcc \
+  /usr/include/c++/16/tr1/legendre_function.tcc \
+  /usr/include/c++/16/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/16/tr1/poly_hermite.tcc \
+  /usr/include/c++/16/tr1/poly_laguerre.tcc \
+  /usr/include/c++/16/tr1/riemann_zeta.tcc \
+  /usr/include/c++/16/tr1/special_function_util.h \
+  /usr/include/c++/16/tuple \
+  /usr/include/c++/16/type_traits \
+  /usr/include/c++/16/typeinfo \
+  /usr/include/c++/16/unordered_map \
+  /usr/include/c++/16/unordered_set \
+  /usr/include/c++/16/utility \
+  /usr/include/c++/16/variant \
+  /usr/include/c++/16/vector \
+  /usr/include/c++/16/version \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_base.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_inline.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/messages_members.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/time_members.h \
+  /usr/include/ctype.h \
+  /usr/include/endian.h \
+  /usr/include/errno.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/libintl.h \
+  /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/linux/errno.h \
+  /usr/include/linux/limits.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/sched/types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/linux/types.h \
+  /usr/include/locale.h \
+  /usr/include/math.h \
+  /usr/include/poll.h \
+  /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QCoreApplication \
+  /usr/include/qt6/QtCore/QDir \
+  /usr/include/qt6/QtCore/QFile \
+  /usr/include/qt6/QtCore/QFileInfo \
+  /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QProcess \
+  /usr/include/qt6/QtCore/QSocketNotifier \
+  /usr/include/qt6/QtCore/QString \
+  /usr/include/qt6/QtCore/QStringList \
+  /usr/include/qt6/QtCore/QTimer \
+  /usr/include/qt6/QtCore/QVector \
+  /usr/include/qt6/QtCore/q17memory.h \
+  /usr/include/qt6/QtCore/q20bit.h \
+  /usr/include/qt6/QtCore/q20functional.h \
+  /usr/include/qt6/QtCore/q20iterator.h \
+  /usr/include/qt6/QtCore/q20memory.h \
+  /usr/include/qt6/QtCore/q20type_traits.h \
+  /usr/include/qt6/QtCore/q20utility.h \
+  /usr/include/qt6/QtCore/q23type_traits.h \
+  /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+  /usr/include/qt6/QtCore/qalgorithms.h \
+  /usr/include/qt6/QtCore/qalloc.h \
+  /usr/include/qt6/QtCore/qanystringview.h \
+  /usr/include/qt6/QtCore/qarraydata.h \
+  /usr/include/qt6/QtCore/qarraydataops.h \
+  /usr/include/qt6/QtCore/qarraydatapointer.h \
+  /usr/include/qt6/QtCore/qassert.h \
+  /usr/include/qt6/QtCore/qatomic.h \
+  /usr/include/qt6/QtCore/qatomic_cxx11.h \
+  /usr/include/qt6/QtCore/qbasicatomic.h \
+  /usr/include/qt6/QtCore/qbasictimer.h \
+  /usr/include/qt6/QtCore/qbindingstorage.h \
+  /usr/include/qt6/QtCore/qbytearray.h \
+  /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
+  /usr/include/qt6/QtCore/qbytearraylist.h \
+  /usr/include/qt6/QtCore/qbytearrayview.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qchar.h \
+  /usr/include/qt6/QtCore/qcompare.h \
+  /usr/include/qt6/QtCore/qcompare_impl.h \
+  /usr/include/qt6/QtCore/qcomparehelpers.h \
+  /usr/include/qt6/QtCore/qcompilerdetection.h \
+  /usr/include/qt6/QtCore/qconfig.h \
+  /usr/include/qt6/QtCore/qconstructormacros.h \
+  /usr/include/qt6/QtCore/qcontainerfwd.h \
+  /usr/include/qt6/QtCore/qcontainerinfo.h \
+  /usr/include/qt6/QtCore/qcontainertools_impl.h \
+  /usr/include/qt6/QtCore/qcontiguouscache.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qdarwinhelpers.h \
+  /usr/include/qt6/QtCore/qdatastream.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
+  /usr/include/qt6/QtCore/qdeadlinetimer.h \
+  /usr/include/qt6/QtCore/qdebug.h \
+  /usr/include/qt6/QtCore/qdir.h \
+  /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qexceptionhandling.h \
+  /usr/include/qt6/QtCore/qfile.h \
+  /usr/include/qt6/QtCore/qfiledevice.h \
+  /usr/include/qt6/QtCore/qfileinfo.h \
+  /usr/include/qt6/QtCore/qflags.h \
+  /usr/include/qt6/QtCore/qfloat16.h \
+  /usr/include/qt6/QtCore/qforeach.h \
+  /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
+  /usr/include/qt6/QtCore/qfunctionpointer.h \
+  /usr/include/qt6/QtCore/qgenericatomic.h \
+  /usr/include/qt6/QtCore/qglobal.h \
+  /usr/include/qt6/QtCore/qglobalstatic.h \
+  /usr/include/qt6/QtCore/qhash.h \
+  /usr/include/qt6/QtCore/qhashfunctions.h \
+  /usr/include/qt6/QtCore/qiodevice.h \
+  /usr/include/qt6/QtCore/qiodevicebase.h \
+  /usr/include/qt6/QtCore/qiterable.h \
+  /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qlatin1stringview.h \
+  /usr/include/qt6/QtCore/qlist.h \
+  /usr/include/qt6/QtCore/qlocale.h \
+  /usr/include/qt6/QtCore/qlogging.h \
+  /usr/include/qt6/QtCore/qmalloc.h \
+  /usr/include/qt6/QtCore/qmap.h \
+  /usr/include/qt6/QtCore/qmath.h \
+  /usr/include/qt6/QtCore/qmetacontainer.h \
+  /usr/include/qt6/QtCore/qmetatype.h \
+  /usr/include/qt6/QtCore/qminmax.h \
+  /usr/include/qt6/QtCore/qnamespace.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qnumeric.h \
+  /usr/include/qt6/QtCore/qobject.h \
+  /usr/include/qt6/QtCore/qobject_impl.h \
+  /usr/include/qt6/QtCore/qobjectdefs.h \
+  /usr/include/qt6/QtCore/qobjectdefs_impl.h \
+  /usr/include/qt6/QtCore/qoverload.h \
+  /usr/include/qt6/QtCore/qpair.h \
+  /usr/include/qt6/QtCore/qprocess.h \
+  /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qrefcount.h \
+  /usr/include/qt6/QtCore/qscopedpointer.h \
+  /usr/include/qt6/QtCore/qscopeguard.h \
+  /usr/include/qt6/QtCore/qset.h \
+  /usr/include/qt6/QtCore/qshareddata.h \
+  /usr/include/qt6/QtCore/qshareddata_impl.h \
+  /usr/include/qt6/QtCore/qsharedpointer.h \
+  /usr/include/qt6/QtCore/qsharedpointer_impl.h \
+  /usr/include/qt6/QtCore/qsocketnotifier.h \
+  /usr/include/qt6/QtCore/qspan.h \
+  /usr/include/qt6/QtCore/qstdlibdetection.h \
+  /usr/include/qt6/QtCore/qstring.h \
+  /usr/include/qt6/QtCore/qstringalgorithms.h \
+  /usr/include/qt6/QtCore/qstringbuilder.h \
+  /usr/include/qt6/QtCore/qstringconverter.h \
+  /usr/include/qt6/QtCore/qstringconverter_base.h \
+  /usr/include/qt6/QtCore/qstringfwd.h \
+  /usr/include/qt6/QtCore/qstringlist.h \
+  /usr/include/qt6/QtCore/qstringmatcher.h \
+  /usr/include/qt6/QtCore/qstringtokenizer.h \
+  /usr/include/qt6/QtCore/qstringview.h \
+  /usr/include/qt6/QtCore/qswap.h \
+  /usr/include/qt6/QtCore/qsysinfo.h \
+  /usr/include/qt6/QtCore/qsystemdetection.h \
+  /usr/include/qt6/QtCore/qtaggedpointer.h \
+  /usr/include/qt6/QtCore/qtclasshelpermacros.h \
+  /usr/include/qt6/QtCore/qtconfiginclude.h \
+  /usr/include/qt6/QtCore/qtconfigmacros.h \
+  /usr/include/qt6/QtCore/qtcore-config.h \
+  /usr/include/qt6/QtCore/qtcoreexports.h \
+  /usr/include/qt6/QtCore/qtcoreglobal.h \
+  /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
+  /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
+  /usr/include/qt6/QtCore/qtenvironmentvariables.h \
+  /usr/include/qt6/QtCore/qtextstream.h \
+  /usr/include/qt6/QtCore/qtformat_impl.h \
+  /usr/include/qt6/QtCore/qtimer.h \
+  /usr/include/qt6/QtCore/qtimezone.h \
+  /usr/include/qt6/QtCore/qtmetamacros.h \
+  /usr/include/qt6/QtCore/qtnoop.h \
+  /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
+  /usr/include/qt6/QtCore/qtresource.h \
+  /usr/include/qt6/QtCore/qttranslation.h \
+  /usr/include/qt6/QtCore/qttypetraits.h \
+  /usr/include/qt6/QtCore/qtversion.h \
+  /usr/include/qt6/QtCore/qtversionchecks.h \
+  /usr/include/qt6/QtCore/qtypeinfo.h \
+  /usr/include/qt6/QtCore/qtypes.h \
+  /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/qt6/QtCore/qvector.h \
+  /usr/include/qt6/QtCore/qversiontagging.h \
+  /usr/include/qt6/QtCore/qxptype_traits.h \
+  /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/qtgui-config.h \
+  /usr/include/qt6/QtGui/qtguiexports.h \
+  /usr/include/qt6/QtGui/qtguiglobal.h \
+  /usr/include/qt6/QtMultimedia/QAudioDevice \
+  /usr/include/qt6/QtMultimedia/qaudio.h \
+  /usr/include/qt6/QtMultimedia/qaudiodevice.h \
+  /usr/include/qt6/QtMultimedia/qaudioformat.h \
+  /usr/include/qt6/QtMultimedia/qtaudio.h \
+  /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
+  /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
+  /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
+  /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/poll.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/single_threaded.h \
+  /usr/include/sys/ttydefaults.h \
+  /usr/include/sys/types.h \
+  /usr/include/taglib/audioproperties.h \
+  /usr/include/taglib/fileref.h \
+  /usr/include/taglib/tag.h \
+  /usr/include/taglib/taglib.h \
+  /usr/include/taglib/taglib_export.h \
+  /usr/include/taglib/tbytevector.h \
+  /usr/include/taglib/tbytevectorlist.h \
+  /usr/include/taglib/tfile.h \
+  /usr/include/taglib/tiostream.h \
+  /usr/include/taglib/tlist.h \
+  /usr/include/taglib/tlist.tcc \
+  /usr/include/taglib/tmap.h \
+  /usr/include/taglib/tmap.tcc \
+  /usr/include/taglib/tstring.h \
+  /usr/include/taglib/tstringlist.h \
+  /usr/include/taglib/tvariant.h \
+  /usr/include/termios.h \
+  /usr/include/time.h \
+  /usr/include/unistd.h \
   /usr/include/wchar.h \
   /usr/include/wctype.h \
-  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
@@ -3758,7 +4890,546 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
 
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o: /home/user/cp/zmp/devicemanagerdialog.cpp \
+  /home/user/cp/zmp/devicemanagerdialog.h \
+  /home/user/cp/zmp/translator.h \
+  /usr/include/alloca.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm/bitsperlong.h \
+  /usr/include/asm/errno.h \
+  /usr/include/asm/posix_types.h \
+  /usr/include/asm/posix_types_64.h \
+  /usr/include/asm/types.h \
+  /usr/include/assert.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/cpu-set.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/errno.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/locale.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/setjmp.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/error_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_itimerspec.h \
+  /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/types/wint_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/c++/16/algorithm \
+  /usr/include/c++/16/array \
+  /usr/include/c++/16/atomic \
+  /usr/include/c++/16/backward/auto_ptr.h \
+  /usr/include/c++/16/backward/binders.h \
+  /usr/include/c++/16/bit \
+  /usr/include/c++/16/bits/algorithmfwd.h \
+  /usr/include/c++/16/bits/align.h \
+  /usr/include/c++/16/bits/alloc_traits.h \
+  /usr/include/c++/16/bits/allocated_ptr.h \
+  /usr/include/c++/16/bits/allocator.h \
+  /usr/include/c++/16/bits/atomic_base.h \
+  /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16/bits/basic_string.h \
+  /usr/include/c++/16/bits/basic_string.tcc \
+  /usr/include/c++/16/bits/char_traits.h \
+  /usr/include/c++/16/bits/charconv.h \
+  /usr/include/c++/16/bits/chrono.h \
+  /usr/include/c++/16/bits/concept_check.h \
+  /usr/include/c++/16/bits/cpp_type_traits.h \
+  /usr/include/c++/16/bits/cxxabi_forced.h \
+  /usr/include/c++/16/bits/cxxabi_init_exception.h \
+  /usr/include/c++/16/bits/enable_special_members.h \
+  /usr/include/c++/16/bits/erase_if.h \
+  /usr/include/c++/16/bits/exception.h \
+  /usr/include/c++/16/bits/exception_defines.h \
+  /usr/include/c++/16/bits/exception_ptr.h \
+  /usr/include/c++/16/bits/functexcept.h \
+  /usr/include/c++/16/bits/functional_hash.h \
+  /usr/include/c++/16/bits/hash_bytes.h \
+  /usr/include/c++/16/bits/hashtable.h \
+  /usr/include/c++/16/bits/hashtable_policy.h \
+  /usr/include/c++/16/bits/invoke.h \
+  /usr/include/c++/16/bits/ios_base.h \
+  /usr/include/c++/16/bits/list.tcc \
+  /usr/include/c++/16/bits/locale_classes.h \
+  /usr/include/c++/16/bits/locale_classes.tcc \
+  /usr/include/c++/16/bits/localefwd.h \
+  /usr/include/c++/16/bits/memory_resource.h \
+  /usr/include/c++/16/bits/memoryfwd.h \
+  /usr/include/c++/16/bits/monostate.h \
+  /usr/include/c++/16/bits/move.h \
+  /usr/include/c++/16/bits/nested_exception.h \
+  /usr/include/c++/16/bits/new_allocator.h \
+  /usr/include/c++/16/bits/new_except.h \
+  /usr/include/c++/16/bits/new_throw.h \
+  /usr/include/c++/16/bits/node_handle.h \
+  /usr/include/c++/16/bits/ostream_insert.h \
+  /usr/include/c++/16/bits/parse_numbers.h \
+  /usr/include/c++/16/bits/postypes.h \
+  /usr/include/c++/16/bits/predefined_ops.h \
+  /usr/include/c++/16/bits/ptr_traits.h \
+  /usr/include/c++/16/bits/range_access.h \
+  /usr/include/c++/16/bits/refwrap.h \
+  /usr/include/c++/16/bits/requires_hosted.h \
+  /usr/include/c++/16/bits/shared_ptr.h \
+  /usr/include/c++/16/bits/shared_ptr_atomic.h \
+  /usr/include/c++/16/bits/shared_ptr_base.h \
+  /usr/include/c++/16/bits/specfun.h \
+  /usr/include/c++/16/bits/std_abs.h \
+  /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/stdexcept_except.h \
+  /usr/include/c++/16/bits/stdexcept_throw.h \
+  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
+  /usr/include/c++/16/bits/stl_algo.h \
+  /usr/include/c++/16/bits/stl_algobase.h \
+  /usr/include/c++/16/bits/stl_bvector.h \
+  /usr/include/c++/16/bits/stl_construct.h \
+  /usr/include/c++/16/bits/stl_function.h \
+  /usr/include/c++/16/bits/stl_heap.h \
+  /usr/include/c++/16/bits/stl_iterator.h \
+  /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/16/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16/bits/stl_list.h \
+  /usr/include/c++/16/bits/stl_map.h \
+  /usr/include/c++/16/bits/stl_multimap.h \
+  /usr/include/c++/16/bits/stl_multiset.h \
+  /usr/include/c++/16/bits/stl_numeric.h \
+  /usr/include/c++/16/bits/stl_pair.h \
+  /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/16/bits/stl_relops.h \
+  /usr/include/c++/16/bits/stl_set.h \
+  /usr/include/c++/16/bits/stl_tempbuf.h \
+  /usr/include/c++/16/bits/stl_tree.h \
+  /usr/include/c++/16/bits/stl_uninitialized.h \
+  /usr/include/c++/16/bits/stl_vector.h \
+  /usr/include/c++/16/bits/stream_iterator.h \
+  /usr/include/c++/16/bits/streambuf.tcc \
+  /usr/include/c++/16/bits/streambuf_iterator.h \
+  /usr/include/c++/16/bits/string_view.tcc \
+  /usr/include/c++/16/bits/stringfwd.h \
+  /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_ptr.h \
+  /usr/include/c++/16/bits/unordered_map.h \
+  /usr/include/c++/16/bits/unordered_set.h \
+  /usr/include/c++/16/bits/uses_allocator.h \
+  /usr/include/c++/16/bits/uses_allocator_args.h \
+  /usr/include/c++/16/bits/utility.h \
+  /usr/include/c++/16/bits/vector.tcc \
+  /usr/include/c++/16/bits/version.h \
+  /usr/include/c++/16/cassert \
+  /usr/include/c++/16/cctype \
+  /usr/include/c++/16/cerrno \
+  /usr/include/c++/16/chrono \
+  /usr/include/c++/16/climits \
+  /usr/include/c++/16/clocale \
+  /usr/include/c++/16/cmath \
+  /usr/include/c++/16/compare \
+  /usr/include/c++/16/concepts \
+  /usr/include/c++/16/cstddef \
+  /usr/include/c++/16/cstdint \
+  /usr/include/c++/16/cstdio \
+  /usr/include/c++/16/cstdlib \
+  /usr/include/c++/16/cstring \
+  /usr/include/c++/16/ctime \
+  /usr/include/c++/16/cwchar \
+  /usr/include/c++/16/debug/assertions.h \
+  /usr/include/c++/16/debug/debug.h \
+  /usr/include/c++/16/exception \
+  /usr/include/c++/16/ext/aligned_buffer.h \
+  /usr/include/c++/16/ext/alloc_traits.h \
+  /usr/include/c++/16/ext/atomicity.h \
+  /usr/include/c++/16/ext/concurrence.h \
+  /usr/include/c++/16/ext/numeric_traits.h \
+  /usr/include/c++/16/ext/string_conversions.h \
+  /usr/include/c++/16/ext/type_traits.h \
+  /usr/include/c++/16/functional \
+  /usr/include/c++/16/initializer_list \
+  /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/iterator \
+  /usr/include/c++/16/limits \
+  /usr/include/c++/16/list \
+  /usr/include/c++/16/map \
+  /usr/include/c++/16/memory \
+  /usr/include/c++/16/new \
+  /usr/include/c++/16/numeric \
+  /usr/include/c++/16/optional \
+  /usr/include/c++/16/pstl/execution_defs.h \
+  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/16/pstl/glue_memory_defs.h \
+  /usr/include/c++/16/pstl/glue_numeric_defs.h \
+  /usr/include/c++/16/pstl/pstl_config.h \
+  /usr/include/c++/16/ratio \
+  /usr/include/c++/16/set \
+  /usr/include/c++/16/stdexcept \
+  /usr/include/c++/16/stdlib.h \
+  /usr/include/c++/16/streambuf \
+  /usr/include/c++/16/string \
+  /usr/include/c++/16/string_view \
+  /usr/include/c++/16/system_error \
+  /usr/include/c++/16/tr1/bessel_function.tcc \
+  /usr/include/c++/16/tr1/beta_function.tcc \
+  /usr/include/c++/16/tr1/ell_integral.tcc \
+  /usr/include/c++/16/tr1/exp_integral.tcc \
+  /usr/include/c++/16/tr1/gamma.tcc \
+  /usr/include/c++/16/tr1/hypergeometric.tcc \
+  /usr/include/c++/16/tr1/legendre_function.tcc \
+  /usr/include/c++/16/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/16/tr1/poly_hermite.tcc \
+  /usr/include/c++/16/tr1/poly_laguerre.tcc \
+  /usr/include/c++/16/tr1/riemann_zeta.tcc \
+  /usr/include/c++/16/tr1/special_function_util.h \
+  /usr/include/c++/16/tuple \
+  /usr/include/c++/16/type_traits \
+  /usr/include/c++/16/typeinfo \
+  /usr/include/c++/16/unordered_map \
+  /usr/include/c++/16/unordered_set \
+  /usr/include/c++/16/utility \
+  /usr/include/c++/16/variant \
+  /usr/include/c++/16/vector \
+  /usr/include/c++/16/version \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/ctype.h \
+  /usr/include/endian.h \
+  /usr/include/errno.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/linux/errno.h \
+  /usr/include/linux/limits.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/sched/types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/linux/types.h \
+  /usr/include/locale.h \
+  /usr/include/math.h \
+  /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QCoreApplication \
+  /usr/include/qt6/QtCore/QHash \
+  /usr/include/qt6/QtCore/QList \
+  /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QProcess \
+  /usr/include/qt6/QtCore/QRegularExpression \
+  /usr/include/qt6/QtCore/QSet \
+  /usr/include/qt6/QtCore/QString \
+  /usr/include/qt6/QtCore/QTimer \
+  /usr/include/qt6/QtCore/QVector \
+  /usr/include/qt6/QtCore/q17memory.h \
+  /usr/include/qt6/QtCore/q20bit.h \
+  /usr/include/qt6/QtCore/q20functional.h \
+  /usr/include/qt6/QtCore/q20iterator.h \
+  /usr/include/qt6/QtCore/q20memory.h \
+  /usr/include/qt6/QtCore/q20type_traits.h \
+  /usr/include/qt6/QtCore/q20utility.h \
+  /usr/include/qt6/QtCore/q23type_traits.h \
+  /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+  /usr/include/qt6/QtCore/qabstractitemmodel.h \
+  /usr/include/qt6/QtCore/qalgorithms.h \
+  /usr/include/qt6/QtCore/qalloc.h \
+  /usr/include/qt6/QtCore/qanystringview.h \
+  /usr/include/qt6/QtCore/qarraydata.h \
+  /usr/include/qt6/QtCore/qarraydataops.h \
+  /usr/include/qt6/QtCore/qarraydatapointer.h \
+  /usr/include/qt6/QtCore/qassert.h \
+  /usr/include/qt6/QtCore/qatomic.h \
+  /usr/include/qt6/QtCore/qatomic_cxx11.h \
+  /usr/include/qt6/QtCore/qbasicatomic.h \
+  /usr/include/qt6/QtCore/qbasictimer.h \
+  /usr/include/qt6/QtCore/qbindingstorage.h \
+  /usr/include/qt6/QtCore/qbytearray.h \
+  /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
+  /usr/include/qt6/QtCore/qbytearraylist.h \
+  /usr/include/qt6/QtCore/qbytearrayview.h \
+  /usr/include/qt6/QtCore/qchar.h \
+  /usr/include/qt6/QtCore/qcheckedint_impl.h \
+  /usr/include/qt6/QtCore/qcompare.h \
+  /usr/include/qt6/QtCore/qcompare_impl.h \
+  /usr/include/qt6/QtCore/qcomparehelpers.h \
+  /usr/include/qt6/QtCore/qcompilerdetection.h \
+  /usr/include/qt6/QtCore/qconfig.h \
+  /usr/include/qt6/QtCore/qconstructormacros.h \
+  /usr/include/qt6/QtCore/qcontainerfwd.h \
+  /usr/include/qt6/QtCore/qcontainerinfo.h \
+  /usr/include/qt6/QtCore/qcontainertools_impl.h \
+  /usr/include/qt6/QtCore/qcontiguouscache.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qdarwinhelpers.h \
+  /usr/include/qt6/QtCore/qdatastream.h \
+  /usr/include/qt6/QtCore/qdeadlinetimer.h \
+  /usr/include/qt6/QtCore/qdebug.h \
+  /usr/include/qt6/QtCore/qendian.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qexceptionhandling.h \
+  /usr/include/qt6/QtCore/qflags.h \
+  /usr/include/qt6/QtCore/qfloat16.h \
+  /usr/include/qt6/QtCore/qforeach.h \
+  /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
+  /usr/include/qt6/QtCore/qfunctionpointer.h \
+  /usr/include/qt6/QtCore/qgenericatomic.h \
+  /usr/include/qt6/QtCore/qglobal.h \
+  /usr/include/qt6/QtCore/qglobalstatic.h \
+  /usr/include/qt6/QtCore/qhash.h \
+  /usr/include/qt6/QtCore/qhashfunctions.h \
+  /usr/include/qt6/QtCore/qiodevice.h \
+  /usr/include/qt6/QtCore/qiodevicebase.h \
+  /usr/include/qt6/QtCore/qitemselectionmodel.h \
+  /usr/include/qt6/QtCore/qiterable.h \
+  /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qlatin1stringview.h \
+  /usr/include/qt6/QtCore/qline.h \
+  /usr/include/qt6/QtCore/qlist.h \
+  /usr/include/qt6/QtCore/qlocale.h \
+  /usr/include/qt6/QtCore/qlogging.h \
+  /usr/include/qt6/QtCore/qmalloc.h \
+  /usr/include/qt6/QtCore/qmap.h \
+  /usr/include/qt6/QtCore/qmargins.h \
+  /usr/include/qt6/QtCore/qmath.h \
+  /usr/include/qt6/QtCore/qmetacontainer.h \
+  /usr/include/qt6/QtCore/qmetatype.h \
+  /usr/include/qt6/QtCore/qminmax.h \
+  /usr/include/qt6/QtCore/qnamespace.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qnumeric.h \
+  /usr/include/qt6/QtCore/qobject.h \
+  /usr/include/qt6/QtCore/qobject_impl.h \
+  /usr/include/qt6/QtCore/qobjectdefs.h \
+  /usr/include/qt6/QtCore/qobjectdefs_impl.h \
+  /usr/include/qt6/QtCore/qoverload.h \
+  /usr/include/qt6/QtCore/qpair.h \
+  /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qprocess.h \
+  /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qrect.h \
+  /usr/include/qt6/QtCore/qrefcount.h \
+  /usr/include/qt6/QtCore/qregularexpression.h \
+  /usr/include/qt6/QtCore/qscopedpointer.h \
+  /usr/include/qt6/QtCore/qscopeguard.h \
+  /usr/include/qt6/QtCore/qset.h \
+  /usr/include/qt6/QtCore/qshareddata.h \
+  /usr/include/qt6/QtCore/qshareddata_impl.h \
+  /usr/include/qt6/QtCore/qsharedpointer.h \
+  /usr/include/qt6/QtCore/qsharedpointer_impl.h \
+  /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qspan.h \
+  /usr/include/qt6/QtCore/qstdlibdetection.h \
+  /usr/include/qt6/QtCore/qstring.h \
+  /usr/include/qt6/QtCore/qstringalgorithms.h \
+  /usr/include/qt6/QtCore/qstringbuilder.h \
+  /usr/include/qt6/QtCore/qstringconverter.h \
+  /usr/include/qt6/QtCore/qstringconverter_base.h \
+  /usr/include/qt6/QtCore/qstringfwd.h \
+  /usr/include/qt6/QtCore/qstringlist.h \
+  /usr/include/qt6/QtCore/qstringmatcher.h \
+  /usr/include/qt6/QtCore/qstringtokenizer.h \
+  /usr/include/qt6/QtCore/qstringview.h \
+  /usr/include/qt6/QtCore/qswap.h \
+  /usr/include/qt6/QtCore/qsysinfo.h \
+  /usr/include/qt6/QtCore/qsystemdetection.h \
+  /usr/include/qt6/QtCore/qtaggedpointer.h \
+  /usr/include/qt6/QtCore/qtclasshelpermacros.h \
+  /usr/include/qt6/QtCore/qtconfiginclude.h \
+  /usr/include/qt6/QtCore/qtconfigmacros.h \
+  /usr/include/qt6/QtCore/qtcore-config.h \
+  /usr/include/qt6/QtCore/qtcoreexports.h \
+  /usr/include/qt6/QtCore/qtcoreglobal.h \
+  /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
+  /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
+  /usr/include/qt6/QtCore/qtenvironmentvariables.h \
+  /usr/include/qt6/QtCore/qtextstream.h \
+  /usr/include/qt6/QtCore/qtformat_impl.h \
+  /usr/include/qt6/QtCore/qtimer.h \
+  /usr/include/qt6/QtCore/qtmetamacros.h \
+  /usr/include/qt6/QtCore/qtnoop.h \
+  /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
+  /usr/include/qt6/QtCore/qtresource.h \
+  /usr/include/qt6/QtCore/qttranslation.h \
+  /usr/include/qt6/QtCore/qttypetraits.h \
+  /usr/include/qt6/QtCore/qtversion.h \
+  /usr/include/qt6/QtCore/qtversionchecks.h \
+  /usr/include/qt6/QtCore/qtypeinfo.h \
+  /usr/include/qt6/QtCore/qtypes.h \
+  /usr/include/qt6/QtCore/qurl.h \
+  /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/qt6/QtCore/qvector.h \
+  /usr/include/qt6/QtCore/qversiontagging.h \
+  /usr/include/qt6/QtCore/qxptype_traits.h \
+  /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/qaction.h \
+  /usr/include/qt6/QtGui/qbitmap.h \
+  /usr/include/qt6/QtGui/qbrush.h \
+  /usr/include/qt6/QtGui/qcolor.h \
+  /usr/include/qt6/QtGui/qcursor.h \
+  /usr/include/qt6/QtGui/qfont.h \
+  /usr/include/qt6/QtGui/qfontinfo.h \
+  /usr/include/qt6/QtGui/qfontmetrics.h \
+  /usr/include/qt6/QtGui/qfontvariableaxis.h \
+  /usr/include/qt6/QtGui/qicon.h \
+  /usr/include/qt6/QtGui/qimage.h \
+  /usr/include/qt6/QtGui/qkeysequence.h \
+  /usr/include/qt6/QtGui/qpaintdevice.h \
+  /usr/include/qt6/QtGui/qpalette.h \
+  /usr/include/qt6/QtGui/qpicture.h \
+  /usr/include/qt6/QtGui/qpixelformat.h \
+  /usr/include/qt6/QtGui/qpixmap.h \
+  /usr/include/qt6/QtGui/qpolygon.h \
+  /usr/include/qt6/QtGui/qregion.h \
+  /usr/include/qt6/QtGui/qrgb.h \
+  /usr/include/qt6/QtGui/qrgba64.h \
+  /usr/include/qt6/QtGui/qtextdocument.h \
+  /usr/include/qt6/QtGui/qtgui-config.h \
+  /usr/include/qt6/QtGui/qtguiexports.h \
+  /usr/include/qt6/QtGui/qtguiglobal.h \
+  /usr/include/qt6/QtGui/qtransform.h \
+  /usr/include/qt6/QtGui/qvalidator.h \
+  /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtWidgets/QComboBox \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/QHBoxLayout \
+  /usr/include/qt6/QtWidgets/QLabel \
+  /usr/include/qt6/QtWidgets/QListWidget \
+  /usr/include/qt6/QtWidgets/QMessageBox \
+  /usr/include/qt6/QtWidgets/QPushButton \
+  /usr/include/qt6/QtWidgets/QVBoxLayout \
+  /usr/include/qt6/QtWidgets/qabstractbutton.h \
+  /usr/include/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/qt6/QtWidgets/qabstractitemview.h \
+  /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
+  /usr/include/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/qt6/QtWidgets/qboxlayout.h \
+  /usr/include/qt6/QtWidgets/qcombobox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+  /usr/include/qt6/QtWidgets/qframe.h \
+  /usr/include/qt6/QtWidgets/qgridlayout.h \
+  /usr/include/qt6/QtWidgets/qlabel.h \
+  /usr/include/qt6/QtWidgets/qlayout.h \
+  /usr/include/qt6/QtWidgets/qlayoutitem.h \
+  /usr/include/qt6/QtWidgets/qlistview.h \
+  /usr/include/qt6/QtWidgets/qlistwidget.h \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
+  /usr/include/qt6/QtWidgets/qpushbutton.h \
+  /usr/include/qt6/QtWidgets/qrubberband.h \
+  /usr/include/qt6/QtWidgets/qsizepolicy.h \
+  /usr/include/qt6/QtWidgets/qslider.h \
+  /usr/include/qt6/QtWidgets/qstyle.h \
+  /usr/include/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/qt6/QtWidgets/qtabbar.h \
+  /usr/include/qt6/QtWidgets/qtabwidget.h \
+  /usr/include/qt6/QtWidgets/qtwidgets-config.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
+  /usr/include/qt6/QtWidgets/qwidget.h \
+  /usr/include/sched.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/single_threaded.h \
+  /usr/include/sys/types.h \
+  /usr/include/time.h \
+  /usr/include/unistd.h \
+  /usr/include/wchar.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
+
 CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidget.cpp \
+  /home/user/cp/zmp/audiomodecontroller.h \
+  /home/user/cp/zmp/devicemanagerdialog.h \
   /home/user/cp/zmp/deviceswidget.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
@@ -4047,8 +5718,11 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
   /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/QHash \
+  /usr/include/qt6/QtCore/QList \
   /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QSet \
   /usr/include/qt6/QtCore/QString \
+  /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \
   /usr/include/qt6/QtCore/q20bit.h \
@@ -4198,6 +5872,7 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
   /usr/include/qt6/QtGui/qkeysequence.h \
   /usr/include/qt6/QtGui/qpaintdevice.h \
   /usr/include/qt6/QtGui/qpalette.h \
+  /usr/include/qt6/QtGui/qpen.h \
   /usr/include/qt6/QtGui/qpicture.h \
   /usr/include/qt6/QtGui/qpixelformat.h \
   /usr/include/qt6/QtGui/qpixmap.h \
@@ -4205,7 +5880,10 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
   /usr/include/qt6/QtGui/qregion.h \
   /usr/include/qt6/QtGui/qrgb.h \
   /usr/include/qt6/QtGui/qrgba64.h \
+  /usr/include/qt6/QtGui/qtextcursor.h \
   /usr/include/qt6/QtGui/qtextdocument.h \
+  /usr/include/qt6/QtGui/qtextformat.h \
+  /usr/include/qt6/QtGui/qtextoption.h \
   /usr/include/qt6/QtGui/qtgui-config.h \
   /usr/include/qt6/QtGui/qtguiexports.h \
   /usr/include/qt6/QtGui/qtguiglobal.h \
@@ -4223,22 +5901,32 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QComboBox \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \
+  /usr/include/qt6/QtWidgets/QLineEdit \
+  /usr/include/qt6/QtWidgets/QPushButton \
+  /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \
+  /usr/include/qt6/QtWidgets/qabstractbutton.h \
   /usr/include/qt6/QtWidgets/qabstractitemdelegate.h \
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
   /usr/include/qt6/QtWidgets/qframe.h \
   /usr/include/qt6/QtWidgets/qgridlayout.h \
   /usr/include/qt6/QtWidgets/qlabel.h \
   /usr/include/qt6/QtWidgets/qlayout.h \
   /usr/include/qt6/QtWidgets/qlayoutitem.h \
+  /usr/include/qt6/QtWidgets/qlineedit.h \
+  /usr/include/qt6/QtWidgets/qpushbutton.h \
   /usr/include/qt6/QtWidgets/qrubberband.h \
   /usr/include/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/qt6/QtWidgets/qslider.h \
+  /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
   /usr/include/qt6/QtWidgets/qtabbar.h \
@@ -4270,6 +5958,7 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
 CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerwidget.cpp \
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/equalizerwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -4284,8 +5973,6 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -4422,6 +6109,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/specfun.h \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -4453,6 +6141,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -4495,6 +6184,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/list \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -4781,6 +6471,10 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -6643,6 +8337,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
 
 CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /home/user/cp/zmp/audiomanager.h \
+  /home/user/cp/zmp/cliplayer.h \
   /home/user/cp/zmp/depsmanager.h \
   /home/user/cp/zmp/deviceswidget.h \
   /home/user/cp/zmp/equalizerwidget.h \
@@ -6656,6 +8351,8 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \
   /home/user/cp/zmp/settingswidget.h \
+  /home/user/cp/zmp/singleinstance.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.h \
   /usr/include/GL/gl.h \
@@ -6672,8 +8369,6 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -6831,6 +8526,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -6862,6 +8558,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -6891,6 +8588,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/c++/16/debug/assertions.h \
   /usr/include/c++/16/debug/debug.h \
   /usr/include/c++/16/exception \
+  /usr/include/c++/16/experimental/source_location \
   /usr/include/c++/16/ext/aligned_buffer.h \
   /usr/include/c++/16/ext/alloc_traits.h \
   /usr/include/c++/16/ext/atomicity.h \
@@ -6911,6 +8609,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -6984,7 +8683,10 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/locale.h \
   /usr/include/math.h \
   /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QDebug \
+  /usr/include/qt6/QtCore/QDir \
   /usr/include/qt6/QtCore/QFile \
+  /usr/include/qt6/QtCore/QFileInfo \
   /usr/include/qt6/QtCore/QFlags \
   /usr/include/qt6/QtCore/QHash \
   /usr/include/qt6/QtCore/QIODevice \
@@ -7004,6 +8706,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
+  /usr/include/qt6/QtCore/QSocketNotifier \
   /usr/include/qt6/QtCore/QSortFilterProxyModel \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
@@ -7119,6 +8822,8 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/qpointer.h \
   /usr/include/qt6/QtCore/qprocess.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qproperty.h \
+  /usr/include/qt6/QtCore/qpropertyprivate.h \
   /usr/include/qt6/QtCore/qqueue.h \
   /usr/include/qt6/QtCore/qrandom.h \
   /usr/include/qt6/QtCore/qrect.h \
@@ -7132,6 +8837,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/qsharedpointer.h \
   /usr/include/qt6/QtCore/qsharedpointer_impl.h \
   /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qsocketnotifier.h \
   /usr/include/qt6/QtCore/qsortfilterproxymodel.h \
   /usr/include/qt6/QtCore/qspan.h \
   /usr/include/qt6/QtCore/qstdlibdetection.h \
@@ -7191,6 +8897,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtGui/QPainter \
   /usr/include/qt6/QtGui/QPainterPath \
   /usr/include/qt6/QtGui/QPen \
+  /usr/include/qt6/QtGui/QPixmap \
   /usr/include/qt6/QtGui/QShowEvent \
   /usr/include/qt6/QtGui/QSurfaceFormat \
   /usr/include/qt6/QtGui/QTransform \
@@ -7251,6 +8958,8 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
+  /usr/include/qt6/QtNetwork/QLocalServer \
+  /usr/include/qt6/QtNetwork/QLocalSocket \
   /usr/include/qt6/QtNetwork/QNetworkAccessManager \
   /usr/include/qt6/QtNetwork/QNetworkReply \
   /usr/include/qt6/QtNetwork/QNetworkRequest \
@@ -7263,6 +8972,8 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtNetwork/qabstractsocket.h \
   /usr/include/qt6/QtNetwork/qhostaddress.h \
   /usr/include/qt6/QtNetwork/qhttpheaders.h \
+  /usr/include/qt6/QtNetwork/qlocalserver.h \
+  /usr/include/qt6/QtNetwork/qlocalsocket.h \
   /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
   /usr/include/qt6/QtNetwork/qnetworkreply.h \
   /usr/include/qt6/QtNetwork/qnetworkrequest.h \
@@ -7304,6 +9015,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
+  /usr/include/qt6/QtWidgets/QSplashScreen \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTreeView \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
@@ -7339,6 +9051,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
+  /usr/include/qt6/QtWidgets/qsplashscreen.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -7350,6 +9063,10 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -7387,8 +9104,10 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /home/user/cp/zmp/playerwidget.h \
   /home/user/cp/zmp/playlistswidget.h \
   /home/user/cp/zmp/settingswidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.h \
+  /home/user/cp/zmp/zmpinstaller.h \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -7403,8 +9122,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cloexec.h \
@@ -7575,6 +9292,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -7606,6 +9324,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -7655,6 +9374,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -8078,6 +9798,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
+  /usr/include/qt6/QtWidgets/QSplashScreen \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTextEdit \
   /usr/include/qt6/QtWidgets/QTreeView \
@@ -8117,6 +9838,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
+  /usr/include/qt6/QtWidgets/qsplashscreen.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -8129,6 +9851,10 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -8155,6 +9881,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /home/user/cp/zmp/iconbutton.h \
   /home/user/cp/zmp/miniplayerbar.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -8169,8 +9896,6 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -8307,6 +10032,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/c++/16/bits/specfun.h \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -8338,6 +10064,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -8380,6 +10107,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/c++/16/list \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -8673,6 +10401,10 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -8698,6 +10430,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /home/user/cp/zmp/mpriscontroller.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/playerwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -8712,8 +10445,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -8869,6 +10600,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -8900,6 +10632,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -8949,6 +10682,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -9287,6 +11021,10 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -9874,6 +11612,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/iconbutton.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -9888,8 +11627,6 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -10045,6 +11782,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -10076,6 +11814,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -10125,6 +11864,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -10447,6 +12187,10 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -10498,6 +12242,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /home/user/cp/zmp/iconbutton.h \
   /home/user/cp/zmp/playbackcontrolwidget.h \
   /home/user/cp/zmp/playerwidget.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -10512,8 +12257,6 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -10650,6 +12393,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/c++/16/bits/specfun.h \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -10681,6 +12425,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -10723,6 +12468,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/c++/16/list \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -11007,6 +12753,10 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -11697,6 +13447,7 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /home/user/cp/zmp/depsmanager.h \
   /home/user/cp/zmp/settingswidget.h \
   /home/user/cp/zmp/translator.h \
+  /home/user/cp/zmp/zmpinstaller.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -12015,24 +13766,29 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/locale.h \
   /usr/include/math.h \
   /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QCoreApplication \
   /usr/include/qt6/QtCore/QDebug \
   /usr/include/qt6/QtCore/QDir \
   /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFileInfo \
+  /usr/include/qt6/QtCore/QFlags \
   /usr/include/qt6/QtCore/QHash \
   /usr/include/qt6/QtCore/QJsonArray \
   /usr/include/qt6/QtCore/QJsonDocument \
   /usr/include/qt6/QtCore/QJsonObject \
   /usr/include/qt6/QtCore/QList \
   /usr/include/qt6/QtCore/QMap \
+  /usr/include/qt6/QtCore/QMetaType \
   /usr/include/qt6/QtCore/QObject \
   /usr/include/qt6/QtCore/QPointer \
   /usr/include/qt6/QtCore/QRect \
+  /usr/include/qt6/QtCore/QSharedDataPointer \
   /usr/include/qt6/QtCore/QSize \
   /usr/include/qt6/QtCore/QSizeF \
   /usr/include/qt6/QtCore/QStandardPaths \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
+  /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \
@@ -12044,6 +13800,7 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/qt6/QtCore/q20utility.h \
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/q26numeric.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qalgorithms.h \
@@ -12080,6 +13837,7 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/qt6/QtCore/qcoreapplication.h \
   /usr/include/qt6/QtCore/qcoreapplication_platform.h \
   /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qcryptographichash.h \
   /usr/include/qt6/QtCore/qdarwinhelpers.h \
   /usr/include/qt6/QtCore/qdatastream.h \
   /usr/include/qt6/QtCore/qdatetime.h \
@@ -12122,6 +13880,7 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/qt6/QtCore/qmargins.h \
   /usr/include/qt6/QtCore/qmath.h \
   /usr/include/qt6/QtCore/qmetacontainer.h \
+  /usr/include/qt6/QtCore/qmetaobject.h \
   /usr/include/qt6/QtCore/qmetatype.h \
   /usr/include/qt6/QtCore/qminmax.h \
   /usr/include/qt6/QtCore/qnamespace.h \
@@ -12243,6 +14002,26 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/qt6/QtGui/qvector2d.h \
   /usr/include/qt6/QtGui/qvectornd.h \
   /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtNetwork/QNetworkAccessManager \
+  /usr/include/qt6/QtNetwork/QNetworkProxy \
+  /usr/include/qt6/QtNetwork/QSslConfiguration \
+  /usr/include/qt6/QtNetwork/QSslPreSharedKeyAuthenticator \
+  /usr/include/qt6/QtNetwork/qabstractsocket.h \
+  /usr/include/qt6/QtNetwork/qhostaddress.h \
+  /usr/include/qt6/QtNetwork/qhttpheaders.h \
+  /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h \
+  /usr/include/qt6/QtNetwork/qnetworkproxy.h \
+  /usr/include/qt6/QtNetwork/qnetworkrequest.h \
+  /usr/include/qt6/QtNetwork/qssl.h \
+  /usr/include/qt6/QtNetwork/qsslcertificate.h \
+  /usr/include/qt6/QtNetwork/qsslconfiguration.h \
+  /usr/include/qt6/QtNetwork/qsslerror.h \
+  /usr/include/qt6/QtNetwork/qsslpresharedkeyauthenticator.h \
+  /usr/include/qt6/QtNetwork/qsslsocket.h \
+  /usr/include/qt6/QtNetwork/qtcpsocket.h \
+  /usr/include/qt6/QtNetwork/qtnetwork-config.h \
+  /usr/include/qt6/QtNetwork/qtnetworkexports.h \
+  /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
   /usr/include/qt6/QtWidgets/QApplication \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
@@ -12305,6 +14084,95 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
+
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o: /home/user/cp/zmp/third_party/kiss_fft.c \
+  /home/user/cp/zmp/third_party/_kiss_fft_guts.h \
+  /home/user/cp/zmp/third_party/kiss_fft.h \
+  /home/user/cp/zmp/third_party/kiss_fft_log.h \
+  /usr/include/alloca.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthread_stack_min.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/once_flag.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/limits.h \
+  /usr/include/linux/limits.h \
+  /usr/include/math.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
@@ -12855,6 +14723,7 @@ CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o: /home/user/cp/zmp/translator.cpp 
 CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visualizationwidget.cpp \
   /home/user/cp/zmp/audiomanager.h \
   /home/user/cp/zmp/depsmanager.h \
+  /home/user/cp/zmp/third_party/miniaudio.h \
   /home/user/cp/zmp/translator.h \
   /home/user/cp/zmp/visualizationwidget.h \
   /usr/include/GL/gl.h \
@@ -12871,8 +14740,6 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
   /usr/include/assert.h \
-  /usr/include/bass.h \
-  /usr/include/bass_fx.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/confname.h \
@@ -13036,6 +14903,7 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
   /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/std_mutex.h \
   /usr/include/c++/16/bits/stdexcept_except.h \
   /usr/include/c++/16/bits/stdexcept_throw.h \
   /usr/include/c++/16/bits/stdexcept_throwfwd.h \
@@ -13067,6 +14935,7 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
   /usr/include/c++/16/bits/string_view.tcc \
   /usr/include/c++/16/bits/stringfwd.h \
   /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_lock.h \
   /usr/include/c++/16/bits/unique_ptr.h \
   /usr/include/c++/16/bits/unordered_map.h \
   /usr/include/c++/16/bits/unordered_set.h \
@@ -13117,6 +14986,7 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
   /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
+  /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
@@ -13447,6 +15317,593 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
   /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/qwidget.h \
   /usr/include/sched.h \
+  /usr/include/soundtouch/FIFOSamplePipe.h \
+  /usr/include/soundtouch/STTypes.h \
+  /usr/include/soundtouch/SoundTouch.h \
+  /usr/include/soundtouch/soundtouch_config.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/single_threaded.h \
+  /usr/include/sys/types.h \
+  /usr/include/time.h \
+  /usr/include/unistd.h \
+  /usr/include/wchar.h \
+  /usr/include/wctype.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdint.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o: /home/user/cp/zmp/zmpinstaller.cpp \
+  /home/user/cp/zmp/translator.h \
+  /home/user/cp/zmp/zmpinstaller.h \
+  /usr/include/alloca.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/int-ll64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/asm-generic/types.h \
+  /usr/include/asm/bitsperlong.h \
+  /usr/include/asm/errno.h \
+  /usr/include/asm/posix_types.h \
+  /usr/include/asm/posix_types_64.h \
+  /usr/include/asm/types.h \
+  /usr/include/assert.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/cpu-set.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/environments.h \
+  /usr/include/bits/errno.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/local_lim.h \
+  /usr/include/bits/locale.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/pthread_stack_min-dynamic.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/setjmp.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/cookie_io_functions_t.h \
+  /usr/include/bits/types/error_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/mbstate_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_itimerspec.h \
+  /usr/include/bits/types/struct_sched_param.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/types/wint_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/uio_lim.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wchar.h \
+  /usr/include/bits/wctype-wchar.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/bits/xopen_lim.h \
+  /usr/include/c++/16/algorithm \
+  /usr/include/c++/16/array \
+  /usr/include/c++/16/atomic \
+  /usr/include/c++/16/backward/auto_ptr.h \
+  /usr/include/c++/16/backward/binders.h \
+  /usr/include/c++/16/bit \
+  /usr/include/c++/16/bits/algorithmfwd.h \
+  /usr/include/c++/16/bits/align.h \
+  /usr/include/c++/16/bits/alloc_traits.h \
+  /usr/include/c++/16/bits/allocated_ptr.h \
+  /usr/include/c++/16/bits/allocator.h \
+  /usr/include/c++/16/bits/atomic_base.h \
+  /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16/bits/basic_ios.h \
+  /usr/include/c++/16/bits/basic_ios.tcc \
+  /usr/include/c++/16/bits/basic_string.h \
+  /usr/include/c++/16/bits/basic_string.tcc \
+  /usr/include/c++/16/bits/char_traits.h \
+  /usr/include/c++/16/bits/charconv.h \
+  /usr/include/c++/16/bits/chrono.h \
+  /usr/include/c++/16/bits/codecvt.h \
+  /usr/include/c++/16/bits/concept_check.h \
+  /usr/include/c++/16/bits/cpp_type_traits.h \
+  /usr/include/c++/16/bits/cxxabi_forced.h \
+  /usr/include/c++/16/bits/cxxabi_init_exception.h \
+  /usr/include/c++/16/bits/enable_special_members.h \
+  /usr/include/c++/16/bits/erase_if.h \
+  /usr/include/c++/16/bits/exception.h \
+  /usr/include/c++/16/bits/exception_defines.h \
+  /usr/include/c++/16/bits/exception_ptr.h \
+  /usr/include/c++/16/bits/fs_dir.h \
+  /usr/include/c++/16/bits/fs_fwd.h \
+  /usr/include/c++/16/bits/fs_ops.h \
+  /usr/include/c++/16/bits/fs_path.h \
+  /usr/include/c++/16/bits/functexcept.h \
+  /usr/include/c++/16/bits/functional_hash.h \
+  /usr/include/c++/16/bits/hash_bytes.h \
+  /usr/include/c++/16/bits/hashtable.h \
+  /usr/include/c++/16/bits/hashtable_policy.h \
+  /usr/include/c++/16/bits/invoke.h \
+  /usr/include/c++/16/bits/ios_base.h \
+  /usr/include/c++/16/bits/istream.tcc \
+  /usr/include/c++/16/bits/list.tcc \
+  /usr/include/c++/16/bits/locale_classes.h \
+  /usr/include/c++/16/bits/locale_classes.tcc \
+  /usr/include/c++/16/bits/locale_conv.h \
+  /usr/include/c++/16/bits/locale_facets.h \
+  /usr/include/c++/16/bits/locale_facets.tcc \
+  /usr/include/c++/16/bits/locale_facets_nonio.h \
+  /usr/include/c++/16/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/16/bits/localefwd.h \
+  /usr/include/c++/16/bits/memory_resource.h \
+  /usr/include/c++/16/bits/memoryfwd.h \
+  /usr/include/c++/16/bits/monostate.h \
+  /usr/include/c++/16/bits/move.h \
+  /usr/include/c++/16/bits/nested_exception.h \
+  /usr/include/c++/16/bits/new_allocator.h \
+  /usr/include/c++/16/bits/new_except.h \
+  /usr/include/c++/16/bits/new_throw.h \
+  /usr/include/c++/16/bits/node_handle.h \
+  /usr/include/c++/16/bits/ostream.h \
+  /usr/include/c++/16/bits/ostream.tcc \
+  /usr/include/c++/16/bits/ostream_insert.h \
+  /usr/include/c++/16/bits/ostream_print.h \
+  /usr/include/c++/16/bits/parse_numbers.h \
+  /usr/include/c++/16/bits/postypes.h \
+  /usr/include/c++/16/bits/predefined_ops.h \
+  /usr/include/c++/16/bits/ptr_traits.h \
+  /usr/include/c++/16/bits/quoted_string.h \
+  /usr/include/c++/16/bits/range_access.h \
+  /usr/include/c++/16/bits/refwrap.h \
+  /usr/include/c++/16/bits/requires_hosted.h \
+  /usr/include/c++/16/bits/shared_ptr.h \
+  /usr/include/c++/16/bits/shared_ptr_atomic.h \
+  /usr/include/c++/16/bits/shared_ptr_base.h \
+  /usr/include/c++/16/bits/specfun.h \
+  /usr/include/c++/16/bits/sstream.tcc \
+  /usr/include/c++/16/bits/std_abs.h \
+  /usr/include/c++/16/bits/std_function.h \
+  /usr/include/c++/16/bits/stdexcept_except.h \
+  /usr/include/c++/16/bits/stdexcept_throw.h \
+  /usr/include/c++/16/bits/stdexcept_throwfwd.h \
+  /usr/include/c++/16/bits/stl_algo.h \
+  /usr/include/c++/16/bits/stl_algobase.h \
+  /usr/include/c++/16/bits/stl_bvector.h \
+  /usr/include/c++/16/bits/stl_construct.h \
+  /usr/include/c++/16/bits/stl_function.h \
+  /usr/include/c++/16/bits/stl_heap.h \
+  /usr/include/c++/16/bits/stl_iterator.h \
+  /usr/include/c++/16/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/16/bits/stl_iterator_base_types.h \
+  /usr/include/c++/16/bits/stl_list.h \
+  /usr/include/c++/16/bits/stl_map.h \
+  /usr/include/c++/16/bits/stl_multimap.h \
+  /usr/include/c++/16/bits/stl_multiset.h \
+  /usr/include/c++/16/bits/stl_numeric.h \
+  /usr/include/c++/16/bits/stl_pair.h \
+  /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/16/bits/stl_relops.h \
+  /usr/include/c++/16/bits/stl_set.h \
+  /usr/include/c++/16/bits/stl_tempbuf.h \
+  /usr/include/c++/16/bits/stl_tree.h \
+  /usr/include/c++/16/bits/stl_uninitialized.h \
+  /usr/include/c++/16/bits/stl_vector.h \
+  /usr/include/c++/16/bits/stream_iterator.h \
+  /usr/include/c++/16/bits/streambuf.tcc \
+  /usr/include/c++/16/bits/streambuf_iterator.h \
+  /usr/include/c++/16/bits/string_view.tcc \
+  /usr/include/c++/16/bits/stringfwd.h \
+  /usr/include/c++/16/bits/uniform_int_dist.h \
+  /usr/include/c++/16/bits/unique_ptr.h \
+  /usr/include/c++/16/bits/unordered_map.h \
+  /usr/include/c++/16/bits/unordered_set.h \
+  /usr/include/c++/16/bits/uses_allocator.h \
+  /usr/include/c++/16/bits/uses_allocator_args.h \
+  /usr/include/c++/16/bits/utility.h \
+  /usr/include/c++/16/bits/vector.tcc \
+  /usr/include/c++/16/bits/version.h \
+  /usr/include/c++/16/cassert \
+  /usr/include/c++/16/cctype \
+  /usr/include/c++/16/cerrno \
+  /usr/include/c++/16/chrono \
+  /usr/include/c++/16/climits \
+  /usr/include/c++/16/clocale \
+  /usr/include/c++/16/cmath \
+  /usr/include/c++/16/codecvt \
+  /usr/include/c++/16/compare \
+  /usr/include/c++/16/concepts \
+  /usr/include/c++/16/cstddef \
+  /usr/include/c++/16/cstdint \
+  /usr/include/c++/16/cstdio \
+  /usr/include/c++/16/cstdlib \
+  /usr/include/c++/16/cstring \
+  /usr/include/c++/16/ctime \
+  /usr/include/c++/16/cwchar \
+  /usr/include/c++/16/cwctype \
+  /usr/include/c++/16/debug/assertions.h \
+  /usr/include/c++/16/debug/debug.h \
+  /usr/include/c++/16/exception \
+  /usr/include/c++/16/ext/aligned_buffer.h \
+  /usr/include/c++/16/ext/alloc_traits.h \
+  /usr/include/c++/16/ext/atomicity.h \
+  /usr/include/c++/16/ext/concurrence.h \
+  /usr/include/c++/16/ext/numeric_traits.h \
+  /usr/include/c++/16/ext/string_conversions.h \
+  /usr/include/c++/16/ext/type_traits.h \
+  /usr/include/c++/16/filesystem \
+  /usr/include/c++/16/functional \
+  /usr/include/c++/16/initializer_list \
+  /usr/include/c++/16/iomanip \
+  /usr/include/c++/16/ios \
+  /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/istream \
+  /usr/include/c++/16/iterator \
+  /usr/include/c++/16/limits \
+  /usr/include/c++/16/list \
+  /usr/include/c++/16/locale \
+  /usr/include/c++/16/map \
+  /usr/include/c++/16/memory \
+  /usr/include/c++/16/new \
+  /usr/include/c++/16/numeric \
+  /usr/include/c++/16/optional \
+  /usr/include/c++/16/ostream \
+  /usr/include/c++/16/pstl/execution_defs.h \
+  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/16/pstl/glue_memory_defs.h \
+  /usr/include/c++/16/pstl/glue_numeric_defs.h \
+  /usr/include/c++/16/pstl/pstl_config.h \
+  /usr/include/c++/16/ratio \
+  /usr/include/c++/16/set \
+  /usr/include/c++/16/sstream \
+  /usr/include/c++/16/stdexcept \
+  /usr/include/c++/16/stdlib.h \
+  /usr/include/c++/16/streambuf \
+  /usr/include/c++/16/string \
+  /usr/include/c++/16/string_view \
+  /usr/include/c++/16/system_error \
+  /usr/include/c++/16/tr1/bessel_function.tcc \
+  /usr/include/c++/16/tr1/beta_function.tcc \
+  /usr/include/c++/16/tr1/ell_integral.tcc \
+  /usr/include/c++/16/tr1/exp_integral.tcc \
+  /usr/include/c++/16/tr1/gamma.tcc \
+  /usr/include/c++/16/tr1/hypergeometric.tcc \
+  /usr/include/c++/16/tr1/legendre_function.tcc \
+  /usr/include/c++/16/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/16/tr1/poly_hermite.tcc \
+  /usr/include/c++/16/tr1/poly_laguerre.tcc \
+  /usr/include/c++/16/tr1/riemann_zeta.tcc \
+  /usr/include/c++/16/tr1/special_function_util.h \
+  /usr/include/c++/16/tuple \
+  /usr/include/c++/16/type_traits \
+  /usr/include/c++/16/typeinfo \
+  /usr/include/c++/16/unordered_map \
+  /usr/include/c++/16/unordered_set \
+  /usr/include/c++/16/utility \
+  /usr/include/c++/16/variant \
+  /usr/include/c++/16/vector \
+  /usr/include/c++/16/version \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/atomic_word.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_base.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_inline.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/messages_members.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/time_members.h \
+  /usr/include/ctype.h \
+  /usr/include/endian.h \
+  /usr/include/errno.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/libintl.h \
+  /usr/include/limits.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/linux/errno.h \
+  /usr/include/linux/limits.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/sched/types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/linux/types.h \
+  /usr/include/locale.h \
+  /usr/include/math.h \
+  /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QCoreApplication \
+  /usr/include/qt6/QtCore/QCryptographicHash \
+  /usr/include/qt6/QtCore/QDebug \
+  /usr/include/qt6/QtCore/QDir \
+  /usr/include/qt6/QtCore/QFile \
+  /usr/include/qt6/QtCore/QFileInfo \
+  /usr/include/qt6/QtCore/QHash \
+  /usr/include/qt6/QtCore/QJsonDocument \
+  /usr/include/qt6/QtCore/QJsonObject \
+  /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QProcess \
+  /usr/include/qt6/QtCore/QRegularExpression \
+  /usr/include/qt6/QtCore/QStandardPaths \
+  /usr/include/qt6/QtCore/QString \
+  /usr/include/qt6/QtCore/QStringList \
+  /usr/include/qt6/QtCore/QVector \
+  /usr/include/qt6/QtCore/q17memory.h \
+  /usr/include/qt6/QtCore/q20bit.h \
+  /usr/include/qt6/QtCore/q20functional.h \
+  /usr/include/qt6/QtCore/q20iterator.h \
+  /usr/include/qt6/QtCore/q20memory.h \
+  /usr/include/qt6/QtCore/q20type_traits.h \
+  /usr/include/qt6/QtCore/q20utility.h \
+  /usr/include/qt6/QtCore/q23type_traits.h \
+  /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+  /usr/include/qt6/QtCore/qalgorithms.h \
+  /usr/include/qt6/QtCore/qalloc.h \
+  /usr/include/qt6/QtCore/qanystringview.h \
+  /usr/include/qt6/QtCore/qarraydata.h \
+  /usr/include/qt6/QtCore/qarraydataops.h \
+  /usr/include/qt6/QtCore/qarraydatapointer.h \
+  /usr/include/qt6/QtCore/qassert.h \
+  /usr/include/qt6/QtCore/qatomic.h \
+  /usr/include/qt6/QtCore/qatomic_cxx11.h \
+  /usr/include/qt6/QtCore/qbasicatomic.h \
+  /usr/include/qt6/QtCore/qbasictimer.h \
+  /usr/include/qt6/QtCore/qbindingstorage.h \
+  /usr/include/qt6/QtCore/qbytearray.h \
+  /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
+  /usr/include/qt6/QtCore/qbytearraylist.h \
+  /usr/include/qt6/QtCore/qbytearrayview.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
+  /usr/include/qt6/QtCore/qchar.h \
+  /usr/include/qt6/QtCore/qcheckedint_impl.h \
+  /usr/include/qt6/QtCore/qcompare.h \
+  /usr/include/qt6/QtCore/qcompare_impl.h \
+  /usr/include/qt6/QtCore/qcomparehelpers.h \
+  /usr/include/qt6/QtCore/qcompilerdetection.h \
+  /usr/include/qt6/QtCore/qconfig.h \
+  /usr/include/qt6/QtCore/qconstructormacros.h \
+  /usr/include/qt6/QtCore/qcontainerfwd.h \
+  /usr/include/qt6/QtCore/qcontainerinfo.h \
+  /usr/include/qt6/QtCore/qcontainertools_impl.h \
+  /usr/include/qt6/QtCore/qcontiguouscache.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
+  /usr/include/qt6/QtCore/qcryptographichash.h \
+  /usr/include/qt6/QtCore/qdarwinhelpers.h \
+  /usr/include/qt6/QtCore/qdatastream.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
+  /usr/include/qt6/QtCore/qdeadlinetimer.h \
+  /usr/include/qt6/QtCore/qdebug.h \
+  /usr/include/qt6/QtCore/qdir.h \
+  /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qendian.h \
+  /usr/include/qt6/QtCore/qeventloop.h \
+  /usr/include/qt6/QtCore/qexceptionhandling.h \
+  /usr/include/qt6/QtCore/qfile.h \
+  /usr/include/qt6/QtCore/qfiledevice.h \
+  /usr/include/qt6/QtCore/qfileinfo.h \
+  /usr/include/qt6/QtCore/qflags.h \
+  /usr/include/qt6/QtCore/qfloat16.h \
+  /usr/include/qt6/QtCore/qforeach.h \
+  /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
+  /usr/include/qt6/QtCore/qfunctionpointer.h \
+  /usr/include/qt6/QtCore/qgenericatomic.h \
+  /usr/include/qt6/QtCore/qglobal.h \
+  /usr/include/qt6/QtCore/qglobalstatic.h \
+  /usr/include/qt6/QtCore/qhash.h \
+  /usr/include/qt6/QtCore/qhashfunctions.h \
+  /usr/include/qt6/QtCore/qiodevice.h \
+  /usr/include/qt6/QtCore/qiodevicebase.h \
+  /usr/include/qt6/QtCore/qiterable.h \
+  /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qjsondocument.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonparseerror.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
+  /usr/include/qt6/QtCore/qlatin1stringview.h \
+  /usr/include/qt6/QtCore/qline.h \
+  /usr/include/qt6/QtCore/qlist.h \
+  /usr/include/qt6/QtCore/qlocale.h \
+  /usr/include/qt6/QtCore/qlogging.h \
+  /usr/include/qt6/QtCore/qmalloc.h \
+  /usr/include/qt6/QtCore/qmap.h \
+  /usr/include/qt6/QtCore/qmargins.h \
+  /usr/include/qt6/QtCore/qmath.h \
+  /usr/include/qt6/QtCore/qmetacontainer.h \
+  /usr/include/qt6/QtCore/qmetatype.h \
+  /usr/include/qt6/QtCore/qminmax.h \
+  /usr/include/qt6/QtCore/qnamespace.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
+  /usr/include/qt6/QtCore/qnumeric.h \
+  /usr/include/qt6/QtCore/qobject.h \
+  /usr/include/qt6/QtCore/qobject_impl.h \
+  /usr/include/qt6/QtCore/qobjectdefs.h \
+  /usr/include/qt6/QtCore/qobjectdefs_impl.h \
+  /usr/include/qt6/QtCore/qoverload.h \
+  /usr/include/qt6/QtCore/qpair.h \
+  /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qprocess.h \
+  /usr/include/qt6/QtCore/qprocessordetection.h \
+  /usr/include/qt6/QtCore/qrect.h \
+  /usr/include/qt6/QtCore/qrefcount.h \
+  /usr/include/qt6/QtCore/qregularexpression.h \
+  /usr/include/qt6/QtCore/qscopedpointer.h \
+  /usr/include/qt6/QtCore/qscopeguard.h \
+  /usr/include/qt6/QtCore/qset.h \
+  /usr/include/qt6/QtCore/qshareddata.h \
+  /usr/include/qt6/QtCore/qshareddata_impl.h \
+  /usr/include/qt6/QtCore/qsharedpointer.h \
+  /usr/include/qt6/QtCore/qsharedpointer_impl.h \
+  /usr/include/qt6/QtCore/qsize.h \
+  /usr/include/qt6/QtCore/qspan.h \
+  /usr/include/qt6/QtCore/qstandardpaths.h \
+  /usr/include/qt6/QtCore/qstdlibdetection.h \
+  /usr/include/qt6/QtCore/qstring.h \
+  /usr/include/qt6/QtCore/qstringalgorithms.h \
+  /usr/include/qt6/QtCore/qstringbuilder.h \
+  /usr/include/qt6/QtCore/qstringconverter.h \
+  /usr/include/qt6/QtCore/qstringconverter_base.h \
+  /usr/include/qt6/QtCore/qstringfwd.h \
+  /usr/include/qt6/QtCore/qstringlist.h \
+  /usr/include/qt6/QtCore/qstringmatcher.h \
+  /usr/include/qt6/QtCore/qstringtokenizer.h \
+  /usr/include/qt6/QtCore/qstringview.h \
+  /usr/include/qt6/QtCore/qswap.h \
+  /usr/include/qt6/QtCore/qsysinfo.h \
+  /usr/include/qt6/QtCore/qsystemdetection.h \
+  /usr/include/qt6/QtCore/qtaggedpointer.h \
+  /usr/include/qt6/QtCore/qtclasshelpermacros.h \
+  /usr/include/qt6/QtCore/qtconfiginclude.h \
+  /usr/include/qt6/QtCore/qtconfigmacros.h \
+  /usr/include/qt6/QtCore/qtcore-config.h \
+  /usr/include/qt6/QtCore/qtcoreexports.h \
+  /usr/include/qt6/QtCore/qtcoreglobal.h \
+  /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
+  /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
+  /usr/include/qt6/QtCore/qtenvironmentvariables.h \
+  /usr/include/qt6/QtCore/qtextstream.h \
+  /usr/include/qt6/QtCore/qtformat_impl.h \
+  /usr/include/qt6/QtCore/qtimezone.h \
+  /usr/include/qt6/QtCore/qtmetamacros.h \
+  /usr/include/qt6/QtCore/qtnoop.h \
+  /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
+  /usr/include/qt6/QtCore/qtresource.h \
+  /usr/include/qt6/QtCore/qttranslation.h \
+  /usr/include/qt6/QtCore/qttypetraits.h \
+  /usr/include/qt6/QtCore/qtversion.h \
+  /usr/include/qt6/QtCore/qtversionchecks.h \
+  /usr/include/qt6/QtCore/qtypeinfo.h \
+  /usr/include/qt6/QtCore/qtypes.h \
+  /usr/include/qt6/QtCore/qurl.h \
+  /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/quuid.h \
+  /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/qt6/QtCore/qvector.h \
+  /usr/include/qt6/QtCore/qversiontagging.h \
+  /usr/include/qt6/QtCore/qxptype_traits.h \
+  /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/qaction.h \
+  /usr/include/qt6/QtGui/qbitmap.h \
+  /usr/include/qt6/QtGui/qbrush.h \
+  /usr/include/qt6/QtGui/qcolor.h \
+  /usr/include/qt6/QtGui/qcursor.h \
+  /usr/include/qt6/QtGui/qfont.h \
+  /usr/include/qt6/QtGui/qfontinfo.h \
+  /usr/include/qt6/QtGui/qfontmetrics.h \
+  /usr/include/qt6/QtGui/qfontvariableaxis.h \
+  /usr/include/qt6/QtGui/qicon.h \
+  /usr/include/qt6/QtGui/qimage.h \
+  /usr/include/qt6/QtGui/qkeysequence.h \
+  /usr/include/qt6/QtGui/qpaintdevice.h \
+  /usr/include/qt6/QtGui/qpalette.h \
+  /usr/include/qt6/QtGui/qpen.h \
+  /usr/include/qt6/QtGui/qpicture.h \
+  /usr/include/qt6/QtGui/qpixelformat.h \
+  /usr/include/qt6/QtGui/qpixmap.h \
+  /usr/include/qt6/QtGui/qpolygon.h \
+  /usr/include/qt6/QtGui/qregion.h \
+  /usr/include/qt6/QtGui/qrgb.h \
+  /usr/include/qt6/QtGui/qrgba64.h \
+  /usr/include/qt6/QtGui/qtextcursor.h \
+  /usr/include/qt6/QtGui/qtextdocument.h \
+  /usr/include/qt6/QtGui/qtextformat.h \
+  /usr/include/qt6/QtGui/qtextoption.h \
+  /usr/include/qt6/QtGui/qtgui-config.h \
+  /usr/include/qt6/QtGui/qtguiexports.h \
+  /usr/include/qt6/QtGui/qtguiglobal.h \
+  /usr/include/qt6/QtGui/qtransform.h \
+  /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtWidgets/QCheckBox \
+  /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/QInputDialog \
+  /usr/include/qt6/QtWidgets/QLabel \
+  /usr/include/qt6/QtWidgets/QLineEdit \
+  /usr/include/qt6/QtWidgets/QMessageBox \
+  /usr/include/qt6/QtWidgets/QPushButton \
+  /usr/include/qt6/QtWidgets/QVBoxLayout \
+  /usr/include/qt6/QtWidgets/qabstractbutton.h \
+  /usr/include/qt6/QtWidgets/qboxlayout.h \
+  /usr/include/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+  /usr/include/qt6/QtWidgets/qframe.h \
+  /usr/include/qt6/QtWidgets/qgridlayout.h \
+  /usr/include/qt6/QtWidgets/qinputdialog.h \
+  /usr/include/qt6/QtWidgets/qlabel.h \
+  /usr/include/qt6/QtWidgets/qlayout.h \
+  /usr/include/qt6/QtWidgets/qlayoutitem.h \
+  /usr/include/qt6/QtWidgets/qlineedit.h \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
+  /usr/include/qt6/QtWidgets/qpushbutton.h \
+  /usr/include/qt6/QtWidgets/qsizepolicy.h \
+  /usr/include/qt6/QtWidgets/qtwidgets-config.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
+  /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
+  /usr/include/qt6/QtWidgets/qwidget.h \
+  /usr/include/sched.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -13471,8 +15928,6 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o: /home/user/cp/zmp/visual
 ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib/crti.o \
   /usr/lib/crtn.o \
-  /usr/lib/libbass.so \
-  /usr/lib/libbass_fx.so \
   /usr/lib/libc.so \
   /usr/lib/libgcc_s.so.1 \
   /usr/lib/libm.so \
@@ -13499,6 +15954,7 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib/libQt6OpenGLWidgets.so.6.11.1 \
   /usr/lib/libQt6Svg.so.6.11.1 \
   /usr/lib/libQt6Widgets.so.6.11.1 \
+  /usr/lib/libSoundTouch.so \
   /usr/lib/libX11.so.6 \
   /usr/lib/libXau.so.6 \
   /usr/lib/libXdmcp.so.6 \
@@ -13516,7 +15972,6 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib/libcrypto.so.3 \
   /usr/lib/libcurl.so.4 \
   /usr/lib/libdbus-1.so.3 \
-  /usr/lib/libdl.so.2 \
   /usr/lib/libdouble-conversion.so.3 \
   /usr/lib/libduktape.so.207 \
   /usr/lib/libexpat.so.1 \
@@ -13558,10 +16013,8 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib/libproxy.so.1 \
   /usr/lib/libproxy/libpxbackend-1.0.so \
   /usr/lib/libpsl.so.5 \
-  /usr/lib/libpthread.so.0 \
   /usr/lib/libpulse.so.0 \
   /usr/lib/libresolv.so.2 \
-  /usr/lib/librt.so.1 \
   /usr/lib/libsndfile.so.1 \
   /usr/lib/libssh2.so.1 \
   /usr/lib/libssl.so.3 \
@@ -13586,7 +16039,6 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib32/libbz2.so.1.0 \
   /usr/lib32/libcom_err.so.2 \
   /usr/lib32/libcurl.so.4 \
-  /usr/lib32/libdl.so.2 \
   /usr/lib32/libexpat.so.1 \
   /usr/lib32/libffi.so.8 \
   /usr/lib32/libgio-2.0.so.0 \
@@ -13606,16 +16058,19 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   /usr/lib32/libngtcp2_crypto_ossl.so.0 \
   /usr/lib32/libpcre2-8.so.0 \
   /usr/lib32/libpsl.so.5 \
-  /usr/lib32/libpthread.so.0 \
   /usr/lib32/libresolv.so.2 \
-  /usr/lib32/librt.so.1 \
   /usr/lib32/libssh2.so.1 \
   /usr/lib32/libssl.so.3 \
   /usr/lib32/libunistring.so.5 \
   /usr/lib32/libxcb.so.1 \
+  CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o \
@@ -13630,8 +16085,10 @@ ZMP_Linux_bin: /usr/lib/Scrt1.o \
   CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o \
   CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o \
-  CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o
+  CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o \
+  CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o
 
 
 CMakeFiles/ZMP_Linux_bin.dir/translator.cpp.o:
@@ -13648,19 +16105,25 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o:
 
+CMakeFiles/ZMP_Linux_bin.dir/devicemanagerdialog.cpp.o:
+
 CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o:
 
+CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/audiomodecontroller.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o:
+
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
 /usr/lib32/libxcb.so.1:
 
 /usr/lib32/libunistring.so.5:
 
-/usr/lib32/librt.so.1:
-
 /usr/lib32/libresolv.so.2:
-
-/usr/lib32/libpthread.so.0:
 
 /usr/lib32/libpcre2-8.so.0:
 
@@ -13683,8 +16146,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 /usr/lib32/libffi.so.8:
 
 /usr/lib32/libcurl.so.4:
-
-/usr/lib32/libcom_err.so.2:
 
 /usr/lib32/libbz2.so.1.0:
 
@@ -13714,10 +16175,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/lib/libsndfile.so.1:
 
-/usr/lib/librt.so.1:
-
-/usr/lib/libpthread.so.0:
-
 /usr/lib/libpsl.so.5:
 
 /usr/lib/libproxy.so.1:
@@ -13739,8 +16196,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 /usr/lib/libmvec.so.1:
 
 /usr/lib/libmpg123.so.0:
-
-/usr/lib/libmp3lame.so.0:
 
 /usr/lib/libmount.so.1:
 
@@ -13784,19 +16239,17 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/lib/libbrotlicommon.so.1:
 
-/usr/lib/libXdmcp.so.6:
-
 /usr/lib/libXau.so.6:
 
 /usr/lib/libX11.so.6:
+
+/usr/lib/libSoundTouch.so:
 
 /usr/lib/libQt6OpenGLWidgets.so.6.11.1:
 
 /usr/lib/libQt6Network.so.6.11.1:
 
 /usr/lib/libQt6Gui.so.6.11.1:
-
-/usr/lib/libOpenGL.so:
 
 /usr/lib/libGLX.so:
 
@@ -13813,8 +16266,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtendS.o:
 
 /usr/lib/libm.so:
-
-/usr/lib/crti.o:
 
 /usr/lib/Scrt1.o:
 
@@ -13842,27 +16293,21 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtCore/QLocale:
 
-/usr/include/taglib/flacproperties.h:
+/usr/lib/libmp3lame.so.0:
 
-/usr/include/qt6/QtWidgets/QStyle:
+/usr/include/bits/types/once_flag.h:
+
+/usr/include/bits/pthread_stack_min.h:
+
+/home/user/cp/zmp/third_party/_kiss_fft_guts.h:
+
+/usr/include/taglib/flacproperties.h:
 
 /usr/include/qt6/QtGui/QPalette:
 
 /usr/include/qt6/QtCore/qdiriterator.h:
 
-/usr/include/taglib/tvariant.h:
-
-/usr/include/taglib/tstringlist.h:
-
-/usr/include/taglib/tstring.h:
-
 /usr/include/taglib/tpicturetype.h:
-
-/usr/include/taglib/tfile.h:
-
-/usr/include/taglib/tbytevectorlist.h:
-
-/usr/include/taglib/tbytevector.h:
 
 /usr/include/taglib/mpegproperties.h:
 
@@ -13878,17 +16323,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/taglib/id3v2.h:
 
-/usr/include/taglib/fileref.h:
-
-/usr/include/taglib/audioproperties.h:
-
 /usr/include/taglib/attachedpictureframe.h:
 
 /usr/include/qt6/QtGui/qwindow.h:
 
 /usr/include/qt6/QtGui/qsurface.h:
-
-/usr/include/qt6/QtGui/QWindow:
 
 /usr/include/qt6/QtGui/QGuiApplication:
 
@@ -13898,8 +16337,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtDBus/QDBusMetaType:
 
-/usr/include/qt6/QtDBus/QDBusArgument:
-
 /usr/include/qt6/QtCore/QUuid:
 
 /usr/include/qt6/QtCore/QTime:
@@ -13908,21 +16345,15 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/linux/falloc.h:
 
-/usr/include/bits/struct_stat.h:
-
-/usr/include/bits/stat.h:
-
 /usr/include/bits/openat2.h:
 
 /usr/include/bits/fcntl.h:
 
 /usr/include/bits/cloexec.h:
 
+/usr/include/qt6/QtWidgets/QSplashScreen:
+
 /usr/include/qt6/QtNetwork/qnetworkproxy.h:
-
-/usr/lib/libfontconfig.so.1:
-
-/usr/include/qt6/QtWidgets/qstylefactory.h:
 
 /usr/include/qt6/QtWidgets/qinputdialog.h:
 
@@ -13950,10 +16381,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/c++/16/csignal:
 
-/usr/include/bits/unistd_ext.h:
-
-/usr/include/bits/types/sigevent_t.h:
-
 /usr/include/bits/types/sig_atomic_t.h:
 
 /usr/include/bits/sigthread.h:
@@ -13970,15 +16397,57 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/bits/sigaction.h:
 
-/usr/include/bits/posix_opt.h:
+/usr/lib32/libcom_err.so.2:
 
-/usr/include/bits/getopt_core.h:
+/usr/include/termios.h:
 
-CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
+/usr/include/taglib/tvariant.h:
 
-/usr/include/bits/confname.h:
+/usr/include/taglib/tstringlist.h:
+
+/usr/include/taglib/tstring.h:
+
+/usr/include/taglib/tfile.h:
+
+/usr/include/taglib/tbytevectorlist.h:
+
+/usr/include/taglib/tbytevector.h:
+
+/usr/include/taglib/fileref.h:
+
+/usr/include/taglib/audioproperties.h:
+
+/usr/include/bits/termios.h:
+
+/usr/include/bits/termios-cbaud.h:
+
+/usr/include/bits/termios-c_oflag.h:
+
+/usr/include/bits/termios-c_iflag.h:
+
+/usr/include/bits/termios-c_cflag.h:
+
+/usr/lib/libXdmcp.so.6:
+
+/usr/include/bits/termios-c_cc.h:
+
+CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o:
+
+/usr/include/bits/termios-baud.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/xmmintrin.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mmintrin.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/mm_malloc.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/float.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/16/include/emmintrin.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/sys/poll.h:
 
 /usr/lib32/libngtcp2.so.16:
 
@@ -13989,6 +16458,40 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 /usr/include/qt6/QtCore/QDir:
 
 /usr/include/qt6/QtCore/QDebug:
+
+/usr/include/poll.h:
+
+/usr/include/linux/stat.h:
+
+/usr/include/c++/16/math.h:
+
+/usr/include/bits/unistd_ext.h:
+
+/usr/lib/libOpenGL.so:
+
+/usr/include/bits/types/struct_statx.h:
+
+/usr/include/bits/struct_stat.h:
+
+/usr/include/qt6/QtGui/QWindow:
+
+/usr/include/bits/statx.h:
+
+/usr/include/bits/stat.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/poll.h:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/bits/eventfd.h:
+
+/usr/include/bits/dl_find_object.h:
+
+CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
+
+/usr/include/bits/confname.h:
 
 /usr/include/qt6/QtGui/qfontdatabase.h:
 
@@ -14013,6 +16516,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 /usr/include/c++/16/ostream:
 
 /usr/include/c++/16/locale:
+
+/usr/include/bits/termios-misc.h:
 
 /usr/include/c++/16/iomanip:
 
@@ -14050,6 +16555,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 
 /usr/include/bits/libm-simd-decl-stubs.h:
 
+/usr/include/bits/termios-struct.h:
+
 /usr/include/bits/mathcalls-macros.h:
 
 /usr/include/bits/fp-logb.h:
@@ -14058,13 +16565,19 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o:
 
 /usr/include/bits/flt-eval-method.h:
 
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_zmpinstaller.cpp:
+
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_visualizationwidget.cpp:
+
+/usr/lib/libfontconfig.so.1:
+
+/usr/include/qt6/QtWidgets/qstylefactory.h:
+
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_singleinstance.cpp:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_settingswidget.cpp:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playlistswidget.cpp:
-
-ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playerwidget.cpp:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_miniplayerbar.cpp:
 
@@ -14079,6 +16592,12 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_ftpclient.cpp:
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_fileswidget.cpp:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_deviceswidget.cpp:
+
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_devicemanagerdialog.cpp:
+
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_cliplayer.cpp:
+
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_audiomodecontroller.cpp:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_audiomanager.cpp:
 
@@ -14188,6 +16707,8 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/lib/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake:
 
+/usr/include/sys/eventfd.h:
+
 /usr/lib/cmake/Qt6Svg/Qt6SvgVersionlessAliasTargets.cmake:
 
 /usr/lib/cmake/Qt6Svg/Qt6SvgTargetsPrecheck.cmake:
@@ -14199,14 +16720,6 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 /usr/lib/cmake/Qt6Svg/Qt6SvgDependencies.cmake:
 
 /usr/lib/cmake/Qt6Svg/Qt6SvgConfig.cmake:
-
-/usr/lib/cmake/Qt6Svg/Qt6SvgAdditionalTargetInfo.cmake:
-
-/usr/lib/libEGL.so.1:
-
-/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake:
-
-/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake:
 
@@ -14252,25 +16765,35 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets-relwithdebinfo.cmake:
 
-/usr/include/qt6/QtGui/QPainterPath:
+/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargetsPrecheck.cmake:
 
-/usr/include/qt6/QtGui/qvalidator.h:
+/usr/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargetsPrecheck.cmake:
+/usr/lib/cmake/Qt6Network/Qt6NetworkTargetsPrecheck.cmake:
 
-/usr/include/qt6/QtGui/QPainter:
+/usr/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake:
 
-/usr/include/qt6/QtGui/QColor:
+/usr/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake:
 
-/usr/include/qt6/QtDBus/qtdbusglobal.h:
+/usr/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake:
 
-/usr/include/qt6/QtCore/qobject.h:
+/usr/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake:
 
-/home/user/cp/zmp/jamendowidget.cpp:
+/usr/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake:
 
-/usr/include/c++/16/bits/allocator.h:
+/usr/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake:
 
-/usr/include/qt6/QtDBus/QDBusAbstractAdaptor:
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargetsPrecheck.cmake:
+
+/usr/include/c++/16/cstdarg:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake:
 
 /usr/include/qt6/QtCore/qvector.h:
 
@@ -14285,6 +16808,10 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 /usr/include/c++/16/list:
 
 /usr/include/bits/libc-header-start.h:
+
+ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playerwidget.cpp:
+
+/usr/include/soundtouch/soundtouch_config.h:
 
 /usr/include/qt6/QtCore/qtypeinfo.h:
 
@@ -14305,6 +16832,8 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 /usr/include/taglib/flacmetadatablock.h:
 
 /usr/include/locale.h:
+
+/home/user/cp/zmp/cliplayer.cpp:
 
 /usr/include/qt6/QtCore/qsysinfo.h:
 
@@ -14344,6 +16873,12 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/include/stdlib.h:
 
+/usr/include/qt6/QtCore/qpropertyprivate.h:
+
+/usr/include/bits/time64.h:
+
+/usr/include/qt6/QtCore/qprocess.h:
+
 /usr/include/bits/pthreadtypes-arch.h:
 
 /home/user/cp/zmp/main.cpp:
@@ -14356,9 +16891,13 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/include/qt6/QtCore/qglobalstatic.h:
 
-/usr/lib/libbass.so:
-
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginTargets-relwithdebinfo.cmake:
+
+/usr/include/qt6/QtCore/qobject.h:
+
+/home/user/cp/zmp/jamendowidget.cpp:
+
+/usr/include/qt6/QtDBus/qtdbusglobal.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargets-relwithdebinfo.cmake:
 
@@ -14376,13 +16915,13 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/include/qt6/QtCore/qmetaobject.h:
 
-/usr/include/qt6/QtCore/qmath.h:
-
 /usr/include/qt6/QtCore/qmap.h:
+
+/usr/include/bits/fcntl-linux.h:
 
 /usr/include/taglib/tiostream.h:
 
-/usr/include/bits/fcntl-linux.h:
+/usr/include/dlfcn.h:
 
 /usr/include/qt6/QtCore/qmalloc.h:
 
@@ -14393,6 +16932,10 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargets.cmake:
 
 /usr/include/qt6/QtCore/qline.h:
+
+/usr/include/qt6/QtCore/qvarlengtharray.h:
+
+/usr/include/qt6/QtWidgets/QStackedWidget:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_translator.cpp:
 
@@ -14428,23 +16971,19 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWebpPluginAdditionalTargetInfo.cmake:
 
-/usr/include/qt6/QtDBus/QDBusObjectPath:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargetsPrecheck.cmake:
-
 /usr/include/qt6/QtCore/qexceptionhandling.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginAdditionalTargetInfo.cmake:
 
 /usr/include/c++/16/exception:
 
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginAdditionalTargetInfo.cmake:
-
 /usr/include/qt6/QtCore/qtresource.h:
 
 /usr/include/qt6/QtCore/qdarwinhelpers.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets.cmake:
+
+/usr/include/qt6/QtCore/QCoreApplication:
 
 /usr/include/qt6/QtCore/qswap.h:
 
@@ -14458,15 +16997,13 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 
 /usr/include/qt6/QtCore/qcoreapplication.h:
 
+/usr/include/sys/ttydefaults.h:
+
 /usr/include/qt6/QtCore/qcontainerinfo.h:
 
 /usr/include/qt6/QtCore/qutf8stringview.h:
 
 /usr/include/qt6/QtCore/qconstructormacros.h:
-
-/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake:
-
-/usr/include/qt6/QtCore/qcomparehelpers.h:
 
 /usr/include/qt6/QtCore/qdir.h:
 
@@ -14530,8 +17067,6 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 
 /usr/include/qt6/QtWidgets/QHBoxLayout:
 
-/usr/lib/libdl.so.2:
-
 /usr/include/qt6/QtCore/q23type_traits.h:
 
 /usr/include/taglib/tlist.tcc:
@@ -14542,12 +17077,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginTargets.cmake:
 
-/usr/include/qt6/QtCore/qbasictimer.h:
-
-/usr/include/qt6/QtGui/qfontvariableaxis.h:
-
-/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsVersionlessTargets.cmake:
-
 /usr/share/cmake/Modules/Compiler/GNU-CXX.cmake:
 
 /usr/include/qt6/QtCore/qcontiguouscache.h:
@@ -14556,9 +17085,13 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginConfig.cmake:
 
-/usr/include/qt6/QtGui/QImage:
-
 /usr/include/qt6/QtCore/qobjectdefs_impl.h:
+
+/usr/include/qt6/QtCore/qproperty.h:
+
+/usr/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginAdditionalTargetInfo.cmake:
+
+/usr/include/qt6/QtGui/QSurfaceFormat:
 
 /usr/include/qt6/QtCore/QVector:
 
@@ -14571,6 +17104,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 /usr/include/qt6/QtCore/QVariant:
 
 /usr/include/qt6/QtCore/QSizeF:
+
+/usr/include/bits/types/struct_statx_timestamp.h:
 
 /usr/include/qt6/QtCore/qtformat_impl.h:
 
@@ -14588,6 +17123,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/qt6/QtCore/QRandomGenerator:
 
+/usr/include/qt6/QtCore/QQueue:
+
 /usr/include/qt6/QtCore/qstringfwd.h:
 
 /usr/include/qt6/QtCore/QPointer:
@@ -14597,6 +17134,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 /usr/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake:
 
 /usr/include/qt6/QtWidgets/qscrollarea.h:
+
+/home/user/cp/zmp/third_party/kiss_fft_log.h:
 
 /usr/include/c++/16/bits/sstream.tcc:
 
@@ -14638,8 +17177,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/qt6/QtCore/qtversionchecks.h:
 
-/usr/include/errno.h:
-
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/qt6/QtCore/qtconfigmacros.h:
@@ -14647,10 +17184,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 /usr/include/c++/16/bits/basic_string.tcc:
 
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/opt_random.h:
-
-/usr/lib/libngtcp2_crypto_ossl.so.0:
-
-/usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h:
 
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h:
 
@@ -14661,8 +17194,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 /usr/lib/libblkid.so.1:
 
 /usr/include/qt6/QtCore/qstdlibdetection.h:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTiffPluginTargetsPrecheck.cmake:
 
@@ -14686,8 +17217,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h:
 
-/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
-
 /usr/include/bits/types/idtype_t.h:
 
 /usr/include/qt6/QtCore/qdebug.h:
@@ -14706,15 +17235,17 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/qt6/QtCore/QSortFilterProxyModel:
 
-/usr/include/bits/types/clockid_t.h:
-
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/syslimits.h:
 
 /usr/include/c++/16/bits/stl_heap.h:
 
+/usr/include/bits/types/clockid_t.h:
+
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/c++/16/tr1/beta_function.tcc:
+
+/usr/include/sys/time.h:
 
 /usr/include/qt6/QtCore/qtdeprecationdefinitions.h:
 
@@ -14724,8 +17255,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/lib/cmake/Qt6/Qt6Config.cmake:
 
-/usr/include/c++/16/set:
-
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandQtShellIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake:
@@ -14734,35 +17263,29 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/qt6/QtCore/QList:
 
-/home/user/cp/zmp/playerwidget.cpp:
+/usr/include/qt6/QtCore/qmath.h:
 
-/usr/include/qt6/QtCore/QStandardPaths:
+/usr/include/c++/16/mutex:
 
-/usr/include/c++/16/ios:
+/usr/include/qt6/QtWidgets/QLineEdit:
 
-/usr/include/c++/16/ratio:
+/usr/include/bits/types/timer_t.h:
 
-/usr/include/qt6/QtCore/qtnoop.h:
+/usr/include/c++/16/functional:
 
-/usr/include/c++/16/bits/uses_allocator_args.h:
+/usr/include/c++/16/filesystem:
 
-/usr/include/qt6/QtGui/qoffscreensurface_platform.h:
+/usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake:
 
-/usr/include/qt6/QtGui/qtextformat.h:
+/usr/include/c++/16/ext/aligned_buffer.h:
 
-/usr/include/c++/16/stdexcept:
+/usr/include/qt6/QtDBus/QDBusArgument:
 
-/usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake:
-
-/usr/include/bits/uio_lim.h:
-
-/usr/include/c++/16/ext/type_traits.h:
+/usr/include/qt6/QtNetwork/QLocalSocket:
 
 /usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake:
 
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake:
-
-/usr/include/bits/types/timer_t.h:
 
 /usr/include/bits/getopt_posix.h:
 
@@ -14784,20 +17307,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/bits/types/struct_tm.h:
 
-/usr/include/qt6/QtCore/qcompilerdetection.h:
-
-/usr/include/qt6/QtGui/qtransform.h:
-
-/usr/include/qt6/QtNetwork/qsslerror.h:
-
-/usr/lib32/libgio-2.0.so.0:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginConfig.cmake:
-
-/usr/include/bits/waitflags.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargets-relwithdebinfo.cmake:
-
 /usr/include/qt6/QtWidgets/QVBoxLayout:
 
 /usr/include/bits/types/struct_sched_param.h:
@@ -14816,8 +17325,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/bits/types/clock_t.h:
 
-/usr/include/qt6/QtGui/qvectornd.h:
-
 /usr/include/qt6/QtCore/QObject:
 
 /usr/include/linux/posix_types.h:
@@ -14826,7 +17333,51 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/qt6/QtCore/qiodevice.h:
 
-/usr/include/bits/time64.h:
+/usr/include/bits/types/time_t.h:
+
+/usr/include/qt6/QtWidgets/qplaintextedit.h:
+
+/usr/include/c++/16/unordered_map:
+
+/usr/include/bits/termios-c_lflag.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginConfig.cmake:
+
+/usr/include/qt6/QtWidgets/QFormLayout:
+
+/usr/include/c++/16/bits/localefwd.h:
+
+/usr/include/pthread.h:
+
+/usr/include/c++/16/bits/shared_ptr_atomic.h:
+
+/usr/include/qt6/QtWidgets/qlistview.h:
+
+/home/user/cp/zmp/third_party/miniaudio.h:
+
+/usr/include/qt6/QtGui/qpalette.h:
+
+/usr/include/qt6/QtCore/qendian.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginTargetsPrecheck.cmake:
+
+/usr/include/qt6/QtCore/QSet:
+
+/usr/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake:
+
+/usr/include/c++/16/bits/stl_construct.h:
+
+/usr/lib/cmake/Qt6Svg/Qt6SvgConfigVersion.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginConfig.cmake:
+
+/usr/include/c++/16/bits/stl_tree.h:
+
+/usr/include/qt6/QtWidgets/qcheckbox.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake:
 
@@ -14842,27 +17393,13 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/c++/16/pstl/execution_defs.h:
 
-/usr/include/bits/types/time_t.h:
+/usr/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake:
 
-/usr/include/qt6/QtWidgets/qplaintextedit.h:
+/usr/include/c++/16/debug/debug.h:
 
-/usr/include/c++/16/unordered_map:
+/usr/include/c++/16/debug/assertions.h:
 
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginConfig.cmake:
-
-/usr/include/pthread.h:
-
-/usr/include/c++/16/bits/shared_ptr_atomic.h:
-
-/usr/include/qt6/QtWidgets/qlistview.h:
-
-/usr/include/c++/16/bits/stl_tree.h:
-
-/usr/include/qt6/QtWidgets/qcheckbox.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginAdditionalTargetInfo.cmake:
+/usr/include/c++/16/bits/allocator.h:
 
 /usr/include/c++/16/pstl/pstl_config.h:
 
@@ -14870,29 +17407,23 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/bits/types/struct_timeval.h:
 
-/usr/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake:
-
 /usr/include/c++/16/bits/locale_classes.tcc:
 
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/qt6/QtCore/qtimezone.h:
 
+/home/user/cp/zmp/singleinstance.h:
+
+/usr/lib/libQt6DBus.so.6.11.1:
+
+/usr/include/qt6/QtCore/qlogging.h:
+
+/usr/include/qt6/QtGui/qcolor.h:
+
 /usr/include/c++/16/bits/stream_iterator.h:
 
 /usr/include/qt6/QtMultimedia/qtmultimedia-config.h:
-
-/usr/include/c++/16/tr1/poly_hermite.tcc:
-
-/usr/include/qt6/QtWidgets/qmessagebox.h:
-
-/usr/include/qt6/QtGui/qimage.h:
-
-/usr/include/bits/types/error_t.h:
-
-/usr/include/qt6/QtCore/qtcore-config.h:
-
-/usr/include/qt6/QtDBus/qdbusconnection.h:
 
 /usr/include/qt6/QtWidgets/qabstractslider.h:
 
@@ -14904,27 +17435,21 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets-relwithdebinfo.cmake:
 
+/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargets.cmake:
+
+/usr/include/qt6/QtCore/qregularexpression.h:
+
+/usr/include/qt6/QtCore/QUrl:
+
 /usr/include/c++/16/tr1/riemann_zeta.tcc:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginConfig.cmake:
 
 /usr/include/bits/pthreadtypes.h:
 
-/usr/include/qt6/QtCore/qprocess.h:
+/usr/include/qt6/QtWidgets/QStyle:
 
-/usr/include/qt6/QtCore/qvarlengtharray.h:
-
-/usr/include/qt6/QtWidgets/QStackedWidget:
-
-/usr/include/bass.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
-
-/usr/include/bits/wordsize.h:
-
-/usr/include/bits/posix1_lim.h:
-
-/usr/include/c++/16/cctype:
+/home/user/cp/zmp/third_party/kiss_fft.c:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 
@@ -14942,13 +17467,153 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 
 /usr/include/bits/local_lim.h:
 
-/usr/include/qt6/QtGui/QBrush:
-
 /usr/include/bits/endianness.h:
 
-/usr/include/qt6/QtCore/qdeadlinetimer.h:
+/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginConfig.cmake:
 
-/usr/include/qt6/QtDBus/qdbusabstractadaptor.h:
+/usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h:
+
+/usr/include/bits/cpu-set.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
+
+/usr/include/qt6/QtCore/qarraydatapointer.h:
+
+/usr/include/c++/16/bits/atomic_lockfree_defines.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/qt6/QtMultimedia/qmediadevices.h:
+
+/usr/include/bits/byteswap.h:
+
+/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake:
+
+/usr/include/c++/16/experimental/source_location:
+
+/usr/include/qt6/QtCore/qbytearraylist.h:
+
+/home/user/cp/zmp/fileswidget.h:
+
+/usr/include/qt6/QtCore/qeventloop.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/include/c++/16/ext/alloc_traits.h:
+
+/usr/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
+
+/usr/include/qt6/QtCore/QJsonArray:
+
+/usr/include/c++/16/bits/unordered_map.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargets.cmake:
+
+/usr/share/cmake/Modules/GNUInstallDirs.cmake:
+
+/usr/include/qt6/QtCore/qrandom.h:
+
+/usr/include/asm/posix_types_64.h:
+
+/usr/include/c++/16/bits/stl_set.h:
+
+/usr/include/taglib/flacfile.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/timesize.h:
+
+/usr/include/qt6/QtNetwork/qsslconfiguration.h:
+
+/home/user/cp/zmp/aboutdialog.h:
+
+/usr/include/qt6/QtGui/qaction.h:
+
+/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsVersionlessTargets.cmake:
+
+/usr/include/bits/endian.h:
+
+/usr/include/c++/16/pstl/glue_algorithm_defs.h:
+
+/usr/include/asm/bitsperlong.h:
+
+/usr/include/c++/16/bits/stl_multiset.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake:
+
+/usr/lib/libglib-2.0.so.0:
+
+/usr/include/qt6/QtCore/qfunctionpointer.h:
+
+/usr/include/qt6/QtCore/QStringList:
+
+/usr/include/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/qt6/QtCore/QString:
+
+/usr/include/c++/16/set:
+
+/home/user/cp/zmp/third_party/kiss_fft.h:
+
+/usr/include/qt6/QtCore/QIODevice:
+
+/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/libdbus-1.so.3:
+
+/usr/include/c++/16/cerrno:
+
+/usr/include/bits/stdint-intn.h:
+
+/usr/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake:
+
+/usr/include/alloca.h:
+
+/home/user/cp/zmp/playbackcontrolwidget.cpp:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake:
+
+/usr/include/c++/16/bits/hashtable.h:
+
+/usr/include/qt6/QtCore/qmetacontainer.h:
+
+/usr/include/sched.h:
+
+/usr/lib/cmake/Qt6/Qt6Dependencies.cmake:
+
+/usr/include/bits/types/__sigset_t.h:
+
+/usr/include/c++/16/bits/stl_map.h:
+
+/usr/include/bits/types/sigset_t.h:
+
+/usr/include/c++/16/bits/memory_resource.h:
+
+/usr/include/qt6/QtNetwork/QNetworkProxy:
+
+/usr/include/c++/16/unordered_set:
+
+CMakeFiles/4.4.2/CMakeCCompiler.cmake:
+
+/home/user/cp/zmp/equalizerwidget.h:
+
+/usr/include/qt6/QtCore/qbasictimer.h:
+
+/usr/include/qt6/QtGui/qfontvariableaxis.h:
+
+/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsVersionlessTargets.cmake:
+
+/usr/include/c++/16/cctype:
+
+/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake:
+
+/usr/include/qt6/QtCore/qcomparehelpers.h:
 
 /usr/include/qt6/QtCore/qlist.h:
 
@@ -14962,102 +17627,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 
 /usr/include/bits/uintn-identity.h:
 
-/usr/include/bits/typesizes.h:
-
-/usr/include/qt6/QtCore/qarraydatapointer.h:
-
-/usr/include/c++/16/bits/atomic_lockfree_defines.h:
-
-/usr/include/bits/errno.h:
-
-/usr/include/qt6/QtMultimedia/qmediadevices.h:
-
-/usr/include/bits/byteswap.h:
-
-/usr/include/qt6/QtCore/qbytearraylist.h:
-
-/home/user/cp/zmp/fileswidget.h:
-
-/usr/include/qt6/QtCore/qeventloop.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginTargetsPrecheck.cmake:
-
-/usr/lib/libdbus-1.so.3:
-
-/usr/include/c++/16/cerrno:
-
-/usr/include/bits/stdint-intn.h:
-
-/usr/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersionImpl.cmake:
-
-/home/user/cp/zmp/equalizerwidget.cpp:
-
-/usr/include/qt6/QtCore/qpointer.h:
-
-/home/user/cp/zmp/CMakeLists.txt:
-
-/usr/include/bits/types/wint_t.h:
-
-/usr/include/qt6/QtWidgets/qabstractbutton.h:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/c++/16/backward/binders.h:
-
-/usr/include/taglib/taglib_export.h:
-
-/usr/include/qt6/QtCore/q23utility.h:
-
-/usr/include/bits/struct_mutex.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargetsPrecheck.cmake:
-
-/usr/include/c++/16/bits/stl_multiset.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake:
-
-/usr/include/qt6/QtDBus/qdbusmessage.h:
-
-/home/user/cp/zmp/mainwindow.cpp:
-
-/usr/lib/cmake/Qt6DBus/Qt6DBusTargets.cmake:
-
-/usr/include/bits/types/struct___jmp_buf_tag.h:
-
-/home/user/cp/zmp/mpriscontroller.h:
-
-/usr/include/GL/gl.h:
-
-CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
-
-/usr/include/c++/16/bits/hashtable_policy.h:
-
-/usr/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake:
-
-/usr/include/qt6/QtGui/QConicalGradient:
-
-/usr/include/qt6/QtCore/qurl.h:
-
-/usr/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake:
-
-/usr/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake:
-
-/usr/include/qt6/QtCore/qcompare_impl.h:
-
-/usr/include/c++/16/bits/fs_fwd.h:
-
-/usr/include/c++/16/cwchar:
-
-/usr/lib32/libdl.so.2:
-
-/usr/include/qt6/QtCore/qcborcommon.h:
-
-/usr/include/qt6/QtCore/QJsonDocument:
-
 /usr/include/taglib/tmap.h:
 
 /usr/include/bits/types/locale_t.h:
@@ -15068,27 +17637,173 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
 
 /usr/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake:
 
+/usr/include/qt6/QtCore/qsharedpointer.h:
+
+/usr/include/qt6/QtWidgets/qformlayout.h:
+
+/usr/include/qt6/QtWidgets/QStyleOptionViewItem:
+
+/usr/lib/cmake/Qt6/QtPublicSbomCpeHelpers.cmake:
+
+/usr/include/qt6/QtGui/qpicture.h:
+
 /usr/include/taglib/tag.h:
 
 /usr/include/c++/16/bits/stl_tempbuf.h:
 
 /usr/include/c++/16/bits/unordered_set.h:
 
+/usr/include/c++/16/ext/type_traits.h:
+
+/usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake:
+
+/usr/include/bits/uio_lim.h:
+
+/usr/include/bits/thread-shared-types.h:
+
+/usr/include/c++/16/ctime:
+
+/usr/include/c++/16/memory:
+
+CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o:
+
+/usr/include/qt6/QtCore/qconfig.h:
+
+/home/user/cp/zmp/audiomanager.cpp:
+
+/usr/include/c++/16/codecvt:
+
+/home/user/cp/zmp/aboutdialog.cpp:
+
+/usr/include/taglib/taglib_export.h:
+
+/usr/include/qt6/QtCore/q23utility.h:
+
+/usr/include/bits/struct_mutex.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargetsPrecheck.cmake:
+
+/usr/include/bits/types/sigevent_t.h:
+
+/home/user/cp/zmp/cliplayer.h:
+
+/usr/lib/cmake/Qt6DBus/Qt6DBusTargets.cmake:
+
+/usr/include/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/qt6/QtDBus/qdbusmessage.h:
+
+/home/user/cp/zmp/mainwindow.cpp:
+
+/usr/include/taglib/flacpicture.h:
+
+/usr/include/c++/16/bits/uniform_int_dist.h:
+
+/usr/include/qt6/QtCore/qdirlisting.h:
+
+/home/user/cp/zmp/visualizationwidget.cpp:
+
+/usr/include/qt6/QtCore/qalloc.h:
+
+/usr/lib32/libpsl.so.5:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginConfig.cmake:
+
+/usr/include/c++/16/ext/string_conversions.h:
+
+/usr/include/qt6/QtCore/qfiledevice.h:
+
+/usr/include/qt6/QtGui/QFileSystemModel:
+
+/usr/include/bits/types/stack_t.h:
+
+/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:
+
+/home/user/cp/zmp/audiomanager.h:
+
+/usr/include/qt6/QtWidgets/qtreeview.h:
+
+/usr/include/qt6/QtWidgets/QFileDialog:
+
+/usr/include/c++/16/bits/charconv.h:
+
+/usr/include/c++/16/ext/concurrence.h:
+
+/usr/include/c++/16/bits/std_abs.h:
+
+/usr/include/c++/16/algorithm:
+
+/usr/include/bits/types/struct_FILE.h:
+
+/usr/share/cmake/Modules/CheckLibraryExists.cmake:
+
+/usr/include/asm/types.h:
+
+/usr/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:
+
+/usr/include/bits/floatn.h:
+
+/usr/include/bits/timex.h:
+
+/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake:
+
+/home/user/cp/zmp/translator.h:
+
+CMakeFiles/4.4.2/CMakeSystem.cmake:
+
+/usr/include/c++/16/bits/stl_uninitialized.h:
+
+/home/user/cp/zmp/equalizerwidget.cpp:
+
+/usr/include/bits/types/__fpos_t.h:
+
+/usr/include/qt6/QtGui/qvector2d.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/qt6/QtGui/qvectornd.h:
+
+/usr/lib/libngtcp2_crypto_ossl.so.0:
+
+/usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h:
+
+/usr/lib/libEGL.so.1:
+
+/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake:
+
+/home/user/cp/zmp/audiomodecontroller.cpp:
+
+/usr/include/c++/16/bits/alloc_traits.h:
+
+/usr/include/c++/16/tr1/hypergeometric.tcc:
+
+/usr/include/qt6/QtGui/qpainter.h:
+
+/home/user/cp/zmp/mainwindow.h:
+
+/usr/include/c++/16/bits/unique_lock.h:
+
 /usr/include/bits/types/cookie_io_functions_t.h:
 
-/usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake:
+/usr/include/bits/termios-tcflow.h:
 
-/usr/include/c++/16/ext/aligned_buffer.h:
+/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginAdditionalTargetInfo.cmake:
 
-/usr/include/qt6/QtCore/qcontainertools_impl.h:
+/usr/include/qt6/QtCore/qcheckedint_impl.h:
 
-/usr/include/c++/16/bits/atomic_base.h:
+/usr/include/asm/errno.h:
 
 /usr/include/asm-generic/errno-base.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginConfig.cmake:
 
 /usr/include/c++/16/clocale:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake:
+
+/usr/include/features.h:
 
 /usr/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake:
 
@@ -15106,16 +17821,6 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
 
 /usr/include/c++/16/bits/memoryfwd.h:
 
-/usr/include/qt6/QtCore/QIODevice:
-
-/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/bits/xopen_lim.h:
-
-/usr/lib/cmake/Qt6Svg/Qt6SvgConfigVersion.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginConfig.cmake:
-
 /home/user/cp/zmp/mpriscontroller.cpp:
 
 /usr/include/c++/16/bits/refwrap.h:
@@ -15126,85 +17831,35 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
 
 /usr/include/qt6/QtGui/qwindowdefs.h:
 
-/usr/include/qt6/QtCore/QQueue:
+/home/user/cp/zmp/zmpinstaller.cpp:
 
-/usr/include/qt6/QtGui/qbitmap.h:
+/home/user/cp/zmp/mpriscontroller.h:
+
+/usr/include/GL/gl.h:
+
+CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
+
+/usr/include/c++/16/bits/hashtable_policy.h:
 
 /home/user/cp/zmp/jamendowidget.h:
 
-/usr/include/c++/16/ctime:
+/usr/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake:
 
-/usr/include/bits/pthread_stack_min-dynamic.h:
+/usr/include/qt6/QtCore/qcompare_impl.h:
 
-/usr/include/qt6/QtCore/QStringList:
+/usr/include/c++/16/bits/fs_fwd.h:
 
-/usr/include/c++/16/memory:
-
-CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o:
-
-/usr/include/qt6/QtCore/qconfig.h:
-
-/home/user/cp/zmp/audiomanager.cpp:
-
-/usr/include/c++/16/codecvt:
-
-/home/user/cp/zmp/aboutdialog.cpp:
-
-/usr/include/qt6/QtNetwork/QNetworkProxy:
-
-/usr/include/c++/16/unordered_set:
-
-/usr/include/bass_fx.h:
-
-CMakeFiles/4.4.2/CMakeCCompiler.cmake:
-
-/home/user/cp/zmp/equalizerwidget.h:
-
-/usr/include/qt6/QtCore/qalloc.h:
-
-CMakeFiles/4.4.2/CMakeSystem.cmake:
-
-/usr/include/c++/16/bits/stl_uninitialized.h:
-
-/usr/include/bits/types/__fpos_t.h:
-
-/usr/include/qt6/QtGui/qvector2d.h:
-
-/usr/include/qt6/QtGui/qaction.h:
-
-/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsVersionlessTargets.cmake:
-
-/usr/include/bits/timesize.h:
-
-/home/user/cp/zmp/mainwindow.h:
-
-/usr/include/bits/types/sigset_t.h:
-
-/usr/include/c++/16/bits/memory_resource.h:
-
-/usr/include/c++/16/bits/stl_map.h:
-
-/usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake:
-
-/usr/include/alloca.h:
-
-/home/user/cp/zmp/playbackcontrolwidget.cpp:
-
-/usr/include/qt6/QtCore/qmetacontainer.h:
-
-/usr/include/sched.h:
-
-/usr/include/taglib/flacpicture.h:
-
-/usr/include/c++/16/bits/uniform_int_dist.h:
-
-/usr/include/qt6/QtCore/qdirlisting.h:
-
-/home/user/cp/zmp/visualizationwidget.cpp:
+/usr/include/c++/16/cwchar:
 
 /usr/include/c++/16/bit:
 
 /home/user/cp/zmp/partitionsdialog.cpp:
+
+/usr/include/qt6/QtCore/qbytearray.h:
+
+ZMP_Linux_bin_autogen/moc_predefs.h:
+
+/usr/include/qt6/QtGui/qbitmap.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stddef.h:
 
@@ -15216,139 +17871,15 @@ CMakeFiles/4.4.2/CMakeSystem.cmake:
 
 /usr/include/c++/16/bits/shared_ptr_base.h:
 
-/usr/include/qt6/QtGui/qabstracttextdocumentlayout.h:
+/home/user/cp/zmp/playerwidget.cpp:
 
-/usr/include/c++/16/string_view:
+/usr/include/qt6/QtCore/QStandardPaths:
 
-/home/user/cp/zmp/depsmanager.h:
+/usr/include/c++/16/ios:
 
-/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginConfig.cmake:
+/usr/include/c++/16/ratio:
 
-/usr/include/bits/types/__fpos64_t.h:
-
-/usr/include/qt6/QtCore/QEvent:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersion.cmake:
-
-/home/user/cp/zmp/playbackcontrolwidget.h:
-
-/usr/include/qt6/QtCore/qbytearray.h:
-
-ZMP_Linux_bin_autogen/moc_predefs.h:
-
-/usr/include/bits/posix2_lim.h:
-
-/usr/include/qt6/QtCore/q20memory.h:
-
-/usr/lib/cmake/Qt6/QtFeatureCommon.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargets.cmake:
-
-/usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++allocator.h:
-
-/usr/include/bits/cpu-set.h:
-
-/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginConfig.cmake:
-
-/home/user/cp/zmp/translator.cpp:
-
-/usr/include/qt6/QtGui/qguiapplication.h:
-
-/usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersion.cmake:
-
-/usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake:
-
-/usr/include/c++/16/array:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGifPluginConfig.cmake:
-
-/usr/include/bits/waitstatus.h:
-
-/usr/include/qt6/QtMultimedia/QAudioDevice:
-
-/usr/include/qt6/QtGui/QSurfaceFormat:
-
-/usr/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginAdditionalTargetInfo.cmake:
-
-/usr/include/linux/stddef.h:
-
-/usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h:
-
-/usr/include/pwd.h:
-
-/usr/include/bits/mathcalls.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
-
-/home/user/cp/zmp/playlistswidget.cpp:
-
-/usr/include/bits/endian.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginAdditionalTargetInfo.cmake:
-
-/usr/include/qt6/QtCore/qcheckedint_impl.h:
-
-/usr/include/asm/errno.h:
-
-/usr/include/c++/16/filesystem:
-
-/home/user/cp/zmp/aboutdialog.h:
-
-/usr/include/qt6/QtNetwork/qsslconfiguration.h:
-
-/usr/include/bits/long-double.h:
-
-/usr/lib/libvorbisenc.so.2:
-
-/usr/share/cmake/Modules/Linker/GNU.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargetsPrecheck.cmake:
-
-/usr/include/qt6/QtCore/qfloat16.h:
-
-/home/user/cp/zmp/depsmanager.cpp:
-
-/usr/include/qt6/QtCore/qxptype_traits.h:
-
-/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
-
-/usr/include/qt6/QtCore/qdatetime.h:
-
-/usr/include/c++/16/version:
-
-/usr/include/taglib/flacfile.h:
-
-/usr/include/bits/time.h:
-
-/usr/share/cmake/Modules/GNUInstallDirs.cmake:
-
-/usr/include/qt6/QtCore/qrandom.h:
-
-/usr/include/asm/posix_types_64.h:
-
-/usr/include/c++/16/bits/stl_set.h:
-
-/usr/include/qt6/QtCore/qsharedpointer.h:
-
-/usr/include/qt6/QtGui/qpicture.h:
-
-/usr/include/qt6/QtGui/qrgb.h:
-
-/usr/include/qt6/QtWidgets/qformlayout.h:
-
-/usr/include/qt6/QtWidgets/QStyleOptionViewItem:
-
-/usr/lib/cmake/Qt6/QtPublicSbomCpeHelpers.cmake:
-
-/usr/include/c++/16/pstl/glue_algorithm_defs.h:
-
-/usr/include/asm/bitsperlong.h:
-
-/usr/include/c++/16/algorithm:
-
-/usr/include/bits/types/struct_FILE.h:
+/usr/include/qt6/QtCore/qtnoop.h:
 
 /usr/include/bits/types/struct_sigstack.h:
 
@@ -15358,19 +17889,147 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6/QtPublicPluginHelpers.cmake:
 
-/usr/include/bits/floatn.h:
+/usr/include/errno.h:
 
-/usr/include/bits/timex.h:
+/home/user/cp/zmp/zmpinstaller.h:
 
-/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake:
+/usr/lib/cmake/Qt6Svg/Qt6SvgConfigVersionImpl.cmake:
 
-/home/user/cp/zmp/translator.h:
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets-relwithdebinfo.cmake:
 
-/usr/share/cmake/Modules/CheckLibraryExists.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandBradientDecorationPluginTargets-relwithdebinfo.cmake:
 
-/usr/include/asm/types.h:
+/usr/include/qt6/QtCore/qxptype_traits.h:
 
-/usr/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
+
+/usr/include/qt6/QtCore/qdatetime.h:
+
+/usr/include/c++/16/version:
+
+/usr/include/qt6/QtCore/qfloat16.h:
+
+/home/user/cp/zmp/depsmanager.cpp:
+
+/usr/include/qt6/QtGui/qabstracttextdocumentlayout.h:
+
+/usr/include/c++/16/string_view:
+
+/home/user/cp/zmp/depsmanager.h:
+
+/usr/include/qt6/QtCore/QEvent:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersion.cmake:
+
+/home/user/cp/zmp/playbackcontrolwidget.h:
+
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/qt6/QtCore/qstringalgorithms.h:
+
+/usr/include/c++/16/tr1/poly_hermite.tcc:
+
+/usr/include/qt6/QtWidgets/qmessagebox.h:
+
+/usr/include/qt6/QtGui/qimage.h:
+
+/usr/include/bits/types/error_t.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/qt6/QtCore/q20memory.h:
+
+/usr/lib/cmake/Qt6/QtFeatureCommon.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargets.cmake:
+
+/home/user/cp/zmp/translator.cpp:
+
+/usr/include/qt6/QtGui/qguiapplication.h:
+
+/usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersion.cmake:
+
+/usr/include/bits/waitstatus.h:
+
+/usr/include/qt6/QtMultimedia/QAudioDevice:
+
+/usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake:
+
+/usr/include/c++/16/array:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGifPluginConfig.cmake:
+
+/usr/include/linux/stddef.h:
+
+/usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h:
+
+/usr/lib/cmake/Qt6Svg/Qt6SvgAdditionalTargetInfo.cmake:
+
+/usr/include/qt6/QtNetwork/qlocalserver.h:
+
+/usr/include/pwd.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
+
+/home/user/cp/zmp/playlistswidget.cpp:
+
+/usr/include/bits/long-double.h:
+
+/usr/lib/libvorbisenc.so.2:
+
+/usr/share/cmake/Modules/Linker/GNU.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargetsPrecheck.cmake:
+
+/usr/include/qt6/QtCore/qpointer.h:
+
+/home/user/cp/zmp/CMakeLists.txt:
+
+/usr/include/bits/types/wint_t.h:
+
+/usr/include/qt6/QtWidgets/qabstractbutton.h:
+
+/usr/include/c++/16/backward/binders.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/qt6/QtCore/qcompilerdetection.h:
+
+/usr/include/qt6/QtCore/QJsonDocument:
+
+/usr/include/qt6/QtCore/qcborcommon.h:
+
+/usr/include/qt6/QtGui/qtransform.h:
+
+/usr/include/qt6/QtNetwork/qsslerror.h:
+
+/usr/lib32/libgio-2.0.so.0:
+
+/usr/include/bits/dlfcn.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginConfig.cmake:
+
+/usr/include/bits/waitflags.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargets-relwithdebinfo.cmake:
+
+/usr/include/qt6/QtGui/qoffscreensurface_platform.h:
+
+/usr/include/qt6/QtGui/qtextformat.h:
+
+/usr/include/c++/16/stdexcept:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/bits/xopen_lim.h:
+
+/usr/include/c++/16/bits/uses_allocator_args.h:
 
 /usr/lib/libgcc_s.so.1:
 
@@ -15402,11 +18061,15 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginConfig.cmake:
 
-/usr/include/c++/16/bits/alloc_traits.h:
+/usr/include/asm-generic/int-ll64.h:
 
-/usr/include/c++/16/tr1/hypergeometric.tcc:
+/usr/include/qt6/QtDBus/qtdbusexports.h:
 
-/usr/include/qt6/QtGui/qpainter.h:
+/usr/include/c++/16/bits/stl_iterator_base_funcs.h:
+
+/usr/include/bits/types/struct_timespec.h:
+
+/usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h:
 
 /usr/include/c++/16/bits/allocated_ptr.h:
 
@@ -15422,9 +18085,9 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessAliasTargets.cmake:
 
-/usr/include/bits/types/__locale_t.h:
-
 /usr/include/c++/16/cstring:
+
+/usr/include/bits/types/__locale_t.h:
 
 /usr/include/qt6/QtWidgets/qtwidgetsexports.h:
 
@@ -15438,7 +18101,11 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/qt6/QtCore/qitemselectionmodel.h:
 
+/home/user/cp/zmp/audiomodecontroller.h:
+
 /usr/include/c++/16/bits/exception.h:
+
+/usr/include/qt6/QtWidgets/qsplashscreen.h:
 
 /usr/include/c++/16/bits/std_function.h:
 
@@ -15456,15 +18123,7 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/bits/ptr_traits.h:
 
-/usr/include/qt6/QtGui/QKeyEvent:
-
-/usr/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargetsPrecheck.cmake:
-
-/usr/include/c++/16/cstdarg:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets.cmake:
 
 /usr/include/c++/16/bits/erase_if.h:
 
@@ -15484,9 +18143,9 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/bits/functional_hash.h:
 
-/usr/include/qt6/QtGui/QPen:
-
 /usr/include/c++/16/bits/stl_bvector.h:
+
+/usr/include/qt6/QtGui/QPen:
 
 /home/user/cp/zmp/miniplayerbar.h:
 
@@ -15510,11 +18169,11 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/bits/stdexcept_throwfwd.h:
 
-/usr/include/qt6/QtDBus/qdbusextratypes.h:
+/usr/include/c++/16/bits/random.h:
 
-/usr/include/bits/sigstack.h:
+/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargetsPrecheck.cmake:
 
-/usr/include/qt6/QtCore/qyieldcpu.h:
+/home/user/cp/zmp/deviceswidget.h:
 
 /usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfig.cmake:
 
@@ -15522,17 +18181,17 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/bits/string_view.tcc:
 
+/usr/include/qt6/QtCore/qcontainertools_impl.h:
+
+/usr/include/bits/types/__fpos64_t.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginConfig.cmake:
+
 /usr/include/qt6/QtWidgets/QDialogButtonBox:
 
 /usr/include/qt6/QtWidgets/QLayout:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/libglib-2.0.so.0:
-
-/usr/include/qt6/QtCore/qfunctionpointer.h:
-
-/usr/include/qt6/QtCore/QString:
 
 /usr/include/c++/16/map:
 
@@ -15580,27 +18239,27 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QICOPluginTargets.cmake:
 
+/usr/include/c++/16/bits/atomic_base.h:
+
+/usr/include/qt6/QtGui/qrgb.h:
+
+/usr/include/c++/16/bits/std_mutex.h:
+
 /usr/include/c++/16/bits/stdexcept_throw.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/include/c++/16/optional:
 
+/usr/include/qt6/QtWidgets/QApplication:
+
+/usr/include/qt6/QtWidgets/QDoubleSpinBox:
+
+/usr/include/qt6/QtGui/qtguiexports.h:
+
 /usr/include/c++/16/bits/stl_algo.h:
 
 /usr/include/c++/16/cassert:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkTargetsPrecheck.cmake:
-
-/usr/include/qt6/QtDBus/qtdbusexports.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/include/c++/16/bits/stl_iterator_base_funcs.h:
-
-/usr/include/bits/types/struct_timespec.h:
-
-/usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h:
 
 /usr/include/qt6/QtWidgets/QStyleFactory:
 
@@ -15637,14 +18296,6 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/qt6/QtWidgets/qtabbar.h:
-
-/usr/lib/libidn2.so.0:
-
-/usr/include/qt6/QtCore/qpair.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginTargets.cmake:
 
 /usr/include/qt6/QtCore/qscopeguard.h:
 
@@ -15690,19 +18341,21 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/bits/stl_vector.h:
 
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaPlugins.cmake:
+
+/usr/include/qt6/QtWidgets/QFrame:
+
+/usr/lib/libGL.so.1:
+
+/usr/include/qt6/QtWidgets/qgroupbox.h:
+
 /usr/include/c++/16/bits/streambuf.tcc:
 
 /usr/include/c++/16/bits/unique_ptr.h:
 
 /usr/include/c++/16/bits/version.h:
 
-/usr/include/qt6/QtDBus/QDBusConnection:
-
-/usr/include/c++/16/climits:
-
 /usr/include/qt6/QtGui/qtextcursor.h:
-
-/usr/include/c++/16/functional:
 
 /usr/include/qt6/QtCore/qtconfiginclude.h:
 
@@ -15722,20 +18375,6 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/qt6/QtWidgets/qtwidgets-config.h:
 
-/usr/include/qt6/QtCore/qfiledevice.h:
-
-/usr/include/qt6/QtGui/QFileSystemModel:
-
-/usr/include/c++/16/ext/string_conversions.h:
-
-/usr/include/bits/types/stack_t.h:
-
-/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:
-
-/home/user/cp/zmp/audiomanager.h:
-
-/usr/include/qt6/QtWidgets/qtreeview.h:
-
 /usr/lib/gcc/x86_64-pc-linux-gnu/16/libstdc++.so:
 
 /usr/include/c++/16/concepts:
@@ -15746,41 +18385,21 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6VulkanServerBufferPluginConfig.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
-
-/usr/include/bits/setjmp.h:
-
-/usr/include/qt6/QtGui/QMouseEvent:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake:
-
 /home/user/cp/zmp/res.qrc:
 
 /usr/include/c++/16/cstdint:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandIviShellIntegrationPluginAdditionalTargetInfo.cmake:
 
+/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
+
+/home/user/cp/zmp/devicemanagerdialog.h:
+
 /usr/include/c++/16/cstdio:
 
 /usr/include/linux/sched/types.h:
 
 /usr/include/qt6/QtCore/qmargins.h:
-
-/usr/include/qt6/QtCore/QJsonArray:
-
-/usr/include/c++/16/bits/unordered_map.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargets.cmake:
-
-/usr/include/c++/16/ext/alloc_traits.h:
-
-/usr/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
-
-/usr/lib32/libpsl.so.5:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginConfig.cmake:
 
 /usr/include/qt6/QtCore/qjsonobject.h:
 
@@ -15792,45 +18411,87 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/qt6/QtWidgets/qstyle.h:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginTargetsPrecheck.cmake:
-
-/usr/include/asm-generic/bitsperlong.h:
-
 /usr/lib/crtn.o:
 
 /usr/include/asm-generic/types.h:
 
-/home/user/cp/zmp/deviceswidget.h:
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargetsPrecheck.cmake:
+/usr/include/asm-generic/bitsperlong.h:
 
-/usr/include/c++/16/bits/random.h:
+/usr/include/bits/sigstack.h:
 
-/usr/include/sys/types.h:
+/usr/include/qt6/QtCore/qyieldcpu.h:
 
-/usr/include/c++/16/bits/std_abs.h:
+/usr/include/qt6/QtDBus/QDBusAbstractAdaptor:
 
-/usr/include/c++/16/ext/concurrence.h:
+/usr/include/c++/16/climits:
 
-/usr/include/qt6/QtCore/qstringalgorithms.h:
+/usr/include/qt6/QtDBus/QDBusConnection:
 
-/usr/include/bits/atomic_wide_counter.h:
+/usr/include/qt6/QtWidgets/qtabbar.h:
 
-/usr/include/qt6/QtWidgets/QFileDialog:
+/usr/lib/libidn2.so.0:
 
-/usr/include/c++/16/bits/charconv.h:
+/usr/include/qt6/QtCore/qpair.h:
 
-/usr/include/bits/thread-shared-types.h:
+/usr/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginTargets.cmake:
+
+/usr/include/qt6/QtDBus/QDBusObjectPath:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargetsPrecheck.cmake:
+
+/usr/include/qt6/QtCore/qdeadlinetimer.h:
+
+/usr/include/qt6/QtDBus/qdbusabstractadaptor.h:
+
+/usr/include/qt6/QtCore/qtcore-config.h:
+
+/usr/include/qt6/QtDBus/qdbusconnection.h:
+
+/usr/include/qt6/QtDBus/qdbusextratypes.h:
+
+/usr/include/qt6/QtGui/QBrush:
+
+/usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginAdditionalTargetInfo.cmake:
+
+/usr/include/qt6/QtGui/QColor:
+
+/usr/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake:
+
+/usr/include/qt6/QtGui/QConicalGradient:
+
+/usr/include/qt6/QtCore/qurl.h:
+
+/usr/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake:
+
+/usr/include/qt6/QtGui/QImage:
+
+/usr/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake:
+
+/usr/include/qt6/QtGui/QKeyEvent:
+
+/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/qt6/QtGui/QMouseEvent:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake:
+
+/usr/include/qt6/QtGui/QPainter:
+
+/usr/include/qt6/QtGui/QPainterPath:
+
+/usr/include/qt6/QtGui/qvalidator.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargetsPrecheck.cmake:
 
 /usr/include/qt6/QtCore/qjsonvalue.h:
 
 /usr/include/qt6/QtGui/QTransform:
-
-/usr/lib/libQt6DBus.so.6.11.1:
-
-/usr/include/qt6/QtCore/qlogging.h:
-
-/usr/include/qt6/QtGui/qcolor.h:
 
 /usr/share/cmake/Modules/CMakeCInformation.cmake:
 
@@ -15843,6 +18504,8 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/include/c++/16/bits/new_throw.h:
 
 /usr/include/qt6/QtGui/qfont.h:
+
+CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o:
 
 /usr/include/qt6/QtGui/qtguiglobal.h:
 
@@ -15893,12 +18556,6 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/include/qt6/QtGui/qpaintdevice.h:
 
 /usr/lib/cmake/Qt6/QtFeature.cmake:
-
-/usr/include/qt6/QtGui/qpalette.h:
-
-/usr/include/qt6/QtCore/qendian.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginTargetsPrecheck.cmake:
 
 /usr/include/qt6/QtGui/qpen.h:
 
@@ -15998,6 +18655,12 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QICNSPluginTargets-relwithdebinfo.cmake:
 
+/usr/lib/crti.o:
+
+/usr/include/qt6/QtNetwork/qlocalsocket.h:
+
+/usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:
+
 /usr/include/qt6/QtNetwork/qnetworkaccessmanager.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QJpegPluginTargets-relwithdebinfo.cmake:
@@ -16058,22 +18721,6 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 /usr/include/qt6/QtWidgets/QDialog:
 
-/usr/include/qt6/QtWidgets/QApplication:
-
-/usr/include/qt6/QtGui/qtguiexports.h:
-
-/usr/include/qt6/QtWidgets/QDoubleSpinBox:
-
-/usr/include/c++/16/bits/localefwd.h:
-
-/usr/include/qt6/QtWidgets/QFormLayout:
-
-/usr/include/qt6/QtWidgets/QLineEdit:
-
-/usr/include/bits/types/__sigset_t.h:
-
-/usr/lib/cmake/Qt6/Qt6Dependencies.cmake:
-
 /usr/include/bits/mathcalls-helper-functions.h:
 
 /usr/include/qt6/QtCore/QPair:
@@ -16089,12 +18736,6 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 /usr/include/qt6/QtWidgets/QListWidget:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbGlxIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/c++/16/debug/debug.h:
-
-/usr/include/c++/16/debug/assertions.h:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake:
 
 /usr/bin/cmake:
 
@@ -16164,10 +18805,6 @@ CMakeFiles/4.4.2/CMakeCXXCompiler.cmake:
 
 /usr/include/qt6/QtWidgets/qgridlayout.h:
 
-/usr/lib/libGL.so.1:
-
-/usr/include/qt6/QtWidgets/qgroupbox.h:
-
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaAdditionalTargetInfo.cmake:
 
 /usr/include/qt6/QtWidgets/qlabel.h:
@@ -16214,8 +18851,6 @@ CMakeFiles/4.4.2/CMakeCXXCompiler.cmake:
 
 /usr/include/stdc-predef.h:
 
-/usr/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake:
-
 /usr/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets.cmake:
 
 /usr/include/stdint.h:
@@ -16250,6 +18885,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_partitionsdialog.cpp:
 
 /usr/lib/cmake/Qt6/FindWrapOpenGL.cmake:
 
+/usr/include/soundtouch/SoundTouch.h:
+
 /usr/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:
 
 /usr/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
@@ -16277,6 +18914,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_jamendowidget.cpp:
 /usr/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake:
 
 /usr/include/fcntl.h:
+
+/usr/include/bits/statx-generic.h:
 
 /usr/lib/cmake/Qt6/QtPublicAppleHelpers.cmake:
 
@@ -16342,6 +18981,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_depsmanager.cpp:
 
 /usr/lib/cmake/Qt6/QtInstallPaths.cmake:
 
+/usr/include/qt6/QtNetwork/QLocalServer:
+
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake:
 
 /usr/include/libprojectM/Common.hpp:
@@ -16359,8 +19000,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_depsmanager.cpp:
 /usr/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake:
 
 /usr/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:
-
-/usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:
 
 /usr/lib/cmake/Qt6Core/Qt6CoreTargetsPrecheck.cmake:
 
@@ -16393,6 +19032,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o:
 /usr/lib/cmake/Qt6DBus/Qt6DBusMacros.cmake:
 
 /usr/include/asm/posix_types.h:
+
+/home/user/cp/zmp/devicemanagerdialog.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginConfig.cmake:
 
@@ -16446,6 +19087,10 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginConfig.cmake:
 
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargets.cmake:
+
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginConfig.cmake:
@@ -16461,8 +19106,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/include/c++/16/bits/locale_classes.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6GuiAdditionalTargetInfo.cmake:
-
-/usr/lib/libbass_fx.so:
 
 /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
@@ -16500,23 +19143,21 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginConfig.cmake:
 
-/usr/lib/cmake/Qt6Svg/Qt6SvgConfigVersionImpl.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandBradientDecorationPluginTargets-relwithdebinfo.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargets-relwithdebinfo.cmake:
+
+/usr/include/soundtouch/FIFOSamplePipe.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginConfig.cmake:
 
+/usr/include/soundtouch/STTypes.h:
+
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargets.cmake:
 
@@ -16559,10 +19200,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargets.cmake:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsConfig.cmake:
-
-/usr/include/c++/16/bits/hashtable.h:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargetsPrecheck.cmake:
 
@@ -16647,10 +19284,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginConfig.cmake:
 
@@ -16792,8 +19425,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargets.cmake:
 
-/usr/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake:
-
 /usr/lib32/libXdmcp.so.6:
 
 /usr/include/qt6/QtDBus/qdbuspendingcall.h:
@@ -16811,8 +19442,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginTargets.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXdgDesktopPortalThemePluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXdgDesktopPortalThemePluginTargets.cmake:
 
@@ -16847,35 +19476,3 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QJp2PluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake:
-
-/usr/include/qt6/QtWidgets/QFrame:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaPlugins.cmake:
-
-/usr/include/features.h:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake:
-
-/usr/include/c++/16/bits/stl_construct.h:
-
-/usr/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake:
-
-/usr/include/qt6/QtCore/qregularexpression.h:
-
-/usr/include/qt6/QtCore/QUrl:
-
-/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Network/Qt6QConnManNetworkInformationPluginTargetsPrecheck.cmake:

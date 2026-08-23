@@ -667,9 +667,27 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/audiomodecontroller.h",
+			"Mu",
+			"EWIEGA46WW/moc_audiomodecontroller.cpp",
+			null
+		],
+		[
+			"/home/user/cp/zmp/cliplayer.h",
+			"Mu",
+			"EWIEGA46WW/moc_cliplayer.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/depsmanager.h",
 			"Mu",
 			"EWIEGA46WW/moc_depsmanager.cpp",
+			null
+		],
+		[
+			"/home/user/cp/zmp/devicemanagerdialog.h",
+			"Mu",
+			"EWIEGA46WW/moc_devicemanagerdialog.cpp",
 			null
 		],
 		[
@@ -757,6 +775,18 @@
 			null
 		],
 		[
+			"/home/user/cp/zmp/singleinstance.h",
+			"Mu",
+			"EWIEGA46WW/moc_singleinstance.cpp",
+			null
+		],
+		[
+			"/home/user/cp/zmp/third_party/kiss_fft.h",
+			"Mu",
+			"W4YIVCY7PI/moc_kiss_fft.cpp",
+			null
+		],
+		[
 			"/home/user/cp/zmp/translator.h",
 			"Mu",
 			"EWIEGA46WW/moc_translator.cpp",
@@ -766,6 +796,12 @@
 			"/home/user/cp/zmp/visualizationwidget.h",
 			"Mu",
 			"EWIEGA46WW/moc_visualizationwidget.cpp",
+			null
+		],
+		[
+			"/home/user/cp/zmp/zmpinstaller.h",
+			"Mu",
+			"EWIEGA46WW/moc_zmpinstaller.cpp",
 			null
 		]
 	],
@@ -794,6 +830,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/home/user/cp/zmp/third_party",
 		"/usr/include/qt6/QtCore",
 		"/usr/include/qt6",
 		"/usr/lib/qt6/mkspecs/linux-g++",
@@ -847,7 +884,10 @@
 	[
 		[ "/home/user/cp/zmp/aboutdialog.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/audiomanager.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/audiomodecontroller.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/cliplayer.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/depsmanager.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/devicemanagerdialog.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/deviceswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/equalizerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/fileswidget.cpp", "Mu", null ],
@@ -862,8 +902,10 @@
 		[ "/home/user/cp/zmp/playerwidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/playlistswidget.cpp", "Mu", null ],
 		[ "/home/user/cp/zmp/settingswidget.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/third_party/kiss_fft.c", "Mu", null ],
 		[ "/home/user/cp/zmp/translator.cpp", "Mu", null ],
-		[ "/home/user/cp/zmp/visualizationwidget.cpp", "Mu", null ]
+		[ "/home/user/cp/zmp/visualizationwidget.cpp", "Mu", null ],
+		[ "/home/user/cp/zmp/zmpinstaller.cpp", "Mu", null ]
 	],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0

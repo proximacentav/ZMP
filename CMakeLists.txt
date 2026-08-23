@@ -8,11 +8,6 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network DBus OpenGLWidgets)
 
-# BASS
-find_path(BASS_INCLUDE_DIR NAMES bass.h PATHS /usr/include /usr/local/include)
-find_library(BASS_LIBRARY NAMES bass PATHS /usr/lib /usr/local/lib)
-find_library(BASS_FX_LIBRARY NAMES bass_fx PATHS /usr/lib /usr/local/lib)
-
 # projectM
 find_path(PROJECTM_INCLUDE_DIR NAMES libprojectM/projectM.hpp PATHS /usr/include /usr/local/include)
 find_library(PROJECTM_LIBRARY NAMES projectM PATHS /usr/lib /usr/local/lib)
@@ -20,6 +15,10 @@ find_library(PROJECTM_LIBRARY NAMES projectM PATHS /usr/lib /usr/local/lib)
 # TagLib
 find_path(TAGLIB_INCLUDE_DIR NAMES taglib/tag.h PATHS /usr/include /usr/local/include)
 find_library(TAGLIB_LIBRARY NAMES tag libtag PATHS /usr/lib /usr/local/lib)
+
+# SoundTouch (скорость/питч)
+find_path(SOUNDTOUCH_INCLUDE_DIR NAMES soundtouch/SoundTouch.h PATHS /usr/include /usr/local/include)
+find_library(SOUNDTOUCH_LIBRARY NAMES SoundTouch PATHS /usr/lib /usr/local/lib)
 
 find_library(CRYPT_LIBRARY NAMES crypt)
 if(CRYPT_LIBRARY)
@@ -48,22 +47,29 @@ add_executable(ZMP_Linux_bin
     depsmanager.h depsmanager.cpp
     partitionsdialog.h partitionsdialog.cpp
     aboutdialog.h aboutdialog.cpp
+    audiomodecontroller.h audiomodecontroller.cpp
+    devicemanagerdialog.h devicemanagerdialog.cpp
+    zmpinstaller.h zmpinstaller.cpp
+    singleinstance.h
+    cliplayer.h cliplayer.cpp
     iconbutton.h
     miniplayerbar.h miniplayerbar.cpp
     mpriscontroller.h mpriscontroller.cpp
     res.qrc
+    third_party/kiss_fft.c
 )
 
 target_include_directories(ZMP_Linux_bin PRIVATE
-    ${BASS_INCLUDE_DIR}
     ${PROJECTM_INCLUDE_DIR}
     ${TAGLIB_INCLUDE_DIR}
+    ${SOUNDTOUCH_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party
 )
 
 target_link_libraries(ZMP_Linux_bin
     Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network Qt6::DBus Qt6::OpenGLWidgets
-    ${BASS_LIBRARY} ${BASS_FX_LIBRARY}
     ${PROJECTM_LIBRARY}
     ${TAGLIB_LIBRARY}
+    ${SOUNDTOUCH_LIBRARY}
     ${EXTRA_LIBS}
 )

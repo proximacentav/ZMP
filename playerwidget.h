@@ -30,6 +30,7 @@ public:
 
 public:
     QStringList getCurrentPlaylist() const { return m_playbackControl->getCurrentPlaylist(); }
+    void playFromIndex(int index) { m_playbackControl->playFromIndex(index); }
 
 signals:
     void stateChanged(bool playing);
