@@ -1,0 +1,32 @@
+{
+	"BUILD_DIR" : "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen",
+	"CMAKE_BINARY_DIR" : "/home/user/cp/zmp/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/user/cp/zmp/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/user/cp/zmp",
+	"CMAKE_SOURCE_DIR" : "/home/user/cp/zmp",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/user/cp/zmp/LICENSE.txt",
+		"/home/user/cp/zmp/icons/play.svg",
+		"/home/user/cp/zmp/icons/pause.svg",
+		"/home/user/cp/zmp/icons/prev.svg",
+		"/home/user/cp/zmp/icons/featured-1.svg",
+		"/home/user/cp/zmp/icons/next.svg",
+		"/home/user/cp/zmp/icons/featured-0.svg",
+		"/home/user/cp/zmp/icons/stop.svg"
+	],
+	"LOCK_FILE" : "/home/user/cp/zmp/build/CMakeFiles/ZMP_Linux_bin_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "res" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_res.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/user/cp/zmp/build/CMakeFiles/ZMP_Linux_bin_autogen.dir/AutoRcc_res_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/user/cp/zmp/res.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

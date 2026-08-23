@@ -112,6 +112,7 @@ private:
     QTimer *m_connectTimer;
     QTimer *m_dataTimer;
     bool m_ignoreSslErrors;
+    QString m_contCode;   // код текущего многострочного ответа ("220" для "220-...")
 };
 
 #endif

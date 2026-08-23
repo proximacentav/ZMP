@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "aboutdialog.h"
 #include "mpriscontroller.h"
 #include "translator.h"
 #include <QVBoxLayout>
@@ -162,9 +163,47 @@ MainWindow::MainWindow(QWidget *parent)
     m_miniPlayerBar = new MiniPlayerBar(m_audioManager, this);
     rightLayout->addWidget(m_miniPlayerBar);
 
+    // Banner above all tabs: shown while dependencies are being installed
+    m_depsBanner = new QLabel(this);
+    m_depsBanner->setStyleSheet(
+        "background-color: #1b1b1b; color: white; padding: 5px 10px;"
+        "border-bottom: 1px solid #444; font-weight: bold;");
+    m_depsBanner->setTextFormat(Qt::RichText);
+    m_depsBanner->setWordWrap(true);
+    m_depsBanner->hide();
+    rightLayout->addWidget(m_depsBanner);
+
     m_stack = new QStackedWidget;
     rightLayout->addWidget(m_stack, 1);
     mainLayout->addWidget(rightContainer, 1);
+
+    DependencyManager *depsMgr = DependencyManager::instance();
+    connect(depsMgr, &DependencyManager::installStarted, this, [this](int totalSteps) {
+        updateDepsBanner(ztr("подготовка..."), 0, 0);
+        m_depsBanner->show();
+    });
+    connect(depsMgr, &DependencyManager::installProgress,
+            this, &MainWindow::updateDepsBanner);
+    connect(depsMgr, &DependencyManager::installFinished, this,
+            [this](bool success, const QStringList &succeeded, const QStringList &failed) {
+        m_depsBanner->hide();
+
+        // Summary is shown by DependencyCheckDialog if it's still open
+        if (DependencyCheckDialog::s_active && DependencyCheckDialog::s_active->isVisible())
+            return;
+
+        QString msg;
+        if (!succeeded.isEmpty())
+            msg += ztr("Успешно установлено:") + "\n  " + succeeded.join("\n  ") + "\n";
+        if (!failed.isEmpty()) {
+            if (!msg.isEmpty()) msg += "\n";
+            msg += ztr("Не удалось установить:") + "\n  " + failed.join("\n  ");
+        }
+        if (msg.isEmpty())
+            msg = success ? ztr("Готово") : ztr("Установка завершилась с ошибками");
+
+        QMessageBox::information(this, ztr("Установка зависимостей"), msg.trimmed());
+    });
 
     connect(m_playerWidget, &PlayerWidget::stateChanged, this, [this](bool playing) {
         if (playing) {
@@ -301,7 +340,6 @@ MainWindow::MainWindow(QWidget *parent)
         // Cancel any previous download
         if (m_currentDownloadReply) {
             m_currentDownloadReply->abort();
-            m_currentDownloadReply->deleteLater();
             m_currentDownloadReply = nullptr;
         }
 
@@ -327,12 +365,19 @@ MainWindow::MainWindow(QWidget *parent)
                 m_currentDownloadReply = nullptr;
             reply->deleteLater();
             dlm->deleteLater();
+
+            const bool cancelled = (reply->error() == QNetworkReply::OperationCanceledError);
             m_miniPlayerBar->setDownloadActive(false);
-            if (reply->error() != QNetworkReply::NoError &&
-                reply->error() != QNetworkReply::OperationCanceledError) {
+            if (cancelled) {
+                QFile::remove(filePath);
                 return;
             }
+            if (reply->error() != QNetworkReply::NoError)
+                return;
+
             QByteArray data = reply->readAll();
+            if (data.isEmpty())
+                return;
             QFile file(filePath);
             if (file.open(QIODevice::WriteOnly)) {
                 file.write(data);
@@ -353,7 +398,6 @@ MainWindow::MainWindow(QWidget *parent)
         connect(m_miniPlayerBar, &MiniPlayerBar::downloadCancelled, this, [this]() {
             if (m_currentDownloadReply) {
                 m_currentDownloadReply->abort();
-                m_currentDownloadReply->deleteLater();
                 m_currentDownloadReply = nullptr;
             }
             m_miniPlayerBar->setDownloadActive(false);
@@ -413,6 +457,40 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::retranslateUi() {
     runRetrans(m_retrans);
+}
+
+void MainWindow::updateDepsBanner(const QString &pkg, int percent, qint64 speedBps)
+{
+    // Speed coloring identical to the Jamendo download indicator
+    QString color;
+    double speedKBps = speedBps / 1024.0;
+    if (speedKBps > 900)      color = "#4CAF50";
+    else if (speedKBps > 200) color = "#FFC107";
+    else if (speedKBps > 5)   color = "#F44336";
+    else                      color = "#888888";
+
+    QString speedStr;
+    if (speedBps > 1000LL * 1024 * 1024)
+        speedStr = QString("%1 ГБ/с").arg(speedBps / (1024.0 * 1024 * 1024), 0, 'f', 2);
+    else if (speedBps > 4000 * 1024)
+        speedStr = QString("%1 МБ/с").arg(speedBps / (1024.0 * 1024), 0, 'f', 2);
+    else if (speedBps > 0)
+        speedStr = QString("%1 КБ/с").arg(speedKBps, 0, 'f', 1);
+    else
+        speedStr = ztr("ожидание...");
+
+    DependencyManager *depsMgr = DependencyManager::instance();
+    QString proxyPart;
+    QString proxyIp = depsMgr->proxyDisplayIp();
+    if (depsMgr->hasProxy() && !proxyIp.isEmpty())
+        proxyPart = QString("<span style='color:%1;'>%2</span>").arg(color, proxyIp);
+    else
+        proxyPart = QString("<span style='color:#4CAF50;'>%1</span>").arg(ztr("без прокси"));
+
+    m_depsBanner->setText(QString("%1: %2 %3% | <span style='color:%4;'>%5</span> | %6")
+        .arg(ztr("Установка зависимостей"), pkg)
+        .arg(percent)
+        .arg(color, speedStr, proxyPart));
 }
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
@@ -767,6 +845,13 @@ void MainWindow::onUserButtonClicked()
     exitBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
     connect(exitBtn, &QPushButton::clicked, qApp, &QApplication::quit);
     mainLayout->addWidget(exitBtn);
+
+    QPushButton *legalBtn = new QPushButton(ztr("О ZMP etc legal"));
+    legalBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
+    connect(legalBtn, &QPushButton::clicked, this, [&dialog]() {
+        showAboutZmpDialog(&dialog);
+    });
+    mainLayout->addWidget(legalBtn);
 
     QLabel *escHint = new QLabel(ztr("нажмите ESC чтобы закрыть это меню\n для того чтобы открывать директории в root режиме\n вводите путь сверху, в виде дерева root режим работает не всегда "));
     escHint->setAlignment(Qt::AlignCenter);

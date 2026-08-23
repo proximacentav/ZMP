@@ -30,6 +30,8 @@
 #include "ftpclient.h"
 #include "translator.h"
 
+class PartitionsDialog;
+
 class FilesWidget : public QWidget
 {
     Q_OBJECT
@@ -38,6 +40,8 @@ public:
     explicit FilesWidget(QWidget *parent = nullptr);
     QString currentSelectedFile() const;
     void setRootPassword(const QString &password);
+    bool hasRootAccess() const { return m_hasRootAccess; }
+    QString rootPassword() const { return m_rootPassword; }
 
 signals:
     void fileSelected(const QString &path);
@@ -66,6 +70,8 @@ private slots:
     void onFtpsConnect();
     void onSmbConnect();
     void onToggleSearch();
+    void onShowPartitions();
+    void openLocalPath(const QString &path);
     void onFtpListReceived(const QList<FileEntry> &list);
     void onFtpConnected();
     void onFtpError(const QString &error);

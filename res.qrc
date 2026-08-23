@@ -8,4 +8,7 @@
         <file>icons/featured-0.svg</file>
         <file>icons/featured-1.svg</file>
     </qresource>
+    <qresource prefix="/license">
+        <file>LICENSE.txt</file>
+    </qresource>
 </RCC>

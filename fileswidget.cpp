@@ -1,4 +1,5 @@
 #include "fileswidget.h"
+#include "partitionsdialog.h"
 #include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -316,6 +317,9 @@ void FilesWidget::onMenuButtonClicked()
 
     QAction *searchAction = m_menu->addAction(m_searchVisible ? ztr("Скрыть поиск") : ztr("Поиск"));
     connect(searchAction, &QAction::triggered, this, &FilesWidget::onToggleSearch);
+
+    QAction *partitionsAction = m_menu->addAction(ztr("Разделы"));
+    connect(partitionsAction, &QAction::triggered, this, &FilesWidget::onShowPartitions);
 
     if (m_hasRootAccess) {
         m_menu->addSeparator();
@@ -923,6 +927,25 @@ void FilesWidget::switchToFtpView()
 void FilesWidget::switchToLocalView()
 {
     m_stack->setCurrentWidget(m_localViewPage);
+}
+
+void FilesWidget::onShowPartitions()
+{
+    PartitionsDialog dlg(this);
+    dlg.setRootCredentials(m_hasRootAccess, m_rootPassword);
+    connect(&dlg, &PartitionsDialog::openPathRequested, this, &FilesWidget::openLocalPath);
+    dlg.exec();
+}
+
+void FilesWidget::openLocalPath(const QString &path)
+{
+    QFileInfo info(path);
+    if (!info.exists() || !info.isDir())
+        return;
+    switchToLocalView();
+    m_currentPath = path;
+    m_pathEdit->setText(path);
+    m_treeView->setRootIndex(m_proxyModel->mapFromSource(m_model->index(m_currentPath)));
 }
 
 bool FilesWidget::isValidIPv4(const QString &ip)

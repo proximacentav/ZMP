@@ -4,6 +4,7 @@ project(ZMP_Linux_bin)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network DBus OpenGLWidgets)
 
@@ -44,6 +45,9 @@ add_executable(ZMP_Linux_bin
     fileswidget.h fileswidget.cpp
     jamendowidget.h jamendowidget.cpp
     playlistswidget.h playlistswidget.cpp
+    depsmanager.h depsmanager.cpp
+    partitionsdialog.h partitionsdialog.cpp
+    aboutdialog.h aboutdialog.cpp
     iconbutton.h
     miniplayerbar.h miniplayerbar.cpp
     mpriscontroller.h mpriscontroller.cpp

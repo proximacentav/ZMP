@@ -9,8 +9,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "ZMP_Linux_bin_autogen/timestamp" "custom" "ZMP_Linux_bin_autogen/deps"
+  "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o.d"
   "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/mocs_compilation.cpp" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o.d"
+  "/home/user/cp/zmp/aboutdialog.cpp" "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/aboutdialog.cpp.o.d"
   "/home/user/cp/zmp/audiomanager.cpp" "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o.d"
+  "/home/user/cp/zmp/depsmanager.cpp" "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o.d"
   "/home/user/cp/zmp/deviceswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o.d"
   "/home/user/cp/zmp/equalizerwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o.d"
   "/home/user/cp/zmp/fileswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o.d"
@@ -20,6 +23,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/user/cp/zmp/mainwindow.cpp" "CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o.d"
   "/home/user/cp/zmp/miniplayerbar.cpp" "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o.d"
   "/home/user/cp/zmp/mpriscontroller.cpp" "CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o.d"
+  "/home/user/cp/zmp/partitionsdialog.cpp" "CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o.d"
   "/home/user/cp/zmp/playbackcontrolwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o.d"
   "/home/user/cp/zmp/playerwidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o.d"
   "/home/user/cp/zmp/playlistswidget.cpp" "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o" "gcc" "CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o.d"

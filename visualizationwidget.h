@@ -35,6 +35,7 @@ public:
     bool isInitialized() const { return m_projectM != nullptr; }
     void loadPresetFile(const QString &filePath);
     void startProjectM();
+    void stopVisualizer() { m_timer->stop(); }
 
 protected:
     void initializeGL() override;

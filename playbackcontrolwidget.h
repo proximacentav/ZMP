@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QSlider>
+#include <QSpinBox>
 #include <QImage>
 #include <QListWidget>
 #include <QAbstractItemView>
@@ -86,6 +87,9 @@ private:
     QWidget *m_glowContainer;
     QSlider *m_positionSlider;
     QLabel *m_timeLabel;
+    QSlider *m_volumeSlider;
+    QLabel *m_volumeLabel;
+    QSpinBox *m_volumeSpinBox;
     QListWidget *m_playlistWidget;
     IconButton *m_prevIcon;
     IconButton *m_playIcon;

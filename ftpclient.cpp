@@ -6,8 +6,7 @@
 #include <QFileInfo>
 
 static FileEntry parseUnixLsLine(const QString &line)
-{
-    FileEntry entry;
+{    FileEntry entry;
     static QRegularExpression re(
         R"(^([\-dplbcws])([\-r][\-w][\-xsS\-]{0,2})([\-r][\-w][\-xsS\-]{0,2})([\-rwxXsStT\-]{1,3})\s+)"  // 1-4: perms
         R"((\d+)\s+(\S+)\s+(\S+)\s+(\d+)\s+)"  // 5-8: links, owner, group, size
@@ -31,6 +30,15 @@ static FileEntry parseUnixLsLine(const QString &line)
         entry.size = parts[parts.size() - 5].toLongLong();
     }
     return entry;
+}
+
+// Пути в командах FTP (CWD/LIST/RETR) нужно заключать в кавычки,
+// иначе пути с пробелами ломают разбор команды сервером.
+static QString quoteFtpPath(const QString &path)
+{
+    QString p = path;
+    p.replace('"', "\"\"");
+    return "\"" + p + "\"";
 }
 
 FTPClient::FTPClient(QObject *parent)
@@ -87,6 +95,7 @@ void FTPClient::disconnect()
     m_responseBuf.clear();
     m_dataBuf.clear();
     m_listBuffer.clear();
+    m_contCode.clear();
     m_connectTimer->stop();
     m_dataTimer->stop();
     m_pendingDataCmd.clear();
@@ -202,7 +211,16 @@ void FTPClient::onControlReadyRead()
         if (line.length() < 4) continue;
 
         QString text = QString::fromUtf8(line);
-        if (text.length() > 3 && text.at(3) == '-') {
+
+        // Многострочный ответ: пропускаем строки, пока не придёт
+        // завершающая строка с тем же кодом и пробелом ("220 ...").
+        if (!m_contCode.isEmpty()) {
+            if (text.startsWith(m_contCode + QLatin1Char(' ')))
+                m_contCode.clear();
+            continue;
+        }
+        if (text.length() > 3 && text.at(3) == '-' && text.left(3).toInt() >= 100) {
+            m_contCode = text.left(3);
             continue;
         }
 
@@ -328,7 +346,7 @@ void FTPClient::list(const QString &path)
             m_dataSocketConnected = false;
             m_pendingDataCmd = "LIST";
             if (!target.isEmpty() && target != "/") {
-                m_pendingDataCmd += " " + target;
+                m_pendingDataCmd += " " + quoteFtpPath(target);
             }
 
             m_data = new QTcpSocket(this);
@@ -480,7 +498,7 @@ void FTPClient::ftpDownload(const QString &remote, const QString &local)
             }
 
             m_dataSocketConnected = false;
-            m_pendingDataCmd = "RETR " + m_pendingRemotePath;
+            m_pendingDataCmd = "RETR " + quoteFtpPath(m_pendingRemotePath);
 
             m_data = new QTcpSocket(this);
             connect(m_data, &QTcpSocket::connected, this, &FTPClient::onDataConnected);
@@ -522,7 +540,13 @@ void FTPClient::cd(const QString &path)
     if (target.isEmpty())
         target = "/";
 
-    sendQueued("CWD " + target, "2", [this, fullPath](const QString &) {
+    sendQueued("CWD " + quoteFtpPath(target), "2", [this, fullPath](const QString &resp) {
+        // При ошибке CWD (например, 550) НЕ выполняем PWD — иначе получим
+        // старую директорию и UI "перекинет" пользователя назад.
+        if (!resp.startsWith("2")) {
+            emit error(QString("Failed to change directory: %1").arg(resp));
+            return;
+        }
         sendQueued("PWD", "2", [this, fullPath](const QString &resp) {
             int q1 = resp.indexOf('"');
             int q2 = q1 >= 0 ? resp.indexOf('"', q1 + 1) : -1;

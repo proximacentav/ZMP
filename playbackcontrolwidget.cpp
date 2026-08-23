@@ -203,6 +203,28 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     btnLayout->addWidget(m_featuredIcon);
     mainLayout->addLayout(btnLayout);
 
+    QWidget *volumeContainer = new QWidget(this);
+    QHBoxLayout *volumeLayout = new QHBoxLayout(volumeContainer);
+    volumeLayout->setContentsMargins(10, 4, 10, 4);
+
+    m_volumeLabel = new QLabel("vol");
+    m_volumeLabel->setStyleSheet("font-weight:bold;");
+    volumeLayout->addWidget(m_volumeLabel);
+
+    m_volumeSlider = new QSlider(Qt::Horizontal);
+    m_volumeSlider->setRange(0, 1500);
+    m_volumeSlider->setValue(100);
+    m_volumeSlider->setToolTip(ztr("Громкость"));
+    volumeLayout->addWidget(m_volumeSlider, 1);
+
+    m_volumeSpinBox = new QSpinBox;
+    m_volumeSpinBox->setRange(0, 1500);
+    m_volumeSpinBox->setSuffix(" %");
+    m_volumeSpinBox->setValue(100);
+    volumeLayout->addWidget(m_volumeSpinBox);
+
+    mainLayout->addWidget(volumeContainer);
+
     m_playlistWidget = new QListWidget;
     mainLayout->addWidget(ztrLabel(m_retrans, "Очередь воспроизведения:"));
     mainLayout->addWidget(m_playlistWidget);
@@ -220,6 +242,11 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     connect(m_positionSlider, &QSlider::sliderReleased, this, [this]() { m_isSeeking = false; });
     connect(m_positionSlider, &QSlider::sliderMoved, this, &PlaybackControlWidget::onSliderMoved);
     connect(m_playlistWidget, &QListWidget::itemDoubleClicked, this, &PlaybackControlWidget::onPlaylistItemDoubleClicked);
+    connect(m_volumeSlider, &QSlider::valueChanged, m_volumeSpinBox, &QSpinBox::setValue);
+    connect(m_volumeSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), m_volumeSlider, &QSlider::setValue);
+    connect(m_volumeSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int percent) {
+        m_audioManager->setVolume(percent / 100.0);
+    });
     connect(m_audioManager, &AudioManager::trackEnded, this, [this]() {
         onStateChanged(false);
     });
@@ -492,6 +519,8 @@ TrackMetadata PlaybackControlWidget::extractMetadata(const QString &filePath) {
     TrackMetadata data;
     QFileInfo fi(filePath);
     data.title = fi.baseName();
+    if (!fi.exists() || fi.size() == 0)
+        return data;
     TagLib::FileRef f(filePath.toUtf8().data());
     if (!f.isNull() && f.tag()) {
         TagLib::Tag *tag = f.tag();

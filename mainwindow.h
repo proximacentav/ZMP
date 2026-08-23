@@ -22,6 +22,8 @@
 #include "miniplayerbar.h"
 #include "translator.h"
 #include <QNetworkReply>
+#include <QLabel>
+#include "depsmanager.h"
 
 class EqualizerPresetDialog : public QDialog
 {
@@ -93,6 +95,9 @@ private:
     void loadKeyBindingsFromSettings();
     void showEqualizerPresetDialog();
     QNetworkReply *m_currentDownloadReply = nullptr;
+
+    QLabel *m_depsBanner = nullptr;   // "Установка зависимостей: ..." над вкладками
+    void updateDepsBanner(const QString &pkg, int percent, qint64 speedBps);
 
     RetransList m_retrans;   // live-retranslation registry (window title + menu)
     void retranslateUi();

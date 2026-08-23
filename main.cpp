@@ -2,11 +2,13 @@
 #include <QMetaType>
 #include "mainwindow.h"
 #include "playlistswidget.h"
+#include "depsmanager.h"
 #include "translator.h"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    zmpInstallCrashHandler();
     qRegisterMetaType<PlaylistInfo>();
 
     // Resolve UI language before any widgets are built: config.json override,

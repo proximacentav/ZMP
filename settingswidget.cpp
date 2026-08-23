@@ -1,4 +1,6 @@
 #include "settingswidget.h"
+#include "aboutdialog.h"
+#include "depsmanager.h"
 #include "translator.h"
 #include <QVariant>
 #include <QVBoxLayout>
@@ -86,15 +88,7 @@ void SettingsWidget::onHeightSliderChanged(int v) { emit metadataHeightChanged(v
 void SettingsWidget::onIconSizeSliderChanged(int v) { emit iconSizeChanged(v); }
 void SettingsWidget::onIconSizeChanged(int v) { m_iconSizeSlider->blockSignals(true); m_iconSizeSlider->setValue(v); m_iconSizeSlider->blockSignals(false); }
 void SettingsWidget::showAboutDialog() {
-    QDialog dlg(this);
-    dlg.setWindowTitle(ztr("О программе"));
-    dlg.resize(400,300);
-    QVBoxLayout *l = new QVBoxLayout(&dlg);
-    l->addWidget(new QLabel(ztr("version 1.6.0 (update)\nby proximacentav..\nhttps://github.com/proximacentav/ZMP\nMIT license\nRELEASE\nтакже был использован projectM")));
-    QPushButton *closeBtn = new QPushButton(ztr("Закрыть"));
-    l->addWidget(closeBtn);
-    connect(closeBtn, &QPushButton::clicked, &dlg, &QDialog::accept);
-    dlg.exec();
+    showAboutZmpDialog(this);
 }
 void SettingsWidget::applyTheme(bool dark) {
     QPalette pal;
@@ -319,6 +313,15 @@ void SettingsWidget::setupMainSettingsTab() {
     layout->addWidget(m_jamendoReconfigureBtn);
     connect(m_jamendoReconfigureBtn, &QPushButton::clicked, this, [this]() {
         emit jamendoReconfigureRequested();
+    });
+
+    m_checkDepsBtn = ztrButton(m_retrans, "Проверить зависимости");
+    m_checkDepsBtn->setStyleSheet("font-weight: bold; font-size: 14px; padding: 10px;");
+    layout->addWidget(m_checkDepsBtn);
+    connect(m_checkDepsBtn, &QPushButton::clicked, this, [this]() {
+        DependencyCheckDialog *dlg = new DependencyCheckDialog(this);
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        dlg->show();
     });
 
     connect(m_bitrateSlider, &QSlider::valueChanged, this, &SettingsWidget::onSliderChanged);

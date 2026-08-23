@@ -13,6 +13,7 @@ class QSlider;
 class QComboBox;
 class QLineEdit;
 class QCheckBox;
+class DependencyCheckDialog;
 
 class SettingsWidget : public QWidget
 {
@@ -101,6 +102,7 @@ private:
     QPushButton *m_keyBindingButton;
     QPushButton *m_clearJamendoCacheBtn;
     QPushButton *m_jamendoReconfigureBtn;
+    QPushButton *m_checkDepsBtn;
     
     QStackedWidget *m_stackedWidget;
     QWidget *m_mainSettingsWidget;

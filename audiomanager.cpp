@@ -1,4 +1,5 @@
 #include "audiomanager.h"
+#include "depsmanager.h"
 #include "translator.h"
 #include <cmath>
 #include <cfloat>
@@ -65,6 +66,13 @@ void AudioManager::setSourceFile(const QString &filePath) {
     m_echoFX = 0;
     m_currentFilePath = filePath;
 
+    QFileInfo fi(filePath);
+    if (!fi.exists() || fi.size() == 0) {
+        qCritical() << "Failed to load file. File is missing or empty:" << filePath;
+        emit errorOccurred(ztr("Не удалось загрузить файл"));
+        return;
+    }
+
     QString playPath = filePath;
     if (m_maxBitrate > 0) {
         int trackBitrate = detectBitrate(filePath);
@@ -81,6 +89,8 @@ void AudioManager::setSourceFile(const QString &filePath) {
     if (!m_currentStream) {
         qCritical() << "Failed to load file. BASS error:" << BASS_ErrorGetCode();
         emit errorOccurred(ztr("Не удалось загрузить файл"));
+        // Файл существует и не пуст — вероятно, проблема с зависимостями/кодеками
+        DependencyManager::instance()->reportMissingDependencies();
         return;
     }
 
@@ -238,7 +248,7 @@ void AudioManager::setPreampGain(float gainDb) {
 }
 
 void AudioManager::setVolume(double vol) {
-    vol = qBound(0.0, vol, 1.0);
+    vol = qBound(0.0, vol, 15.0);
     m_volume = vol;
     applyVolume();
     emit volumeChanged(m_volume);
