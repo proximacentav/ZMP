@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cfloat>
 #include <QDebug>
+#include <QHash>
 #include <QFile>
 #include <QMediaDevices>
 #include <QVector>
@@ -311,18 +312,19 @@ void AudioManager::fillOutput(float *out, ma_uint32 frames)
             r = m_eqR[b].process(r);
         }
 
-        l *= gain;
-        r *= gain;
-
+        // Эхо до усиления: хвосты тоже усиливаются предусилением
         if (echoOn && echoLen > 0) {
             const float dl = m_echoBuf[0][m_echoPos];
             const float dr = m_echoBuf[1][m_echoPos];
-            m_echoBuf[0][m_echoPos] = l * 0.3f + dl * 0.3f;
-            m_echoBuf[1][m_echoPos] = r * 0.3f + dr * 0.3f;
-            l = l * 1.0f + dl * 0.5f;
-            r = r * 1.0f + dr * 0.5f;
+            m_echoBuf[0][m_echoPos] = l * 0.40f + dl * 0.42f;
+            m_echoBuf[1][m_echoPos] = r * 0.40f + dr * 0.42f;
+            l = l + dl * 0.65f;
+            r = r + dr * 0.65f;
             m_echoPos = (m_echoPos + 1) % echoLen;
         }
+
+        l *= gain;
+        r *= gain;
 
         // Мягкий клиппинг: до 1.0 линейно, выше — tanh (POWERMODE оправдан)
         out[i * 2 + 0] = (l > 1.0f || l < -1.0f) ? std::tanh(l) : l;
@@ -532,6 +534,7 @@ void AudioManager::setPitchShift(double semitones)
 
 void AudioManager::setEchoEnabled(bool enabled)
 {
+    qDebug() << "audio: echo" << (enabled ? "enabled" : "disabled");
     m_echoEnabled = enabled;
     if (enabled) {
         std::lock_guard<std::mutex> lk(m_paramMutex);
@@ -650,6 +653,13 @@ void AudioManager::setSpectrumBands(int bands) { m_spectrumBands = qBound(2, ban
 void AudioManager::setMaxBitrate(int bitrate) { m_maxBitrate = bitrate; }
 
 int AudioManager::detectBitrate(const QString &filePath) {
+    // Кэш: ffprobe не должен запускаться повторно для того же файла
+    // (waitForFinished блокирует главный поток до 5 секунд)
+    static QHash<QString, int> cache;
+    const auto it = cache.constFind(filePath);
+    if (it != cache.constEnd())
+        return it.value();
+
     QProcess ffprobe;
     ffprobe.start("ffprobe", {
         "-v", "error",
@@ -662,8 +672,11 @@ int AudioManager::detectBitrate(const QString &filePath) {
     QString output = QString::fromUtf8(ffprobe.readAllStandardOutput()).trimmed();
     bool ok = false;
     int bitrate = output.toInt(&ok);
-    if (ok && bitrate > 0)
+    if (ok && bitrate > 0) {
+        cache.insert(filePath, bitrate / 1000);
         return bitrate / 1000;
+    }
+    cache.insert(filePath, 0);
     return 0;
 }
 

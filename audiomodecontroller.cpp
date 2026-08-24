@@ -28,7 +28,7 @@ QString AudioModeController::runPactl(const QStringList &args)
 {
     QProcess proc;
     proc.start("pactl", args);
-    if (!proc.waitForFinished(8000))
+    if (!proc.waitForFinished(2000))
         return {};
     return QString::fromUtf8(proc.readAllStandardOutput());
 }
@@ -70,7 +70,7 @@ int AudioModeController::loadModule(const QString &moduleArgs)
 {
     QProcess proc;
     proc.start("pactl", QStringList{"load-module"} << moduleArgs.split(' ', Qt::SkipEmptyParts));
-    if (!proc.waitForFinished(8000))
+    if (!proc.waitForFinished(2000))
         return -1;
     bool ok = false;
     const int idx = QString::fromUtf8(proc.readAllStandardOutput()).trimmed().toInt(&ok);

@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDir>
+#include <QVariantAnimation>
+#include <QEasingCurve>
 #include <QFileInfo>
 #include <QDebug>
 #include <QDialog>
@@ -21,17 +23,25 @@
 #include <QApplication>
 #include <QStyle>
 #include <QPalette>
+#ifndef ZMP_NO_TAGLIB
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/attachedpictureframe.h>
 #include <taglib/flacfile.h>
+#endif
 #include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QDirIterator>
 #include <QTimer>
+#include <algorithm>
+#include <climits>
 
+#ifdef ZMP_NO_TAGLIB
+static QImage extractCover(const QString&) { return {}; }
+static QString extractTitle(const QString &filePath) { return QFileInfo(filePath).baseName(); }
+#else
 static QImage extractCover(const QString &filePath) {
     QImage img;
     if (filePath.endsWith(".mp3", Qt::CaseInsensitive)) {
@@ -68,6 +78,8 @@ static QString extractTitle(const QString &filePath) {
     }
     return title;
 }
+
+#endif
 
 static QString extractArtist(const QString &filePath) {
     TagLib::FileRef f(filePath.toUtf8().data());
@@ -221,6 +233,49 @@ void ClustersPanel::onEditCluster() {
 // ----------------------------------------------------------------
 //  PlaylistsWidget
 // ----------------------------------------------------------------
+// Полоса свечения внизу окна в цвете плейлиста под курсором
+class HoverGlowBar : public QWidget {
+public:
+    QColor color{0, 200, 255};
+    qreal opacity = 0.0;
+    explicit HoverGlowBar(QWidget *parent) : QWidget(parent) {
+        setAttribute(Qt::WA_TransparentForMouseEvents);
+        setFixedHeight(90);
+        hide();
+    }
+    void setColor(const QColor &col) { color = col; update(); }
+    void showAnimated() {
+        show(); raise();
+        auto *a = new QVariantAnimation(this);
+        a->setDuration(180);
+        a->setStartValue(opacity);
+        a->setEndValue(1.0);
+        connect(a, &QVariantAnimation::valueChanged, this, [this](const QVariant &v){
+            opacity = v.toReal(); update(); });
+        a->start(QAbstractAnimation::DeleteWhenStopped);
+    }
+    void hideAnimated() {
+        auto *a = new QVariantAnimation(this);
+        a->setDuration(250);
+        a->setStartValue(opacity);
+        a->setEndValue(0.0);
+        connect(a, &QVariantAnimation::valueChanged, this, [this](const QVariant &v){
+            opacity = v.toReal(); update();
+            if (opacity <= 0.001) hide(); });
+        a->start(QAbstractAnimation::DeleteWhenStopped);
+    }
+protected:
+    void paintEvent(QPaintEvent*) override {
+        QPainter p(this);
+        QLinearGradient g(0, 0, 0, height());
+        QColor top = color; top.setAlpha(0);
+        QColor bot = color; bot.setAlpha(int(110 * opacity));
+        g.setColorAt(0.0, top);
+        g.setColorAt(1.0, bot);
+        p.fillRect(rect(), g);
+    }
+};
+
 PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *outerLayout = new QHBoxLayout(this);
     outerLayout->setSpacing(0);
@@ -238,6 +293,7 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     editBtn->setFixedSize(100,40);
     QPushButton *delBtn = new QPushButton("Delete");
     delBtn->setFixedSize(70,40);
+    m_delBtn = delBtn;
 
     QPushButton *clusterToggleBtn = ztrButton(m_retrans, "Кластеры");
     clusterToggleBtn->setFixedSize(90,40);
@@ -280,6 +336,8 @@ PlaylistsWidget::PlaylistsWidget(QWidget *parent) : QWidget(parent) {
     m_tilesFrame->setStyleSheet("QFrame { border: 2px solid transparent; border-radius: 6px; }");
 
     m_listWidget = new QListWidget;
+    m_glowBar = new HoverGlowBar(m_listWidget->viewport());
+    m_glowBar->hide();
     m_listWidget->setViewMode(QListView::IconMode);
     m_listWidget->setGridSize(QSize(190, 240));
     m_listWidget->setResizeMode(QListView::Adjust);
@@ -520,6 +578,74 @@ void PlaylistsWidget::loadPlaylistColors() {
     }
 }
 
+
+// Плавное расталкивание плиток при наведении: поднятая плитка выше,
+// остальные слегка ниже; при уходе курсора всё возвращается.
+void PlaylistsWidget::animateItemHeight(QListWidgetItem *item, int targetH)
+{
+    if (!item) return;
+    const QSize base = item->data(Qt::UserRole + 5).toSize();
+    auto *anim = new QVariantAnimation(this);
+    anim->setDuration(160);
+    anim->setEasingCurve(QEasingCurve::OutCubic);
+    anim->setStartValue(item->sizeHint().height());
+    anim->setEndValue(targetH <= 0 ? base.height() : targetH);
+    QObject::connect(anim, &QVariantAnimation::valueChanged, this,
+                     [item](const QVariant &v) {
+        QSize s = item->sizeHint();
+        s.setHeight(v.toInt());
+        item->setSizeHint(s);
+    });
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+QListWidgetItem *PlaylistsWidget::findItemOfTile(QWidget *tile)
+{
+    for (int i = 0; i < m_listWidget->count(); ++i) {
+        QListWidgetItem *it = m_listWidget->item(i);
+        if (m_listWidget->itemWidget(it) == tile)
+            return it;
+    }
+    return nullptr;
+}
+
+void PlaylistsWidget::connectTileHover(PlaylistTileWidget *tile, QListWidgetItem *item)
+{
+    item->setData(Qt::UserRole + 5, item->sizeHint());
+
+    connect(tile, &PlaylistTileWidget::hoverStarted, this,
+            [this, tile, item]() {
+        // подсветка внизу окна в цвете плейлиста
+        if (m_glowBar) {
+            m_glowBar->setColor(tile->borderColor().isValid()
+                                    ? tile->borderColor()
+                                    : QColor(0, 200, 255));
+            m_glowBar->setGeometry(m_listWidget->viewport()->rect().adjusted(
+                0, m_listWidget->viewport()->height() - 90, 0, 0));
+            m_glowBar->showAnimated();
+        }
+        QListWidgetItem *hovered = findItemOfTile(tile);
+        const int row = m_listWidget->row(hovered);
+        for (int i = 0; i < m_listWidget->count(); ++i) {
+            QListWidgetItem *it = m_listWidget->item(i);
+            const int base = it->data(Qt::UserRole + 5).toSize().height();
+            if (i == row)
+                animateItemHeight(it, base + 18);       // поднятая плитка
+            else if (qAbs(i - row) == 1)
+                animateItemHeight(it, base - 8);        // ближайшие отодвигаются вниз
+            else
+                animateItemHeight(it, base - 4);        // остальные чуть ниже
+        }
+    });
+    connect(tile, &PlaylistTileWidget::hoverEnded, this, [this]() {
+        if (m_glowBar) m_glowBar->hideAnimated();
+        for (int i = 0; i < m_listWidget->count(); ++i)
+            animateItemHeight(m_listWidget->item(i), -1);   // вернуть базу
+        for (int i = 0; i < m_listWidget->count(); ++i)
+            animateItemHeight(m_listWidget->item(i), -1);   // вернуть базу
+    });
+}
+
 void PlaylistsWidget::loadPlaylists() {
     qDebug() << "playlists: scanning" << basePath() << "for playlists";
     loadPlaylistColors();
@@ -539,6 +665,17 @@ void PlaylistsWidget::loadPlaylists() {
     } else {
         // Show only playlists from the selected cluster
         foldersToShow = getPlaylistsInCluster(m_currentClusterFilter);
+    }
+
+    // Apply saved custom order (drag & drop in the playlists tab)
+    const QStringList order = savedPlaylistOrder();
+    if (!order.isEmpty()) {
+        std::stable_sort(foldersToShow.begin(), foldersToShow.end(),
+                         [&order](const QString &a, const QString &b) {
+            int ia = order.indexOf(a); if (ia < 0) ia = INT_MAX;
+            int ib = order.indexOf(b); if (ib < 0) ib = INT_MAX;
+            return ia < ib;
+        });
     }
 
     for (const QString &folder : foldersToShow) {
@@ -577,6 +714,8 @@ void PlaylistsWidget::loadPlaylists() {
 
         PlaylistTileWidget *tile = new PlaylistTileWidget(info, m_listWidget, false);
         m_listWidget->setItemWidget(item, tile);
+        connectTileHover(tile, item);
+        connect(tile, &PlaylistTileWidget::dropRequested, this, &PlaylistsWidget::handleTileDrop);
 
         if (m_playlistColors.contains(folder)) {
             tile->setBorderColor(m_playlistColors[folder]);
@@ -614,6 +753,7 @@ void PlaylistsWidget::loadPlaylists() {
 
     PlaylistTileWidget *tile = new PlaylistTileWidget(featuredInfo, m_listWidget, true);
     m_listWidget->setItemWidget(item, tile);
+    connect(tile, &PlaylistTileWidget::dropRequested, this, &PlaylistsWidget::handleTileDrop);
 
     connect(tile, &PlaylistTileWidget::doubleClicked, this, &PlaylistsWidget::playlistSelected);
 }
@@ -779,6 +919,103 @@ void PlaylistsWidget::onDeleteClicked() {
         if (dir.removeRecursively()) loadPlaylists();
         else QMessageBox::warning(this, ztr("Ошибка"), ztr("Не удалось удалить"));
     }
+}
+
+QString PlaylistsWidget::playlistPath(const QString &playlistName) const {
+    QString p = basePath() + "/" + playlistName;
+    if (QDir(p).exists()) return p;
+    for (const ClusterInfo &ci : m_clusters) {
+        QString cp = clusterPath(ci.name) + "/" + playlistName;
+        if (QDir(cp).exists()) return cp;
+    }
+    return QString();
+}
+
+void PlaylistsWidget::handleTileDrop(PlaylistTileWidget *tile, const QPoint &globalPos) {
+    if (!tile) return;
+
+    // 1) Drop на кнопку Delete сверху → подтверждение удаления
+    if (m_delBtn && m_delBtn->isVisible()
+        && m_delBtn->rect().contains(m_delBtn->mapFromGlobal(globalPos))) {
+        if (tile->m_isFeatured) return;
+        const QString name = tile->m_info.name;
+        const QString path = playlistPath(name);
+        if (path.isEmpty()) return;
+
+        QMessageBox box(this);
+        box.setWindowTitle(ztr("Удалить плейлист"));
+        box.setText(ztr("Хотите ли вы удалить ") + path + "?");
+        QPushButton *yesBtn = box.addButton(ztr("Удалить"), QMessageBox::DestructiveRole);
+        box.addButton(ztr("Отмена"), QMessageBox::RejectRole);
+        box.exec();
+        if (box.clickedButton() == yesBtn) {
+            QDir(path).removeRecursively();
+            loadPlaylists();
+        }
+        return;
+    }
+
+    // 2) Drop на боковую панель (кластеры) → начать проигрывание
+    if (m_clustersPanel && m_clustersPanel->isVisible()
+        && m_clustersPanel->rect().contains(m_clustersPanel->mapFromGlobal(globalPos))) {
+        emit playlistSelected(tile->m_info.tracks);
+        return;
+    }
+
+    // 3) Drop на другой плейлист → поменять местами и сохранить порядок
+    QListWidgetItem *srcItem = findItemOfTile(tile);
+    if (!srcItem || tile->m_isFeatured) return;
+    const QPoint vpPos = m_listWidget->viewport()->mapFromGlobal(globalPos);
+    QListWidgetItem *dstItem = m_listWidget->itemAt(vpPos);
+    if (!dstItem || dstItem == srcItem) return;
+
+    PlaylistTileWidget *dstTile = qobject_cast<PlaylistTileWidget*>(m_listWidget->itemWidget(dstItem));
+    if (!dstTile || dstTile->m_isFeatured) return;
+
+    const int srcRow = m_listWidget->row(srcItem);
+    const int dstRow = m_listWidget->row(dstItem);
+
+    std::swap(tile->m_info, dstTile->m_info);
+    std::swap(tile->m_borderColor, dstTile->m_borderColor);
+    std::swap(tile->m_isPlaying, dstTile->m_isPlaying);
+    std::swap(tile->m_isFeatured, dstTile->m_isFeatured);
+    tile->refreshFromInfo();
+    dstTile->refreshFromInfo();
+
+    // держим m_playlists в том же порядке, что и список
+    if (srcRow < m_playlists.size() && dstRow < m_playlists.size())
+        std::swap(m_playlists[srcRow], m_playlists[dstRow]);
+
+    savePlaylistOrder();
+}
+
+void PlaylistsWidget::savePlaylistOrder() {
+    QFile file(basePath() + "/config.json");
+    QJsonObject root;
+    if (file.open(QIODevice::ReadOnly)) {
+        root = QJsonDocument::fromJson(file.readAll()).object();
+        file.close();
+    }
+
+    QJsonArray arr;
+    for (int i = 0; i < m_listWidget->count(); ++i) {
+        auto *t = qobject_cast<PlaylistTileWidget*>(m_listWidget->itemWidget(m_listWidget->item(i)));
+        if (t) arr.append(t->playlistName());
+    }
+    root["playlist_order"] = arr;
+
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
+    }
+}
+
+QStringList PlaylistsWidget::savedPlaylistOrder() const {
+    QFile file(basePath() + "/config.json");
+    if (!file.open(QIODevice::ReadOnly)) return {};
+    QJsonArray arr = QJsonDocument::fromJson(file.readAll()).object()["playlist_order"].toArray();
+    QStringList out;
+    for (const QJsonValue &v : arr) out << v.toString();
+    return out;
 }
 
 void PlaylistsWidget::onPlaylistPlaying(const QStringList &tracks) {

@@ -12,6 +12,7 @@
 #include <QBrush>
 #include <QMouseEvent>
 #include <QRandomGenerator>
+#include <QApplication>
 #include <QConicalGradient>
 #include <QTransform>
 #include <QPair>
@@ -33,6 +34,7 @@ struct PlaylistInfo {
 Q_DECLARE_METATYPE(PlaylistInfo)
 
 class PlaylistEditDialog;
+class PlaylistsWidget;
 
 class PlaylistTileWidget : public QWidget {
     Q_OBJECT
@@ -44,7 +46,10 @@ public:
         m_scrollText = m_info.trackTitles.join(" • ");
 
         m_animTimer = new QTimer(this);
-        connect(m_animTimer, &QTimer::timeout, this, QOverload<>::of(&PlaylistTileWidget::update));
+        connect(m_animTimer, &QTimer::timeout, this, [this]() {
+            if (m_hovered) m_rayPhase += 0.07;
+            update();   // всегда: бегущий текст и мерцание рамки
+        });
         m_animTimer->start(33);
     }
 protected:
@@ -140,9 +145,57 @@ protected:
             p.setPen(bottomPen);
             p.drawLine(10, 230, 170, 230);
         }
+        // --- hover: лучи вверх в цвете плейлиста + свечение снизу ---
+        if (m_hovered) {
+            const QColor col = m_borderColor.isValid() ? m_borderColor
+                                                       : QColor(0, 200, 255);
+            QLinearGradient glow(0, height() - 90, 0, height());
+            QColor g0 = col; g0.setAlpha(0);
+            QColor g1 = col; g1.setAlpha(70);
+            glow.setColorAt(0.0, g0);
+            glow.setColorAt(1.0, g1);
+            p.setPen(Qt::NoPen);
+            p.setBrush(glow);
+            p.drawRoundedRect(QRectF(4, height() - 90, width() - 8, 86), 8, 8);
+
+            constexpr int N = 9;
+            for (int k = 0; k < N; ++k) {
+                const qreal t = (k + 0.5) / N;
+                const qreal x = 10 + t * (width() - 20);
+                const qreal ph = std::sin(m_rayPhase * 2.2 + k * 1.7) * 0.5 + 0.5;
+                const qreal len = 28 + 62 * ph;
+                const qreal w2 = 3.0 + 5.0 * ph;
+
+                QLinearGradient lg(x, height(), x, height() - len);
+                QColor c1 = col; c1.setAlpha(160 + int(80 * ph));
+                QColor c0 = col; c0.setAlpha(0);
+                lg.setColorAt(0.0, c1);
+                lg.setColorAt(1.0, c0);
+
+                QPainterPath beam;
+                beam.moveTo(x - w2 / 2, height());
+                beam.lineTo(x, height() - len);
+                beam.lineTo(x + w2 / 2, height());
+                beam.closeSubpath();
+                p.setPen(Qt::NoPen);
+                p.setBrush(lg);
+                p.drawPath(beam);
+            }
+        }
+
     }
 
     void mouseMoveEvent(QMouseEvent *e) override {
+        if (m_pressed && !m_dragging
+            && (e->pos() - m_pressPos).manhattanLength() >= QApplication::startDragDistance()) {
+            startDrag();
+        }
+        if (m_dragging && m_ghost) {
+            QWidget *top = m_ghost->parentWidget();
+            if (top) m_ghost->move(top->mapFromGlobal(e->globalPosition().toPoint())
+                                   - QPoint(m_ghost->width()/2, 20));
+            return;
+        }
         qreal relX = (qreal)e->pos().x() / width() - 0.5;
         qreal relY = (qreal)e->pos().y() / height() - 0.5;
         m_rotY = qBound(-17.25, relX * 34.5, 17.25);
@@ -150,8 +203,15 @@ protected:
         update();
     }
 
+    void enterEvent(QEnterEvent*) override {
+        m_hovered = true;
+        emit hoverStarted(this);
+        update();
+    }
+
     void leaveEvent(QEvent*) override {
         m_rotX = 0; m_rotY = 0;
+        if (m_hovered) { m_hovered = false; emit hoverEnded(this); }
         update();
     }
     
@@ -159,15 +219,67 @@ protected:
         if (!m_info.tracks.isEmpty()) emit doubleClicked(m_info.tracks);
     }
 
+    void mousePressEvent(QMouseEvent *e) override {
+        if (e->button() == Qt::LeftButton) {
+            m_pressed = true;
+            m_pressPos = e->pos();
+        }
+        QWidget::mousePressEvent(e);
+    }
+
+    void mouseReleaseEvent(QMouseEvent *e) override {
+        bool wasDragging = m_dragging;
+        m_pressed = false;
+        if (m_dragging) {
+            m_dragging = false;
+            unsetCursor();
+            if (m_ghost) { m_ghost->deleteLater(); m_ghost = nullptr; }
+            const QPoint gp = e->globalPosition().toPoint();
+            if (wasDragging) { emit dropRequested(this, gp); return; }   // не трактовать как клик
+        }
+        QWidget::mouseReleaseEvent(e);
+    }
+
+private:
+    void startDrag() {
+        m_dragging = true;
+        QPixmap pm = grab();
+        QWidget *top = window();
+        m_ghost = new QLabel(top);
+        m_ghost->setPixmap(pm);
+        m_ghost->setAttribute(Qt::WA_TransparentForMouseEvents);
+        m_ghost->setWindowOpacity(0.85);
+        m_ghost->resize(pm.size());
+        m_ghost->raise();
+        m_ghost->show();
+        m_ghost->move(top->mapFromGlobal(QCursor::pos()) - QPoint(pm.width()/2, 20));
+        setCursor(Qt::ClosedHandCursor);
+    }
+
 public:
     void setPlaying(bool playing) { m_isPlaying = playing; update(); }
     void setBorderColor(const QColor &color) { m_borderColor = color; update(); }
+    QColor borderColor() const { return m_borderColor; }
+    QString playlistName() const { return m_info.name; }
+    void refreshFromInfo() {
+        m_scrollText = m_info.trackTitles.join(" • ");
+        m_scrollX = 0;
+        update();
+    }
 
 signals:
     void doubleClicked(const QStringList &tracks);
+    void hoverStarted(PlaylistTileWidget *tile);
+    void hoverEnded(PlaylistTileWidget *tile);
+    void dropRequested(PlaylistTileWidget *tile, const QPoint &globalPos);
 
 private:
     PlaylistInfo m_info;
+public:
+    bool m_hovered = false;
+protected:
+    qreal m_rayPhase = 0.0;
+private:
     qreal m_rotX = 0, m_rotY = 0;
     int m_angle;
     QTimer *m_animTimer;
@@ -177,6 +289,13 @@ private:
 
     QString m_scrollText;
     int m_scrollX;
+
+    QPoint m_pressPos;
+    bool m_pressed = false;
+    bool m_dragging = false;
+    QLabel *m_ghost = nullptr;
+
+    friend class PlaylistsWidget;
 };
 
 struct ClusterInfo {
@@ -208,6 +327,8 @@ private:
     friend class PlaylistsWidget;
 };
 
+class HoverGlowBar;
+
 class PlaylistsWidget : public QWidget
 {
     Q_OBJECT
@@ -222,6 +343,9 @@ public slots:
     void onPlaylistStopped();
     void onPlaylistClear();
     void loadPlaylists();
+    void animateItemHeight(QListWidgetItem *item, int targetH);
+    QListWidgetItem *findItemOfTile(QWidget *tile);
+    void connectTileHover(PlaylistTileWidget *tile, QListWidgetItem *item);
     void filterByCluster(const QString &clusterName);
 
 private slots:
@@ -247,8 +371,15 @@ public:
     bool isFirstRun() const;
     void setupDefaultClusters();
 
+    void handleTileDrop(PlaylistTileWidget *tile, const QPoint &globalPos);
+    QString playlistPath(const QString &playlistName) const;
+    void savePlaylistOrder();
+    QStringList savedPlaylistOrder() const;
+
     QListWidget *m_listWidget;
+    HoverGlowBar *m_glowBar = nullptr;
     QFrame *m_tilesFrame;
+    QPushButton *m_delBtn = nullptr;
     QList<PlaylistInfo> m_playlists;
     QMap<QString, QColor> m_playlistColors;
     QList<ClusterInfo> m_clusters;

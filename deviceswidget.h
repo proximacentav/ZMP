@@ -14,6 +14,9 @@ class DevicesWidget : public QWidget
 {
     Q_OBJECT
 public:
+#ifdef Q_OS_WIN
+    explicit DevicesWidget(QWidget *parent = nullptr);
+#else
     enum OutputMode {
         Speakers = 0,      // вывод в динамики (обычный)
         MicIntercept = 1,  // вывод в микрофон (перехват)
@@ -21,29 +24,28 @@ public:
     };
 
     explicit DevicesWidget(QWidget *parent = nullptr);
+#endif
     QAudioDevice selectedDevice() const;
 
 signals:
     void deviceChanged(const QAudioDevice &device);
 
+#ifndef Q_OS_WIN
 private slots:
     void onCurrentIndexChanged(int index);
     void onModeChanged(int index);
     void onInterceptMicActivated(int index);
     void onCreateVirtualMic();
     void openDeviceManager();
+#endif
 
 private:
+#ifndef Q_OS_WIN
     void refreshMicList();
 
     QComboBox *m_modeCombo;
     QPushButton *m_managerBtn;
     QStackedWidget *m_stack;
-
-    // Страница 0 — обычный вывод в динамики
-    QWidget *m_speakersPage;
-    QComboBox *m_combo;
-    QList<QAudioDevice> m_devices;
 
     // Страница 1 — перехват микрофона
     QWidget *m_interceptPage;
@@ -53,6 +55,12 @@ private:
     QWidget *m_virtualPage;
     QLineEdit *m_virtualNameEdit;
     QPushButton *m_createVirtualBtn;
+#endif
+
+    // Страница 0 — обычный вывод в динамики (на Windows — единственная)
+    QWidget *m_speakersPage;
+    QComboBox *m_combo;
+    QList<QAudioDevice> m_devices;
 
     RetransList m_retrans;
     void retranslateUi();

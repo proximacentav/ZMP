@@ -538,9 +538,10 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/qt6/QtWidgets/QDialogButtonBox \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
  /usr/include/qt6/QtGui/QShowEvent /home/user/cp/zmp/miniplayerbar.h \
- /home/user/cp/zmp/depsmanager.h /usr/include/qt6/QtCore/QPointer \
- /usr/include/qt6/QtCore/qpointer.h /home/user/cp/zmp/cliplayer.h \
- /usr/include/qt6/QtCore/QSocketNotifier \
+ /usr/include/qt6/QtWidgets/QSplitter \
+ /usr/include/qt6/QtWidgets/qsplitter.h /home/user/cp/zmp/depsmanager.h \
+ /usr/include/qt6/QtCore/QPointer /usr/include/qt6/QtCore/qpointer.h \
+ /home/user/cp/zmp/cliplayer.h /usr/include/qt6/QtCore/QSocketNotifier \
  /usr/include/qt6/QtCore/qsocketnotifier.h \
  /home/user/cp/zmp/singleinstance.h \
  /usr/include/qt6/QtNetwork/QLocalServer \

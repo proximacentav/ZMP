@@ -1,6 +1,10 @@
 #include "fileswidget.h"
 #include "partitionsdialog.h"
 #include "translator.h"
+
+#include <QCoreApplication>
+#include <QDir>
+#include <QProcess>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -249,6 +253,21 @@ void FilesWidget::setupUI()
     mainLayout->addWidget(m_stack, 1);
 }
 
+
+#ifdef Q_OS_WIN
+// Windows: вместо "/" показываем все подключённые диски C:/, D:/, F:/ ...
+static void addDriveActions(QMenu *menu, FilesWidget *w)
+{
+    const QFileInfoList drives = QDir::drives();
+    for (const QFileInfo &d : drives) {
+        QAction *a = menu->addAction(d.absoluteFilePath());
+        QObject::connect(a, &QAction::triggered, w, [w, d]() {
+            w->openLocalPath(d.absoluteFilePath());
+        });
+    }
+}
+#endif
+
 void FilesWidget::createMenu()
 {
     m_menu = new QMenu(this);
@@ -256,8 +275,12 @@ void FilesWidget::createMenu()
     QAction *homeAction = m_menu->addAction("~");
     connect(homeAction, &QAction::triggered, this, &FilesWidget::onBrowseHome);
 
+#ifdef Q_OS_WIN
+    addDriveActions(m_menu, this);
+#else
     QAction *rootAction = m_menu->addAction("/");
     connect(rootAction, &QAction::triggered, this, &FilesWidget::onBrowseRoot);
+#endif
 
     m_menu->addSeparator();
 
@@ -270,6 +293,7 @@ void FilesWidget::createMenu()
     QAction *smbAction = m_menu->addAction("SMB");
     connect(smbAction, &QAction::triggered, this, &FilesWidget::onSmbConnect);
 
+#ifndef Q_OS_WIN
     if (m_hasRootAccess) {
         m_menu->addSeparator();
         QAction *rootBrowseAction = m_menu->addAction("Root");
@@ -278,6 +302,7 @@ void FilesWidget::createMenu()
             switchToRootView("/");
         });
     }
+#endif
 
     if (m_ftpConnected) {
         m_menu->addSeparator();
@@ -299,8 +324,12 @@ void FilesWidget::onMenuButtonClicked()
     QAction *homeAction = m_menu->addAction("~");
     connect(homeAction, &QAction::triggered, this, &FilesWidget::onBrowseHome);
 
+#ifdef Q_OS_WIN
+    addDriveActions(m_menu, this);
+#else
     QAction *rootAction = m_menu->addAction("/");
     connect(rootAction, &QAction::triggered, this, &FilesWidget::onBrowseRoot);
+#endif
 
     m_menu->addSeparator();
 
@@ -318,9 +347,12 @@ void FilesWidget::onMenuButtonClicked()
     QAction *searchAction = m_menu->addAction(m_searchVisible ? ztr("Скрыть поиск") : ztr("Поиск"));
     connect(searchAction, &QAction::triggered, this, &FilesWidget::onToggleSearch);
 
+#ifndef Q_OS_WIN
     QAction *partitionsAction = m_menu->addAction(ztr("Разделы"));
     connect(partitionsAction, &QAction::triggered, this, &FilesWidget::onShowPartitions);
+#endif
 
+#ifndef Q_OS_WIN
     if (m_hasRootAccess) {
         m_menu->addSeparator();
         QAction *rootBrowseAction = m_menu->addAction("Root");
@@ -329,6 +361,18 @@ void FilesWidget::onMenuButtonClicked()
             switchToRootView("/");
         });
     }
+#else
+    // Windows: запрос прав администратора (UAC) вместо root-режима
+    if (!m_hasRootAccess) {
+        m_menu->addSeparator();
+        QAction *adminAction = m_menu->addAction(ztr("Права администратора"));
+        connect(adminAction, &QAction::triggered, this, [this]() {
+            QProcess::startDetached("powershell", {"-NoProfile", "-Command",
+                "Start-Process -Verb RunAs -FilePath '" +
+                QDir::toNativeSeparators(QCoreApplication::applicationFilePath()) + "'"});
+        });
+    }
+#endif
 
     if (m_ftpConnected) {
         m_menu->addSeparator();

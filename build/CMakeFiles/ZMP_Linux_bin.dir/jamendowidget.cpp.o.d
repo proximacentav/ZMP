@@ -446,6 +446,8 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: \
  /usr/include/c++/16/bits/random.h \
  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
+ /usr/include/qt6/QtWidgets/QApplication \
+ /usr/include/qt6/QtWidgets/qapplication.h \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QFrame \

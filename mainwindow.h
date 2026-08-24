@@ -1,4 +1,5 @@
 #ifndef MAINWINDOW_H
+class LiquidIndicator;
 #define MAINWINDOW_H
 
 // и помните все отсортировано по алфавиту
@@ -24,6 +25,7 @@
 #include <QNetworkReply>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QSplitter>
 #include "depsmanager.h"
 
 class EqualizerPresetDialog : public QDialog
@@ -59,7 +61,6 @@ private slots:
     void onDeviceChanged(const QAudioDevice &device);
     void onFileSelected(const QString &path);
     void onExit();
-    void animateMenu();
     void onUserButtonClicked();
     void showRootPasswordDialog();
     void showLogDialog();
@@ -69,7 +70,32 @@ private slots:
 
 private:
     QListWidget *m_menu;
-    QStackedWidget *m_stack;
+
+    // Положение бокового меню и его сворачивание
+    enum class MenuSide { Left = 0, Top = 1, Right = 2, Bottom = 3 };
+    MenuSide m_menuSide = MenuSide::Left;
+    bool m_menuCollapsed = false;
+    QWidget *m_menuContainer = nullptr;
+    QWidget *m_rightContainer = nullptr;
+    QBoxLayout *m_mainLay = nullptr;
+    QPushButton *m_menuToggleBtn = nullptr;
+    void applyMenuLayout();
+    void applyMenuGeometry();
+    void positionMenuToggle();
+    void updateLiquidTarget();
+    bool isHorizontalMenu() const;
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
+private:
+
+    QSplitter *m_splitter = nullptr;   // делитель половин (всегда активен)
+    QStackedWidget *m_leftStack, *m_rightStack;
+    QVector<QWidget*> m_wrapLeft, m_wrapRight;
+    bool m_splitMode = false;
+    int m_leftRow = 0;
+    int m_splitLeft = -1, m_splitRight = -1;
+    QVector<QWidget*> m_pages;         // страницы вкладок в порядке меню
     MiniPlayerBar *m_miniPlayerBar;
     AudioManager *m_audioManager;
     DevicesWidget *m_devicesWidget;
@@ -80,10 +106,7 @@ private:
     SettingsWidget *m_settingsWidget;
     FilesWidget *m_filesWidget;
     JamendoWidget *m_jamendoWidget;
-    QWidget *m_menuIndicator;
-    QTimer *m_menuAnimTimer;
-    qreal m_menuIndicatorY;
-    qreal m_menuIndicatorTargetY;
+    LiquidIndicator *m_liquid = nullptr;   // liquid glass линза вкладки
     QPushButton *m_userButton;
     QString m_rootPassword;
     bool m_isRootMode = false;
@@ -108,6 +131,12 @@ private:
     void checkDependenciesAtStartup();
     void createInstallBanner(QVBoxLayout *rightLayout);
     void checkInstallAtStartup();
+    void handleMenuSelection(int row, bool shift);
+    void placeContent(int row, bool rightSide);
+    void showSingleTab(int row);
+    void enterSplitMode(int leftRow, int rightRow);
+    void exitSplitMode(int gotoRow = -1);
+    void setRightPane(int row);
 
     RetransList m_retrans;   // live-retranslation registry (window title + menu)
     void retranslateUi();

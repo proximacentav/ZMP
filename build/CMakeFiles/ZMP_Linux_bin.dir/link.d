@@ -25,17 +25,17 @@ ZMP_Linux_bin: \
   CMakeFiles/ZMP_Linux_bin.dir/zmpinstaller.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o \
-  CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o \
+  CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o \
   CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o \
   /usr/lib/libQt6Multimedia.so.6.11.1 \
   /usr/lib/libQt6Svg.so.6.11.1 \
   /usr/lib/libQt6Network.so.6.11.1 \
   /usr/lib/libQt6OpenGLWidgets.so.6.11.1 \
+  /usr/lib/libcrypt.so \
   /usr/lib/libprojectM.so \
   /usr/lib/libtag.so \
   /usr/lib/libSoundTouch.so \
-  /usr/lib/libcrypt.so \
   /usr/lib/libQt6Widgets.so.6.11.1 \
   /usr/lib/libQt6OpenGL.so.6.11.1 \
   /usr/lib/libQt6Gui.so.6.11.1 \
@@ -235,9 +235,9 @@ CMakeFiles/ZMP_Linux_bin.dir/cliplayer.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o:
 
-CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
-
 CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o:
+
+CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o:
 
 CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
@@ -249,13 +249,13 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp.o:
 
 /usr/lib/libQt6OpenGLWidgets.so.6.11.1:
 
+/usr/lib/libcrypt.so:
+
 /usr/lib/libprojectM.so:
 
 /usr/lib/libtag.so:
 
 /usr/lib/libSoundTouch.so:
-
-/usr/lib/libcrypt.so:
 
 /usr/lib/libQt6Widgets.so.6.11.1:
 

@@ -10,7 +10,27 @@
 #include <atomic>
 
 #include "miniaudio.h"
+
+#ifndef ZMP_NO_SOUNDTOUCH
 #include "soundtouch/SoundTouch.h"
+#else
+// Заглушка: без SoundTouch скорость/питч не применяются, звук идёт напрямую
+namespace soundtouch {
+class SoundTouch {
+public:
+    void setSampleRate(int) {}
+    void setChannels(int) {}
+    void setRate(double) {}
+    void clear() {}
+    void flush() {}
+    void putSamples(const float *, int) { m_eos = true; }
+    int  receiveSamples(float *out, int max) { return 0; Q_UNUSED(out) Q_UNUSED(max) }
+    int  numSamples() const { return 0; }
+private:
+    bool m_eos = false;
+};
+}
+#endif
 
 struct Biquad {
     double b0 = 1, b1 = 0, b2 = 0, a1 = 0, a2 = 0;

@@ -387,8 +387,9 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: \
  /usr/include/qt6/QtNetwork/qssl.h /usr/include/qt6/QtCore/QFlags \
  /usr/include/qt6/QtNetwork/QSslPreSharedKeyAuthenticator \
  /usr/include/qt6/QtNetwork/qsslpresharedkeyauthenticator.h \
- /usr/include/qt6/QtCore/QMetaType /usr/include/qt6/QtCore/QVariant \
- /usr/include/qt6/QtWidgets/QVBoxLayout \
+ /usr/include/qt6/QtCore/QMetaType \
+ /usr/include/qt6/QtNetwork/QAbstractSocket \
+ /usr/include/qt6/QtCore/QVariant /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \

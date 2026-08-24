@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "aboutdialog.h"
 #include "zmpinstaller.h"
+#ifndef Q_OS_WIN
 #include "mpriscontroller.h"
+#endif
 #include "translator.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -38,9 +40,238 @@
 #include <fcntl.h>
 #include <QSocketNotifier>
 #include <QSplashScreen>
+#include <cerrno>
 #include <QPainter>
 
+// ---------------------------------------------------------------------------
+//  Liquid glass индикатор выбранной вкладки: перетекает между позициями,
+//  собираясь в шар с преломлениями по краям; пульсирует под музыку.
+// ---------------------------------------------------------------------------
+class LiquidIndicator : public QWidget
+{
+public:
+    explicit LiquidIndicator(QWidget *parent) : QWidget(parent)
+    {
+        setAttribute(Qt::WA_TransparentForMouseEvents);
+        setAttribute(Qt::WA_NoSystemBackground);
+        setAttribute(Qt::WA_AlwaysStackOnTop);
+        m_timer = new QTimer(this);
+        connect(m_timer, &QTimer::timeout, this, [this]{ tick(); });
+        m_timer->start(16);
+    }
+
+    void setTarget(const QRectF &r)
+    {
+        if (!m_anim && r == m_target) return;
+        m_from = currentRect();
+        m_target = r;
+        m_progress = 0.0;
+        m_anim = true;
+    }
+
+    void setAudioLevel(qreal lvl) { m_audioTarget = qBound(0.0, lvl, 1.0); }
+
+    // Спектр по частотам (уровни уже умножены на чувствительность)
+    void setSpectrum(const QVector<float> &s)
+    {
+        constexpr int K = 48;
+        QVector<float> target(K, 0.0f);
+        if (!s.isEmpty()) {
+            for (int i = 0; i < K; ++i) {
+                const int idx = qBound(0, int(qreal(i) / K * s.size()), s.size() - 1);
+                target[i] = qBound(0.0f, s.at(idx), 1.0f);
+            }
+        }
+        if (m_spec.size() != K)
+            m_spec.resize(K);
+        for (int i = 0; i < K; ++i)
+            m_spec[i] += (target[i] - m_spec[i]) * 0.35f;
+        m_hasSpec = true;
+        m_specDirty = true;
+    }
+
+protected:
+    void paintEvent(QPaintEvent *) override
+    {
+        QPainter p(this);
+        p.setRenderHint(QPainter::Antialiasing);
+
+        const QRectF base = currentRect();
+        // пульс под музыку вдоль меньшей стороны
+        const qreal pulse = 1.0 + m_level * 0.10;
+        QRectF r = base;
+        if (r.width() >= r.height())
+            r = scaledAboutCenter(r, pulse, 1.0 / pulse);
+        else
+            r = scaledAboutCenter(r, 1.0 / pulse, pulse);
+
+        const qreal radius = qMin(10.0 + m_morph * (qMin(r.width(), r.height()) / 2.0 - 8.0),
+                                  qMin(r.width(), r.height()) / 2.0);
+
+        // --- волнистый контур: ПРЯМОУГОЛЬНАЯ база + шипы-спектрограмма ---
+        const int P = 80;
+        QPointF pts[P];
+        const qreal halfW = r.width() / 2.0, halfH = r.height() / 2.0;
+        const QPointF c0 = r.center();
+        // нормали сторон (наружу)
+        for (int k = 0; k < P; ++k) {
+            const qreal t = qreal(k) / P;                 // 0..1 по периметру
+            QPointF base, normal;
+            if (t < 0.25) {                               // верх: слева -> направо
+                base = QPointF(c0.x() - halfW + t / 0.25 * r.width(), c0.y() - halfH);
+                normal = QPointF(0, -1);
+            } else if (t < 0.5) {                          // право: сверху вниз
+                base = QPointF(c0.x() + halfW,
+                               c0.y() - halfH + (t - 0.25) / 0.25 * r.height());
+                normal = QPointF(1, 0);
+            } else if (t < 0.75) {                         // низ: справа налево
+                base = QPointF(c0.x() + halfW - (t - 0.5) / 0.25 * r.width(),
+                               c0.y() + halfH);
+                normal = QPointF(0, 1);
+            } else {                                       // лево: снизу вверх
+                base = QPointF(c0.x() - halfW,
+                               c0.y() + halfH - (t - 0.75) / 0.25 * r.height());
+                normal = QPointF(-1, 0);
+            }
+            qreal band = 0;
+            if (m_hasSpec && !m_spec.isEmpty()) {
+                band = m_spec.at(qBound(0, int(t * m_spec.size()),
+                                        m_spec.size() - 1));
+            }
+            const qreal ampK = (1.0 - m_morph * 0.85);
+            // усиление: слабые уровни вытягиваются степенной кривой
+            const qreal spike = std::pow(band, 0.6) * (6.0 + 26.0 * ampK) * m_levelBoost;
+            pts[k] = base + normal * spike;
+        }
+        QPainterPath lens;
+        lens.moveTo(pts[0]);
+        for (int k = 0; k < P; ++k) {
+            const QPointF &cur = pts[k];
+            const QPointF &nxt = pts[(k + 1) % P];
+            const QPointF mid((cur.x() + nxt.x()) / 2, (cur.y() + nxt.y()) / 2);
+            lens.quadTo(cur, mid);
+        }
+        lens.closeSubpath();
+
+        // стеклянное тело по волнистому контуру
+        QLinearGradient body(r.topLeft(), r.bottomLeft());
+        body.setColorAt(0.0, QColor(255, 255, 255, 90));
+        body.setColorAt(0.45, QColor(255, 255, 255, 35));
+        body.setColorAt(0.55, QColor(255, 255, 255, 45));
+        body.setColorAt(1.0, QColor(255, 255, 255, 75));
+        p.setPen(Qt::NoPen);
+        p.setBrush(body);
+        p.drawPath(lens);
+
+        // преломления по бокам: яркие узкие блики у левой и правой граней
+        const qreal edgeW = 3.0 + 3.0 * m_morph + 4.0 * m_level;
+        const int edgeA = 150 + int(70 * m_morph) + int(60 * m_level);
+
+        QLinearGradient leftr(r.left(), 0, r.left() + edgeW * 3, 0);
+        leftr.setColorAt(0.0, QColor(255, 255, 255, edgeA));
+        leftr.setColorAt(1.0, QColor(255, 255, 255, 0));
+        p.setBrush(leftr);
+        p.setClipPath(lens);
+        p.drawRoundedRect(QRectF(r.left() + 1.5, r.top() + radius * 0.4,
+                                 edgeW * 3, r.height() - radius * 0.8),
+                          edgeW, edgeW);
+
+        QLinearGradient rightr(r.right(), 0, r.right() - edgeW * 3, 0);
+        rightr.setColorAt(0.0, QColor(255, 255, 255, edgeA));
+        rightr.setColorAt(1.0, QColor(255, 255, 255, 0));
+        p.setBrush(rightr);
+        p.drawRoundedRect(QRectF(r.right() - 1.5 - edgeW * 3, r.top() + radius * 0.4,
+                                 edgeW * 3, r.height() - radius * 0.8),
+                          edgeW, edgeW);
+        p.setClipRect(rect());
+
+        // блик сверху
+        QLinearGradient topg(r.topLeft(), QPointF(r.left(), r.top() + r.height() * 0.35));
+        topg.setColorAt(0.0, QColor(255, 255, 255, 110));
+        topg.setColorAt(1.0, QColor(255, 255, 255, 0));
+        p.setBrush(topg);
+        p.drawRoundedRect(QRectF(r.left() + edgeW, r.top() + 1,
+                                 r.width() - edgeW * 2, r.height() * 0.3),
+                          radius, radius);
+
+        // мягкое свечение вокруг при морфинге
+        if (m_morph > 0.02 || m_level > 0.02) {
+            const int glow = int(50 * m_morph + 80 * m_level);
+            QPen pen(QColor(255, 255, 255, glow), 2.0 + 2.0 * m_morph);
+            p.setBrush(Qt::NoBrush);
+            p.setPen(pen);
+            p.drawRoundedRect(r.adjusted(-2, -2, 2, 2), radius + 2, radius + 2);
+        }
+    }
+
+private:
+    static QRectF scaledAboutCenter(const QRectF &r, qreal kx, qreal ky)
+    {
+        QPointF c = r.center();
+        return QRectF(c.x() - r.width() * kx / 2, c.y() - r.height() * ky / 2,
+                      r.width() * kx, r.height() * ky);
+    }
+    QRectF currentRect() const
+    {
+        const double e = easeOutCubic(qBound(0.0, m_progress, 1.0));
+        QRectF r(m_from.left() + (m_target.left()-m_from.left())*e,
+                 m_from.top()  + (m_target.top() -m_from.top() )*e,
+                 m_from.width()  + (m_target.width() -m_from.width() )*e,
+                 m_from.height() + (m_target.height()-m_from.height())*e);
+        return r;
+    }
+    static double easeOutCubic(double t){ t=qBound(0.0,t,1.0); return 1-std::pow(1-t,3); }
+
+    void tick()
+    {
+        // всегда занимаем всю панель меню (она меняет размер при layout)
+        if (parentWidget() &&
+            (size() != parentWidget()->size() || pos() != QPoint(0, 0))) {
+            setGeometry(0, 0, parentWidget()->width(), parentWidget()->height());
+            raise();
+        }
+
+
+        // затухание уровня звука
+        m_level += (m_audioTarget - m_level) * 0.25;
+        m_audioTarget *= 0.92;
+
+        bool busy = false;
+        if (m_anim) {
+            m_progress += 0.09;
+            const double e = easeOutCubic(qMin(1.0, m_progress));
+            m_morph = std::sin(M_PI * qBound(0.0, m_progress, 1.0)); // шар на полпути
+            if (m_progress >= 1.0) {
+                m_progress = 1.0;
+                m_morph = 0.0;
+                m_anim = false;
+                m_from = m_target;
+            } else busy = true;
+            update();
+        }
+        if (m_specDirty) { m_specDirty = false; update(); busy = true; }
+        if (m_level > 0.005 || m_audioTarget > 0.005) { update(); busy = true; }
+        else if (m_level != 0) { m_level = 0; update(); }
+        if (!busy && !m_anim && m_morph == 0 && m_level == 0)
+            update();
+    }
+
+    QTimer *m_timer = nullptr;
+    QRectF m_from, m_target{10, 10, 180, 36};
+    qreal m_progress = 1.0;
+    qreal m_morph = 0.0;
+    bool m_anim = false;
+    qreal m_level = 0.0, m_audioTarget = 0.0;
+    QVector<float> m_spec;
+    bool m_hasSpec = false;
+    bool m_specDirty = false;
+public:
+    qreal m_levelBoost = 1.0;
+protected:
+};
+
 static MainWindow *g_mainWindow = nullptr;
+static int readMenuSideFromConfig();
 static int g_original_stderr = -1;
 static QSplashScreen *g_splash = nullptr;
 static QStringList g_splashLines;
@@ -67,18 +298,19 @@ static void qtMessageHandler(QtMsgType type, const QMessageLogContext &ctx, cons
 }
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), m_menuIndicator(nullptr), m_menuIndicatorY(0), m_menuIndicatorTargetY(0)
+    : QMainWindow(parent)
 {
     ztrRegister(m_retrans, [this]{ setWindowTitle(ztr("Медиаплеер")); });
     resize(1200, 800);
 
     QWidget *central = new QWidget(this);
-    QHBoxLayout *mainLayout = new QHBoxLayout(central);
-    mainLayout->setSpacing(0);
-    mainLayout->setContentsMargins(0,0,0,0);
+    m_mainLay = new QHBoxLayout(central);
+    m_mainLay->setSpacing(0);
+    m_mainLay->setContentsMargins(0,0,0,0);
     setCentralWidget(central);
 
-    QWidget *menuContainer = new QWidget(this);
+    m_menuContainer = new QWidget(this);
+    QWidget *menuContainer = m_menuContainer;
     menuContainer->setFixedWidth(200);
     menuContainer->setStyleSheet("background-color: #2b2b2b;");
     QVBoxLayout *menuContLayout = new QVBoxLayout(menuContainer);
@@ -100,6 +332,19 @@ MainWindow::MainWindow(QWidget *parent)
     );
     menuContLayout->addWidget(m_menu, 1);
 
+    // Кнопка сворачивания бокового меню ("<" спрятать, ">" показать)
+    m_menuToggleBtn = new QPushButton("<", this);
+    m_menuToggleBtn->setFixedSize(24, 22);
+    m_menuToggleBtn->setStyleSheet(
+        "QPushButton { background-color: #3a3a3a; color: white;"
+        " border: 1px solid #555; border-radius: 4px; font-weight: bold; }"
+        "QPushButton:hover { background-color: #4a4a4a; }");
+    connect(m_menuToggleBtn, &QPushButton::clicked, this, [this]() {
+        m_menuCollapsed = !m_menuCollapsed;
+        applyMenuGeometry();
+    });
+
+
     m_userButton = new QPushButton(getCurrentUsername());
     m_userButton->setCursor(Qt::PointingHandCursor);
     updateUserButtonStyle();
@@ -119,7 +364,10 @@ MainWindow::MainWindow(QWidget *parent)
     g_original_stderr = dup(STDERR_FILENO);
     dup2(pipefd[1], STDERR_FILENO);
     ::close(pipefd[1]);
+    // ОБА конца пайпа неблокирующие: иначе при всплеске логов (спам
+    // PipeWire и т.п.) write() блокирует главный поток навсегда -> зависание
     fcntl(pipefd[0], F_SETFL, O_NONBLOCK);
+    fcntl(g_original_stderr, F_SETFL, O_NONBLOCK);
 
     QSocketNotifier *stderrNotifier = new QSocketNotifier(pipefd[0], QSocketNotifier::Read, this);
     connect(stderrNotifier, &QSocketNotifier::activated, this, [this](int fd) {
@@ -135,27 +383,31 @@ MainWindow::MainWindow(QWidget *parent)
 
     addLog(ztr("Программа запущена"));
 
-    m_menuIndicator = new QWidget(menuContainer);
-    m_menuIndicator->setFixedHeight(40);
-    m_menuIndicator->setGeometry(5, 0, 190, 40);
-    m_menuIndicator->setStyleSheet(
-        "background-color: rgba(183, 183, 183, 200);"
-        "border-radius: 8px;"
-    );
-    m_menuIndicator->raise();
+    m_liquid = new LiquidIndicator(menuContainer);
+    m_liquid->setAttribute(Qt::WA_TransparentForMouseEvents);
+    m_liquid->setGeometry(0, 0, menuContainer->width(), 60);
+    m_liquid->raise();
 
-    m_menuAnimTimer = new QTimer(this);
-    connect(m_menuAnimTimer, &QTimer::timeout, this, &MainWindow::animateMenu);
+    // Пульс индикатора под музыку (спектр из AudioManager)
+    connect(m_audioManager, &AudioManager::spectrumDataChanged, this,
+            [this](const QVector<float> &levels, const QVector<double> &) {
+        if (levels.isEmpty()) return;
+        qreal sum = 0;
+        for (float v : levels) sum += v;
+        const qreal avg = sum / levels.size();
+        m_liquid->setAudioLevel(qBound(0.0, avg * 6.0, 1.0));
+        m_liquid->setSpectrum(levels);   // шипы по частотам 1Гц-20кГц
+    });
+
 
     if (m_menu->item(0)) {
-        m_menuIndicatorY = m_menu->visualItemRect(m_menu->item(0)).y();
-        m_menuIndicatorTargetY = m_menuIndicatorY;
-        m_menuIndicator->move(5, m_menuIndicatorY);
+        updateLiquidTarget();
     }
 
-    mainLayout->addWidget(menuContainer);
+    m_mainLay->addWidget(menuContainer);
 
     QWidget *rightContainer = new QWidget(this);
+    m_rightContainer = rightContainer;
     QVBoxLayout *rightLayout = new QVBoxLayout(rightContainer);
     rightLayout->setContentsMargins(0, 0, 0, 0);
     rightLayout->setSpacing(0);
@@ -183,9 +435,28 @@ MainWindow::MainWindow(QWidget *parent)
     m_depsBanner->hide();
     rightLayout->addWidget(m_depsBanner);
 
-    m_stack = new QStackedWidget;
-    rightLayout->addWidget(m_stack, 1);
-    mainLayout->addWidget(rightContainer, 1);
+    m_leftStack = new QStackedWidget;
+    m_rightStack = new QStackedWidget;
+    for (int i = 0; i < 8; ++i) {
+        QWidget *wl = new QWidget;
+        QVBoxLayout *ll = new QVBoxLayout(wl);
+        ll->setContentsMargins(0,0,0,0);
+        m_wrapLeft.append(wl);
+        m_leftStack->addWidget(wl);
+
+        QWidget *wr = new QWidget;
+        QVBoxLayout *rl = new QVBoxLayout(wr);
+        rl->setContentsMargins(0,0,0,0);
+        m_wrapRight.append(wr);
+        m_rightStack->addWidget(wr);
+    }
+    m_splitter = new QSplitter(Qt::Horizontal, this);
+    m_splitter->addWidget(m_leftStack);
+    m_splitter->addWidget(m_rightStack);
+    m_splitter->setChildrenCollapsible(false);
+    m_rightStack->setVisible(false);
+    rightLayout->addWidget(m_splitter, 1);
+    m_mainLay->addWidget(rightContainer, 1);
 
     DependencyManager *depsMgr = DependencyManager::instance();
     connect(depsMgr, &DependencyManager::installStarted, this, [this](int totalSteps) {
@@ -247,23 +518,23 @@ MainWindow::MainWindow(QWidget *parent)
         m_menu->setCurrentRow(1);
     });
 
-    m_stack->addWidget(m_devicesWidget);
-    m_stack->addWidget(m_playerWidget);
-    m_stack->addWidget(m_playlistsWidget);
-    m_stack->addWidget(m_jamendoWidget);
-    m_stack->addWidget(m_filesWidget);
-    m_stack->addWidget(m_equalizerWidget);
-    m_stack->addWidget(m_visualizationWidget);
-    m_stack->addWidget(m_settingsWidget);
+    m_pages.append(m_devicesWidget);
+    m_pages.append(m_playerWidget);
+    m_pages.append(m_playlistsWidget);
+    m_pages.append(m_jamendoWidget);
+    m_pages.append(m_filesWidget);
+    m_pages.append(m_equalizerWidget);
+    m_pages.append(m_visualizationWidget);
+    m_pages.append(m_settingsWidget);
+
+    // весь контент изначально в левых обёртках
+    for (int i = 0; i < 8; ++i)
+        m_wrapLeft[i]->layout()->addWidget(m_pages[i]);
 
     connect(m_menu, &QListWidget::currentRowChanged, this, [this](int row) {
-        QListWidgetItem *item = m_menu->item(row);
-        if (item) {
-            m_menuIndicatorTargetY = m_menu->visualItemRect(item).y();
-            if (!m_menuAnimTimer->isActive()) m_menuAnimTimer->start(16);
-        }
-        m_stack->setCurrentIndex(row);
-        m_miniPlayerBar->setVisible(row != 1);
+        const bool shift =
+            (QGuiApplication::queryKeyboardModifiers() & Qt::ShiftModifier);
+        handleMenuSelection(row, shift);
     });
 
     connect(m_devicesWidget, &DevicesWidget::deviceChanged, this, &MainWindow::onDeviceChanged);
@@ -474,7 +745,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&Translator::instance(), &Translator::languageChanged,
             this, &MainWindow::retranslateUi);
 
+#ifndef Q_OS_WIN
     new MprisController(m_audioManager, m_playerWidget, this, this);
+#endif
+
+    // Положение меню из конфига + применение геометрии
+    m_menuSide = static_cast<MenuSide>(readMenuSideFromConfig());
+    connect(m_settingsWidget, &SettingsWidget::menuSideChanged, this,
+            [this](int side) {
+        m_menuSide = static_cast<MenuSide>(side);
+        applyMenuLayout();
+    });
+    applyMenuLayout();
 }
 
 void MainWindow::retranslateUi() {
@@ -623,6 +905,12 @@ void MainWindow::updateDepsBanner(const QString &pkg, int percent, qint64 speedB
         .arg(color, speedStr, proxyPart));
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    positionMenuToggle();
+}
+
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -679,18 +967,27 @@ void MainWindow::loadKeyBindingsFromSettings() {
     m_keyBindings = m_settingsWidget->getKeyBindings();
 }
 
-void MainWindow::animateMenu() {
-    m_menuIndicatorY += (m_menuIndicatorTargetY - m_menuIndicatorY) * 0.2;
+// Целевой прямоугольник линзы для текущей вкладки (работает и сверху/снизу)
+void MainWindow::updateLiquidTarget()
+{
+    QListWidgetItem *it = m_menu->currentItem();
+    if (!it || !m_liquid) return;
+    QRect r = m_menu->visualItemRect(it);
+    r.translate(m_menu->viewport()->mapTo(m_menuContainer, QPoint(0, 0)));
 
-    if (qAbs(m_menuIndicatorTargetY - m_menuIndicatorY) < 1.0) {
-        m_menuIndicatorY = m_menuIndicatorTargetY;
-        m_menuAnimTimer->stop();
+    QRectF target;
+    if (isHorizontalMenu()) {
+        target = QRectF(r.x() + 2, 3, qMax<qreal>(90, r.width() - 4),
+                        m_menuContainer->height() - 6);
+    } else {
+        target = QRectF(4, r.y() + 2, m_menuContainer->width() - 10,
+                        qMax<qreal>(36, r.height() - 4));
     }
-    m_menuIndicator->move(5, m_menuIndicatorY);
+    m_liquid->setTarget(target);
 }
 MainWindow::~MainWindow() {}
 
-void MainWindow::onMenuChanged(int row) { m_stack->setCurrentIndex(row); }
+void MainWindow::onMenuChanged(int row) { handleMenuSelection(row, false); }
 void MainWindow::onDeviceChanged(const QAudioDevice &device) { m_audioManager->setActiveOutputDevice(device); }
 void MainWindow::onFileSelected(const QString &path) {
     m_playerWidget->setPlaylist({path});
@@ -748,6 +1045,16 @@ void MainWindow::updateUserButtonStyle()
 
 void MainWindow::addLog(const QString &message)
 {
+    // Подавляем подряд идущие дубли — спам не должен ни копиться, ни писать
+    static QString s_lastRaw;
+    if (message == s_lastRaw)
+        return;
+    s_lastRaw = message;
+
+    // Шум TagLib о дублированных ID3v2 тегах не пишем в журнал вообще
+    if (message.contains("Duplicate ID3v2 tags"))
+        return;
+
     QString ts = QDateTime::currentDateTime().toString("yyyy, MM-dd-ss.zzz");
     QString line = QString("[%1] %2").arg(ts, message);
     m_logs.append(line);
@@ -791,7 +1098,16 @@ void MainWindow::addLog(const QString &message)
 
     if (g_original_stderr >= 0) {
         QByteArray data = (line + "\n").toUtf8();
-        write(g_original_stderr, data.constData(), data.size());
+        // Неблокирующая запись: если буфер пайпа полон (читаем через
+        // QSocketNotifier в этом же потоке), сообщение просто пропускается —
+        // никакого блокирующего write() из слота.
+        ssize_t rc = ::write(g_original_stderr, data.constData(),
+                             static_cast<size_t>(data.size()));
+        if (rc < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+            static int s_dropped = 0;
+            if (++s_dropped <= 5)
+                qDebug() << "log pipe full, dropped log line(s)";
+        }
     }
 }
 
@@ -991,6 +1307,12 @@ void MainWindow::onUserButtonClicked()
         "QPushButton:hover { background: rgba(255,255,255,0.05); border-color: %2; }"
     );
 
+#ifdef Q_OS_WIN
+    QLabel *adminLabel = new QLabel(ztr("Права администратора запрашиваются автоматически (UAC)"));
+    adminLabel->setAlignment(Qt::AlignCenter);
+    adminLabel->setStyleSheet("color: #FF9800; font-size: 13px;");
+    mainLayout->addWidget(adminLabel);
+#else
     if (!m_isRootMode) {
         QPushButton *rootBtn = new QPushButton(ztr("Войти в режим root"));
         rootBtn->setStyleSheet(btnStyle.arg("#c0392b", "#e74c3c"));
@@ -1006,6 +1328,7 @@ void MainWindow::onUserButtonClicked()
         rootActive->setStyleSheet("color: #FF4444; font-size: 14px; font-weight: bold;");
         mainLayout->addWidget(rootActive);
     }
+#endif
 
     QPushButton *logBtn = new QPushButton(ztr("Логи"));
     logBtn->setStyleSheet(btnStyle.arg("#555", "#aaa"));
@@ -1119,4 +1442,217 @@ void EqualizerPresetDialog::keyPressEvent(QKeyEvent *event) {
             QDialog::keyPressEvent(event);
             break;
     }
+}
+
+
+// ---------------------------------------------------------------------------
+//  Split-режим: Shift+клик по вкладке открывает её справа, текущая остаётся
+//  слева; между ними перетаскиваемый QSplitter. Обычный клик возвращает
+//  одинарный режим. Контент вкладок перемещается между постоянными обёртками,
+//  поэтому ничего не теряется при любых переключениях.
+// ---------------------------------------------------------------------------
+
+void MainWindow::placeContent(int row, bool rightSide)
+{
+    QWidget *c = m_pages.at(row);
+    QWidget *target = rightSide ? static_cast<QWidget*>(m_wrapRight.at(row))
+                                : static_cast<QWidget*>(m_wrapLeft.at(row));
+    if (c->parentWidget() == target)
+        return;
+    target->layout()->addWidget(c);   // reparent из любой другой обёртки
+}
+
+void MainWindow::showSingleTab(int row)
+{
+    placeContent(row, false);
+    m_rightStack->setVisible(false);
+    m_leftStack->setCurrentWidget(m_wrapLeft.at(row));
+    m_leftRow = row;
+
+    m_splitMode = false;
+    m_splitLeft = m_splitRight = -1;
+}
+
+void MainWindow::handleMenuSelection(int row, bool shift)
+{
+    Q_UNUSED(row)
+    updateLiquidTarget();
+    QListWidgetItem *item = m_menu->item(row);
+    Q_UNUSED(item)
+    m_miniPlayerBar->setVisible(row != 1);
+
+    if (!shift) {
+        showSingleTab(row);
+        return;
+    }
+
+    // Shift + клик по уже открытой слева вкладке — ничего не делаем
+    const QWidget *cur = m_leftStack->currentWidget();
+    if (!m_splitMode && cur == m_wrapLeft.at(row))
+        return;
+    if (m_splitMode && row == m_splitRight)
+        return;
+
+    if (!m_splitMode) {
+        enterSplitMode(m_leftRow, row);
+    } else {
+        setRightPane(row);
+    }
+}
+
+void MainWindow::enterSplitMode(int leftRow, int rightRow)
+{
+    // правый контент мог остаться слева с прошлого раза — убираем дубликат
+    placeContent(rightRow, true);
+
+    m_rightStack->setVisible(true);
+    QList<int> sizes = {1, 1};
+    m_splitter->setSizes(sizes);
+
+    m_leftStack->setCurrentWidget(m_wrapLeft.at(leftRow));
+    m_rightStack->setCurrentWidget(m_wrapRight.at(rightRow));
+    m_leftRow = leftRow;
+
+    m_splitMode = true;
+    m_splitLeft = leftRow;
+    m_splitRight = rightRow;
+}
+
+void MainWindow::setRightPane(int row)
+{
+    if (!m_splitMode || row == m_splitRight)
+        return;
+
+    // прежний правый контент возвращается на левую половину
+    placeContent(m_splitRight, false);
+    placeContent(row, true);
+
+    m_rightStack->setCurrentWidget(m_wrapRight.at(row));
+    m_splitRight = row;
+}
+
+void MainWindow::exitSplitMode(int gotoRow)
+{
+    if (m_splitRight >= 0)
+        placeContent(m_splitRight, false);
+    m_rightStack->setVisible(false);
+    m_splitMode = false;
+    m_splitLeft = m_splitRight = -1;
+
+    if (gotoRow >= 0)
+        showSingleTab(gotoRow);
+}
+
+// ---------------------------------------------------------------------------
+//  Положение бокового меню (слева/сверху/справа/снизу) и сворачивание
+// ---------------------------------------------------------------------------
+
+static int readMenuSideFromConfig()
+{
+    QFile f(QDir::homePath() + "/zmp_playlists/config.json");
+    if (f.open(QIODevice::ReadOnly)) {
+        const int v = QJsonDocument::fromJson(f.readAll())
+                          .object().value("menu_side").toInt(0);
+        f.close();
+        if (v >= 0 && v <= 3) return v;
+    }
+    return 0;
+}
+
+bool MainWindow::isHorizontalMenu() const
+{
+    return m_menuSide == MenuSide::Top || m_menuSide == MenuSide::Bottom;
+}
+
+void MainWindow::applyMenuLayout()
+{
+    const bool horiz = isHorizontalMenu();
+    m_mainLay->setDirection(horiz ? QBoxLayout::TopToBottom
+                                  : QBoxLayout::LeftToRight);
+
+    // Порядок: меню сверху/слева — первым, снизу/справа — последним
+    m_mainLay->removeWidget(m_menuContainer);
+    m_mainLay->removeWidget(m_rightContainer);
+    const bool menuFirst = (m_menuSide == MenuSide::Left ||
+                            m_menuSide == MenuSide::Top);
+    if (menuFirst) {
+        m_mainLay->addWidget(m_menuContainer);
+        m_mainLay->addWidget(m_rightContainer, 1);
+    } else {
+        m_mainLay->addWidget(m_rightContainer, 1);
+        m_mainLay->addWidget(m_menuContainer);
+    }
+
+    // Ориентация списка вкладок
+    m_menu->setFlow(horiz ? QListView::LeftToRight : QListView::TopToBottom);
+    m_menu->setWrapping(false);
+
+    // Линза работает во всех ориентациях
+    m_liquid->setGeometry(0, 0,
+                          m_menuContainer->width(), m_menuContainer->height());
+    QTimer::singleShot(0, this, &MainWindow::updateLiquidTarget);
+
+    applyMenuGeometry();
+    QTimer::singleShot(0, this, &MainWindow::positionMenuToggle);
+}
+
+void MainWindow::applyMenuGeometry()
+{
+    const bool horiz = isHorizontalMenu();
+
+    if (!m_menuCollapsed) {
+        if (horiz) {
+            m_menuContainer->setFixedHeight(76);
+            m_menuContainer->setFixedWidth(QWIDGETSIZE_MAX);
+
+
+        } else {
+            m_menuContainer->setFixedWidth(200);
+            m_menuContainer->setFixedHeight(QWIDGETSIZE_MAX);
+
+        }
+    } else {
+        if (horiz)
+            m_menuContainer->setFixedHeight(26);
+        else
+            m_menuContainer->setFixedWidth(30);
+    }
+
+    m_menu->setVisible(!m_menuCollapsed);
+    m_userButton->setVisible(!m_menuCollapsed);
+
+    // Текст кнопки: "<" прячет меню, ">" показывает
+    m_menuToggleBtn->setText(m_menuCollapsed ? ">" : "<");
+    positionMenuToggle();
+}
+
+void MainWindow::positionMenuToggle()
+{
+    if (!m_menuToggleBtn || !m_menuContainer)
+        return;
+    const QSize s = m_menuToggleBtn->sizeHint();
+    m_menuToggleBtn->resize(s);
+
+    const QRect g = m_menuContainer->geometry();
+    QPoint pos;
+    switch (m_menuSide) {
+        case MenuSide::Left:
+            pos = QPoint(m_menuCollapsed ? 2 : g.width() - s.width() - 3,
+                         g.top() + 3);
+            break;
+        case MenuSide::Right:
+            pos = QPoint(g.x() + (m_menuCollapsed ? g.width() - s.width() - 2 : 3),
+                         g.top() + 3);
+            break;
+        case MenuSide::Top:
+            pos = QPoint(g.x() + 3,
+                         m_menuCollapsed ? 2 : g.height() - s.height() - 3);
+            break;
+        case MenuSide::Bottom:
+            pos = QPoint(g.x() + 3,
+                         m_menuCollapsed ? g.height() - s.height() - 2 : 3);
+            break;
+    }
+    m_menuToggleBtn->move(pos);
+    m_menuToggleBtn->raise();
 }

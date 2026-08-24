@@ -375,6 +375,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/c++/16/bits/random.h \
  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
+ /usr/include/qt6/QtWidgets/QApplication \
+ /usr/include/qt6/QtWidgets/qapplication.h \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
@@ -429,7 +431,11 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QMessageBox \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QFileInfo \
+ /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QVariantAnimation \
+ /usr/include/qt6/QtCore/qvariantanimation.h \
+ /usr/include/qt6/QtCore/qabstractanimation.h \
+ /usr/include/qt6/QtCore/qeasingcurve.h \
+ /usr/include/qt6/QtCore/QEasingCurve /usr/include/qt6/QtCore/QFileInfo \
  /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtWidgets/QLineEdit \
  /usr/include/qt6/QtWidgets/qlineedit.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
@@ -446,8 +452,6 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/QDateTime \
  /usr/include/qt6/QtWidgets/QScrollArea \
  /usr/include/qt6/QtWidgets/qscrollarea.h \
- /usr/include/qt6/QtWidgets/QApplication \
- /usr/include/qt6/QtWidgets/qapplication.h \
  /usr/include/qt6/QtWidgets/QStyle /usr/include/qt6/QtGui/QPalette \
  /usr/include/taglib/fileref.h /usr/include/taglib/tfile.h \
  /usr/include/taglib/tbytevector.h /usr/include/taglib/taglib_export.h \

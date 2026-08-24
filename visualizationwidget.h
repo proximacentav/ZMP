@@ -11,8 +11,6 @@
 #include "audiomanager.h"
 #include "translator.h"
 
-class projectM;
-
 class SpectrogramWidget : public QWidget
 {
     Q_OBJECT
@@ -25,6 +23,9 @@ private:
     QVector<float> m_levels;
     QVector<double> m_frequencies;
 };
+
+#ifndef ZMP_NO_PROJECTM
+class projectM;
 
 class ProjectMWidget : public QOpenGLWidget
 {
@@ -49,6 +50,7 @@ private:
     QTimer *m_timer;
     QString m_pendingPreset;
 };
+#endif // !ZMP_NO_PROJECTM
 
 class VisualizationWidget : public QWidget
 {
@@ -62,7 +64,9 @@ private:
     AudioManager *m_audioManager;
     QComboBox *m_modeCombo;
     SpectrogramWidget *m_spectrogram;
+#ifndef ZMP_NO_PROJECTM
     ProjectMWidget *m_projectMWidget;
+#endif
     RetransList m_retrans;
     void retranslateUi();
 };

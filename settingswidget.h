@@ -55,6 +55,7 @@ signals:
     void keyBindingsSaved();
     void jamendoReconfigureRequested();
     void offlineModeChanged(bool enabled);
+    void menuSideChanged(int side);
 
 private slots:
     void onSliderChanged(int v);
@@ -107,6 +108,8 @@ private:
     QPushButton *m_updateLocalBtn;
     QPushButton *m_offlineBtn;
     bool m_offlineMode = false;
+    QComboBox *m_menuSideCombo = nullptr;
+    static int loadMenuSideFromConfig();
 
     void toggleOfflineMode();
     void applyOfflineMode(bool on);

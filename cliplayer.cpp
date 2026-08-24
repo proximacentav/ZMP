@@ -8,8 +8,10 @@
 #include <QProcess>
 #include <QSocketNotifier>
 #include <QTimer>
+#ifndef ZMP_NO_TAGLIB
 #include <taglib/fileref.h>
 #include <taglib/tstring.h>
+#endif
 
 #include <termios.h>
 #include <unistd.h>
@@ -627,12 +629,14 @@ QString CliPlayer::statusLine() const
 
     const QString path = m_queue.at(m_pos);
     QString meta;
+#ifndef ZMP_NO_TAGLIB
     TagLib::FileRef fr(path.toUtf8().constData());
     if (!fr.isNull() && fr.tag()) {
         const QString artist = TStringToQString(fr.tag()->artist());
         const QString title = TStringToQString(fr.tag()->title());
         meta = QString(" (%1 - %2 - %3)").arg(artist, title).arg(fr.tag()->year());
     }
+#endif
 
     qint64 percent = 0;
     const qint64 dur = m_am->duration();
@@ -652,9 +656,11 @@ void CliPlayer::redraw()
     printf("--- queue ---\n");
     for (int i = 0; i < m_queue.size(); ++i) {
         qint64 secs = 0;
+#ifndef ZMP_NO_TAGLIB
         TagLib::FileRef fr(m_queue.at(i).toUtf8().constData());
         if (!fr.isNull() && fr.audioProperties())
             secs = fr.audioProperties()->lengthInSeconds();
+#endif
         char line[1024];
         snprintf(line, sizeof(line), "%d %s %.3fmin", i,
                  QFileInfo(m_queue.at(i)).fileName().toUtf8().constData(),

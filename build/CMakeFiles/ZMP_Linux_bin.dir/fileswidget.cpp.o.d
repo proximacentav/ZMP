@@ -448,13 +448,18 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: \
  /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QVector \
  /usr/include/qt6/QtCore/qvector.h /home/user/cp/zmp/partitionsdialog.h \
  /usr/include/qt6/QtWidgets/QDialog /usr/include/qt6/QtWidgets/qdialog.h \
- /usr/include/qt6/QtWidgets/QHeaderView \
+ /usr/include/qt6/QtCore/QCoreApplication \
+ /usr/include/qt6/QtCore/qcoreapplication.h \
+ /usr/include/qt6/QtCore/qcoreevent.h \
+ /usr/include/qt6/QtCore/qnativeinterface.h \
+ /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+ /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtWidgets/QHeaderView \
  /usr/include/qt6/QtWidgets/qheaderview.h \
  /usr/include/qt6/QtWidgets/QStyleFactory \
  /usr/include/qt6/QtWidgets/qstylefactory.h \
  /usr/include/qt6/QtWidgets/QStyleOptionViewItem \
  /usr/include/qt6/QtGui/QPainter /usr/include/qt6/QtGui/qpainter.h \
- /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QFileInfo \
+ /usr/include/qt6/QtCore/QFileInfo \
  /usr/include/qt6/QtWidgets/QStyledItemDelegate \
  /usr/include/qt6/QtWidgets/qstyleditemdelegate.h \
  /usr/include/qt6/QtWidgets/QInputDialog \

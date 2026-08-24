@@ -655,6 +655,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h \
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QApplication \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -677,6 +678,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
+  /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTreeView \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
@@ -687,6 +689,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/qt6/QtWidgets/qapplication.h \
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcheckbox.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
@@ -711,6 +714,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
+  /usr/include/qt6/QtWidgets/qsplitter.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -1951,6 +1955,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsexports.h \
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QApplication \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -1973,6 +1978,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
+  /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTreeView \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
@@ -1983,6 +1989,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/qt6/QtWidgets/qapplication.h \
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcheckbox.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
@@ -2007,6 +2014,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
+  /usr/include/qt6/QtWidgets/qsplitter.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -6824,6 +6832,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/locale.h \
   /usr/include/math.h \
   /usr/include/pthread.h \
+  /usr/include/qt6/QtCore/QCoreApplication \
   /usr/include/qt6/QtCore/QDateTime \
   /usr/include/qt6/QtCore/QDebug \
   /usr/include/qt6/QtCore/QDir \
@@ -6890,6 +6899,9 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/qt6/QtCore/qcontainerinfo.h \
   /usr/include/qt6/QtCore/qcontainertools_impl.h \
   /usr/include/qt6/QtCore/qcontiguouscache.h \
+  /usr/include/qt6/QtCore/qcoreapplication.h \
+  /usr/include/qt6/QtCore/qcoreapplication_platform.h \
+  /usr/include/qt6/QtCore/qcoreevent.h \
   /usr/include/qt6/QtCore/qcryptographichash.h \
   /usr/include/qt6/QtCore/qdarwinhelpers.h \
   /usr/include/qt6/QtCore/qdatastream.h \
@@ -6933,6 +6945,7 @@ CMakeFiles/ZMP_Linux_bin.dir/fileswidget.cpp.o: /home/user/cp/zmp/fileswidget.cp
   /usr/include/qt6/QtCore/qmetatype.h \
   /usr/include/qt6/QtCore/qminmax.h \
   /usr/include/qt6/QtCore/qnamespace.h \
+  /usr/include/qt6/QtCore/qnativeinterface.h \
   /usr/include/qt6/QtCore/qnumeric.h \
   /usr/include/qt6/QtCore/qobject.h \
   /usr/include/qt6/QtCore/qobject_impl.h \
@@ -8260,6 +8273,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtNetwork/qtnetwork-config.h \
   /usr/include/qt6/QtNetwork/qtnetworkexports.h \
   /usr/include/qt6/QtNetwork/qtnetworkglobal.h \
+  /usr/include/qt6/QtWidgets/QApplication \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -8284,6 +8298,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/qt6/QtWidgets/qapplication.h \
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcheckbox.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
@@ -9016,6 +9031,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplashScreen \
+  /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTreeView \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
@@ -9052,6 +9068,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
   /usr/include/qt6/QtWidgets/qsplashscreen.h \
+  /usr/include/qt6/QtWidgets/qsplitter.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -9799,6 +9816,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/QSlider \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplashScreen \
+  /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
   /usr/include/qt6/QtWidgets/QTextEdit \
   /usr/include/qt6/QtWidgets/QTreeView \
@@ -9839,6 +9857,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/qslider.h \
   /usr/include/qt6/QtWidgets/qspinbox.h \
   /usr/include/qt6/QtWidgets/qsplashscreen.h \
+  /usr/include/qt6/QtWidgets/qsplitter.h \
   /usr/include/qt6/QtWidgets/qstackedwidget.h \
   /usr/include/qt6/QtWidgets/qstyle.h \
   /usr/include/qt6/QtWidgets/qstyleoption.h \
@@ -13105,6 +13124,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/QDebug \
   /usr/include/qt6/QtCore/QDir \
   /usr/include/qt6/QtCore/QDirIterator \
+  /usr/include/qt6/QtCore/QEasingCurve \
   /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QFileInfo \
   /usr/include/qt6/QtCore/QHash \
@@ -13123,6 +13143,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTimer \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \
   /usr/include/qt6/QtCore/q20bit.h \
@@ -13133,6 +13154,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/q20utility.h \
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qalgorithms.h \
@@ -13177,6 +13199,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdiriterator.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -13281,6 +13304,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
   /usr/include/qt6/QtCore/qversiontagging.h \
@@ -14002,6 +14026,7 @@ CMakeFiles/ZMP_Linux_bin.dir/settingswidget.cpp.o: /home/user/cp/zmp/settingswid
   /usr/include/qt6/QtGui/qvector2d.h \
   /usr/include/qt6/QtGui/qvectornd.h \
   /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtNetwork/QAbstractSocket \
   /usr/include/qt6/QtNetwork/QNetworkAccessManager \
   /usr/include/qt6/QtNetwork/QNetworkProxy \
   /usr/include/qt6/QtNetwork/QSslConfiguration \
@@ -16301,11 +16326,23 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /home/user/cp/zmp/third_party/_kiss_fft_guts.h:
 
+/usr/include/qt6/QtNetwork/QAbstractSocket:
+
 /usr/include/taglib/flacproperties.h:
 
 /usr/include/qt6/QtGui/QPalette:
 
+/usr/include/qt6/QtCore/qvariantanimation.h:
+
+/usr/include/qt6/QtCore/qeasingcurve.h:
+
 /usr/include/qt6/QtCore/qdiriterator.h:
+
+/usr/include/qt6/QtCore/qabstractanimation.h:
+
+/usr/include/qt6/QtCore/QVariantAnimation:
+
+/usr/include/qt6/QtCore/QEasingCurve:
 
 /usr/include/taglib/tpicturetype.h:
 
@@ -16795,6 +16832,10 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake:
 
+/usr/lib/libcrypt.so:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
+
 /usr/include/qt6/QtCore/qvector.h:
 
 /usr/include/c++/16/bits/stl_algobase.h:
@@ -17005,6 +17046,10 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 
 /usr/include/qt6/QtCore/qconstructormacros.h:
 
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
+
 /usr/include/qt6/QtCore/qdir.h:
 
 /usr/include/taglib/id3v2tag.h:
@@ -17026,6 +17071,8 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginAdditionalTargetInfo.cmake:
 
 /usr/share/cmake/Modules/MacroAddFileDependencies.cmake:
+
+/usr/include/qt6/QtWidgets/QSplitter:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargets-relwithdebinfo.cmake:
 
@@ -17301,10 +17348,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 
 /usr/include/endian.h:
 
-/usr/lib/libcrypt.so:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
-
 /usr/include/bits/types/struct_tm.h:
 
 /usr/include/qt6/QtWidgets/QVBoxLayout:
@@ -17538,10 +17581,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 /usr/include/asm/bitsperlong.h:
 
 /usr/include/c++/16/bits/stl_multiset.h:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake:
 
 /usr/lib/libglib-2.0.so.0:
 
@@ -18251,9 +18290,9 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/c++/16/optional:
 
-/usr/include/qt6/QtWidgets/QApplication:
-
 /usr/include/qt6/QtWidgets/QDoubleSpinBox:
+
+/usr/include/qt6/QtWidgets/QApplication:
 
 /usr/include/qt6/QtGui/qtguiexports.h:
 
@@ -18501,6 +18540,10 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandFullScreenShellV1IntegrationPluginTargets.cmake:
 
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake:
+
+/usr/include/qt6/QtGui/qeventpoint.h:
+
 /usr/include/c++/16/bits/new_throw.h:
 
 /usr/include/qt6/QtGui/qfont.h:
@@ -18532,12 +18575,6 @@ CMakeFiles/ZMP_Linux_bin.dir/third_party/kiss_fft.c.o:
 /usr/include/qt6/QtGui/qcursor.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginTargets.cmake:
-
-/usr/include/qt6/QtWidgets/qapplication.h:
-
-/usr/include/bits/types/FILE.h:
-
-/usr/include/qt6/QtGui/qicon.h:
 
 /usr/include/qt6/QtGui/qinputdevice.h:
 
@@ -18789,6 +18826,18 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 /usr/include/qt6/QtWidgets/qabstractspinbox.h:
 
+/usr/include/bits/types/FILE.h:
+
+/usr/include/qt6/QtGui/qicon.h:
+
+/usr/include/qt6/QtWidgets/qapplication.h:
+
+/usr/include/libprojectM/Common.hpp:
+
+/usr/include/qt6/QtGui/qregion.h:
+
+/usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake:
+
 /usr/include/qt6/QtWidgets/qboxlayout.h:
 
 CMakeFiles/4.4.2/CMakeCXXCompiler.cmake:
@@ -18840,6 +18889,8 @@ CMakeFiles/4.4.2/CMakeCXXCompiler.cmake:
 /usr/include/qt6/QtGui/qevent.h:
 
 /usr/include/qt6/QtWidgets/qspinbox.h:
+
+/usr/include/qt6/QtWidgets/qsplitter.h:
 
 /usr/include/qt6/QtWidgets/qstyleoption.h:
 
@@ -18985,12 +19036,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_depsmanager.cpp:
 
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake:
 
-/usr/include/libprojectM/Common.hpp:
-
-/usr/include/qt6/QtGui/qregion.h:
-
-/usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake:
-
 /usr/include/qt6/QtCore/qstringview.h:
 
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake:
@@ -19135,10 +19180,6 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargets.cmake:
 
-/usr/include/qt6/QtGui/qeventpoint.h:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginConfig.cmake:
@@ -19152,6 +19193,10 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QJp2PluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginConfig.cmake:
 
@@ -19472,7 +19517,3 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /home/user/cp/zmp/ftpclient.cpp:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QJp2PluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:

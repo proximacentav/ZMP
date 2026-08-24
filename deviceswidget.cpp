@@ -10,12 +10,30 @@
 #include <QPushButton>
 #include <QStackedWidget>
 
+#ifdef Q_OS_WIN
+// Windows: только выбор устройства вывода (QMediaDevices), без PipeWire-функций
+DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
+{
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(ztrLabel(m_retrans, "Устройство вывода звука:", this));
+    m_combo = new QComboBox(this);
+    layout->addWidget(m_combo);
+    m_devices = QMediaDevices::audioOutputs();
+    for (const QAudioDevice &dev : m_devices)
+        m_combo->addItem(dev.description(), QVariant::fromValue(dev));
+    if (m_combo->count() > 0) m_combo->setCurrentIndex(0);
+    connect(m_combo, &QComboBox::currentIndexChanged,
+            this, [this](int idx){ if (idx >= 0 && idx < m_devices.size()) emit deviceChanged(m_devices[idx]); });
+    connect(&Translator::instance(), &Translator::languageChanged, this, &DevicesWidget::retranslateUi);
+}
+#else
 DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    // Верхний ряд: режим вывода + менеджер устройств
+    // Верхний ряд: режим вывода + менеджер устройств (Linux/PipeWire only)
     QHBoxLayout *topRow = new QHBoxLayout;
+
     m_modeCombo = new QComboBox(this);
     m_modeCombo->addItem(ztr("вывод в динамики"));
     m_modeCombo->addItem(ztr("вывод в микрофон (перехват)"));
@@ -32,6 +50,7 @@ DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
     layout->addLayout(topRow);
 
     // Страница 0: обычный выбор устройства вывода (как раньше)
+#ifndef Q_OS_WIN
     m_speakersPage = new QWidget(this);
     QVBoxLayout *spLayout = new QVBoxLayout(m_speakersPage);
     spLayout->addWidget(ztrLabel(m_retrans, "Устройство вывода звука:"));
@@ -68,6 +87,7 @@ DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
     m_stack->addWidget(m_interceptPage);
     m_stack->addWidget(m_virtualPage);
     layout->addWidget(m_stack);
+#endif
     layout->addStretch();
 
     connect(m_modeCombo, &QComboBox::currentIndexChanged,
@@ -144,3 +164,5 @@ void DevicesWidget::openDeviceManager()
     DeviceManagerDialog dlg(this);
     dlg.exec();
 }
+
+#endif // !Q_OS_WIN

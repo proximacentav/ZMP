@@ -6,6 +6,7 @@
 #include <QNetworkProxy>
 #include <QCoreApplication>
 #include <QNetworkAccessManager>
+#include <QAbstractSocket>
 #include <functional>
 #include <QVariant>
 #include <QVBoxLayout>
@@ -114,6 +115,17 @@ QString offlineConfigPath()
 }
 } // namespace
 
+int SettingsWidget::loadMenuSideFromConfig()
+{
+    QFile f(offlineConfigPath());
+    if (!f.open(QIODevice::ReadOnly))
+        return 0;
+    const int v = QJsonDocument::fromJson(f.readAll())
+                      .object().value("menu_side").toInt(0);
+    f.close();
+    return qBound(0, v, 3);
+}
+
 bool SettingsWidget::loadOfflineModeFromConfig()
 {
     QFile f(offlineConfigPath());
@@ -145,17 +157,22 @@ void SettingsWidget::applyOfflineMode(bool on)
         QNetworkProxy blocker(QNetworkProxy::Socks5Proxy,
                               kOfflineProxyHost, kOfflineProxyPort);
 
-        // Глобальный прокси блокирует новые сокеты, но объекты с собственным
-        // setProxy() его игнорируют — ставим блокировщик каждому NAM явно.
+        // 1. Блокируем НОВЫЕ подключения: глобальный прокси + каждому NAM явно
+        //    (объекты с собственным setProxy() игнорируют глобальный).
+        // 2. Рвём УЖЕ установленные соединения (keep-alive сокеты живут и
+        //    продолжают работать даже с включённой блокировкой).
         std::function<void(QObject *)> apply = [&](QObject *obj) {
             if (auto *nam = qobject_cast<QNetworkAccessManager *>(obj))
                 nam->setProxy(blocker);
+            if (auto *sock = qobject_cast<QAbstractSocket *>(obj)) {
+                if (sock->state() != QAbstractSocket::UnconnectedState)
+                    sock->abort();
+            }
             for (QObject *child : obj->children())
                 apply(child);
         };
-        apply(QCoreApplication::instance());
-
         QNetworkProxy::setApplicationProxy(blocker);
+        apply(QCoreApplication::instance());
     } else {
         QNetworkProxy::setApplicationProxy(QNetworkProxy::DefaultProxy);
     }
@@ -443,6 +460,37 @@ void SettingsWidget::setupMainSettingsTab() {
 
         ZmpInstallDialog dlg(ZmpInstallDialog::Mode::Update, this);
         dlg.exec();
+    });
+
+    // Положение бокового меню
+    layout->addWidget(ztrLabel(m_retrans, "Положение бокового меню:"));
+    m_menuSideCombo = new QComboBox;
+    m_menuSideCombo->addItems({ztr("Слева"), ztr("Сверху"),
+                               ztr("Справа"), ztr("Снизу")});
+    ztrRegister(m_retrans, [this]{
+        const int idx = qBound(0, loadMenuSideFromConfig(), 3);
+        static const char *items[4] = {"Слева", "Сверху", "Справа", "Снизу"};
+        for (int i = 0; i < 4 && i < m_menuSideCombo->count(); ++i)
+            m_menuSideCombo->setItemText(i, ztr(items[i]));
+        Q_UNUSED(idx)
+    });
+    m_menuSideCombo->setCurrentIndex(qBound(0, loadMenuSideFromConfig(), 3));
+    layout->addWidget(m_menuSideCombo);
+    connect(m_menuSideCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, [this](int index) {
+        QDir().mkpath(QDir::homePath() + "/zmp_playlists");
+        QFile f(QDir::homePath() + "/zmp_playlists/config.json");
+        QJsonObject root;
+        if (f.open(QIODevice::ReadOnly)) {
+            root = QJsonDocument::fromJson(f.readAll()).object();
+            f.close();
+        }
+        root["menu_side"] = index;
+        if (f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+            f.write(QJsonDocument(root).toJson(QJsonDocument::Indented));
+            f.close();
+        }
+        emit menuSideChanged(index);
     });
 
     m_offlineBtn = ztrButton(m_retrans, "Автономный режим");

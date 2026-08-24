@@ -6,27 +6,39 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network DBus OpenGLWidgets)
+if(WIN32)
+    # DBus отсутствует на Windows (MPRIS — только Linux)
+    find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network OpenGLWidgets)
+else()
+    find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Svg Network DBus OpenGLWidgets)
+endif()
 
-# projectM
-find_path(PROJECTM_INCLUDE_DIR NAMES libprojectM/projectM.hpp PATHS /usr/include /usr/local/include)
-find_library(PROJECTM_LIBRARY NAMES projectM PATHS /usr/lib /usr/local/lib)
+# --- Опциональные зависимости (на Windows могут отсутствовать в sysroot) ---
+function(zmp_find_opt name header lib out_def)
+    find_path(${name}_INCLUDE_DIR NAMES ${header}
+        PATHS /usr/include /usr/local/include "$ENV{ZMP_MINGW_ROOT}/include")
+    find_library(${name}_LIBRARY NAMES ${lib}
+        PATHS /usr/lib /usr/local/lib "$ENV{ZMP_MINGW_ROOT}/lib")
+    if(${name}_INCLUDE_DIR AND ${name}_LIBRARY)
+        set(${name}_FOUND TRUE PARENT_SCOPE)
+    else()
+        set(${name}_FOUND FALSE PARENT_SCOPE)
+        add_compile_definitions(${out_def})
+        message(STATUS "${name} not found -> building WITHOUT ${name}")
+    endif()
+endfunction()
 
-# TagLib
-find_path(TAGLIB_INCLUDE_DIR NAMES taglib/tag.h PATHS /usr/include /usr/local/include)
-find_library(TAGLIB_LIBRARY NAMES tag libtag PATHS /usr/lib /usr/local/lib)
-
-# SoundTouch (скорость/питч)
-find_path(SOUNDTOUCH_INCLUDE_DIR NAMES soundtouch/SoundTouch.h PATHS /usr/include /usr/local/include)
-find_library(SOUNDTOUCH_LIBRARY NAMES SoundTouch PATHS /usr/lib /usr/local/lib)
+zmp_find_opt(PROJECTM  libprojectM/projectM.hpp projectM   ZMP_NO_PROJECTM)
+zmp_find_opt(TAGLIB    taglib/tag.h             tag        ZMP_NO_TAGLIB)
+zmp_find_opt(SOUNDTOUCH soundtouch/SoundTouch.h SoundTouch ZMP_NO_SOUNDTOUCH)
 
 find_library(CRYPT_LIBRARY NAMES crypt)
 if(CRYPT_LIBRARY)
     list(APPEND EXTRA_LIBS ${CRYPT_LIBRARY})
 endif()
 
-if(NOT TAGLIB_LIBRARY)
-    message(FATAL_ERROR "TagLib not found. Install it: sudo pacman -S taglib (Arch) or apt-get install libtag1-dev (Debian)")
+if(WIN32 AND NOT TAGLIB_FOUND)
+    message(WARNING "TagLib missing: metadata features disabled")
 endif()
 
 add_executable(ZMP_Linux_bin
@@ -54,22 +66,42 @@ add_executable(ZMP_Linux_bin
     cliplayer.h cliplayer.cpp
     iconbutton.h
     miniplayerbar.h miniplayerbar.cpp
-    mpriscontroller.h mpriscontroller.cpp
     res.qrc
     third_party/kiss_fft.c
 )
+if(NOT WIN32)
+    target_sources(ZMP_Linux_bin PRIVATE mpriscontroller.h mpriscontroller.cpp)
+endif()
 
 target_include_directories(ZMP_Linux_bin PRIVATE
-    ${PROJECTM_INCLUDE_DIR}
-    ${TAGLIB_INCLUDE_DIR}
-    ${SOUNDTOUCH_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party
 )
+if(PROJECTM_FOUND)
+    target_include_directories(ZMP_Linux_bin PRIVATE ${PROJECTM_INCLUDE_DIR})
+endif()
+if(TAGLIB_FOUND)
+    target_include_directories(ZMP_Linux_bin PRIVATE ${TAGLIB_INCLUDE_DIR})
+endif()
+if(SOUNDTOUCH_FOUND)
+    target_include_directories(ZMP_Linux_bin PRIVATE ${SOUNDTOUCH_INCLUDE_DIR})
+endif()
 
 target_link_libraries(ZMP_Linux_bin
-    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network Qt6::DBus Qt6::OpenGLWidgets
-    ${PROJECTM_LIBRARY}
-    ${TAGLIB_LIBRARY}
-    ${SOUNDTOUCH_LIBRARY}
-    ${EXTRA_LIBS}
-)
+    Qt6::Core Qt6::Widgets Qt6::Multimedia Qt6::Svg Qt6::Network
+    $<$<PLATFORM_ID:Linux>:Qt6::DBus>
+    Qt6::OpenGLWidgets
+    ${EXTRA_LIBS})
+if(PROJECTM_FOUND)
+    target_link_libraries(ZMP_Linux_bin ${PROJECTM_LIBRARY})
+endif()
+if(TAGLIB_FOUND)
+    target_link_libraries(ZMP_Linux_bin ${TAGLIB_LIBRARY})
+endif()
+if(SOUNDTOUCH_FOUND)
+    target_link_libraries(ZMP_Linux_bin ${SOUNDTOUCH_LIBRARY})
+endif()
+
+if(WIN32)
+    set_target_properties(ZMP_Linux_bin PROPERTIES OUTPUT_NAME "zmp")
+    target_compile_definitions(ZMP_Linux_bin PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)
+endif()

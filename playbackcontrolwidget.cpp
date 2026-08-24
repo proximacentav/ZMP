@@ -15,11 +15,13 @@
 #include <QDialog>
 #include <QJsonDocument>
 #include <QJsonObject>
+#ifndef ZMP_NO_TAGLIB
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 #include <taglib/mpegfile.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/attachedpictureframe.h>
+#endif
 
 class SpectrumWidget : public QWidget
 {
@@ -520,11 +522,13 @@ void PlaybackControlWidget::finishQueue()
         else if (suf == "wav") ++wav;
         else ++other;
 
+#ifndef ZMP_NO_TAGLIB
         TagLib::FileRef fr(f.toUtf8().constData());
         if (!fr.isNull() && fr.audioProperties()) {
             totalMs += fr.audioProperties()->lengthInSeconds() * 1000LL;
             ++counted;
         }
+#endif
     }
 
     const double avgMinutes = counted > 0 ? (totalMs / counted) / 60000.0 : 0.0;
@@ -550,6 +554,7 @@ TrackMetadata PlaybackControlWidget::extractMetadata(const QString &filePath) {
     TrackMetadata data;
     QFileInfo fi(filePath);
     data.title = fi.baseName();
+#ifndef ZMP_NO_TAGLIB
     if (!fi.exists() || fi.size() == 0)
         return data;
     TagLib::FileRef f(filePath.toUtf8().data());
@@ -572,6 +577,7 @@ TrackMetadata PlaybackControlWidget::extractMetadata(const QString &filePath) {
             }
         }
     }
+#endif // !ZMP_NO_TAGLIB
     return data;
 }
 

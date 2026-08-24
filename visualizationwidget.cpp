@@ -165,13 +165,18 @@ ProjectMWidget::ProjectMWidget(AudioManager *audioManager, QWidget *parent)
     m_timer->setInterval(30);
 
     connect(m_timer, &QTimer::timeout, this, [this]() {
-        if (!m_projectM) return;
-        float pcm[2048];
-        int bytes = m_audioManager->getPCMData(pcm, 1024);
-        if (bytes > 0) {
-            int frames = bytes / (int)(2 * sizeof(float));
-            if (frames > 0 && frames * 2 <= 2048)
-                m_projectM->pcm()->addPCMfloat_2ch(pcm, frames);
+        if (!m_projectM || !isVisible())
+            return;   // скрытый визуализатор не рендерится вообще
+        try {
+            float pcm[2048];
+            int bytes = m_audioManager->getPCMData(pcm, 1024);
+            if (bytes > 0) {
+                const int frames = bytes / static_cast<int>(2 * sizeof(float));
+                if (frames > 0 && frames * 2 <= 2048)
+                    m_projectM->pcm()->addPCMfloat_2ch(pcm, frames);
+            }
+        } catch (...) {
+            qWarning() << "projectM: PCM feed failed";
         }
         update();
     });
@@ -197,11 +202,15 @@ void ProjectMWidget::resizeGL(int w, int h)
 
 void ProjectMWidget::paintGL()
 {
+    if (!m_projectM || !isVisible())
+        return;
     QOpenGLFunctions *gl = QOpenGLContext::currentContext()->functions();
     gl->glClearColor(0.067f, 0.067f, 0.067f, 1.0f);
     gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    if (m_projectM) {
+    try {
         m_projectM->renderFrame();
+    } catch (...) {
+        qWarning() << "projectM: renderFrame failed";
     }
 }
 
@@ -336,12 +345,15 @@ VisualizationWidget::VisualizationWidget(AudioManager *audioManager, QWidget *pa
     m_spectrogram->hide();
     mainLayout->addWidget(m_spectrogram, 1);
 
+#ifndef ZMP_NO_PROJECTM
     m_projectMWidget = new ProjectMWidget(m_audioManager, this);
     m_projectMWidget->hide();
     mainLayout->addWidget(m_projectMWidget, 1);
+#endif
 
     connect(m_modeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int index) {
         m_spectrogram->setVisible(index == 1);
+#ifndef ZMP_NO_PROJECTM
         if (index == 2) {
             m_projectMWidget->startProjectM();
             m_projectMWidget->show();
@@ -349,6 +361,9 @@ VisualizationWidget::VisualizationWidget(AudioManager *audioManager, QWidget *pa
             m_projectMWidget->stopVisualizer();
             m_projectMWidget->hide();
         }
+#else
+        Q_UNUSED(index)
+#endif
     });
 
     m_modeCombo->setCurrentIndex(0);

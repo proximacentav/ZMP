@@ -69,6 +69,8 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         "keyBindingsSaved",
         "jamendoReconfigureRequested",
         "offlineModeChanged",
+        "menuSideChanged",
+        "side",
         "onSliderChanged",
         "v",
         "onLineEditChanged",
@@ -141,47 +143,51 @@ template <> constexpr inline auto SettingsWidget::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(bool)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Bool, 17 },
         }}),
-        // Slot 'onSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        // Signal 'menuSideChanged'
+        QtMocHelpers::SignalData<void(int)>(30, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 31 },
+        }}),
+        // Slot 'onSliderChanged'
+        QtMocHelpers::SlotData<void(int)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 33 },
         }}),
         // Slot 'onLineEditChanged'
-        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'toggleTheme'
-        QtMocHelpers::SlotData<void()>(33, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(35, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onColorChanged'
-        QtMocHelpers::SlotData<void(int)>(34, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 35 },
+        QtMocHelpers::SlotData<void(int)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 37 },
         }}),
         // Slot 'onHeightSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 31 },
+        QtMocHelpers::SlotData<void(int)>(38, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 33 },
         }}),
         // Slot 'onIconSizeSliderChanged'
-        QtMocHelpers::SlotData<void(int)>(37, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 31 },
+        QtMocHelpers::SlotData<void(int)>(39, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 33 },
         }}),
         // Slot 'onSpectrumGainChanged'
-        QtMocHelpers::SlotData<void(int)>(38, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 39 },
+        QtMocHelpers::SlotData<void(int)>(40, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 41 },
         }}),
         // Slot 'showAboutDialog'
-        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIconSizeChanged'
-        QtMocHelpers::SlotData<void(int)>(41, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 31 },
+        QtMocHelpers::SlotData<void(int)>(43, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 33 },
         }}),
         // Slot 'showKeyBindingTab'
-        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'showMainSettingsTab'
-        QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(45, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onKeyCaptureButtonClicked'
-        QtMocHelpers::SlotData<void(enum KeyAction)>(44, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(enum KeyAction)>(46, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { 0x80000000 | 23, 24 },
         }}),
         // Slot 'eventFilter'
-        QtMocHelpers::SlotData<bool(QObject *, QEvent *)>(45, 2, QMC::AccessPrivate, QMetaType::Bool, {{
-            { QMetaType::QObjectStar, 46 }, { 0x80000000 | 47, 48 },
+        QtMocHelpers::SlotData<bool(QObject *, QEvent *)>(47, 2, QMC::AccessPrivate, QMetaType::Bool, {{
+            { QMetaType::QObjectStar, 48 }, { 0x80000000 | 49, 50 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -220,19 +226,20 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 11: _t->keyBindingsSaved(); break;
         case 12: _t->jamendoReconfigureRequested(); break;
         case 13: _t->offlineModeChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 14: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 15: _t->onLineEditChanged(); break;
-        case 16: _t->toggleTheme(); break;
-        case 17: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 18: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 19: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 20: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 21: _t->showAboutDialog(); break;
-        case 22: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 23: _t->showKeyBindingTab(); break;
-        case 24: _t->showMainSettingsTab(); break;
-        case 25: _t->onKeyCaptureButtonClicked((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1]))); break;
-        case 26: { bool _r = _t->eventFilter((*reinterpret_cast<std::add_pointer_t<QObject*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QEvent*>>(_a[2])));
+        case 14: _t->menuSideChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 15: _t->onSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 16: _t->onLineEditChanged(); break;
+        case 17: _t->toggleTheme(); break;
+        case 18: _t->onColorChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 19: _t->onHeightSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 20: _t->onIconSizeSliderChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 21: _t->onSpectrumGainChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 22: _t->showAboutDialog(); break;
+        case 23: _t->onIconSizeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 24: _t->showKeyBindingTab(); break;
+        case 25: _t->showMainSettingsTab(); break;
+        case 26: _t->onKeyCaptureButtonClicked((*reinterpret_cast<std::add_pointer_t<enum KeyAction>>(_a[1]))); break;
+        case 27: { bool _r = _t->eventFilter((*reinterpret_cast<std::add_pointer_t<QObject*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QEvent*>>(_a[2])));
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -266,6 +273,8 @@ void SettingsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             return;
         if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(bool )>(_a, &SettingsWidget::offlineModeChanged, 13))
             return;
+        if (QtMocHelpers::indexOfMethod<void (SettingsWidget::*)(int )>(_a, &SettingsWidget::menuSideChanged, 14))
+            return;
     }
 }
 
@@ -288,14 +297,14 @@ int SettingsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 27)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 27;
+        _id -= 28;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 27)
+        if (_id < 28)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 27;
+        _id -= 28;
     }
     return _id;
 }
@@ -382,5 +391,11 @@ void SettingsWidget::jamendoReconfigureRequested()
 void SettingsWidget::offlineModeChanged(bool _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 13, nullptr, _t1);
+}
+
+// SIGNAL 14
+void SettingsWidget::menuSideChanged(int _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 14, nullptr, _t1);
 }
 QT_WARNING_POP

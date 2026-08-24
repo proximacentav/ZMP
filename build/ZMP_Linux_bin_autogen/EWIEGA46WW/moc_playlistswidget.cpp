@@ -42,13 +42,32 @@ template <> constexpr inline auto PlaylistTileWidget::qt_create_metaobjectdata<q
         "PlaylistTileWidget",
         "doubleClicked",
         "",
-        "tracks"
+        "tracks",
+        "hoverStarted",
+        "PlaylistTileWidget*",
+        "tile",
+        "hoverEnded",
+        "dropRequested",
+        "QPoint",
+        "globalPos"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'doubleClicked'
         QtMocHelpers::SignalData<void(const QStringList &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QStringList, 3 },
+        }}),
+        // Signal 'hoverStarted'
+        QtMocHelpers::SignalData<void(PlaylistTileWidget *)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 5, 6 },
+        }}),
+        // Signal 'hoverEnded'
+        QtMocHelpers::SignalData<void(PlaylistTileWidget *)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 5, 6 },
+        }}),
+        // Signal 'dropRequested'
+        QtMocHelpers::SignalData<void(PlaylistTileWidget *, const QPoint &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 5, 6 }, { 0x80000000 | 9, 10 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -74,11 +93,46 @@ void PlaylistTileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->doubleClicked((*reinterpret_cast<std::add_pointer_t<QStringList>>(_a[1]))); break;
+        case 1: _t->hoverStarted((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1]))); break;
+        case 2: _t->hoverEnded((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1]))); break;
+        case 3: _t->dropRequested((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QPoint>>(_a[2]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 1:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PlaylistTileWidget* >(); break;
+            }
+            break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PlaylistTileWidget* >(); break;
+            }
+            break;
+        case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PlaylistTileWidget* >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (PlaylistTileWidget::*)(const QStringList & )>(_a, &PlaylistTileWidget::doubleClicked, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlaylistTileWidget::*)(PlaylistTileWidget * )>(_a, &PlaylistTileWidget::hoverStarted, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlaylistTileWidget::*)(PlaylistTileWidget * )>(_a, &PlaylistTileWidget::hoverEnded, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlaylistTileWidget::*)(PlaylistTileWidget * , const QPoint & )>(_a, &PlaylistTileWidget::dropRequested, 3))
             return;
     }
 }
@@ -102,14 +156,14 @@ int PlaylistTileWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
     }
     return _id;
 }
@@ -118,6 +172,24 @@ int PlaylistTileWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void PlaylistTileWidget::doubleClicked(const QStringList & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+}
+
+// SIGNAL 1
+void PlaylistTileWidget::hoverStarted(PlaylistTileWidget * _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+}
+
+// SIGNAL 2
+void PlaylistTileWidget::hoverEnded(PlaylistTileWidget * _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+}
+
+// SIGNAL 3
+void PlaylistTileWidget::dropRequested(PlaylistTileWidget * _t1, const QPoint & _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1, _t2);
 }
 namespace {
 struct qt_meta_tag_ZN13ClustersPanelE_t {};
@@ -223,6 +295,15 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         "onPlaylistStopped",
         "onPlaylistClear",
         "loadPlaylists",
+        "animateItemHeight",
+        "QListWidgetItem*",
+        "item",
+        "targetH",
+        "findItemOfTile",
+        "QWidget*",
+        "tile",
+        "connectTileHover",
+        "PlaylistTileWidget*",
         "filterByCluster",
         "clusterName",
         "onAddClicked",
@@ -247,20 +328,32 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'loadPlaylists'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'animateItemHeight'
+        QtMocHelpers::SlotData<void(QListWidgetItem *, int)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 9, 10 }, { QMetaType::Int, 11 },
+        }}),
+        // Slot 'findItemOfTile'
+        QtMocHelpers::SlotData<QListWidgetItem *(QWidget *)>(12, 2, QMC::AccessPublic, 0x80000000 | 9, {{
+            { 0x80000000 | 13, 14 },
+        }}),
+        // Slot 'connectTileHover'
+        QtMocHelpers::SlotData<void(PlaylistTileWidget *, QListWidgetItem *)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 16, 14 }, { 0x80000000 | 9, 10 },
+        }}),
         // Slot 'filterByCluster'
-        QtMocHelpers::SlotData<void(const QString &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 9 },
+        QtMocHelpers::SlotData<void(const QString &)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 18 },
         }}),
         // Slot 'onAddClicked'
-        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onDeleteClicked'
-        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onEditClicked'
-        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'savePlaylistColors'
-        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'loadPlaylistColors'
-        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -289,13 +382,36 @@ void PlaylistsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 2: _t->onPlaylistStopped(); break;
         case 3: _t->onPlaylistClear(); break;
         case 4: _t->loadPlaylists(); break;
-        case 5: _t->filterByCluster((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 6: _t->onAddClicked(); break;
-        case 7: _t->onDeleteClicked(); break;
-        case 8: _t->onEditClicked(); break;
-        case 9: _t->savePlaylistColors(); break;
-        case 10: _t->loadPlaylistColors(); break;
+        case 5: _t->animateItemHeight((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 6: { QListWidgetItem* _r = _t->findItemOfTile((*reinterpret_cast<std::add_pointer_t<QWidget*>>(_a[1])));
+            if (_a[0]) *reinterpret_cast<QListWidgetItem**>(_a[0]) = std::move(_r); }  break;
+        case 7: _t->connectTileHover((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[2]))); break;
+        case 8: _t->filterByCluster((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->onAddClicked(); break;
+        case 10: _t->onDeleteClicked(); break;
+        case 11: _t->onEditClicked(); break;
+        case 12: _t->savePlaylistColors(); break;
+        case 13: _t->loadPlaylistColors(); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 6:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QWidget* >(); break;
+            }
+            break;
+        case 7:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PlaylistTileWidget* >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
@@ -323,14 +439,14 @@ int PlaylistsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 14;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        if (_id < 14)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 14;
     }
     return _id;
 }
