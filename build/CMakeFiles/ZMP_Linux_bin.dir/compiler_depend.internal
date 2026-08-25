@@ -368,6 +368,7 @@
  /usr/include/qt6/QtCore/QTimer
  /usr/include/qt6/QtCore/QUrl
  /usr/include/qt6/QtCore/QVariant
+ /usr/include/qt6/QtCore/QVariantAnimation
  /usr/include/qt6/QtCore/QVariantMap
  /usr/include/qt6/QtCore/QVector
  /usr/include/qt6/QtCore/QtGlobal
@@ -381,6 +382,7 @@
  /usr/include/qt6/QtCore/q23type_traits.h
  /usr/include/qt6/QtCore/q23utility.h
  /usr/include/qt6/QtCore/q26numeric.h
+ /usr/include/qt6/QtCore/qabstractanimation.h
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h
  /usr/include/qt6/QtCore/qabstractitemmodel.h
  /usr/include/qt6/QtCore/qabstractproxymodel.h
@@ -426,6 +428,7 @@
  /usr/include/qt6/QtCore/qdebug.h
  /usr/include/qt6/QtCore/qdir.h
  /usr/include/qt6/QtCore/qdirlisting.h
+ /usr/include/qt6/QtCore/qeasingcurve.h
  /usr/include/qt6/QtCore/qendian.h
  /usr/include/qt6/QtCore/qeventloop.h
  /usr/include/qt6/QtCore/qexceptionhandling.h
@@ -538,6 +541,7 @@
  /usr/include/qt6/QtCore/qutf8stringview.h
  /usr/include/qt6/QtCore/quuid.h
  /usr/include/qt6/QtCore/qvariant.h
+ /usr/include/qt6/QtCore/qvariantanimation.h
  /usr/include/qt6/QtCore/qvariantmap.h
  /usr/include/qt6/QtCore/qvarlengtharray.h
  /usr/include/qt6/QtCore/qvector.h
@@ -4278,12 +4282,15 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/assert.h
  /usr/include/bits/atomic_wide_counter.h
  /usr/include/bits/byteswap.h
+ /usr/include/bits/cloexec.h
  /usr/include/bits/confname.h
  /usr/include/bits/cpu-set.h
  /usr/include/bits/endian.h
  /usr/include/bits/endianness.h
  /usr/include/bits/environments.h
  /usr/include/bits/errno.h
+ /usr/include/bits/fcntl-linux.h
+ /usr/include/bits/fcntl.h
  /usr/include/bits/floatn-common.h
  /usr/include/bits/floatn.h
  /usr/include/bits/flt-eval-method.h
@@ -4302,6 +4309,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/bits/mathcalls-macros.h
  /usr/include/bits/mathcalls-narrow.h
  /usr/include/bits/mathcalls.h
+ /usr/include/bits/openat2.h
  /usr/include/bits/posix1_lim.h
  /usr/include/bits/posix2_lim.h
  /usr/include/bits/posix_opt.h
@@ -4324,6 +4332,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/bits/sigstksz.h
  /usr/include/bits/sigthread.h
  /usr/include/bits/ss_flags.h
+ /usr/include/bits/stat.h
  /usr/include/bits/stdint-intn.h
  /usr/include/bits/stdint-least.h
  /usr/include/bits/stdint-uintn.h
@@ -4331,6 +4340,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/bits/stdlib-float.h
  /usr/include/bits/struct_mutex.h
  /usr/include/bits/struct_rwlock.h
+ /usr/include/bits/struct_stat.h
  /usr/include/bits/thread-shared-types.h
  /usr/include/bits/time.h
  /usr/include/bits/time64.h
@@ -4360,6 +4370,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/bits/types/stack_t.h
  /usr/include/bits/types/struct_FILE.h
  /usr/include/bits/types/struct___jmp_buf_tag.h
+ /usr/include/bits/types/struct_iovec.h
  /usr/include/bits/types/struct_itimerspec.h
  /usr/include/bits/types/struct_sched_param.h
  /usr/include/bits/types/struct_sigstack.h
@@ -4594,6 +4605,8 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/ctype.h
  /usr/include/endian.h
  /usr/include/errno.h
+ /usr/include/execinfo.h
+ /usr/include/fcntl.h
  /usr/include/features-time64.h
  /usr/include/features.h
  /usr/include/gnu/stubs-64.h
@@ -4602,7 +4615,9 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o
  /usr/include/limits.h
  /usr/include/linux/close_range.h
  /usr/include/linux/errno.h
+ /usr/include/linux/falloc.h
  /usr/include/linux/limits.h
+ /usr/include/linux/openat2.h
  /usr/include/linux/posix_types.h
  /usr/include/linux/sched/types.h
  /usr/include/linux/stddef.h
@@ -8033,6 +8048,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o
  /usr/include/qt6/QtCore/QMetaType
  /usr/include/qt6/QtCore/QObject
  /usr/include/qt6/QtCore/QPair
+ /usr/include/qt6/QtCore/QPointer
  /usr/include/qt6/QtCore/QRandomGenerator
  /usr/include/qt6/QtCore/QRect
  /usr/include/qt6/QtCore/QSharedDataPointer
@@ -8148,6 +8164,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o
  /usr/include/qt6/QtCore/qoverload.h
  /usr/include/qt6/QtCore/qpair.h
  /usr/include/qt6/QtCore/qpoint.h
+ /usr/include/qt6/QtCore/qpointer.h
  /usr/include/qt6/QtCore/qprocessordetection.h
  /usr/include/qt6/QtCore/qrandom.h
  /usr/include/qt6/QtCore/qrect.h
@@ -13157,6 +13174,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o
  /usr/include/qt6/QtCore/QMap
  /usr/include/qt6/QtCore/QObject
  /usr/include/qt6/QtCore/QPair
+ /usr/include/qt6/QtCore/QPointer
  /usr/include/qt6/QtCore/QRandomGenerator
  /usr/include/qt6/QtCore/QRect
  /usr/include/qt6/QtCore/QRegularExpression
@@ -13270,6 +13288,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o
  /usr/include/qt6/QtCore/qoverload.h
  /usr/include/qt6/QtCore/qpair.h
  /usr/include/qt6/QtCore/qpoint.h
+ /usr/include/qt6/QtCore/qpointer.h
  /usr/include/qt6/QtCore/qprocessordetection.h
  /usr/include/qt6/QtCore/qrandom.h
  /usr/include/qt6/QtCore/qrect.h

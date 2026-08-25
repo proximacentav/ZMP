@@ -78,13 +78,6 @@ ZMP_Linux_bin_autogen/timestamp: CMakeFiles/ZMP_Linux_bin.dir/compiler_depend.ts
 ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/res.qrc
 ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: CMakeFiles/ZMP_Linux_bin_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json
 ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/LICENSE.txt
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/play.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/pause.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/prev.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/featured-1.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/next.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/featured-0.svg
-ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /home/user/cp/zmp/icons/stop.svg
 ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /usr/lib/qt6/rcc
 ZMP_Linux_bin_autogen/EWIEGA46WW/qrc_res.cpp: /usr/lib/qt6/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/user/cp/zmp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for res.qrc"

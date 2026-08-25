@@ -564,6 +564,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtWidgets/QFrame \
+ /usr/include/qt6/QtCore/QVariantAnimation \
+ /usr/include/qt6/QtCore/qvariantanimation.h \
+ /usr/include/qt6/QtCore/qabstractanimation.h \
+ /usr/include/qt6/QtCore/qeasingcurve.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../equalizerwidget.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../visualizationwidget.h \
  /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \

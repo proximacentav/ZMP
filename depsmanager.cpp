@@ -30,6 +30,8 @@
 #include <string>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <execinfo.h>
+#include <fcntl.h>
 
 // ---------------------------------------------------------------------------
 //  Отчёт о недостающих зависимостях без Qt (безопасно использовать в
@@ -135,6 +137,28 @@ void zmpOpenTerminalWithMessage(const QString &message)
 
 static void zmpCrashSignalHandler(int sig)
 {
+    // Backtrace: пишем адреса стека в stderr и /tmp/zmp_crash_backtrace.txt
+    {
+        void *bt[64];
+        const int n = backtrace(bt, 64);
+        char header[128];
+        snprintf(header, sizeof(header),
+                 "\n=== ZMP CRASH: signal %d, backtrace (%d frames) ===\n", sig, n);
+        fputs(header, stderr);
+        fflush(stderr);
+        // backtrace_symbols_fd сам открывает/пишет файл — async-signal-safe
+        int fd = open("/tmp/zmp_crash_backtrace.txt",
+                      O_WRONLY | O_CREAT | O_TRUNC | O_CLOEXEC, 0644);
+        if (fd >= 0) {
+            ssize_t ignored = write(fd, header, qstrlen(header));
+            (void)ignored;
+            backtrace_symbols_fd(bt, n, fd);
+            backtrace_symbols_fd(bt, n, STDERR_FILENO);
+            close(fd);
+        }
+        fflush(stderr);
+    }
+
     // Report from a forked copy: the dying parent stays untouched
     pid_t pid = fork();
     if (pid == 0) {
@@ -183,9 +207,10 @@ static void zmpCrashSignalHandler(int sig)
 void zmpInstallCrashHandler()
 {
     std::signal(SIGSEGV, zmpCrashSignalHandler);
+    std::signal(SIGBUS,  zmpCrashSignalHandler);
     std::signal(SIGABRT, zmpCrashSignalHandler);
-    std::signal(SIGFPE, zmpCrashSignalHandler);
-    std::signal(SIGILL, zmpCrashSignalHandler);
+    std::signal(SIGFPE,  zmpCrashSignalHandler);
+    std::signal(SIGILL,  zmpCrashSignalHandler);
 }
 
 // ---------------------------------------------------------------------------

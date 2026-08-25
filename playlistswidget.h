@@ -23,6 +23,8 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QFrame>
+#include <QPointer>
+#include <QVariantAnimation>
 #include "translator.h"
 
 struct PlaylistInfo {
@@ -344,6 +346,7 @@ public slots:
     void onPlaylistClear();
     void loadPlaylists();
     void animateItemHeight(QListWidgetItem *item, int targetH);
+    void stopItemAnimations();
     QListWidgetItem *findItemOfTile(QWidget *tile);
     void connectTileHover(PlaylistTileWidget *tile, QListWidgetItem *item);
     void filterByCluster(const QString &clusterName);
@@ -380,6 +383,7 @@ public:
     HoverGlowBar *m_glowBar = nullptr;
     QFrame *m_tilesFrame;
     QPushButton *m_delBtn = nullptr;
+    QVector<QPointer<QVariantAnimation>> m_itemAnims;   // живые анимации плиток
     QList<PlaylistInfo> m_playlists;
     QMap<QString, QColor> m_playlistColors;
     QList<ClusterInfo> m_clusters;

@@ -299,6 +299,7 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         "QListWidgetItem*",
         "item",
         "targetH",
+        "stopItemAnimations",
         "findItemOfTile",
         "QWidget*",
         "tile",
@@ -332,28 +333,30 @@ template <> constexpr inline auto PlaylistsWidget::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void(QListWidgetItem *, int)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 9, 10 }, { QMetaType::Int, 11 },
         }}),
+        // Slot 'stopItemAnimations'
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'findItemOfTile'
-        QtMocHelpers::SlotData<QListWidgetItem *(QWidget *)>(12, 2, QMC::AccessPublic, 0x80000000 | 9, {{
-            { 0x80000000 | 13, 14 },
+        QtMocHelpers::SlotData<QListWidgetItem *(QWidget *)>(13, 2, QMC::AccessPublic, 0x80000000 | 9, {{
+            { 0x80000000 | 14, 15 },
         }}),
         // Slot 'connectTileHover'
-        QtMocHelpers::SlotData<void(PlaylistTileWidget *, QListWidgetItem *)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 16, 14 }, { 0x80000000 | 9, 10 },
+        QtMocHelpers::SlotData<void(PlaylistTileWidget *, QListWidgetItem *)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 17, 15 }, { 0x80000000 | 9, 10 },
         }}),
         // Slot 'filterByCluster'
-        QtMocHelpers::SlotData<void(const QString &)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 18 },
+        QtMocHelpers::SlotData<void(const QString &)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 19 },
         }}),
         // Slot 'onAddClicked'
-        QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onDeleteClicked'
         QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onEditClicked'
+        // Slot 'onDeleteClicked'
         QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'savePlaylistColors'
+        // Slot 'onEditClicked'
         QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'loadPlaylistColors'
+        // Slot 'savePlaylistColors'
         QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'loadPlaylistColors'
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -383,29 +386,30 @@ void PlaylistsWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 3: _t->onPlaylistClear(); break;
         case 4: _t->loadPlaylists(); break;
         case 5: _t->animateItemHeight((*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
-        case 6: { QListWidgetItem* _r = _t->findItemOfTile((*reinterpret_cast<std::add_pointer_t<QWidget*>>(_a[1])));
+        case 6: _t->stopItemAnimations(); break;
+        case 7: { QListWidgetItem* _r = _t->findItemOfTile((*reinterpret_cast<std::add_pointer_t<QWidget*>>(_a[1])));
             if (_a[0]) *reinterpret_cast<QListWidgetItem**>(_a[0]) = std::move(_r); }  break;
-        case 7: _t->connectTileHover((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[2]))); break;
-        case 8: _t->filterByCluster((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->onAddClicked(); break;
-        case 10: _t->onDeleteClicked(); break;
-        case 11: _t->onEditClicked(); break;
-        case 12: _t->savePlaylistColors(); break;
-        case 13: _t->loadPlaylistColors(); break;
+        case 8: _t->connectTileHover((*reinterpret_cast<std::add_pointer_t<PlaylistTileWidget*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QListWidgetItem*>>(_a[2]))); break;
+        case 9: _t->filterByCluster((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->onAddClicked(); break;
+        case 11: _t->onDeleteClicked(); break;
+        case 12: _t->onEditClicked(); break;
+        case 13: _t->savePlaylistColors(); break;
+        case 14: _t->loadPlaylistColors(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 6:
+        case 7:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QWidget* >(); break;
             }
             break;
-        case 7:
+        case 8:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -439,14 +443,14 @@ int PlaylistsWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     }
     return _id;
 }

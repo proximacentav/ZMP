@@ -105,3 +105,9 @@ if(WIN32)
     set_target_properties(ZMP_Linux_bin PROPERTIES OUTPUT_NAME "zmp")
     target_compile_definitions(ZMP_Linux_bin PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)
 endif()
+
+# Читаемый backtrace в crash-отчёте: символы + debug-инфо
+if(NOT WIN32)
+    target_compile_options(ZMP_Linux_bin PRIVATE -g)
+    target_link_options(ZMP_Linux_bin PRIVATE -rdynamic)
+endif()

@@ -76,6 +76,7 @@ private:
     MenuSide m_menuSide = MenuSide::Left;
     bool m_menuCollapsed = false;
     QWidget *m_menuContainer = nullptr;
+    QBoxLayout *m_menuContLay = nullptr;
     QWidget *m_rightContainer = nullptr;
     QBoxLayout *m_mainLay = nullptr;
     QPushButton *m_menuToggleBtn = nullptr;
@@ -97,7 +98,7 @@ private:
     int m_splitLeft = -1, m_splitRight = -1;
     QVector<QWidget*> m_pages;         // страницы вкладок в порядке меню
     MiniPlayerBar *m_miniPlayerBar;
-    AudioManager *m_audioManager;
+    AudioManager *m_audioManager = nullptr;
     DevicesWidget *m_devicesWidget;
     PlayerWidget *m_playerWidget;
     PlaylistsWidget *m_playlistsWidget;

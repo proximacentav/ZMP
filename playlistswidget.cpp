@@ -586,6 +586,10 @@ void PlaylistsWidget::animateItemHeight(QListWidgetItem *item, int targetH)
     if (!item) return;
     const QSize base = item->data(Qt::UserRole + 5).toSize();
     auto *anim = new QVariantAnimation(this);
+    m_itemAnims.append(QPointer<QVariantAnimation>(anim));
+    connect(anim, &QVariantAnimation::finished, this, [this, anim]() {
+        m_itemAnims.removeAll(anim);
+    });
     anim->setDuration(160);
     anim->setEasingCurve(QEasingCurve::OutCubic);
     anim->setStartValue(item->sizeHint().height());
@@ -597,6 +601,16 @@ void PlaylistsWidget::animateItemHeight(QListWidgetItem *item, int targetH)
         item->setSizeHint(s);
     });
     anim->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+// Останавливает анимации плиток: их колбэки захватывают сырые указатели
+// QListWidgetItem, которые становятся висячими после очистки списка.
+void PlaylistsWidget::stopItemAnimations()
+{
+    const auto anims = m_itemAnims;
+    m_itemAnims.clear();
+    for (const auto &p : anims)
+        if (p) p->stop();   // DeleteWhenStopped -> удаляется
 }
 
 QListWidgetItem *PlaylistsWidget::findItemOfTile(QWidget *tile)
@@ -648,6 +662,7 @@ void PlaylistsWidget::connectTileHover(PlaylistTileWidget *tile, QListWidgetItem
 
 void PlaylistsWidget::loadPlaylists() {
     qDebug() << "playlists: scanning" << basePath() << "for playlists";
+    stopItemAnimations();   // элементы будут удалены — гасим анимации
     loadPlaylistColors();
     m_playlists.clear();
     m_listWidget->clear();

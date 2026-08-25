@@ -261,74 +261,35 @@ void PlaybackControlWidget::retranslateUi() {
 }
 
 void PlaybackControlWidget::loadIcons() {
-    const QString iconPath = ":/icons/";
-
-    if (QPixmap(iconPath + "play.svg").isNull()) {
-        m_playIcon->setText("▶");
-        m_playIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_playIcon->setPixmap(QPixmap(iconPath + "play.svg"));
-    }
-
-    if (QPixmap(iconPath + "next.svg").isNull()) {
-        m_nextIcon->setText("▶");
-        m_nextIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_nextIcon->setPixmap(QPixmap(iconPath + "next.svg"));
-    }
-
-    if (QPixmap(iconPath + "prev.svg").isNull()) {
-        m_prevIcon->setText("◀");
-        m_prevIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_prevIcon->setPixmap(QPixmap(iconPath + "prev.svg"));
-    }
+    m_playIcon->setText("▶");
+    m_playIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
+    m_nextIcon->setText("▶");
+    m_nextIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
+    m_prevIcon->setText("◀");
+    m_prevIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
 
     updateFeaturedButtonIcon();
     setIconSize(m_iconSize);
 }
 
 void PlaybackControlWidget::updatePlayButtonIcon(bool playing) {
-    const QString iconPath = ":/icons/";
-
-    if (QPixmap(iconPath + (playing ? "stop.svg" : "play.svg")).isNull()) {
-        m_playIcon->setText(playing ? "⏹" : "▶");
-        m_playIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_playIcon->setPixmap(QPixmap(iconPath + (playing ? "stop.svg" : "play.svg")));
-    }
+    m_playIcon->setText(playing ? "⏹" : "▶");
+    m_playIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
     update();
 }
 
 void PlaybackControlWidget::updateNextPrevButtonIcons() {
-    const QString iconPath = ":/icons/";
-
-    if (QPixmap(iconPath + "next.svg").isNull()) {
-        m_nextIcon->setText("▶");
-        m_nextIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_nextIcon->setPixmap(QPixmap(iconPath + "next.svg"));
-    }
-
-    if (QPixmap(iconPath + "prev.svg").isNull()) {
-        m_prevIcon->setText("◀");
-        m_prevIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_prevIcon->setPixmap(QPixmap(iconPath + "prev.svg"));
-    }
+    m_nextIcon->setText("▶");
+    m_nextIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
+    m_prevIcon->setText("◀");
+    m_prevIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
 
     updateFeaturedButtonIcon();
 }
 
 void PlaybackControlWidget::updateFeaturedButtonIcon() {
-    const QString iconPath = ":/icons/";
-
-    if (QPixmap(iconPath + (isTrackInFeatured() ? "featured-1.svg" : "featured-0.svg")).isNull()) {
-        m_featuredIcon->setText(isTrackInFeatured() ? "★" : "☆");
-        m_featuredIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
-    } else {
-        m_featuredIcon->setPixmap(QPixmap(iconPath + (isTrackInFeatured() ? "featured-1.svg" : "featured-0.svg")));
-    }
+    m_featuredIcon->setText(isTrackInFeatured() ? "★" : "☆");
+    m_featuredIcon->setStyleSheet("font-size: 24px; font-weight: bold; color: palette(text);");
     update();
 }
 

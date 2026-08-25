@@ -389,10 +389,14 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/qcombobox.h /usr/include/qt6/QtWidgets/QLabel \
  /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
  /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtWidgets/QFrame \
- /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QObject \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
- /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
- /usr/include/qt6/QtWidgets/QVBoxLayout \
+ /usr/include/qt6/QtCore/QPointer /usr/include/qt6/QtCore/qpointer.h \
+ /usr/include/qt6/QtCore/QVariantAnimation \
+ /usr/include/qt6/QtCore/qvariantanimation.h \
+ /usr/include/qt6/QtCore/qabstractanimation.h \
+ /usr/include/qt6/QtCore/qeasingcurve.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/QString \
+ /usr/include/qt6/QtCore/QHash /usr/include/qt6/QtCore/QVector \
+ /usr/include/qt6/QtCore/qvector.h /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qlayout.h \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
@@ -431,12 +435,9 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: \
  /usr/include/qt6/QtWidgets/QMessageBox \
  /usr/include/qt6/QtWidgets/qmessagebox.h \
  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
- /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QVariantAnimation \
- /usr/include/qt6/QtCore/qvariantanimation.h \
- /usr/include/qt6/QtCore/qabstractanimation.h \
- /usr/include/qt6/QtCore/qeasingcurve.h \
- /usr/include/qt6/QtCore/QEasingCurve /usr/include/qt6/QtCore/QFileInfo \
- /usr/include/qt6/QtCore/QDebug /usr/include/qt6/QtWidgets/QLineEdit \
+ /usr/include/qt6/QtCore/QDir /usr/include/qt6/QtCore/QEasingCurve \
+ /usr/include/qt6/QtCore/QFileInfo /usr/include/qt6/QtCore/QDebug \
+ /usr/include/qt6/QtWidgets/QLineEdit \
  /usr/include/qt6/QtWidgets/qlineedit.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
  /usr/include/qt6/QtGui/qtextformat.h \

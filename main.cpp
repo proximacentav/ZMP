@@ -11,6 +11,12 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTimer>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QComboBox>
+#include <QPushButton>
 #include "mainwindow.h"
 #include "cliplayer.h"
 #include "playlistswidget.h"
@@ -188,6 +194,44 @@ int main(int argc, char *argv[])
             SingleInstance::sendToRunning(
                 QJsonDocument(msg).toJson(QJsonDocument::Compact)))
             return 0;
+    }
+
+    // Первый запуск: ~/zmp_playlists не существует — диалог выбора языка
+    // (всегда на английском, не переводится)
+    if (!QDir(QDir::homePath() + "/zmp_playlists").exists()) {
+        QDialog dlg;
+        dlg.setWindowTitle(QStringLiteral("Welcome to ZMP"));
+        QVBoxLayout *l = new QVBoxLayout(&dlg);
+        QLabel *title = new QLabel(QStringLiteral("welcome to ZMP"));
+        QFont tf = title->font();
+        tf.setBold(true);
+        tf.setPointSize(tf.pointSize() + 2);
+        title->setFont(tf);
+        l->addWidget(title);
+        l->addWidget(new QLabel(QStringLiteral("select language :")));
+        QComboBox *langCombo = new QComboBox;
+        langCombo->addItem(Translator::nativeName(Translator::Russian), int(Translator::Russian));
+        langCombo->addItem(Translator::nativeName(Translator::English), int(Translator::English));
+        langCombo->addItem(Translator::nativeName(Translator::German),  int(Translator::German));
+        l->addWidget(langCombo);
+        QHBoxLayout *btns = new QHBoxLayout;
+        QPushButton *okBtn = new QPushButton(QStringLiteral("OK"));
+        QPushButton *exitBtn = new QPushButton(QStringLiteral("EXIT"));
+        btns->addWidget(okBtn);
+        btns->addWidget(exitBtn);
+        l->addLayout(btns);
+
+        bool accepted = false;
+        QObject::connect(okBtn, &QPushButton::clicked, &dlg, [&]() {
+            Translator::instance().setLanguage(
+                static_cast<Translator::Language>(langCombo->currentData().toInt()));
+            accepted = true;
+            dlg.accept();
+        });
+        QObject::connect(exitBtn, &QPushButton::clicked, &dlg, &QDialog::reject);
+
+        dlg.exec();
+        if (!accepted) return 0;   // EXIT — закрыть ZMP без сохранения языка
     }
 
     // Resolve UI language before any widgets are built

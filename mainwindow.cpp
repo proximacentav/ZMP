@@ -315,6 +315,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuContainer->setStyleSheet("background-color: #2b2b2b;");
     QVBoxLayout *menuContLayout = new QVBoxLayout(menuContainer);
     menuContLayout->setContentsMargins(5, 10, 5, 10);
+    m_menuContLay = menuContLayout;
 
     m_menu = new QListWidget;
     for (int i = 0; i < 8; ++i) m_menu->addItem(QString());
@@ -325,6 +326,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_menu->setCurrentRow(0);
 
     m_menu->setSpacing(10);
+    m_menu->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_menu->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_menu->setStyleSheet(
         "QListWidget { background: transparent; border: none; outline: none; }"
         "QListWidget::item { background: transparent; color: white; padding: 12px; border-radius: 8px; }"
@@ -383,6 +386,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     addLog(ztr("Программа запущена"));
 
+    // AudioManager должен существовать ДО connect'а спектра ниже
+    m_audioManager = new AudioManager(this);
+
     m_liquid = new LiquidIndicator(menuContainer);
     m_liquid->setAttribute(Qt::WA_TransparentForMouseEvents);
     m_liquid->setGeometry(0, 0, menuContainer->width(), 60);
@@ -412,7 +418,6 @@ MainWindow::MainWindow(QWidget *parent)
     rightLayout->setContentsMargins(0, 0, 0, 0);
     rightLayout->setSpacing(0);
 
-    m_audioManager = new AudioManager(this);
     m_devicesWidget = new DevicesWidget(this);
     m_playerWidget = new PlayerWidget(m_audioManager, this);
     m_playlistsWidget = new PlaylistsWidget(this);
@@ -1586,6 +1591,14 @@ void MainWindow::applyMenuLayout()
     // Ориентация списка вкладок
     m_menu->setFlow(horiz ? QListView::LeftToRight : QListView::TopToBottom);
     m_menu->setWrapping(false);
+
+    // Внутренний layout контейнера: горизонтальное меню — кнопки в строку
+    // (пункты слева, кнопка пользователя справа), вертикальное — колонкой
+    if (m_menuContLay) {
+        m_menuContLay->setDirection(horiz ? QBoxLayout::LeftToRight
+                                          : QBoxLayout::TopToBottom);
+        m_menuContLay->setSpacing(horiz ? 10 : 5);
+    }
 
     // Линза работает во всех ориентациях
     m_liquid->setGeometry(0, 0,

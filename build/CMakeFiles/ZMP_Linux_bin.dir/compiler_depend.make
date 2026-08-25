@@ -367,6 +367,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVariantMap \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/QtGlobal \
@@ -380,6 +381,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q26numeric.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qabstractproxymodel.h \
@@ -425,6 +427,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/qdebug.h \
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -537,6 +540,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvariantmap.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
@@ -4270,12 +4274,15 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/assert.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
+  /usr/include/bits/cloexec.h \
   /usr/include/bits/confname.h \
   /usr/include/bits/cpu-set.h \
   /usr/include/bits/endian.h \
   /usr/include/bits/endianness.h \
   /usr/include/bits/environments.h \
   /usr/include/bits/errno.h \
+  /usr/include/bits/fcntl-linux.h \
+  /usr/include/bits/fcntl.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
   /usr/include/bits/flt-eval-method.h \
@@ -4294,6 +4301,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/bits/mathcalls-macros.h \
   /usr/include/bits/mathcalls-narrow.h \
   /usr/include/bits/mathcalls.h \
+  /usr/include/bits/openat2.h \
   /usr/include/bits/posix1_lim.h \
   /usr/include/bits/posix2_lim.h \
   /usr/include/bits/posix_opt.h \
@@ -4316,6 +4324,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/bits/sigstksz.h \
   /usr/include/bits/sigthread.h \
   /usr/include/bits/ss_flags.h \
+  /usr/include/bits/stat.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
@@ -4323,6 +4332,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/struct_stat.h \
   /usr/include/bits/thread-shared-types.h \
   /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
@@ -4352,6 +4362,7 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/bits/types/stack_t.h \
   /usr/include/bits/types/struct_FILE.h \
   /usr/include/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/bits/types/struct_iovec.h \
   /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/types/struct_sched_param.h \
   /usr/include/bits/types/struct_sigstack.h \
@@ -4586,6 +4597,8 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
+  /usr/include/execinfo.h \
+  /usr/include/fcntl.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
@@ -4594,7 +4607,9 @@ CMakeFiles/ZMP_Linux_bin.dir/depsmanager.cpp.o: /home/user/cp/zmp/depsmanager.cp
   /usr/include/limits.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
+  /usr/include/linux/falloc.h \
   /usr/include/linux/limits.h \
+  /usr/include/linux/openat2.h \
   /usr/include/linux/posix_types.h \
   /usr/include/linux/sched/types.h \
   /usr/include/linux/stddef.h \
@@ -8019,6 +8034,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/QMetaType \
   /usr/include/qt6/QtCore/QObject \
   /usr/include/qt6/QtCore/QPair \
+  /usr/include/qt6/QtCore/QPointer \
   /usr/include/qt6/QtCore/QRandomGenerator \
   /usr/include/qt6/QtCore/QRect \
   /usr/include/qt6/QtCore/QSharedDataPointer \
@@ -8134,6 +8150,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/qoverload.h \
   /usr/include/qt6/QtCore/qpair.h \
   /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qpointer.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
   /usr/include/qt6/QtCore/qrandom.h \
   /usr/include/qt6/QtCore/qrect.h \
@@ -13135,6 +13152,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/QMap \
   /usr/include/qt6/QtCore/QObject \
   /usr/include/qt6/QtCore/QPair \
+  /usr/include/qt6/QtCore/QPointer \
   /usr/include/qt6/QtCore/QRandomGenerator \
   /usr/include/qt6/QtCore/QRect \
   /usr/include/qt6/QtCore/QRegularExpression \
@@ -13248,6 +13266,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playlistswidget.cpp.o: /home/user/cp/zmp/playlistsw
   /usr/include/qt6/QtCore/qoverload.h \
   /usr/include/qt6/QtCore/qpair.h \
   /usr/include/qt6/QtCore/qpoint.h \
+  /usr/include/qt6/QtCore/qpointer.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
   /usr/include/qt6/QtCore/qrandom.h \
   /usr/include/qt6/QtCore/qrect.h \
@@ -16332,15 +16351,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtGui/QPalette:
 
-/usr/include/qt6/QtCore/qvariantanimation.h:
-
-/usr/include/qt6/QtCore/qeasingcurve.h:
-
 /usr/include/qt6/QtCore/qdiriterator.h:
-
-/usr/include/qt6/QtCore/qabstractanimation.h:
-
-/usr/include/qt6/QtCore/QVariantAnimation:
 
 /usr/include/qt6/QtCore/QEasingCurve:
 
@@ -16378,16 +16389,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtCore/QTime:
 
-/usr/include/linux/openat2.h:
-
-/usr/include/linux/falloc.h:
-
-/usr/include/bits/openat2.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/cloexec.h:
-
 /usr/include/qt6/QtWidgets/QSplashScreen:
 
 /usr/include/qt6/QtNetwork/qnetworkproxy.h:
@@ -16416,6 +16417,10 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtWidgets/QMessageBox:
 
+/usr/include/linux/openat2.h:
+
+/usr/include/linux/falloc.h:
+
 /usr/include/c++/16/csignal:
 
 /usr/include/bits/types/sig_atomic_t.h:
@@ -16433,6 +16438,12 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 /usr/include/bits/sigcontext.h:
 
 /usr/include/bits/sigaction.h:
+
+/usr/include/bits/openat2.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/cloexec.h:
 
 /usr/lib32/libcom_err.so.2:
 
@@ -16836,15 +16847,13 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 
 /usr/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
 
-/usr/include/qt6/QtCore/qvector.h:
+/usr/lib/libssh2.so.1:
 
-/usr/include/c++/16/bits/stl_algobase.h:
+/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargetsPrecheck.cmake:
 
 /usr/include/c++/16/bits/ostream_print.h:
 
 /usr/include/qt6/QtCore/qtversion.h:
-
-/usr/include/qt6/QtCore/qversiontagging.h:
 
 /usr/include/c++/16/list:
 
@@ -16973,10 +16982,6 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playerwidget.cpp:
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargets.cmake:
 
 /usr/include/qt6/QtCore/qline.h:
-
-/usr/include/qt6/QtCore/qvarlengtharray.h:
-
-/usr/include/qt6/QtWidgets/QStackedWidget:
 
 ZMP_Linux_bin_autogen/EWIEGA46WW/moc_translator.cpp:
 
@@ -17144,9 +17149,7 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/c++/16/bits/enable_special_members.h:
 
-/usr/lib/libssh2.so.1:
-
-/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargetsPrecheck.cmake:
+/usr/include/qt6/QtCore/QVariantAnimation:
 
 /usr/include/qt6/QtCore/QVariant:
 
@@ -17156,15 +17159,11 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 
 /usr/include/qt6/QtCore/qtformat_impl.h:
 
-/home/user/cp/zmp/settingswidget.cpp:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevTouchScreenPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/c++/16/numeric:
-
 /usr/include/qt6/QtDBus/qdbusmetatype.h:
 
 /usr/include/qt6/QtCore/QSize:
+
+/usr/include/qt6/QtCore/qvariantanimation.h:
 
 /usr/include/qt6/QtCore/QRect:
 
@@ -17209,6 +17208,10 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp:
 /usr/include/linux/errno.h:
 
 /usr/include/c++/16/bits/stl_iterator.h:
+
+/usr/include/qt6/QtCore/qcborvalue.h:
+
+/usr/include/qt6/QtCore/qtconfiginclude.h:
 
 /usr/include/qt6/QtCore/QRegularExpression:
 
@@ -17333,6 +17336,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_mpriscontroller.cpp:
 /usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake:
 
 /usr/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake:
+
+/usr/include/qt6/QtCore/qabstractanimation.h:
 
 /usr/include/bits/getopt_posix.h:
 
@@ -17540,6 +17545,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 
 /usr/include/qt6/QtCore/qeventloop.h:
 
+/usr/include/qt6/QtCore/qeasingcurve.h:
+
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/include/c++/16/ext/alloc_traits.h:
@@ -17602,6 +17609,8 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 
 /usr/lib/libdbus-1.so.3:
 
+/usr/include/execinfo.h:
+
 /usr/include/c++/16/cerrno:
 
 /usr/include/bits/stdint-intn.h:
@@ -17631,6 +17640,10 @@ ZMP_Linux_bin_autogen/EWIEGA46WW/moc_playbackcontrolwidget.cpp:
 /usr/include/c++/16/bits/stl_map.h:
 
 /usr/include/bits/types/sigset_t.h:
+
+/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake:
+
+/home/user/cp/zmp/ftpclient.cpp:
 
 /usr/include/c++/16/bits/memory_resource.h:
 
@@ -17890,6 +17903,8 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o:
 
 /usr/include/c++/16/cwchar:
 
+/usr/include/qt6/QtCore/qversiontagging.h:
+
 /usr/include/c++/16/bit:
 
 /home/user/cp/zmp/partitionsdialog.cpp:
@@ -17937,10 +17952,6 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandBradientDecorationPluginTargets-relwithdebinfo.cmake:
-
-/usr/include/qt6/QtCore/qxptype_traits.h:
-
-/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
 
 /usr/include/qt6/QtCore/qdatetime.h:
 
@@ -18099,6 +18110,18 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/include/c++/16/bits/algorithmfwd.h:
 
 /usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginConfig.cmake:
+
+/usr/include/c++/16/bits/stl_algobase.h:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevTouchScreenPluginTargets-relwithdebinfo.cmake:
+
+/usr/include/c++/16/numeric:
+
+/home/user/cp/zmp/settingswidget.cpp:
+
+/usr/include/qt6/QtWidgets/QStackedWidget:
+
+/usr/include/qt6/QtCore/qvarlengtharray.h:
 
 /usr/include/asm-generic/int-ll64.h:
 
@@ -18396,10 +18419,6 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 
 /usr/include/qt6/QtGui/qtextcursor.h:
 
-/usr/include/qt6/QtCore/qtconfiginclude.h:
-
-/usr/include/qt6/QtCore/qcborvalue.h:
-
 /usr/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake:
 
 /usr/include/qt6/QtWidgets/qtabwidget.h:
@@ -18457,6 +18476,12 @@ ZMP_Linux_bin_autogen/moc_predefs.h:
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginTargetsPrecheck.cmake:
 
 /usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/qt6/QtCore/qvector.h:
+
+/usr/include/qt6/QtCore/qxptype_traits.h:
+
+/usr/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake:
 
 /usr/include/bits/sigstack.h:
 
@@ -19513,7 +19538,3 @@ CMakeFiles/ZMP_Linux_bin.dir/audiomanager.cpp.o:
 /usr/lib/cmake/Qt6Gui/Qt6QSvgPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsConfigVersion.cmake:
-
-/home/user/cp/zmp/ftpclient.cpp:
-
-/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake:

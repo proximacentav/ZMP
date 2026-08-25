@@ -418,6 +418,11 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/QConicalGradient \
  /usr/include/qt6/QtGui/QTransform /usr/include/qt6/QtCore/QPair \
  /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtWidgets/QFrame \
+ /usr/include/qt6/QtCore/QPointer /usr/include/qt6/QtCore/qpointer.h \
+ /usr/include/qt6/QtCore/QVariantAnimation \
+ /usr/include/qt6/QtCore/qvariantanimation.h \
+ /usr/include/qt6/QtCore/qabstractanimation.h \
+ /usr/include/qt6/QtCore/qeasingcurve.h \
  /home/user/cp/zmp/equalizerwidget.h \
  /usr/include/qt6/QtWidgets/QDoubleSpinBox \
  /usr/include/qt6/QtWidgets/QScrollArea \
@@ -538,7 +543,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtGui/QShowEvent /home/user/cp/zmp/miniplayerbar.h \
  /usr/include/qt6/QtWidgets/QSplitter \
  /usr/include/qt6/QtWidgets/qsplitter.h /home/user/cp/zmp/depsmanager.h \
- /usr/include/qt6/QtCore/QPointer /usr/include/qt6/QtCore/qpointer.h \
  /home/user/cp/zmp/aboutdialog.h /home/user/cp/zmp/zmpinstaller.h \
  /home/user/cp/zmp/mpriscontroller.h \
  /usr/include/qt6/QtDBus/QDBusAbstractAdaptor \

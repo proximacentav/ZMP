@@ -7,11 +7,11 @@ C_DEFINES = -DQT_CORE_LIB -DQT_DBUS_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NE
 
 C_INCLUDES = -I/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/include -I/home/user/cp/zmp/third_party -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtMultimedia -isystem /usr/include/qt6/QtNetwork -isystem /usr/include/qt6/QtSvg -isystem /usr/include/qt6/QtDBus -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL
 
-C_FLAGS = -mno-direct-extern-access
+C_FLAGS = -g -mno-direct-extern-access
 
 CXX_DEFINES = -DQT_CORE_LIB -DQT_DBUS_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB
 
 CXX_INCLUDES = -I/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/include -I/home/user/cp/zmp/third_party -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtMultimedia -isystem /usr/include/qt6/QtNetwork -isystem /usr/include/qt6/QtSvg -isystem /usr/include/qt6/QtDBus -isystem /usr/include/qt6/QtOpenGLWidgets -isystem /usr/include/qt6/QtOpenGL
 
-CXX_FLAGS = -std=gnu++17 -mno-direct-extern-access
+CXX_FLAGS = -std=gnu++17 -g -mno-direct-extern-access
 

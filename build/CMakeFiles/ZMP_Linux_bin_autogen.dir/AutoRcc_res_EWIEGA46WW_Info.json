@@ -7,17 +7,7 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Unix Makefiles",
 	"INCLUDE_DIR" : "/home/user/cp/zmp/build/ZMP_Linux_bin_autogen/include",
-	"INPUTS" : 
-	[
-		"/home/user/cp/zmp/LICENSE.txt",
-		"/home/user/cp/zmp/icons/play.svg",
-		"/home/user/cp/zmp/icons/pause.svg",
-		"/home/user/cp/zmp/icons/prev.svg",
-		"/home/user/cp/zmp/icons/featured-1.svg",
-		"/home/user/cp/zmp/icons/next.svg",
-		"/home/user/cp/zmp/icons/featured-0.svg",
-		"/home/user/cp/zmp/icons/stop.svg"
-	],
+	"INPUTS" : [ "/home/user/cp/zmp/LICENSE.txt" ],
 	"LOCK_FILE" : "/home/user/cp/zmp/build/CMakeFiles/ZMP_Linux_bin_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "-name", "res" ],
