@@ -93,6 +93,7 @@ make
 ![screenshot3](screenshot3.png)
 ![screenshot4](screenshot4.png)
 ![screenshot5](screenshot5.png)
+![screenshot6](screenshot6.png)
 
 не стоит забывать что медиаплеер в первую очередь сделан для .mp3 файлов
 также скриншоты могут не совпадать с актуальной версией
