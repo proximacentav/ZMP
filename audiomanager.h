@@ -108,9 +108,10 @@ private:
     double m_deviceRate = 0;
 
     ma_decoder m_decoder;
-    bool m_decoderValid = false;
+    std::atomic<bool> m_decoderValid = false;
 
     soundtouch::SoundTouch m_st;
+    mutable std::mutex m_stMutex;        // сериализует доступ к SoundTouch (GUI <-> аудиопоток)
     // 17 полос эквалайзера, коэффициенты пересчитываются при смене частоты
     Biquad m_eqL[17];
     Biquad m_eqR[17];
@@ -130,7 +131,7 @@ private:
     mutable std::mutex m_decoderMutex;   // сериализует доступ к ma_decoder
 
     QVector<double> m_bands;
-    bool m_playing = false;
+    std::atomic<bool> m_playing = false;
     bool m_seeking = false;
     qint64 m_duration = 0;
     QTimer *m_positionTimer;
@@ -148,7 +149,7 @@ private:
     int m_spectrumBands = 64;
     int m_maxBitrate = 0;
     bool m_echoEnabled = false;
-    bool m_eofReached = false;   // декодер дошёл до конца файла
+    std::atomic<bool> m_eofReached = false;     // декодер дошёл до конца файла
     std::atomic<bool> m_trackFinished{false};   // трек доиграл до конца (для trackEnded)
     QStringList m_tempFilePaths;
     int detectBitrate(const QString &filePath);

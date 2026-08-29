@@ -393,7 +393,12 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/soundtouch/soundtouch_config.h \
  /home/user/cp/zmp/deviceswidget.h /usr/include/qt6/QtWidgets/QWidget \
  /usr/include/qt6/QtWidgets/QComboBox \
- /usr/include/qt6/QtWidgets/qcombobox.h /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtWidgets/qcombobox.h \
+ /usr/include/qt6/QtWidgets/QBoxLayout \
+ /usr/include/qt6/QtWidgets/qboxlayout.h \
+ /usr/include/qt6/QtWidgets/qlayout.h \
+ /usr/include/qt6/QtWidgets/qlayoutitem.h \
+ /usr/include/qt6/QtWidgets/qgridlayout.h /home/user/cp/zmp/translator.h \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
  /home/user/cp/zmp/playerwidget.h \
  /home/user/cp/zmp/playbackcontrolwidget.h \
@@ -402,8 +407,8 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtWidgets/QSpinBox \
  /usr/include/qt6/QtWidgets/qspinbox.h /usr/include/qt6/QtGui/QImage \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
- /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
- /usr/include/qt6/QtGui/QPainterPath \
+ /usr/include/qt6/QtWidgets/QSpacerItem /home/user/cp/zmp/iconbutton.h \
+ /home/user/cp/zmp/playlistswidget.h /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPainter \
  /usr/include/qt6/QtGui/qpainter.h /usr/include/qt6/QtGui/qtextoption.h \
  /usr/include/qt6/QtGui/qpen.h /usr/include/qt6/QtGui/QPen \
@@ -428,12 +433,16 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtWidgets/QScrollArea \
  /usr/include/qt6/QtWidgets/qscrollarea.h \
  /usr/include/qt6/QtWidgets/QGridLayout \
- /usr/include/qt6/QtWidgets/qgridlayout.h \
- /usr/include/qt6/QtWidgets/qlayout.h \
- /usr/include/qt6/QtWidgets/qlayoutitem.h \
- /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/QCheckBox \
  /usr/include/qt6/QtWidgets/qcheckbox.h \
+ /usr/include/qt6/QtCore/QJsonObject \
+ /usr/include/qt6/QtCore/qjsonobject.h \
+ /usr/include/qt6/QtCore/qjsonvalue.h \
+ /usr/include/qt6/QtCore/qcborvalue.h \
+ /usr/include/qt6/QtCore/qcborcommon.h \
+ /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
+ /usr/include/qt6/QtCore/quuid.h /usr/include/qt6/QtCore/qjsondocument.h \
+ /usr/include/qt6/QtCore/qjsonparseerror.h \
  /home/user/cp/zmp/visualizationwidget.h \
  /usr/include/qt6/QtWidgets/QVBoxLayout \
  /usr/include/qt6/QtOpenGLWidgets/QOpenGLWidget \
@@ -474,7 +483,6 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/c++/16/bits/istream.tcc \
  /usr/include/c++/16/bits/sstream.tcc /usr/include/c++/16/codecvt \
  /usr/include/c++/16/bits/fs_dir.h /usr/include/c++/16/bits/fs_ops.h \
- /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \
  /usr/include/qt6/QtCore/qfile.h /usr/include/qt6/QtCore/qfileinfo.h \
  /usr/include/qt6/QtCore/qtimezone.h \
  /usr/include/qt6/QtCore/QSortFilterProxyModel \
@@ -525,15 +533,8 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: \
  /usr/include/qt6/QtCore/QProcess /usr/include/qt6/QtCore/qprocess.h \
  /usr/include/qt6/QtCore/QQueue /usr/include/qt6/QtCore/qqueue.h \
  /usr/include/qt6/QtCore/QFile /home/user/cp/zmp/jamendowidget.h \
- /usr/include/qt6/QtCore/QJsonDocument \
- /usr/include/qt6/QtCore/qjsondocument.h \
- /usr/include/qt6/QtCore/qjsonparseerror.h \
- /usr/include/qt6/QtCore/QJsonObject \
- /usr/include/qt6/QtCore/qjsonobject.h \
- /usr/include/qt6/QtCore/qjsonvalue.h \
- /usr/include/qt6/QtCore/qcborvalue.h \
- /usr/include/qt6/QtCore/qcborcommon.h /usr/include/qt6/QtCore/quuid.h \
- /usr/include/qt6/QtCore/QJsonArray /usr/include/qt6/QtCore/qjsonarray.h \
+ /usr/include/qt6/QtCore/QJsonDocument /usr/include/qt6/QtCore/QJsonArray \
+ /usr/include/qt6/QtCore/qjsonarray.h \
  /usr/include/qt6/QtWidgets/QFormLayout \
  /usr/include/qt6/QtWidgets/qformlayout.h \
  /usr/include/qt6/QtWidgets/QLayout /usr/include/qt6/QtWidgets/QGroupBox \

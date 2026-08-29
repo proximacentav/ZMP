@@ -360,7 +360,13 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtWidgets/QBoxLayout \
+ /usr/include/qt6/QtWidgets/qboxlayout.h \
+ /usr/include/qt6/QtWidgets/qlayout.h \
+ /usr/include/qt6/QtWidgets/qlayoutitem.h \
+ /usr/include/qt6/QtWidgets/qgridlayout.h \
+ /usr/include/qt6/QtWidgets/QSpacerItem /home/user/cp/zmp/audiomanager.h \
+ /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtMultimedia/QAudioDevice \
  /usr/include/qt6/QtMultimedia/qaudiodevice.h \
  /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
@@ -380,8 +386,4 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: \
  /usr/include/soundtouch/soundtouch_config.h \
  /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/translator.h \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
- /usr/include/qt6/QtWidgets/QVBoxLayout \
- /usr/include/qt6/QtWidgets/qboxlayout.h \
- /usr/include/qt6/QtWidgets/qlayout.h \
- /usr/include/qt6/QtWidgets/qlayoutitem.h \
- /usr/include/qt6/QtWidgets/qgridlayout.h
+ /usr/include/qt6/QtWidgets/QVBoxLayout

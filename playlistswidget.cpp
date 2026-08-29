@@ -583,7 +583,7 @@ void PlaylistsWidget::loadPlaylistColors() {
 // остальные слегка ниже; при уходе курсора всё возвращается.
 void PlaylistsWidget::animateItemHeight(QListWidgetItem *item, int targetH)
 {
-    if (!item) return;
+    if (!item || m_tilesUpdating) return;
     const QSize base = item->data(Qt::UserRole + 5).toSize();
     auto *anim = new QVariantAnimation(this);
     m_itemAnims.append(QPointer<QVariantAnimation>(anim));
@@ -595,7 +595,11 @@ void PlaylistsWidget::animateItemHeight(QListWidgetItem *item, int targetH)
     anim->setStartValue(item->sizeHint().height());
     anim->setEndValue(targetH <= 0 ? base.height() : targetH);
     QObject::connect(anim, &QVariantAnimation::valueChanged, this,
-                     [item](const QVariant &v) {
+                     [this, item](const QVariant &v) {
+        if (m_tilesUpdating || !m_listWidget) return;
+        // item мог быть удалён вместе со списком: row() сравнивает адреса
+        // элементов, не разыменовывая item, поэтому безопасна для висячего указателя
+        if (m_listWidget->row(item) < 0) return;
         QSize s = item->sizeHint();
         s.setHeight(v.toInt());
         item->setSizeHint(s);
@@ -628,7 +632,8 @@ void PlaylistsWidget::connectTileHover(PlaylistTileWidget *tile, QListWidgetItem
     item->setData(Qt::UserRole + 5, item->sizeHint());
 
     connect(tile, &PlaylistTileWidget::hoverStarted, this,
-            [this, tile, item]() {
+            [this, tile]() {
+        if (m_tilesUpdating) return;
         // подсветка внизу окна в цвете плейлиста
         if (m_glowBar) {
             m_glowBar->setColor(tile->borderColor().isValid()
@@ -652,9 +657,8 @@ void PlaylistsWidget::connectTileHover(PlaylistTileWidget *tile, QListWidgetItem
         }
     });
     connect(tile, &PlaylistTileWidget::hoverEnded, this, [this]() {
+        if (m_tilesUpdating) return;
         if (m_glowBar) m_glowBar->hideAnimated();
-        for (int i = 0; i < m_listWidget->count(); ++i)
-            animateItemHeight(m_listWidget->item(i), -1);   // вернуть базу
         for (int i = 0; i < m_listWidget->count(); ++i)
             animateItemHeight(m_listWidget->item(i), -1);   // вернуть базу
     });
@@ -662,7 +666,10 @@ void PlaylistsWidget::connectTileHover(PlaylistTileWidget *tile, QListWidgetItem
 
 void PlaylistsWidget::loadPlaylists() {
     qDebug() << "playlists: scanning" << basePath() << "for playlists";
-    stopItemAnimations();   // элементы будут удалены — гасим анимации
+    // Пока список пересобирается, hover-события от разрушаемых тайлов не должны
+    // создавать анимации с указателями на удаляемые элементы (use-after-free)
+    m_tilesUpdating = true;
+    stopItemAnimations();
     loadPlaylistColors();
     m_playlists.clear();
     m_listWidget->clear();
@@ -771,6 +778,8 @@ void PlaylistsWidget::loadPlaylists() {
     connect(tile, &PlaylistTileWidget::dropRequested, this, &PlaylistsWidget::handleTileDrop);
 
     connect(tile, &PlaylistTileWidget::doubleClicked, this, &PlaylistsWidget::playlistSelected);
+
+    m_tilesUpdating = false;
 }
 
 void PlaylistsWidget::filterByCluster(const QString &clusterName) {

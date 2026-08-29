@@ -63,7 +63,9 @@ template <> constexpr inline auto EqualizerWidget::qt_create_metaobjectdata<qt_m
         "enabled",
         "onResetClicked",
         "onModeChanged",
-        "index"
+        "index",
+        "onSavePresetClicked",
+        "onSavePresetAsClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -125,6 +127,10 @@ template <> constexpr inline auto EqualizerWidget::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void(int)>(23, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 24 },
         }}),
+        // Slot 'onSavePresetClicked'
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSavePresetAsClicked'
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -163,6 +169,8 @@ void EqualizerWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 12: _t->onEchoToggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
         case 13: _t->onResetClicked(); break;
         case 14: _t->onModeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 15: _t->onSavePresetClicked(); break;
+        case 16: _t->onSavePresetAsClicked(); break;
         default: ;
         }
     }
@@ -197,14 +205,14 @@ int EqualizerWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 17;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 15;
+        _id -= 17;
     }
     return _id;
 }

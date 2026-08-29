@@ -445,14 +445,15 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
  /usr/include/soundtouch/STTypes.h \
  /usr/include/soundtouch/soundtouch_config.h \
  /home/user/cp/zmp/deviceswidget.h /usr/include/qt6/QtWidgets/QWidget \
- /home/user/cp/zmp/translator.h /usr/include/qt6/QtCore/QString \
- /usr/include/qt6/QtCore/QHash /home/user/cp/zmp/playerwidget.h \
+ /usr/include/qt6/QtWidgets/QBoxLayout /home/user/cp/zmp/translator.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/QHash \
+ /home/user/cp/zmp/playerwidget.h \
  /home/user/cp/zmp/playbackcontrolwidget.h \
  /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtWidgets/QSpinBox \
  /usr/include/qt6/QtWidgets/qspinbox.h /usr/include/qt6/QtGui/QImage \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
- /home/user/cp/zmp/iconbutton.h /home/user/cp/zmp/playlistswidget.h \
- /usr/include/qt6/QtGui/QPainterPath \
+ /usr/include/qt6/QtWidgets/QSpacerItem /home/user/cp/zmp/iconbutton.h \
+ /home/user/cp/zmp/playlistswidget.h /usr/include/qt6/QtGui/QPainterPath \
  /usr/include/qt6/QtGui/qpainterpath.h /usr/include/qt6/QtGui/QPen \
  /usr/include/qt6/QtGui/QBrush /usr/include/qt6/QtGui/QMouseEvent \
  /usr/include/qt6/QtCore/QRandomGenerator \

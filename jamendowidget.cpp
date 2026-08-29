@@ -410,6 +410,7 @@ JamendoSearchWidget::JamendoSearchWidget(QWidget *parent)
 
     // Search bar
     QHBoxLayout *searchLayout = new QHBoxLayout;
+    m_searchLayout = searchLayout;
 
     m_searchEdit = new QLineEdit;
     m_searchEdit->setPlaceholderText(ztr("Поиск..."));
@@ -448,6 +449,15 @@ JamendoSearchWidget::JamendoSearchWidget(QWidget *parent)
     connect(m_resultsList, &QListWidget::itemClicked, this, &JamendoSearchWidget::onTrackClicked);
 
     loadConfigAndApplyProxy();
+}
+
+void JamendoSearchWidget::setPortraitMode(bool portrait)
+{
+    if (!m_searchLayout) return;
+    // Портрет: поле на всю ширину, кнопка поиска и тип поиска — под ним
+    m_searchLayout->setDirection(portrait ? QBoxLayout::TopToBottom
+                                          : QBoxLayout::LeftToRight);
+    m_searchLayout->setStretchFactor(m_searchEdit, portrait ? 0 : 1);
 }
 
 void JamendoSearchWidget::loadConfigAndApplyProxy()
@@ -657,10 +667,14 @@ void JamendoWidget::checkAndSetup()
     }
 }
 
+void JamendoWidget::setPortraitMode(bool portrait)
+{
+    if (m_searchWidget) m_searchWidget->setPortraitMode(portrait);
+}
+
 void JamendoWidget::reconfigure()
 {
-    JamendoSetupDialog dialog(this);
-    if (dialog.exec() == QDialog::Accepted) {
+    JamendoSetupDialog dialog(this);    if (dialog.exec() == QDialog::Accepted) {
         QJsonObject config;
         config["api_key"] = dialog.apiKey();
         config["proxy_type"] = dialog.proxyType();

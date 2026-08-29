@@ -762,6 +762,9 @@ MainWindow::MainWindow(QWidget *parent)
         applyMenuLayout();
     });
     applyMenuLayout();
+
+    // Стартовое применение responsive-раскладки под текущий размер окна
+    QTimer::singleShot(0, this, &MainWindow::applyResponsiveLayout);
 }
 
 void MainWindow::retranslateUi() {
@@ -914,6 +917,47 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 {
     QMainWindow::resizeEvent(event);
     positionMenuToggle();
+
+    // Responsive-переключение с защитой от шторма событий resize
+    if (!m_portraitDebounce) {
+        m_portraitDebounce = new QTimer(this);
+        m_portraitDebounce->setSingleShot(true);
+        m_portraitDebounce->setInterval(150);
+        connect(m_portraitDebounce, &QTimer::timeout,
+                this, &MainWindow::applyResponsiveLayout);
+    }
+    m_portraitDebounce->start();
+}
+
+bool MainWindow::isPortraitLayout() const
+{
+    return height() > width();   // портрет/холст — «мобильный» режим
+}
+
+void MainWindow::applyResponsiveLayout()
+{
+    const bool portrait = isPortraitLayout();
+
+    // Split-режим: в портрете вторая вкладка ставится снизу
+    if (m_splitter)
+        m_splitter->setOrientation(portrait ? Qt::Vertical : Qt::Horizontal);
+    if (m_splitMode && m_splitter) {
+        QList<int> sizes = {1, 1};
+        m_splitter->setSizes(sizes);
+    }
+
+    // Боковое меню слева/справа в портрете автоматически скрывается
+    // (раскрыть можно кнопкой ">")
+    if (portrait && (m_menuSide == MenuSide::Left || m_menuSide == MenuSide::Right)
+        && !m_menuCollapsed) {
+        m_menuCollapsed = true;
+        applyMenuGeometry();
+    }
+
+    // Вкладки
+    m_playerWidget->setPortraitMode(portrait);
+    m_jamendoWidget->setPortraitMode(portrait);
+    m_devicesWidget->setPortraitMode(portrait);
 }
 
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {

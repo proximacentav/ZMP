@@ -85,6 +85,9 @@ private:
     void positionMenuToggle();
     void updateLiquidTarget();
     bool isHorizontalMenu() const;
+    bool isPortraitLayout() const;
+    void applyResponsiveLayout();
+    QTimer *m_portraitDebounce = nullptr;
 protected:
     void resizeEvent(QResizeEvent *event) override;
 

@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QAudioDevice>
 #include <QPushButton>
+#include <QBoxLayout>
 #include "translator.h"
 
 class QLineEdit;
@@ -45,6 +46,9 @@ private:
 
     QComboBox *m_modeCombo;
     QPushButton *m_managerBtn;
+    QBoxLayout *m_topRow = nullptr;
+public:
+    void setPortraitMode(bool portrait);
     QStackedWidget *m_stack;
 
     // Страница 1 — перехват микрофона

@@ -137,6 +137,8 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     metaContainer->setFixedHeight(m_metadataHeight);
     QHBoxLayout *metaLayout = new QHBoxLayout(metaContainer);
     metaLayout->setContentsMargins(0,0,0,0);
+    m_metaBox = metaContainer;
+    m_metaLayout = metaLayout;
 
     m_coverLabel = new QLabel;
     m_coverLabel->setFixedSize(180, 180);
@@ -228,7 +230,8 @@ PlaybackControlWidget::PlaybackControlWidget(AudioManager *audioManager, QWidget
     mainLayout->addWidget(volumeContainer);
 
     m_playlistWidget = new QListWidget;
-    mainLayout->addWidget(ztrLabel(m_retrans, "Очередь воспроизведения:"));
+    m_queueLabel = ztrLabel(m_retrans, "Очередь воспроизведения:");
+    mainLayout->addWidget(m_queueLabel);
     mainLayout->addWidget(m_playlistWidget);
 
     m_iconSize = 40;
@@ -384,6 +387,30 @@ void PlaybackControlWidget::setMetadataHeight(int h) {
     m_metadataHeight = h;
     QWidget *meta = qobject_cast<QWidget*>(layout()->itemAt(0)->widget());
     if (meta) meta->setFixedHeight(h);
+}
+
+void PlaybackControlWidget::setPortraitMode(bool portrait) {
+    if (m_portrait == portrait) return;
+    m_portrait = portrait;
+
+    // Портрет: обложка сверху, метаданные под ней
+    m_metaLayout->setDirection(portrait ? QBoxLayout::TopToBottom
+                                        : QBoxLayout::LeftToRight);
+    m_metaBox->setFixedHeight(portrait ? m_metadataHeight + 130 : m_metadataHeight);
+
+    // Очередь воспроизведения немного ниже
+    auto *ml = qobject_cast<QVBoxLayout*>(layout());
+    if (!ml) return;
+    if (portrait) {
+        if (!m_queueSpacer) {
+            m_queueSpacer = new QSpacerItem(0, 16);
+            ml->insertItem(ml->indexOf(m_queueLabel), m_queueSpacer);
+        }
+    } else if (m_queueSpacer) {
+        const int idx = ml->indexOf(m_queueSpacer);
+        if (idx >= 0) delete ml->takeAt(idx);
+        m_queueSpacer = nullptr;
+    }
 }
 
 void PlaybackControlWidget::updateSpectrum(const QVector<float> &levels, const QVector<double> &) {

@@ -378,7 +378,7 @@ void DepsProxyDialog::saveDepsConfig(const QJsonObject &config)
 
 DependencyManager *DependencyManager::instance()
 {
-    static DependencyManager inst(qApp);
+    static DependencyManager inst;
     return &inst;
 }
 

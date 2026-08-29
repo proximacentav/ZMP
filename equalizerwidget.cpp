@@ -9,6 +9,15 @@
 #include <QScrollArea>
 #include <QGridLayout>
 #include <QDebug>
+#include <QDialog>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QFileDialog>
+#include <QDir>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QMessageBox>
 
 EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     : QWidget(parent), m_audioManager(audioManager)
@@ -25,6 +34,12 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     m_resetButton = new QPushButton;
     ztrSetText(m_retrans, m_resetButton, "Сбросить EQ");
     resetLayout->addWidget(m_resetButton);
+    m_saveButton = new QPushButton;
+    ztrSetText(m_retrans, m_saveButton, "Сохранить");
+    resetLayout->addWidget(m_saveButton);
+    m_saveAsButton = new QPushButton;
+    ztrSetText(m_retrans, m_saveAsButton, "Сохранить как");
+    resetLayout->addWidget(m_saveAsButton);
     resetLayout->addStretch();
     mainLayout->addLayout(resetLayout);
 
@@ -103,6 +118,8 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     mainLayout->addWidget(m_echoCheckBox);
 
     connect(m_resetButton, &QPushButton::clicked, this, &EqualizerWidget::onResetClicked);
+    connect(m_saveButton, &QPushButton::clicked, this, &EqualizerWidget::onSavePresetClicked);
+    connect(m_saveAsButton, &QPushButton::clicked, this, &EqualizerWidget::onSavePresetAsClicked);
     connect(m_modeCombo, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &EqualizerWidget::onModeChanged);
     connect(m_preampSlider, &QSlider::valueChanged, this, &EqualizerWidget::onPreampSliderMoved);
     connect(m_preampSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &EqualizerWidget::onPreampSpinBoxChanged);
@@ -113,6 +130,9 @@ EqualizerWidget::EqualizerWidget(AudioManager *audioManager, QWidget *parent)
     connect(m_echoCheckBox, &QCheckBox::toggled, this, &EqualizerWidget::onEchoToggled);
 
     connect(&Translator::instance(), &Translator::languageChanged, this, &EqualizerWidget::retranslateUi);
+
+    // Пользовательские пресеты: сканируем папку при старте
+    scanUserPresets();
 }
 
 void EqualizerWidget::retranslateUi() {
@@ -236,6 +256,12 @@ void EqualizerWidget::onResetClicked() {
 }
 
 void EqualizerWidget::onModeChanged(int index) {
+    // Пользовательский пресет: путь к файлу лежит в данных элемента
+    const QString path = m_modeCombo->itemData(index).toString();
+    if (!path.isEmpty()) {
+        applyPresetFile(path);
+        return;
+    }
     QString name = m_modeCombo->currentText();
     if (name != "Custom") {
         applyPreset(name);
@@ -368,3 +394,174 @@ QMap<double,int> EqualizerWidget::getBandGains() const {
     return g;
 }
 int EqualizerWidget::getPreampGain() const { return m_preampSlider->value(); }
+
+// ---------------------------------------------------------------------------
+//  Пользовательские пресеты эквалайзера (~/zmp_playlists/eq_presets/*.json)
+// ---------------------------------------------------------------------------
+
+QString EqualizerWidget::eqPresetsDir()
+{
+    const QString dir = QDir::homePath() + "/zmp_playlists/eq_presets";
+    QDir().mkpath(dir);
+    return dir;
+}
+
+QJsonObject EqualizerWidget::currentPresetJson(const QString &presetName) const
+{
+    QJsonObject root;
+    root["name"] = presetName;
+    QJsonArray bands;
+    for (const Band &b : m_bands)
+        bands.append(b.slider->value());
+    root["bands"] = bands;
+    root["preamp"] = m_preampSlider->value();
+    root["speed"] = m_speedSpinBox->value();
+    root["pitch"] = m_pitchSpinBox->value();
+    root["echo"] = m_echoCheckBox->isChecked();
+    return root;
+}
+
+bool EqualizerWidget::writePresetFile(const QString &path, const QString &presetName)
+{
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Не удалось сохранить пресет"));
+        return false;
+    }
+    f.write(QJsonDocument(currentPresetJson(presetName)).toJson(QJsonDocument::Indented));
+    f.close();
+    return true;
+}
+
+void EqualizerWidget::scanUserPresets()
+{
+    // Убираем ранее добавленные пользовательские пресеты (после стандартных)
+    static const int standardCount = 6;   // Custom, Default, Bass, Treble, Pop, Dance
+    while (m_modeCombo->count() > standardCount)
+        m_modeCombo->removeItem(m_modeCombo->count() - 1);
+
+    QDir dir(eqPresetsDir());
+    const QFileInfoList files =
+        dir.entryInfoList({"*.json"}, QDir::Files, QDir::Name | QDir::IgnoreCase);
+    for (const QFileInfo &fi : files) {
+        QString title = fi.completeBaseName();
+        QFile f(fi.absoluteFilePath());
+        if (f.open(QIODevice::ReadOnly)) {
+            const QString name = QJsonDocument::fromJson(f.readAll())
+                                     .object().value("name").toString();
+            f.close();
+            if (!name.isEmpty()) title = name;   // имя пресета из json
+        }
+        m_modeCombo->addItem(title, fi.absoluteFilePath());
+    }
+}
+
+void EqualizerWidget::applyPresetFile(const QString &path)
+{
+    QFile f(path);
+    if (!f.open(QIODevice::ReadOnly)) return;
+    const QJsonObject root = QJsonDocument::fromJson(f.readAll()).object();
+    f.close();
+
+    m_isApplyingPreset = true;
+
+    const QJsonArray bands = root.value("bands").toArray();
+    for (int i = 0; i < NUM_BANDS && i < bands.size(); ++i)
+        setBandValue(i, bands.at(i).toInt());
+    setPreampValue(root.value("preamp").toInt(0));
+    setSpeedValue(root.value("speed").toDouble(1.0));
+    setPitchValue(root.value("pitch").toDouble(0.0));
+
+    m_echoCheckBox->blockSignals(true);
+    m_echoCheckBox->setChecked(root.value("echo").toBool(false));
+    m_echoCheckBox->blockSignals(false);
+    if (m_audioManager) m_audioManager->setEchoEnabled(root.value("echo").toBool(false));
+
+    m_isApplyingPreset = false;
+}
+
+void EqualizerWidget::onSavePresetClicked()
+{
+    QDialog dlg(this);
+    dlg.setWindowTitle(ztr("Сохранить пресет"));
+    dlg.setModal(true);
+    dlg.resize(420, 160);
+    QVBoxLayout *l = new QVBoxLayout(&dlg);
+    l->addWidget(new QLabel(ztr("Название пресета:")));
+    QLineEdit *nameEdit = new QLineEdit;
+    l->addWidget(nameEdit);
+    l->addWidget(new QLabel(ztr("Имя файла:")));
+    QLineEdit *fileEdit = new QLineEdit;
+    l->addWidget(fileEdit);
+    QHBoxLayout *btns = new QHBoxLayout;
+    QPushButton *saveBtn = new QPushButton(ztr("Сохранить"));
+    QPushButton *cancelBtn = new QPushButton(ztr("Отмена"));
+    btns->addWidget(saveBtn);
+    btns->addWidget(cancelBtn);
+    l->addLayout(btns);
+    connect(cancelBtn, &QPushButton::clicked, &dlg, &QDialog::reject);
+    connect(saveBtn, &QPushButton::clicked, &dlg, &QDialog::accept);
+    // Автоматически подставляем имя файла из названия пресета
+    connect(nameEdit, &QLineEdit::textChanged, fileEdit, [nameEdit, fileEdit]() {
+        QString fn = nameEdit->text();
+        fn.replace(' ', '_');
+        fn.replace('/', '_');
+        if (!fn.isEmpty() && !fn.endsWith(".json", Qt::CaseInsensitive))
+            fn += ".json";
+        fileEdit->setText(fn);
+    });
+
+    if (dlg.exec() != QDialog::Accepted)
+        return;
+
+    const QString presetName = nameEdit->text().trimmed();
+    if (presetName.isEmpty()) {
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Введите название пресета"));
+        return;
+    }
+    QString fileName = fileEdit->text().trimmed();
+    fileName.replace(' ', '_');
+    fileName.replace('/', '_');
+    if (fileName.isEmpty()) {
+        QMessageBox::warning(this, ztr("Ошибка"), ztr("Введите имя файла"));
+        return;
+    }
+    if (!fileName.endsWith(".json", Qt::CaseInsensitive))
+        fileName += ".json";
+
+    const QString path = eqPresetsDir() + "/" + fileName;
+    if (!writePresetFile(path, presetName))
+        return;
+
+    // Пересканируем и сразу выбираем сохранённый пресет
+    scanUserPresets();
+    const int idx = m_modeCombo->findData(path);
+    if (idx >= 0)
+        m_modeCombo->setCurrentIndex(idx);
+}
+
+void EqualizerWidget::onSavePresetAsClicked()
+{
+    QString suggested = eqPresetsDir() + "/preset.json";
+    const QString path = QFileDialog::getSaveFileName(
+        this, ztr("Сохранить пресет"), suggested,
+        ztr("JSON (*.json)"));
+    if (path.isEmpty())
+        return;
+
+    QString fileName = QFileInfo(path).fileName();
+    fileName.replace(' ', '_');
+    QString fullPath = QFileInfo(path).absolutePath() + "/" + fileName;
+    if (!fullPath.endsWith(".json", Qt::CaseInsensitive))
+        fullPath += ".json";
+
+    // Название пресета по умолчанию — имя файла без расширения
+    const QString presetName = QFileInfo(fullPath).completeBaseName();
+    if (!writePresetFile(fullPath, presetName))
+        return;
+
+    scanUserPresets();
+    const int idx = m_modeCombo->findData(fullPath);
+    if (idx >= 0)
+        m_modeCombo->setCurrentIndex(idx);
+}

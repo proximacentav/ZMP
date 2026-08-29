@@ -33,6 +33,7 @@ DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
 
     // Верхний ряд: режим вывода + менеджер устройств (Linux/PipeWire only)
     QHBoxLayout *topRow = new QHBoxLayout;
+    m_topRow = topRow;
 
     m_modeCombo = new QComboBox(this);
     m_modeCombo->addItem(ztr("вывод в динамики"));
@@ -106,8 +107,15 @@ DevicesWidget::DevicesWidget(QWidget *parent) : QWidget(parent)
             this, &DevicesWidget::retranslateUi);
 }
 
-void DevicesWidget::refreshMicList()
+void DevicesWidget::setPortraitMode(bool portrait)
 {
+    if (!m_topRow) return;
+    // Портрет: менеджер устройств под выпадающим списком режима вывода
+    m_topRow->setDirection(portrait ? QBoxLayout::TopToBottom
+                                    : QBoxLayout::LeftToRight);
+}
+
+void DevicesWidget::refreshMicList(){
     m_micCombo->blockSignals(true);
     m_micCombo->clear();
     const QList<MicInfo> mics = AudioModeController::instance()->listMicrophones();

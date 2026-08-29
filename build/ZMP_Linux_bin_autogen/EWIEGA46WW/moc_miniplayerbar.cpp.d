@@ -462,6 +462,7 @@
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \
@@ -469,6 +470,7 @@
   /usr/include/qt6/QtWidgets/QProgressBar \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \

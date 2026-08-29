@@ -67,7 +67,7 @@ AudioManager::AudioManager(QObject *parent)
     // Частоты полос эквалайзера
     m_bands = {5,20,40,75,150,300,800,1200,2500,4000,6000,10000,13000,16000,19000,20000,25000};
 
-    m_pcmRing.resize(m_ringSize);
+    m_pcmRing.resize(m_ringSize * 2);   // стерео: ringSize кадров по 2 семпла
     m_pcmRing.fill(0.0f);
 
     cleanupTempDir();
@@ -204,6 +204,7 @@ void AudioManager::setSourceFile(const QString &filePath)
     // и скорость, и питч меняют высоту тона вместе с длительностью.
     {
         std::lock_guard<std::mutex> lk(m_paramMutex);
+        std::lock_guard<std::mutex> stLk(m_stMutex);
         m_st.setSampleRate(static_cast<ma_uint32>(srcRate));
         m_st.setChannels(2);
         m_st.clear();
@@ -257,78 +258,102 @@ float AudioManager::currentGainLinear() const
 
 void AudioManager::fillOutput(float *out, ma_uint32 frames)
 {
-    const bool playing = m_playing;
-    const bool valid = m_decoderValid;
+    const bool playing = m_playing.load(std::memory_order_relaxed);
+    const bool valid = m_decoderValid.load(std::memory_order_relaxed);
 
     if (!playing || !valid) {
         std::memset(out, 0, sizeof(float) * frames * 2);
         return;
     }
 
-    // 1. Тянем данные из декодера в SoundTouch, пока не наберём достаточно
+    // 1+2. Декодер -> SoundTouch -> приём семплов.
+    // Важно: m_decoderMutex и m_stMutex никогда не удерживаются одновременно,
+    // иначе возможен дедлок с setPosition/setSourceFile на GUI-потоке.
     float decodeBuf[2048 * 2];
-    while (!m_eofReached &&
-           static_cast<int>(m_st.numSamples()) < static_cast<int>(frames)) {
+    float tmp[2048 * 2];
+    int available = 0;
+    int got = 0;
+    bool eof = false;
+    for (;;) {
+        int queued = 0;
+        {
+            std::lock_guard<std::mutex> stLk(m_stMutex);
+            if (m_eofReached.load(std::memory_order_relaxed))
+                eof = true;
+            else
+                queued = static_cast<int>(m_st.numSamples());
+        }
+        if (eof || queued >= static_cast<int>(frames))
+            break;
+
         ma_uint64 read = 0;
         {
             // Декодер общий с GUI-потоком (seek/position) — только под мьютексом
             std::lock_guard<std::mutex> lk(m_decoderMutex);
-            if (!m_decoderValid)
+            if (!m_decoderValid.load(std::memory_order_relaxed))
                 break;
             if (ma_decoder_read_pcm_frames(&m_decoder, decodeBuf, 2048, &read) != MA_SUCCESS)
                 read = 0;
         }
         if (read == 0) {
-            m_eofReached = true;
-            m_st.flush();
+            eof = true;
             break;
         }
-        m_st.putSamples(decodeBuf, static_cast<int>(read));
+        {
+            std::lock_guard<std::mutex> stLk(m_stMutex);
+            m_st.putSamples(decodeBuf, static_cast<int>(read));
+        }
     }
 
-    // 2. Получаем обработанные SoundTouch'ем семплы
-    const int available = static_cast<int>(m_st.numSamples());
-    const int take = qMin<int>(available, static_cast<int>(frames));
-    float tmp[2048 * 2];
-    const int got = take > 0 ? m_st.receiveSamples(tmp, take) : 0;
+    if (eof) {
+        std::lock_guard<std::mutex> stLk(m_stMutex);
+        m_st.flush();
+        m_eofReached.store(true, std::memory_order_relaxed);
+    }
 
-    // 3. EQ + предусиление + эхо + клиппинг
-    float gain;
-    bool echoOn;
-    int echoLen;
+    {
+        std::lock_guard<std::mutex> stLk(m_stMutex);
+        available = static_cast<int>(m_st.numSamples());
+        const int take = qMin<int>(available, static_cast<int>(frames));
+        got = take > 0 ? m_st.receiveSamples(tmp, take) : 0;
+    }
+
+    // 3. EQ + предусиление + эхо + клиппинг.
+    // Весь блок под мьютексом: setSourceFile/setEqualizer*/setEchoEnabled могут
+    // пересоздавать коэффициенты и echo-буфер параллельно (use-after-free).
     {
         std::lock_guard<std::mutex> lk(m_paramMutex);
-        gain = currentGainLinear();
-        echoOn = m_echoEnabled;
-        echoLen = m_echoBuf[0].size();
-    }
+        const float gain = currentGainLinear();
+        const bool echoOn = m_echoEnabled;
+        const int echoLen = static_cast<int>(m_echoBuf[0].size());
 
-    for (int i = 0; i < got; ++i) {
-        float l = tmp[i * 2 + 0];
-        float r = tmp[i * 2 + 1];
+        for (int i = 0; i < got; ++i) {
+            float l = tmp[i * 2 + 0];
+            float r = tmp[i * 2 + 1];
 
-        for (int b = 0; b < 17; ++b) {
-            l = m_eqL[b].process(l);
-            r = m_eqR[b].process(r);
+            for (int b = 0; b < 17; ++b) {
+                l = m_eqL[b].process(l);
+                r = m_eqR[b].process(r);
+            }
+
+            // Эхо до усиления: хвосты тоже усиливаются предусилением
+            if (echoOn && echoLen > 0) {
+                const float dl = m_echoBuf[0][m_echoPos];
+                const float dr = m_echoBuf[1][m_echoPos];
+                m_echoBuf[0][m_echoPos] = l * 0.40f + dl * 0.42f;
+                m_echoBuf[1][m_echoPos] = r * 0.40f + dr * 0.42f;
+                l = l + dl * 0.65f;
+                r = r + dr * 0.65f;
+                m_echoPos = (m_echoPos + 1) % echoLen;
+            }
+
+            l *= gain;
+            r *= gain;
+
+            // Мягкий клиппинг: до 1.0 линейно, выше — tanh (POWERMODE оправдан)
+            out[i * 2 + 0] = (l > 1.0f || l < -1.0f) ? std::tanh(l) : l;
+            out[i * 2 + 1] = (r > 1.0f || r < -1.0f) ? std::tanh(r) : r;
         }
-
-        // Эхо до усиления: хвосты тоже усиливаются предусилением
-        if (echoOn && echoLen > 0) {
-            const float dl = m_echoBuf[0][m_echoPos];
-            const float dr = m_echoBuf[1][m_echoPos];
-            m_echoBuf[0][m_echoPos] = l * 0.40f + dl * 0.42f;
-            m_echoBuf[1][m_echoPos] = r * 0.40f + dr * 0.42f;
-            l = l + dl * 0.65f;
-            r = r + dr * 0.65f;
-            m_echoPos = (m_echoPos + 1) % echoLen;
-        }
-
-        l *= gain;
-        r *= gain;
-
-        // Мягкий клиппинг: до 1.0 линейно, выше — tanh (POWERMODE оправдан)
-        out[i * 2 + 0] = (l > 1.0f || l < -1.0f) ? std::tanh(l) : l;
-        out[i * 2 + 1] = (r > 1.0f || r < -1.0f) ? std::tanh(r) : r;
     }
     if (got < static_cast<int>(frames))
         std::memset(out + got * 2, 0, sizeof(float) * (frames - got) * 2);
@@ -461,10 +486,11 @@ void AudioManager::setPosition(qint64 ms)
     m_seeking = true;
     {
         std::lock_guard<std::mutex> lk(m_decoderMutex);
+        std::lock_guard<std::mutex> stLk(m_stMutex);
         const ma_int64 frame = static_cast<ma_int64>(ms / 1000.0 * m_srcRate);
         ma_decoder_seek_to_pcm_frame(&m_decoder, frame);
         m_st.clear();
-        m_eofReached = false;
+        m_eofReached.store(false, std::memory_order_relaxed);
     }
     emit positionChanged(ms);
     m_seeking = false;
@@ -519,6 +545,7 @@ void AudioManager::applyVolume()
 void AudioManager::setPlaybackSpeed(double speed)
 {
     std::lock_guard<std::mutex> lk(m_paramMutex);
+    std::lock_guard<std::mutex> stLk(m_stMutex);
     m_currentSpeed = speed;
     const double factor = m_currentSpeed * std::pow(2.0, m_currentPitch / 12.0);
     m_st.setRate(factor);
@@ -527,6 +554,7 @@ void AudioManager::setPlaybackSpeed(double speed)
 void AudioManager::setPitchShift(double semitones)
 {
     std::lock_guard<std::mutex> lk(m_paramMutex);
+    std::lock_guard<std::mutex> stLk(m_stMutex);
     m_currentPitch = semitones;
     const double factor = m_currentSpeed * std::pow(2.0, m_currentPitch / 12.0);
     m_st.setRate(factor);
@@ -535,9 +563,9 @@ void AudioManager::setPitchShift(double semitones)
 void AudioManager::setEchoEnabled(bool enabled)
 {
     qDebug() << "audio: echo" << (enabled ? "enabled" : "disabled");
+    std::lock_guard<std::mutex> lk(m_paramMutex);
     m_echoEnabled = enabled;
     if (enabled) {
-        std::lock_guard<std::mutex> lk(m_paramMutex);
         const int delayLen = static_cast<int>(m_srcRate * 0.45);
         for (int ch = 0; ch < 2; ++ch)
             m_echoBuf[ch].assign(delayLen, 0.0f);

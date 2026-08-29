@@ -11,6 +11,8 @@
 #include <QAbstractItemView>
 #include <QDialog>
 #include <QTimer>
+#include <QBoxLayout>
+#include <QSpacerItem>
 #include "audiomanager.h"
 #include "iconbutton.h"
 #include "translator.h"
@@ -38,6 +40,7 @@ public:
     void setIconSize(int size);
     void loadIcons();
     void setMetadataHeight(int height);
+    void setPortraitMode(bool portrait);
     void updateSpectrum(const QVector<float> &levels, const QVector<double> &frequencies);
     void setPlaylist(const QStringList &files);
     void setCurrentPlaylist(const QStringList &tracks);
@@ -107,6 +110,11 @@ private:
     int m_iconSize;
     int m_metadataHeight;
     QWidget *m_metaContainer;
+    QWidget *m_metaBox = nullptr;
+    QBoxLayout *m_metaLayout = nullptr;
+    QLabel *m_queueLabel = nullptr;
+    QSpacerItem *m_queueSpacer = nullptr;
+    bool m_portrait = false;
     SpectrumWidget *m_spectrumWidget;
     bool m_isPlaying = false;
     bool m_isSwitchingTracks = false;

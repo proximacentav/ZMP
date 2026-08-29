@@ -12,6 +12,7 @@ public:
     void setIconSize(int size);
     void loadIcons();
     void setMetadataHeight(int height);
+    void setPortraitMode(bool portrait);
     void updateSpectrum(const QVector<float> &levels, const QVector<double> &frequencies);
     void setAccentColor(const QColor &color);
     void setPlaylist(const QStringList &files);

@@ -31,6 +31,10 @@ void PlayerWidget::setMetadataHeight(int height) {
     m_playbackControl->setMetadataHeight(height);
 }
 
+void PlayerWidget::setPortraitMode(bool portrait) {
+    m_playbackControl->setPortraitMode(portrait);
+}
+
 void PlayerWidget::updateSpectrum(const QVector<float> &levels, const QVector<double> &frequencies) {
     m_playbackControl->updateSpectrum(levels, frequencies);
 }

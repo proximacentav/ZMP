@@ -395,6 +395,11 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/QPushButton \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
  /usr/include/qt6/QtWidgets/qabstractbutton.h \
+ /usr/include/qt6/QtWidgets/QBoxLayout \
+ /usr/include/qt6/QtWidgets/qboxlayout.h \
+ /usr/include/qt6/QtWidgets/qlayout.h \
+ /usr/include/qt6/QtWidgets/qlayoutitem.h \
+ /usr/include/qt6/QtWidgets/qgridlayout.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../translator.h \
  /usr/include/qt6/QtCore/QHash \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/moc_equalizerwidget.cpp \
@@ -407,10 +412,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/qscrollarea.h \
  /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
  /usr/include/qt6/QtWidgets/QGridLayout \
- /usr/include/qt6/QtWidgets/qgridlayout.h \
- /usr/include/qt6/QtWidgets/qlayout.h \
- /usr/include/qt6/QtWidgets/qlayoutitem.h \
- /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/QCheckBox \
  /usr/include/qt6/QtWidgets/qcheckbox.h /usr/include/qt6/QtWidgets/QLabel \
  /usr/include/qt6/QtWidgets/qlabel.h /usr/include/qt6/QtGui/qpicture.h \
@@ -548,6 +549,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playbackcontrolwidget.h \
  /usr/include/qt6/QtGui/QImage \
  /usr/include/qt6/QtWidgets/QAbstractItemView \
+ /usr/include/qt6/QtWidgets/QSpacerItem \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../iconbutton.h \
  /home/user/cp/zmp/build/ZMP_Linux_bin_autogen/EWIEGA46WW/../../../playlistswidget.h \
  /usr/include/qt6/QtGui/QPainterPath \

@@ -368,7 +368,9 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qeventloop.h \
  /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /home/user/cp/zmp/audiomanager.h /usr/include/qt6/QtCore/QObject \
+ /usr/include/qt6/QtWidgets/QBoxLayout \
+ /usr/include/qt6/QtWidgets/QSpacerItem /home/user/cp/zmp/audiomanager.h \
+ /usr/include/qt6/QtCore/QObject \
  /usr/include/qt6/QtMultimedia/QAudioDevice \
  /usr/include/qt6/QtMultimedia/qaudiodevice.h \
  /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \

@@ -13,6 +13,7 @@
 #include <QComboBox>
 #include <QCheckBox>
 #include <QLabel>
+#include <QJsonObject>
 #include "audiomanager.h"
 #include "translator.h"
 
@@ -44,6 +45,8 @@ private slots:
     void onEchoToggled(bool enabled);
     void onResetClicked();
     void onModeChanged(int index);
+    void onSavePresetClicked();
+    void onSavePresetAsClicked();
 
 private:
     AudioManager *m_audioManager;
@@ -60,6 +63,8 @@ private:
     QWidget *m_scrollContent;
     QGridLayout *m_layout;
     QPushButton *m_resetButton;
+    QPushButton *m_saveButton = nullptr;
+    QPushButton *m_saveAsButton = nullptr;
     QComboBox *m_modeCombo;
     QCheckBox *m_echoCheckBox;
     QLabel *m_powerModeLabel;
@@ -71,6 +76,12 @@ private:
     void setPreampValue(int value);
     void setSpeedValue(double value);
     void setPitchValue(double value);
+
+    static QString eqPresetsDir();
+    void scanUserPresets();
+    void applyPresetFile(const QString &path);
+    QJsonObject currentPresetJson(const QString &presetName) const;
+    bool writePresetFile(const QString &path, const QString &presetName);
 
     RetransList m_retrans;
     void retranslateUi();

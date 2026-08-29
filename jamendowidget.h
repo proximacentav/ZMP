@@ -121,6 +121,7 @@ class JamendoSearchWidget : public QWidget {
 public:
     explicit JamendoSearchWidget(QWidget *parent = nullptr);
     void loadConfigAndApplyProxy();
+    void setPortraitMode(bool portrait);
 
 signals:
     void trackSelected(const QString &audioUrl, const QString &title, const QString &artist);
@@ -134,6 +135,7 @@ private:
     QLineEdit *m_searchEdit;
     QComboBox *m_searchTypeCombo;
     QPushButton *m_searchBtn;
+    QBoxLayout *m_searchLayout = nullptr;
     QListWidget *m_resultsList;
     QLabel *m_statusLabel;
     QNetworkAccessManager *m_nam;
@@ -148,6 +150,7 @@ class JamendoWidget : public QWidget {
 public:
     explicit JamendoWidget(QWidget *parent = nullptr);
     void reconfigure();
+    void setPortraitMode(bool portrait);
 
 signals:
     void trackSelected(const QString &audioUrl, const QString &title, const QString &artist);

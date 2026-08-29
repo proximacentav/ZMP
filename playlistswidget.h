@@ -384,6 +384,7 @@ public:
     QFrame *m_tilesFrame;
     QPushButton *m_delBtn = nullptr;
     QVector<QPointer<QVariantAnimation>> m_itemAnims;   // живые анимации плиток
+    bool m_tilesUpdating = false;   // список пересобирается — hover/анимации запрещены
     QList<PlaylistInfo> m_playlists;
     QMap<QString, QColor> m_playlistColors;
     QList<ClusterInfo> m_clusters;

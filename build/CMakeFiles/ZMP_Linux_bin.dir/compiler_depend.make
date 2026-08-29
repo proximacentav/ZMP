@@ -660,6 +660,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -681,6 +682,7 @@ ZMP_Linux_bin_autogen/timestamp: /home/user/cp/zmp/CMakeLists.txt \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
@@ -1668,6 +1670,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVariantMap \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/QtGlobal \
@@ -1682,6 +1685,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q26numeric.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qabstractproxymodel.h \
@@ -1727,6 +1731,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/qdebug.h \
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -1841,6 +1846,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvariantmap.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
@@ -1960,6 +1966,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -1981,6 +1988,7 @@ CMakeFiles/ZMP_Linux_bin.dir/ZMP_Linux_bin_autogen/mocs_compilation.cpp.o: ZMP_L
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \
@@ -5923,6 +5931,7 @@ CMakeFiles/ZMP_Linux_bin.dir/deviceswidget.cpp.o: /home/user/cp/zmp/deviceswidge
   /usr/include/qt6/QtMultimedia/qtmultimedia-config.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
@@ -6069,6 +6078,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/bits/waitflags.h \
   /usr/include/bits/waitstatus.h \
   /usr/include/bits/wchar.h \
+  /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
   /usr/include/bits/xopen_lim.h \
   /usr/include/c++/16/algorithm \
@@ -6084,11 +6094,14 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/allocator.h \
   /usr/include/c++/16/bits/atomic_base.h \
   /usr/include/c++/16/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/16/bits/basic_ios.h \
+  /usr/include/c++/16/bits/basic_ios.tcc \
   /usr/include/c++/16/bits/basic_string.h \
   /usr/include/c++/16/bits/basic_string.tcc \
   /usr/include/c++/16/bits/char_traits.h \
   /usr/include/c++/16/bits/charconv.h \
   /usr/include/c++/16/bits/chrono.h \
+  /usr/include/c++/16/bits/codecvt.h \
   /usr/include/c++/16/bits/concept_check.h \
   /usr/include/c++/16/bits/cpp_type_traits.h \
   /usr/include/c++/16/bits/cxxabi_forced.h \
@@ -6098,6 +6111,10 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/exception.h \
   /usr/include/c++/16/bits/exception_defines.h \
   /usr/include/c++/16/bits/exception_ptr.h \
+  /usr/include/c++/16/bits/fs_dir.h \
+  /usr/include/c++/16/bits/fs_fwd.h \
+  /usr/include/c++/16/bits/fs_ops.h \
+  /usr/include/c++/16/bits/fs_path.h \
   /usr/include/c++/16/bits/functexcept.h \
   /usr/include/c++/16/bits/functional_hash.h \
   /usr/include/c++/16/bits/hash_bytes.h \
@@ -6105,9 +6122,15 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/hashtable_policy.h \
   /usr/include/c++/16/bits/invoke.h \
   /usr/include/c++/16/bits/ios_base.h \
+  /usr/include/c++/16/bits/istream.tcc \
   /usr/include/c++/16/bits/list.tcc \
   /usr/include/c++/16/bits/locale_classes.h \
   /usr/include/c++/16/bits/locale_classes.tcc \
+  /usr/include/c++/16/bits/locale_conv.h \
+  /usr/include/c++/16/bits/locale_facets.h \
+  /usr/include/c++/16/bits/locale_facets.tcc \
+  /usr/include/c++/16/bits/locale_facets_nonio.h \
+  /usr/include/c++/16/bits/locale_facets_nonio.tcc \
   /usr/include/c++/16/bits/localefwd.h \
   /usr/include/c++/16/bits/memory_resource.h \
   /usr/include/c++/16/bits/memoryfwd.h \
@@ -6118,11 +6141,15 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/new_except.h \
   /usr/include/c++/16/bits/new_throw.h \
   /usr/include/c++/16/bits/node_handle.h \
+  /usr/include/c++/16/bits/ostream.h \
+  /usr/include/c++/16/bits/ostream.tcc \
   /usr/include/c++/16/bits/ostream_insert.h \
+  /usr/include/c++/16/bits/ostream_print.h \
   /usr/include/c++/16/bits/parse_numbers.h \
   /usr/include/c++/16/bits/postypes.h \
   /usr/include/c++/16/bits/predefined_ops.h \
   /usr/include/c++/16/bits/ptr_traits.h \
+  /usr/include/c++/16/bits/quoted_string.h \
   /usr/include/c++/16/bits/range_access.h \
   /usr/include/c++/16/bits/refwrap.h \
   /usr/include/c++/16/bits/requires_hosted.h \
@@ -6130,6 +6157,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/bits/shared_ptr_atomic.h \
   /usr/include/c++/16/bits/shared_ptr_base.h \
   /usr/include/c++/16/bits/specfun.h \
+  /usr/include/c++/16/bits/sstream.tcc \
   /usr/include/c++/16/bits/std_abs.h \
   /usr/include/c++/16/bits/std_function.h \
   /usr/include/c++/16/bits/std_mutex.h \
@@ -6180,6 +6208,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/climits \
   /usr/include/c++/16/clocale \
   /usr/include/c++/16/cmath \
+  /usr/include/c++/16/codecvt \
   /usr/include/c++/16/compare \
   /usr/include/c++/16/concepts \
   /usr/include/c++/16/cstddef \
@@ -6189,6 +6218,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/cstring \
   /usr/include/c++/16/ctime \
   /usr/include/c++/16/cwchar \
+  /usr/include/c++/16/cwctype \
   /usr/include/c++/16/debug/assertions.h \
   /usr/include/c++/16/debug/debug.h \
   /usr/include/c++/16/exception \
@@ -6199,18 +6229,24 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/ext/numeric_traits.h \
   /usr/include/c++/16/ext/string_conversions.h \
   /usr/include/c++/16/ext/type_traits.h \
+  /usr/include/c++/16/filesystem \
   /usr/include/c++/16/functional \
   /usr/include/c++/16/initializer_list \
+  /usr/include/c++/16/iomanip \
+  /usr/include/c++/16/ios \
   /usr/include/c++/16/iosfwd \
+  /usr/include/c++/16/istream \
   /usr/include/c++/16/iterator \
   /usr/include/c++/16/limits \
   /usr/include/c++/16/list \
+  /usr/include/c++/16/locale \
   /usr/include/c++/16/map \
   /usr/include/c++/16/memory \
   /usr/include/c++/16/mutex \
   /usr/include/c++/16/new \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
+  /usr/include/c++/16/ostream \
   /usr/include/c++/16/pstl/execution_defs.h \
   /usr/include/c++/16/pstl/glue_algorithm_defs.h \
   /usr/include/c++/16/pstl/glue_memory_defs.h \
@@ -6218,6 +6254,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/pstl/pstl_config.h \
   /usr/include/c++/16/ratio \
   /usr/include/c++/16/set \
+  /usr/include/c++/16/sstream \
   /usr/include/c++/16/stdexcept \
   /usr/include/c++/16/stdlib.h \
   /usr/include/c++/16/streambuf \
@@ -6250,10 +6287,14 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++config.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/c++locale.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_base.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/ctype_inline.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/error_constants.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr-default.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/gthr.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/messages_members.h \
   /usr/include/c++/16/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/c++/16/x86_64-pc-linux-gnu/bits/time_members.h \
   /usr/include/ctype.h \
   /usr/include/endian.h \
   /usr/include/errno.h \
@@ -6261,6 +6302,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
+  /usr/include/libintl.h \
   /usr/include/limits.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/limits.h \
@@ -6272,7 +6314,12 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/qt6/QtCore/QDebug \
+  /usr/include/qt6/QtCore/QDir \
+  /usr/include/qt6/QtCore/QFile \
   /usr/include/qt6/QtCore/QHash \
+  /usr/include/qt6/QtCore/QJsonArray \
+  /usr/include/qt6/QtCore/QJsonDocument \
+  /usr/include/qt6/QtCore/QJsonObject \
   /usr/include/qt6/QtCore/QMap \
   /usr/include/qt6/QtCore/QObject \
   /usr/include/qt6/QtCore/QString \
@@ -6306,6 +6353,9 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
   /usr/include/qt6/QtCore/qbytearraylist.h \
   /usr/include/qt6/QtCore/qbytearrayview.h \
+  /usr/include/qt6/QtCore/qcalendar.h \
+  /usr/include/qt6/QtCore/qcborcommon.h \
+  /usr/include/qt6/QtCore/qcborvalue.h \
   /usr/include/qt6/QtCore/qchar.h \
   /usr/include/qt6/QtCore/qcheckedint_impl.h \
   /usr/include/qt6/QtCore/qcompare.h \
@@ -6320,11 +6370,17 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtCore/qcontiguouscache.h \
   /usr/include/qt6/QtCore/qdarwinhelpers.h \
   /usr/include/qt6/QtCore/qdatastream.h \
+  /usr/include/qt6/QtCore/qdatetime.h \
   /usr/include/qt6/QtCore/qdeadlinetimer.h \
   /usr/include/qt6/QtCore/qdebug.h \
+  /usr/include/qt6/QtCore/qdir.h \
+  /usr/include/qt6/QtCore/qdirlisting.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
+  /usr/include/qt6/QtCore/qfile.h \
+  /usr/include/qt6/QtCore/qfiledevice.h \
+  /usr/include/qt6/QtCore/qfileinfo.h \
   /usr/include/qt6/QtCore/qflags.h \
   /usr/include/qt6/QtCore/qfloat16.h \
   /usr/include/qt6/QtCore/qforeach.h \
@@ -6339,6 +6395,11 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtCore/qiodevicebase.h \
   /usr/include/qt6/QtCore/qiterable.h \
   /usr/include/qt6/QtCore/qiterator.h \
+  /usr/include/qt6/QtCore/qjsonarray.h \
+  /usr/include/qt6/QtCore/qjsondocument.h \
+  /usr/include/qt6/QtCore/qjsonobject.h \
+  /usr/include/qt6/QtCore/qjsonparseerror.h \
+  /usr/include/qt6/QtCore/qjsonvalue.h \
   /usr/include/qt6/QtCore/qlatin1stringview.h \
   /usr/include/qt6/QtCore/qline.h \
   /usr/include/qt6/QtCore/qlist.h \
@@ -6400,6 +6461,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtCore/qtextstream.h \
   /usr/include/qt6/QtCore/qtformat_impl.h \
   /usr/include/qt6/QtCore/qtimer.h \
+  /usr/include/qt6/QtCore/qtimezone.h \
   /usr/include/qt6/QtCore/qtmetamacros.h \
   /usr/include/qt6/QtCore/qtnoop.h \
   /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
@@ -6412,6 +6474,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtCore/qtypes.h \
   /usr/include/qt6/QtCore/qurl.h \
   /usr/include/qt6/QtCore/qutf8stringview.h \
+  /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
@@ -6432,6 +6495,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtGui/qkeysequence.h \
   /usr/include/qt6/QtGui/qpaintdevice.h \
   /usr/include/qt6/QtGui/qpalette.h \
+  /usr/include/qt6/QtGui/qpen.h \
   /usr/include/qt6/QtGui/qpicture.h \
   /usr/include/qt6/QtGui/qpixelformat.h \
   /usr/include/qt6/QtGui/qpixmap.h \
@@ -6439,7 +6503,10 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtGui/qregion.h \
   /usr/include/qt6/QtGui/qrgb.h \
   /usr/include/qt6/QtGui/qrgba64.h \
+  /usr/include/qt6/QtGui/qtextcursor.h \
   /usr/include/qt6/QtGui/qtextdocument.h \
+  /usr/include/qt6/QtGui/qtextformat.h \
+  /usr/include/qt6/QtGui/qtextoption.h \
   /usr/include/qt6/QtGui/qtgui-config.h \
   /usr/include/qt6/QtGui/qtguiexports.h \
   /usr/include/qt6/QtGui/qtguiglobal.h \
@@ -6456,10 +6523,14 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
+  /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QDoubleSpinBox \
+  /usr/include/qt6/QtWidgets/QFileDialog \
   /usr/include/qt6/QtWidgets/QGridLayout \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \
+  /usr/include/qt6/QtWidgets/QLineEdit \
+  /usr/include/qt6/QtWidgets/QMessageBox \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
@@ -6474,11 +6545,16 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qcheckbox.h \
   /usr/include/qt6/QtWidgets/qcombobox.h \
+  /usr/include/qt6/QtWidgets/qdialog.h \
+  /usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
+  /usr/include/qt6/QtWidgets/qfiledialog.h \
   /usr/include/qt6/QtWidgets/qframe.h \
   /usr/include/qt6/QtWidgets/qgridlayout.h \
   /usr/include/qt6/QtWidgets/qlabel.h \
   /usr/include/qt6/QtWidgets/qlayout.h \
   /usr/include/qt6/QtWidgets/qlayoutitem.h \
+  /usr/include/qt6/QtWidgets/qlineedit.h \
+  /usr/include/qt6/QtWidgets/qmessagebox.h \
   /usr/include/qt6/QtWidgets/qpushbutton.h \
   /usr/include/qt6/QtWidgets/qrubberband.h \
   /usr/include/qt6/QtWidgets/qscrollarea.h \
@@ -6510,6 +6586,7 @@ CMakeFiles/ZMP_Linux_bin.dir/equalizerwidget.cpp.o: /home/user/cp/zmp/equalizerw
   /usr/include/sys/types.h \
   /usr/include/time.h \
   /usr/include/wchar.h \
+  /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/limits.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/include/stdbool.h \
@@ -8046,6 +8123,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QUrlQuery \
   /usr/include/qt6/QtCore/QVariant \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \
   /usr/include/qt6/QtCore/q20bit.h \
@@ -8057,6 +8135,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q26numeric.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qalgorithms.h \
@@ -8101,6 +8180,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/qdebug.h \
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -8208,6 +8288,7 @@ CMakeFiles/ZMP_Linux_bin.dir/jamendowidget.cpp.o: /home/user/cp/zmp/jamendowidge
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
   /usr/include/qt6/QtCore/qversiontagging.h \
@@ -8745,6 +8826,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/QtGlobal \
   /usr/include/qt6/QtCore/q17memory.h \
@@ -8757,6 +8839,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q26numeric.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qabstractproxymodel.h \
@@ -8802,6 +8885,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/qdebug.h \
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -8914,6 +8998,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
   /usr/include/qt6/QtCore/qversiontagging.h \
@@ -9025,6 +9110,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -9046,6 +9132,7 @@ CMakeFiles/ZMP_Linux_bin.dir/main.cpp.o: /home/user/cp/zmp/main.cpp \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplashScreen \
   /usr/include/qt6/QtWidgets/QSplitter \
@@ -9521,6 +9608,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/QTimer \
   /usr/include/qt6/QtCore/QUrl \
   /usr/include/qt6/QtCore/QVariant \
+  /usr/include/qt6/QtCore/QVariantAnimation \
   /usr/include/qt6/QtCore/QVariantMap \
   /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/QtGlobal \
@@ -9534,6 +9622,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/q23type_traits.h \
   /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q26numeric.h \
+  /usr/include/qt6/QtCore/qabstractanimation.h \
   /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
   /usr/include/qt6/QtCore/qabstractitemmodel.h \
   /usr/include/qt6/QtCore/qabstractproxymodel.h \
@@ -9579,6 +9668,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/qdebug.h \
   /usr/include/qt6/QtCore/qdir.h \
   /usr/include/qt6/QtCore/qdirlisting.h \
+  /usr/include/qt6/QtCore/qeasingcurve.h \
   /usr/include/qt6/QtCore/qendian.h \
   /usr/include/qt6/QtCore/qeventloop.h \
   /usr/include/qt6/QtCore/qexceptionhandling.h \
@@ -9689,6 +9779,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/quuid.h \
   /usr/include/qt6/QtCore/qvariant.h \
+  /usr/include/qt6/QtCore/qvariantanimation.h \
   /usr/include/qt6/QtCore/qvariantmap.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qvector.h \
@@ -9807,6 +9898,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -9831,6 +9923,7 @@ CMakeFiles/ZMP_Linux_bin.dir/mainwindow.cpp.o: /home/user/cp/zmp/mainwindow.cpp 
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplashScreen \
   /usr/include/qt6/QtWidgets/QSplitter \
@@ -10396,6 +10489,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QFrame \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
@@ -10404,6 +10498,7 @@ CMakeFiles/ZMP_Linux_bin.dir/miniplayerbar.cpp.o: /home/user/cp/zmp/miniplayerba
   /usr/include/qt6/QtWidgets/QProgressBar \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \
@@ -11025,11 +11120,13 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QLabel \
   /usr/include/qt6/QtWidgets/QListWidget \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QWidget \
   /usr/include/qt6/QtWidgets/qabstractbutton.h \
@@ -11038,9 +11135,13 @@ CMakeFiles/ZMP_Linux_bin.dir/mpriscontroller.cpp.o: /home/user/cp/zmp/mpriscontr
   /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qdialog.h \
   /usr/include/qt6/QtWidgets/qframe.h \
+  /usr/include/qt6/QtWidgets/qgridlayout.h \
   /usr/include/qt6/QtWidgets/qlabel.h \
+  /usr/include/qt6/QtWidgets/qlayout.h \
+  /usr/include/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/qt6/QtWidgets/qlistview.h \
   /usr/include/qt6/QtWidgets/qlistwidget.h \
   /usr/include/qt6/QtWidgets/qpushbutton.h \
@@ -12182,6 +12283,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \
@@ -12189,6 +12291,7 @@ CMakeFiles/ZMP_Linux_bin.dir/playbackcontrolwidget.cpp.o: /home/user/cp/zmp/play
   /usr/include/qt6/QtWidgets/QMessageBox \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \
@@ -12752,11 +12855,13 @@ CMakeFiles/ZMP_Linux_bin.dir/playerwidget.cpp.o: /home/user/cp/zmp/playerwidget.
   /usr/include/qt6/QtMultimedia/qtmultimediaexports.h \
   /usr/include/qt6/QtMultimedia/qtmultimediaglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QDialog \
   /usr/include/qt6/QtWidgets/QLabel \
   /usr/include/qt6/QtWidgets/QListWidget \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
   /usr/include/qt6/QtWidgets/QWidget \
@@ -16357,8 +16462,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/taglib/tpicturetype.h:
 
-/usr/include/taglib/mpegproperties.h:
-
 /usr/include/taglib/mpegheader.h:
 
 /usr/include/taglib/mpegfile.h:
@@ -16395,8 +16498,6 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 
 /usr/include/qt6/QtWidgets/qinputdialog.h:
 
-/usr/include/qt6/QtWidgets/qfiledialog.h:
-
 /usr/include/qt6/QtWidgets/QTextEdit:
 
 /usr/include/qt6/QtWidgets/QStyledItemDelegate:
@@ -16408,6 +16509,8 @@ CMakeFiles/ZMP_Linux_bin.dir/ftpclient.cpp.o:
 /usr/include/qt6/QtCore/qurlquery.h:
 
 /usr/include/qt6/QtCore/QDateTime:
+
+/usr/include/qt6/QtWidgets/qfiledialog.h:
 
 /usr/include/sys/wait.h:
 
@@ -16850,6 +16953,10 @@ CMakeFiles/ZMP_Linux_bin.dir/partitionsdialog.cpp.o:
 /usr/lib/libssh2.so.1:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargetsPrecheck.cmake:
+
+/usr/lib32/libexpat.so.1:
+
+/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake:
 
 /usr/include/c++/16/bits/ostream_print.h:
 
@@ -18773,6 +18880,10 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 
 /usr/include/qt6/QtWidgets/QAbstractItemView:
 
+/usr/include/taglib/mpegproperties.h:
+
+/usr/include/qt6/QtWidgets/QBoxLayout:
+
 /usr/include/qt6/QtWidgets/QCheckBox:
 
 /usr/include/qt6/QtWidgets/QComboBox:
@@ -18788,10 +18899,6 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 /usr/include/qt6/QtCore/QPair:
 
 /usr/include/qt6/QtWidgets/QGridLayout:
-
-/usr/lib32/libexpat.so.1:
-
-/usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake:
 
 /usr/include/qt6/QtWidgets/QGroupBox:
 
@@ -18830,6 +18937,8 @@ CMakeFiles/ZMP_Linux_bin.dir/visualizationwidget.cpp.o:
 /usr/include/dirent.h:
 
 /usr/include/qt6/QtWidgets/QSlider:
+
+/usr/include/qt6/QtWidgets/QSpacerItem:
 
 /usr/lib/cmake/Qt6/QtPublicSbomExternalReferenceHelpers.cmake:
 

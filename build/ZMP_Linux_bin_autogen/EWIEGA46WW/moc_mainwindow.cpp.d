@@ -598,6 +598,7 @@
   /usr/include/qt6/QtOpenGLWidgets/qtopenglwidgetsglobal.h \
   /usr/include/qt6/QtWidgets/QAbstractItemView \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QCheckBox \
   /usr/include/qt6/QtWidgets/QComboBox \
   /usr/include/qt6/QtWidgets/QDialog \
@@ -619,6 +620,7 @@
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QScrollArea \
   /usr/include/qt6/QtWidgets/QSlider \
+  /usr/include/qt6/QtWidgets/QSpacerItem \
   /usr/include/qt6/QtWidgets/QSpinBox \
   /usr/include/qt6/QtWidgets/QSplitter \
   /usr/include/qt6/QtWidgets/QStackedWidget \

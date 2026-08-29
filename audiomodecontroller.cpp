@@ -8,7 +8,9 @@
 
 AudioModeController *AudioModeController::instance()
 {
-    static AudioModeController inst(qApp);
+    // Без parent: иначе qApp удалит объект при разрушении, а статический
+    // деструктор потом удалит его ещё раз (double free / abort).
+    static AudioModeController inst;
     return &inst;
 }
 
